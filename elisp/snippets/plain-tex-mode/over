@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: over
+# key: over
+# --
+{$1 \over $2} $0

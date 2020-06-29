@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: negation
+# key: ne
+# --
+\neg $0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: subsubsec
+# key: subsubsec
+# --
+% -------------------
+\subsubsection{$0}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: opmac
+# key: opmac
+# --
+\begtt
+$0
+\endtt

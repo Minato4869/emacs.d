@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: flushright
+# key: flushright
+# --
+\begin{flushright}
+$0
+\end{flushright}

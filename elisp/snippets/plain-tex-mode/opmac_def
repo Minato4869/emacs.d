@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: opmac_def
+# key: opmac_def
+# --
+
+\input opmac
+
+\def\hisyntax#1{\bgroup\def\ptthook{\csname hisyntax#1\endcsname}}
+\def\ghisyntax#1{\def\ptthook{\bgroup\csname hisyntax#1\endcsname}}
+
+\def\hisyntaxC#1\egroup{\let\n=\relax \let\NLh=\relax \let\U=\relax
+\let\TABchar=\relax % used in OPmac trick 0151
+\adef{ }{\n\ \n}\adef\^^M{\n\NLh\n}\edef\tmpb{#1\egroup}%
+\replacestrings{\n\egroup}{\egroup}%
+\replacestrings{/*}{\tmp}\def\tmp##1*/{\U{commentC}{##1}}\edef\tmpb{\tmpb}%
+\replacestrings{//}{\tmp}\def\tmp##1\NLh{\U{commentCpp}{##1}}\edef\tmpb{\tmpb}%
+\edef\tmp{\noexpand\replacestrings{\string"}{\n{\string"}}}\tmp
+\replacestrings{"}{\tmp}\def\tmp##1\tmp{\U{stringC}{##1}}\edef\tmpb{\tmpb}%
+\doreplace{##1}{\n{\chCcolor##1}\n}\charsC{}%
+\doreplace{\n##1\n}{\kwC{##1}}\keywordsC{}%
+\edef\tmp{\noexpand\replacestrings{\NLh\n\string##}{\NLh\noexpand\preprocC}}\tmp
+\doreplace{\n##1}{\numberC##1}0123456789{}%
+\let\NLh=\par \def\n{}\def\U##1{\csname##1\endcsname}%
+\tentt\localcolor\tmpb\egroup}
+\def\doreplace#1#2{\def\do##1{\ifx^##1^\else \replacestrings{#1}{#2}\expandafter\do\fi}%
+\expandafter\do}
+\def\printttline{\llap{\sevenrm\Black\the\ttline\kern.9em}} % \Black added
+
+
+\def\commentCpp#1{{\Black//#1}\NLh}
+\def\stringC#1{{\def\ {\char32 }\Green"#1"}}
+\def\numberC#1\n{{\Black#1}}
+\def\preprocC#1\n{{\Black\##1}}
+\edef\keywordsC{{auto}{break}{case}{char}{continue}{default}{do}{double}%
+{else}{entry}{enum}{extern}{float}{for}{goto}{if}{int}{long}{register}%
+{return}{short}{sizeof}{static}{struct}{switch}{typedef}{union}
+{unsigned}{void}{while}} % all keywords of C language are here
+\def\kwC#1{{\Red#1}}
+\edef\charsC{()\string{\string}+-*/=[]<>,:;\percent\string&\string^|!?}
+\let\chCcolor=\Black

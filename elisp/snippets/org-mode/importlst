@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: importlst
+# key: lsti
+# --
+\lstinputlisting[language=$1,frame=single]{$0}

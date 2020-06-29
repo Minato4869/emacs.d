@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: doc
+# key: doc
+# --
+% - * packages -----------------------------------------------------------------
+\input tikz
+% \input eplain
+%\parindent=0pt
+% - * fonts --------------------------------------------------------------------
+\font\bigbf=cmbx12 at 12pt
+\font\bigrm=cmr12 at 14pt
+\font\bigcmr=cmr10 at 10pt
+
+% - * title --------------------------------------------------------------------
+\pageno=1
+\centerline{\bigrm ${title} }
+\bigskip
+\centerline{ ${author} }
+\medskip
+\centerline{ ${date} }
+\bigskip
+
+% - * main ---------------------------------------------------------------------
+
+
+\bye

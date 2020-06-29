@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: literature
+# key: literature
+# --
+\usepackage[backend=biber, style=authoryear,
+natbib=true,
+hyperref=true]{biblatex}
+\addbibresource{literature.bib}

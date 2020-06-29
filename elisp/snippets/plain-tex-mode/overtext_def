@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: overtext
+# key: overtext
+# --
+\def\overtext#1#2{%
+  \leavevmode
+  \vbox{\ialign{\strut##\cr\hfil\hbox{$#1$}\hfil\cr$#2$\cr}}%
+}

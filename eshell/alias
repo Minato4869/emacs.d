@@ -1,0 +1,5 @@
+alias z dired
+alias rm rm -v
+alias emacs find-file $1
+alias em find-file $1
+alias ls ls -1

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ot
+# key: o
+# --
+\overtext{$1}{$0}

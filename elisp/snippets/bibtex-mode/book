@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: book
+# key: book
+# --
+@Book{ ,
+author = {},
+title = {},
+edition = {},
+address = {},
+pages = {},
+publisher = {},
+year = {},
+}

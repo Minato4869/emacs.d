@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: subsubsec
+# key: subsubsec
+# --
+
+% - * subsubsection --------------------
+\beginsection {\bigcmr {\bf\quad $1 }}
+
+
+$0

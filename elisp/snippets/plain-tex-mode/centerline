@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: center
+# key: center
+# --
+
+\centerline{
+$1
+}
+
+$0

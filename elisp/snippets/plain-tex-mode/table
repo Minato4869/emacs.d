@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: table
+# key: table
+# --
+$$
+\vbox{\tabskip=0pt
+\halign{#\hfil\strut\tabskip=2em && #\hfil\crcr
+& & \cr
+}}
+$$

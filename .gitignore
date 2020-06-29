@@ -1,0 +1,15 @@
+autosave/
+auto-save-list/
+backup/
+elpa/
+eshell/history
+eshell/lastdir
+games/
+history
+url/
+gitignore.old
+ido.last*
+nov-places
+tramp
+*.elc
+.yas-compiled-snippets.el*

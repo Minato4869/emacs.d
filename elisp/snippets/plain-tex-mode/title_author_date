@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: title
+# key: title
+# --
+
+% - * fonts--- -----------------------------------------------------------------
+\font\bigbf=cmbx12 at 12pt
+\font\bigrm=cmr12 at 14pt
+
+% - * title --------------------------------------------------------------------
+\pageno=1
+\centerline{\bigrm ${title} }
+\bigskip\bigskip
+\centerline{ ${author} }
+\bigskip
+\centerline{ ${date} }
+\bigskip
+
+$0
+
+\bye

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cl
+# key: cl
+# --
+\centerline{ $1 } $0

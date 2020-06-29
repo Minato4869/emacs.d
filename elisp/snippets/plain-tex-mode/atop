@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: atop
+# key: at
+# --
+{$1 \atop $0}

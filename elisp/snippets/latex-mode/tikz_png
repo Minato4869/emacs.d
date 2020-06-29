@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: tikzpng
+# key: tikzpng
+# --
+\documentclass[tikz,border=7pt,convert={density=300,size=800x800,outext=.png}]{standalone}
+%\documentclass[tikz,border=7pt]{standalone}
+%\usepackage{tikz}
+
+\begin{document}
+%\usetikzlibrary{shapes,arrows,automata}
+\begin{tikzpicture}
+%[>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick]
+%  \tikzstyle{every state}=[fill=white,draw=black,text=black]
+%  level distance=2cm]
+;
+\end{tikzpicture}
+\end{document}

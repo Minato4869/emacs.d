@@ -1,0 +1,41 @@
+# -*- mode: snippet -*-
+# name: bgdoc
+# key: bgdoc
+# --
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{fullpage}
+\usepackage[euler]{textgreek}
+\usepackage{textcomp}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{marvosym}
+\usepackage{ragged2e}
+% \usepackage[onehalfspacing]{setspace}
+\usepackage{hyperref}
+% - non default - packages
+
+\hypersetup{
+  colorlinks=true, % make the links colored
+  linkcolor=black, % color TOC links in blue
+  urlcolor=red, % color URLs in red
+  linktoc=all, % 'all' will create links for everything in the TOC
+  citecolor=black
+}
+
+\title{}
+\author{}
+\date{}
+
+\usepackage[backend=biber
+, style=authoryear
+, maxcitenames=1
+, natbib=true
+, hyperref=true]{biblatex}
+\addbibresource{literature.bib}
+
+\begin{document}
+\justify
+
+\end{document}

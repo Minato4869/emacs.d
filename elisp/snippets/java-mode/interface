@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: interface
+# key: intf
+# expand-env: ((yas-indent-line 'fixed))
+# --
+public interface ${1:name}  {
+       $0
+}

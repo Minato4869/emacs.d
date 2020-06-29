@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: sec
+# key: sec
+# --
+
+% - * section ------------------------------------------------------------------
+\beginsection {\bigbf ${sectionname}}
+
+
+$0

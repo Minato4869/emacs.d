@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: tree
+# key: tree
+# expand-env: ((yas-indent-line 'fixed))
+# --
+\begin{center}
+\begin{tikzpicture}[nodes={draw, circle}, ->,
+  level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=2cm},
+  level 3/.style={sibling distance=1cm}]
+  \node {root}
+    child {node {child}
+   	 child {node {grandchild}}
+    	 child {node {grandchild}}
+	 }
+   child {node {child}
+      	 child {node {grandchild}}
+    	 child {node {grandchild}}
+};
+\end{tikzpicture}
+\end{center}

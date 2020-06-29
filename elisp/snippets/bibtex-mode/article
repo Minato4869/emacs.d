@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: article
+# key: article
+# --
+@Article{ ,
+author = {},
+title = {},
+edition = {},
+address = {},
+pages = {},
+journal = {},
+publisher = {},
+year = {},
+}

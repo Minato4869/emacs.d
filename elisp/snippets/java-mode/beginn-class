@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: class
+# key: class
+# --
+import java.util.*;
+
+public class $1 {
+	$0
+}

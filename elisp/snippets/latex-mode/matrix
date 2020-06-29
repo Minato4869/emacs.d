@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mat
+# key: mat
+# --
+\begin{matrix}
+$0
+\end{matrix}

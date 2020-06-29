@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wedge
+# key: wed
+# --
+\wedge $0

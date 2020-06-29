@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: eqalign
+# key: eqalign
+# --
+$$\eqalign{
+$0
+}$$

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: lst
+# key: lst
+# --
+\begtt
+$0
+\endtt

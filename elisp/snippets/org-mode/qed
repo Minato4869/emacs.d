@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: qed
+# key: qed
+# --
+\begin{flushright}
+$\blacksquare\qquad$
+\end{flushright}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dot
+# key: cd
+# --
+\cdot $0

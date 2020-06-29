@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: hypertarget
+# key: ht
+# --
+\hypertarget{$1}{$0}

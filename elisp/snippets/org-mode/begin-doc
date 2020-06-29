@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: begindoc
+# key: doc
+# --
+#+LATEX_CLASS: article
+#+LaTeX_HEADER:\usepackage{amsfonts,amsmath,amssymb,amsthm}
+#+LaTeX_HEADER:\usepackage[english,ngerman]{babel}
+#+LaTeX_HEADER:\usepackage{fullpage}
+#+LaTeX_HEADER:\usepackage{textcomp}
+#+LaTeX_HEADER:\usepackage{mathtools}
+#+LaTeX_HEADER:\usepackage{marvosym}
+#+LaTeX_HEADER:\usepackage{ragged2e}
+
+\justify
+\setlength{\parindent}{0pt}
+
+#+OPTIONS: tex:t
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+
+#+Title:
+#+Author:
+#+Date:

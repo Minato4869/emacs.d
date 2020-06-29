@@ -1,0 +1,5 @@
+(defun run-term (&optional arg)
+ 	(interactive "P")
+ 	(let ((default-directory default-directory))
+ 		(start-process "rxvt" nil "rxvt")))
+(global-set-key (kbd "C-c <return>") 'run-term)

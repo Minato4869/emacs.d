@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# name: exception
+# key: exception
+# expand-env: ((yas-indent-line 'fixed))
+# --
+class MyException extends Exception {
+	private static final long serialVersionUID = 1L;
+	public MyException() {}
+
+	/**
+	 * Constructs exception based on given message.
+	 *
+	 * @param message
+	 *            text describing exception.
+	 */
+	public MyException(String message) {
+		super(message);
+	}
+
+	/**
+	 * Constructs exception based on given throwable object.
+	 *
+	 * @param t
+	 *            throwable to be used.
+	 */
+	public MyException(Throwable t) {
+		super(t);
+	}
+}

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: tree
+# key: tree
+# --
+\begin{tikzpicture}[nodes={draw, rectangle},
+level distance=3cm,
+level 1/.style={sibling distance=4cm},
+level 2/.style={sibling distance=2cm}]
+\tikzstyle{every node}=[circle,draw]
+    \node (Root) [black] {Door 1}
+        child {
+        node [label={label}]  {Door 1}
+	}
+%    Comments to each level
+%%   \begin{scope}[every node/.style={right}]
+%%     \path (Root    -| Root-3) ++(20mm,0) node {$\Rightarrow$} ++(5mm,0) node {comment};
+%%     \path (Root-1  -| Root-3) ++(20mm,0) node {$\Rightarrow$} ++(5mm,0) node {comment};
+%%     \path (Root-1-1  -| Root-3) ++(20mm,0) node {$\Rightarrow$} ++(5mm,0) node {comment};
+%%   \end{scope}
+;
+\end{tikzpicture}
