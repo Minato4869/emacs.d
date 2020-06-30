@@ -61,6 +61,8 @@
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-buffer-mode")
 (load-library-wrap-error "custom-compile")
+(load-library-wrap-error "custom-theme-switch")
+(load-library-wrap-error "custom-tex")
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
@@ -75,8 +77,6 @@
 
   (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-terminal-mode")
-  (load-library-wrap-error "custom-tex")
-  (load-library-wrap-error "custom-theme-switch")
   (load-library-wrap-error "custom-x11-keys"))
 
 (load-library-wrap-error "custom-theme")

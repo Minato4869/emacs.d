@@ -30,8 +30,6 @@
 (defalias 'lt 'load-theme)
 
 (defalias 'ln 'display-line-numbers-mode)
-(defalias 'ol 'custom-olivietti-mode)
-(defalias 'goyo 'custom-olivietti-mode)
 
 (defalias 'knuth 'knuth-font)
 (defalias 'meslo 'menlo-font)
@@ -39,3 +37,5 @@
 (defalias 'ttf    'menlo-font)
 (defalias 'go     'go-font)
 (defalias 'dejavu 'dejavu-font)
+
+(defalias 'cf 'conf-mode)

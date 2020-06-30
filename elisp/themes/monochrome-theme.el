@@ -1,14 +1,23 @@
 (deftheme monochrome
-  "monochrome theme")
+  "monochrome theme (inspired by jcs")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#D9D5BA")
-      (FG                 "#444444")
+      ;; light variant
+      ;;(BG                 "#D9D5BA")
+      ;;(FG                 "#444444")
+      ;;(warning            "#FF0000")
+      ;;(border             "#0000FF")
+      ;;(fringe             "#DAD4bc")
+      ;;(region             "#D7D75F")
+      ;;(monoch-comment     "#6C6C6C")
+      ;; dark variant
+      (BG                 "#444444")
+      (FG                 "#D9D5BA")
       (warning            "#FF0000")
       (border             "#0000FF")
-      (fringe             "#DAD4bc")
+      (fringe             "#121212")
       (region             "#D7D75F")
-      (monoch-comment     "#6C6C6C"))
+      (monoch-comment     "#bebebe"))
 
   (custom-theme-set-faces
        'monochrome

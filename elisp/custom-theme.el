@@ -30,7 +30,8 @@
   (disable-all-themes)
   (load-theme 'gl-dark t))
  (t
-  (load-theme 'xcode-dark t)))
+  (load-theme 'xcode-dark t)
+  (setq custom-themes-index 2)))
 
 (custom-set-faces
  `(diff-added ((t (:foreground "green"))))
