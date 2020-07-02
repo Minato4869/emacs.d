@@ -18,7 +18,7 @@
       (nay-lightgreen-hl  "#B4EEB4")
       (nay-green          "#3FDF1F")
       (nay-green-string   "#3FDF1F")
-      (nay-white          "#bebebe") ;; "#FFFFFF")
+      (nay-white          "#FFFFFF") ;; was #BEBEBE, white is default
       (nay-lightblue      "#C8D4EC")
       (nay-brown          "#504038")
       (nay-navyblue       "#000080"))
