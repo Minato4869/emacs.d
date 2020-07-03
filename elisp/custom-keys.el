@@ -8,7 +8,7 @@
 (global-unset-key (kbd "C-C"))
 
 (bind-key* "C-z"   'undo)
-(bind-key  "C-h" 'backward-delete-char)
+(bind-key  "C-h"   'backward-delete-char-untabify)
 
 (bind-key "C-c h" 'help)
 (bind-key* "M-g"   'goto-line)
