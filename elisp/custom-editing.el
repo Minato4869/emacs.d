@@ -18,6 +18,9 @@
 ;; whitespace
 (setq-default show-trailing-whitespace nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;(setq require-final-newline t)
+;;(setq ws-butler-keep-whitespace-before-point nil)
+;;(ws-butler-global-mode t)
 
 ;; gpg
 (setq-default epg-gpg-home-directory "~/.gnupg")

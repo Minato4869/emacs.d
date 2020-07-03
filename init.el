@@ -20,7 +20,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (ag use-package bind-key diminish keychain-environment yasnippet haskell-mode flx auctex)))
+    (ws-butler ag use-package bind-key diminish keychain-environment yasnippet haskell-mode flx auctex)))
  '(blink-cursor-mode nil)
  '(inhibit-startup-screen t)
  '(scroll-error-top-bottom t)
