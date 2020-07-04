@@ -43,7 +43,6 @@
 (setq use-package-verbose t
       use-package-always-ensure t)
 ;; paths
-(setq exec-path (append '("~/bin")  exec-path))
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "~/.emacs.d/elisp/themes"))
