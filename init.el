@@ -3,7 +3,7 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-
+;; custom
 (custom-set-variables
  '(initial-scratch-message
 ";; Unfortunately, there's a radio connected to my brain
@@ -20,7 +20,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (ws-butler ag use-package bind-key diminish keychain-environment yasnippet haskell-mode flx auctex)))
+    (yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex ag)))
  '(blink-cursor-mode nil)
  '(inhibit-startup-screen t)
  '(scroll-error-top-bottom t)
@@ -28,8 +28,8 @@
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
 
+;; packages
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
 (package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -42,15 +42,15 @@
 
 (setq use-package-verbose t
       use-package-always-ensure t)
-
-(setq exec-path (append "~/bin" exec-path))
+;; paths
+(setq exec-path (append '("~/bin")  exec-path))
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "~/.emacs.d/elisp/themes"))
 
 (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 (yas-global-mode 1)
-
+;; custom files
 (setq custom-file "~/.emacs.d/elisp/custom.el")
 (load-library "custom-load-file")
 (load-library-wrap-error "custom-editing")
