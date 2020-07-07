@@ -20,7 +20,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex ag)))
+    (lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex)))
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -32,6 +32,9 @@
  ;; If there is more than one, they won't work right.
  '(Man-overstrike ((t (:foreground "#EF2929" :bold t))))
  '(Man-underline ((t (:foreground "#8AE234" :underline nil :bold t))))
+ '(compilation-column-number ((t (:foreground "#FCE94F"))))
+ '(compilation-info ((t (:foreground "#8AE234"))))
+ '(compilation-line-number ((t (:foreground "#FCE94F"))))
  '(diff-added ((t (:foreground "green"))))
  '(diff-header ((t (nil))))
  '(diff-removed ((t (:foreground "red"))))
