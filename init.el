@@ -12,7 +12,7 @@
 ")
  '(battery-mode-line-format " [%b%p%%] ")
  '(display-time-default-load-average nil)
- '(display-time-format "%Y-%m-%d %H:%M")
+ '(display-time-format "%H:%M") ;; "%Y-%m-%d %H:%M")
  '(display-time-mail-string "")
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)

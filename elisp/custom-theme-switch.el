@@ -1,5 +1,5 @@
 (defvar custom-themes-index)
-(setq custom-themes '(gl-dark naysayer xcode-dark
+(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
                               custom-tango-dark monochrome))
 (setq custom-themes-index 0)
 

@@ -9,7 +9,8 @@
  '(border ((t (:foreground "blue"))))
  '(fringe ((t (:background "grey95"))))
  '(mode-line ((t (:foreground "black" :background "grey75" ))))
- '(region ((t (:foreground "black" :background "lightgoldenrod2"))))
+ '(region ((t (:foreground "black" :background "lightgoldenrod2"
+                           :box (:line-width -1 :style released-button)))))
 
  '(font-lock-builtin-face ((t (:foreground "dark slate blue"))))
  '(font-lock-comment-face ((t (:foreground "Firebrick"))))

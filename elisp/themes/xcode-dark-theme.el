@@ -9,7 +9,8 @@
       (fringe             "#121212")
       (modeline           "#292929")
       (warning            "#FF0000")
-      (region             "#00077A")
+      (region-bg          "#00077A")
+      (region-fg          "#BEBEBE")
 
       (xc-lightblue       "#4C99EB")
       (xc-blue            "#1492FF")
@@ -29,7 +30,9 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(mode-line                    ((,class (:inherit foreground :background ,modeline))))
-   `(region                       ((,class (:background ,region))))
+;;   `(region                       ((,class (:background ,region))))
+   `(region                        ((,class (:background ,region-bg
+                                             :foreground ,region-fg))))
 
 
    `(font-lock-builtin-face       ((,class (:foreground ,xc-lightblue))))

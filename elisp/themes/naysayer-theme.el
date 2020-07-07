@@ -8,7 +8,8 @@
       (border             "#0000FF")
       (fringe             "#050404")
       (modeline           "#292929")
-      (region             "#0000FF")
+      (region-bg          "#0000FF")
+      (region-fg          "#BEBEBE")
       (warning            "#FF0000")
 
       (ido-green          "#A1C659")
@@ -31,7 +32,9 @@
    `(border                        ((,class (:foreground ,border))))
    `(fringe                        ((,class (:background ,fringe))))
    `(mode-line                     ((,class (:inverse-video t))))
-   `(region                        ((,class (:background ,region))))
+   ;;   `(region                        ((,class (:background ,region-bg))))
+   `(region                        ((,class (:background ,region-bg
+                                             :foreground ,region-fg))))
 
    `(font-lock-builtin-face        ((,class (:foreground ,nay-lightgreen))))
    `(font-lock-comment-face        ((,class (:foreground ,nay-green))))

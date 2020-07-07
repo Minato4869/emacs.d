@@ -9,7 +9,7 @@
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
  '(display-time-default-load-average nil)
- '(display-time-format "%Y-%m-%d %H:%M")
+ '(display-time-format "%H:%M")
  '(display-time-mail-string "")
  '(inhibit-startup-screen t)
  '(initial-scratch-message
@@ -20,7 +20,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (ws-butler ag use-package bind-key diminish keychain-environment yasnippet haskell-mode flx auctex)))
+    (lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex ag)))
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)

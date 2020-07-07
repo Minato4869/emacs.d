@@ -113,9 +113,8 @@
 (bind-key* "M-L" 'downcase-word)
 
 ;; mode specific
-(add-hook 'emacs-lisp-mode-hook
-          (lambda()
-            (local-set-key (kbd "C-c C-c") 'eval-buffer)))
+(bind-keys :map emacs-lisp-mode-map
+           ("C-c C-c" . eval-buffer))
 
 ;; copy and paste
 (defun yank-primary ()
