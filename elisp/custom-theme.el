@@ -1,3 +1,7 @@
+(defvar custom-themes-index)
+(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
+                              custom-tango-dark monochrome))
+(setq custom-themes-index 0)
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
           ls-executable        "#cc0000"
@@ -18,9 +22,60 @@
   (dolist (i custom-enabled-themes)
     (disable-theme i)))
 
+(defun custom-cycle-theme ()
+  (interactive)
+;;  (disable-theme (nth custom-themes-index custom-themes))
+  (disable-all-themes)
+  (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
+  (custom-try-load-theme (nth custom-themes-index custom-themes)))
+
+(defun custom-default-theme ()
+  (interactive)
+  (disable-all-themes)
+  (custom-try-load-theme (nth 0 custom-themes))
+  (setq custom-theme-index 0)
+  (progn (message "Default theme")))
+
+(defun custom-disable-theme ()
+  (interactive)
+  ;;(disable-theme (nth custom-themes-index custom-themes))
+  (disable-all-themes)
+  (setq custom-themes-index (- (length custom-themes) 1))
+  (progn (message "Disabled custom theme")))
+
+
+(defun custom-try-load-theme (theme)
+  (unless (ignore-errors (load-theme theme :no-confirm))
+      (progn (message "Currently enabled theme: '%s'" theme)
+        (mapc #'disable-theme (remove theme custom-enabled-themes)))
+    (message "Unable to find theme file for '%s'" theme)))
+
+(defun presentation-mode ()
+  (interactive)
+  (disable-all-themes)
+  (load-theme 'default-light t)
+  (presentation-font)
+  (setq custom-theme-index 1)
+  (when (daemonp)
+    (setq custom-theme-index 0))
+  (message "Enabled presentation mode"))
+
+(defun reset-themes ()
+  (interactive)
+  (disable-all-themes)
+  (custom-try-load-theme (nth custom-themes-index custom-themes))
+  (if (< (display-pixel-width) 1600)
+       (medium-font)
+     (large-font))
+  (message "Enabled default mode"))
+
+(global-set-key (kbd "<f2>") 'custom-cycle-theme)
+(global-set-key (kbd "C-<f2>") 'custom-default-theme)
+(global-set-key (kbd "S-<f2>") 'custom-disable-theme)
+
+
 (when (> (length custom-enabled-themes) 1)
       (disable-all-themes))
-
 (cond
  ((and (display-graphic-p) (not (daemonp)))
   (progn

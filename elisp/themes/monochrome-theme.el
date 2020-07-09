@@ -8,7 +8,8 @@
       ;;(warning            "#FF0000")
       ;;(border             "#0000FF")
       ;;(fringe             "#DAD4bc")
-      ;;(region             "#D7D75F")
+      ;;(region-fg          "#D7D75F")
+      ;;(region-bg          "#6C6C6C")
       ;;(monoch-comment     "#6C6C6C")
       ;; dark variant
       (BG                 "#444444")
@@ -16,7 +17,8 @@
       (warning            "#FF0000")
       (border             "#0000FF")
       (fringe             "#121212")
-      (region             "#D7D75F")
+      (region-fg          "#D7D75F")
+      (region-bg          "#6C6C6C")
       (monoch-comment     "#bebebe"))
 
   (custom-theme-set-faces
@@ -27,8 +29,8 @@
        `(border                      ((,class (:foreground ,border))))
        `(fringe                      ((,class (:background ,fringe))))
        `(mode-line                   ((,class (:background ,FG :foreground ,BG))))
-       `(region                      ((,class (:background ,monoch-comment
-                                                           :foreground ,region))))
+       `(region                      ((,class (:background ,region-bg
+                                                           :foreground ,region-fg))))
 
        `(font-lock-builtin-face       ((,class (:inherit foreground))))
        `(font-lock-comment-face       ((,class (:foreground ,monoch-comment))))
