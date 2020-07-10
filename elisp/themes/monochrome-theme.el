@@ -2,24 +2,24 @@
   "monochrome theme (inspired by jcs")
 
 (let ((class '((class color) (min-colors 89)))
-      ;; light variant
-      ;;(BG                 "#D9D5BA")
-      ;;(FG                 "#444444")
-      ;;(warning            "#FF0000")
-      ;;(border             "#0000FF")
-      ;;(fringe             "#DAD4bc")
-      ;;(region-fg          "#D7D75F")
-      ;;(region-bg          "#6C6C6C")
-      ;;(monoch-comment     "#6C6C6C")
-      ;; dark variant
-      (BG                 "#444444")
-      (FG                 "#D9D5BA")
+      ;;;; light variant
+      (BG                 "#D9D5BA")
+      (FG                 "#444444")
       (warning            "#FF0000")
       (border             "#0000FF")
-      (fringe             "#121212")
+      (fringe             "#DAD4bc")
       (region-fg          "#D7D75F")
       (region-bg          "#6C6C6C")
-      (monoch-comment     "#bebebe"))
+      (monoch-comment     "#6C6C6C"))
+      ;;;; dark variant
+      ;;(BG                 "#444444")
+      ;;(FG                 "#D9D5BA")
+      ;;(warning            "#FF0000")
+      ;;(border             "#0000FF")
+      ;;(fringe             "#121212")
+      ;;(region-fg          "#D7D75F")
+      ;;(region-bg          "#6C6C6C")
+      ;;(monoch-comment     "#bebebe"))
 
   (custom-theme-set-faces
        'monochrome
