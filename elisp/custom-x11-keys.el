@@ -3,9 +3,6 @@
 (global-unset-key (kbd "C-x C-="))
 (global-unset-key (kbd "C-x C--"))
 (global-unset-key (kbd "C-x C-+"))
-(global-unset-key (kbd "C-x C-z"))
-(global-unset-key (kbd "C-x z"))
-
 
 ;; windows
 (bind-key* "C-1"   'delete-other-windows)
@@ -45,5 +42,5 @@
       (other-frame -1)
     (other-window -1)))
 (bind-key* "C-x C-o" 'other-frame)
-(bind-key* "C-x O" 'reverse-other-window-or-frame)
-(bind-key* "C-x O" 'reverse-other-window-or-frame)
+(bind-key "C-c o" 'reverse-other-window-or-frame)
+(bind-key "C-c C-o" 'reverse-other-window-or-frame)
