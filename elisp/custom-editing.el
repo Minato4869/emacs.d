@@ -40,6 +40,8 @@
         tab-width offset
         auto-fill-mode autofill
         indent-tabs-mode tabs)
+  (when (equal autofill nil)
+    (auto-fill-mode -1))
   (unless (equal fill nil)
     (setq fill-column fill)))
 
@@ -57,6 +59,10 @@
 (add-hook 'LaTeX-mode-hook      (lambda () (custom-indent 2 nil nil)))
 (add-hook 'TeX-mode-hook        (lambda () (custom-indent 2 nil nil)))
 (add-hook 'haskell-mode-hook    (lambda () (custom-indent 2 nil nil)))
+(add-hook 'conf-space-mode-hook (lambda () (custom-indent 4 nil nil)))
+(add-hook 'conf-mode-hook       (lambda () (custom-indent 4 nil nil)))
+(add-hook 'conf-xdefaults-mode-hook
+                                (lambda () (custom-indent 4 nil nil)))
 (add-hook 'java-mode-hook       (lambda () (custom-indent 4 t t)))
 (add-hook 'mail-mode-hook       (lambda () (custom-indent 4 t nil 70)))
 (add-hook 'sh-mode-hook         (lambda () (custom-sh-indent 8 t t)))
