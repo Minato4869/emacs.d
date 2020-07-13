@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(battery-mode-line-format " [%b%p%%] ")
+ '(battery-mode-line-format "[%b%p%%] ")
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(display-time-24hr-format t)
@@ -24,7 +24,10 @@
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(use-dialog-box nil))
+ '(use-dialog-box nil)
+ '(whitespace-style
+   (quote
+    (face trailing tabs spaces lines newline empty indentation space-after-tab space-before-tab space-mark tab-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -55,7 +58,12 @@
  '(ido-indicator ((t (:inherit foreground))))
  '(line-number ((t (:inherit foreground :bold t))))
  '(minibuffer-prompt ((t (:inherit foreground :bold t))))
- '(mouse ((t (:background "black" :foreground "white"))))
+ '(mouse ((t (:foreground "white" :background "black"))))
  '(region ((t (:extend t))))
  '(trailing-whitespace ((t (:background "#FFB6B0"))))
- '(variable-pitch ((t (:font "Sans-Serif-14")))))
+ '(variable-pitch ((t (:font "Sans-Serif-14"))))
+ '(whitespace-empty ((t (:foreground "firebrick" :inherit background))))
+ '(whitespace-line ((t (:inherit foreground))))
+ '(whitespace-space ((t (:foreground "#444444" :inherit background))))
+ '(whitespace-tab ((t (:foreground "#444444" :inherit background))))
+ '(whitespace-trailing ((t (:foreground "#FFB6B0" :inherit background)))))

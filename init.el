@@ -22,6 +22,10 @@
    (quote
     (lua-mode yasnippet ws-butler use-package keychain-environment
               haskell-mode flx diminish auctex)))
+ '(whitespace-style
+   (quote
+    (face trailing tabs spaces lines newline empty indentation space-after-tab
+          space-before-tab space-mark tab-mark)))
  '(blink-cursor-mode nil)
  '(inhibit-startup-screen t)
  '(scroll-error-top-bottom t)

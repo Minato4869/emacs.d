@@ -1,8 +1,8 @@
-(setq tex-fontify-script nil) ;; disables custom fonts in LaTeX buffer display
-(setq font-latex-fontify-sectioning 1)
-(setq font-latex-fontify-sectioning 'color)
-(setq font-latex-fontify-script nil)
-(setq LaTeX-item-indent -2 LaTeX-indent-level 4) ;; indents special environments
+(setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
+      font-latex-fontify-sectioning 'color
+      font-latex-fontify-script nil
+      LaTeX-item-indent -2
+      LaTeX-indent-level 4) ;; indents special environments
 
 
 (setq-default
@@ -27,10 +27,8 @@
 (setq-default
  TeX-view-program-selection
  (quote
-  (((output-dvi has-no-display-manager)
-    "dvi2tty")
-   ((output-dvi style-pstricks)
-    "dvips and gv")
+  (((output-dvi has-no-display-manager) "dvi2tty")
+   ((output-dvi style-pstricks) "dvips and gv")
    (output-dvi "xdvi")
    (output-pdf "xpdf")
    (output-html "xdg-open"))))

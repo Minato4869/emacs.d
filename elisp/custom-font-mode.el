@@ -38,10 +38,10 @@
 (defun presentation-font ()
   (interactive)
   (custom-set-font "Meslo LG S:regular:pixelsize=24:antialias=true" ))
-
-(global-set-key (kbd "<f6>") 'small-font)
-(global-set-key (kbd "<f7>") 'medium-font)
-(global-set-key (kbd "<f8>") 'large-font)
+(bind-keys
+ ("<f6>"  .small-font)
+ ("<f7>" . medium-font)
+ ("<f8>" . large-font))
 
 (when (and (and (not (daemonp)) (display-graphic-p))
            (not (file-directory-p "/usr/local/share/fonts/X11/misc")))

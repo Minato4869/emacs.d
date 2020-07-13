@@ -46,6 +46,7 @@
 (defun custom-lisp-indent ()
   (setq offset 2
         lisp-body-indent offset)
+  (auto-fill-mode -1)
   (custom-indent offset nil nil))
 
 (defun custom-sh-indent (offset autofill tabs)

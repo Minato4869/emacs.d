@@ -3,44 +3,42 @@
 (global-unset-key (kbd "C-x C-="))
 (global-unset-key (kbd "C-x C--"))
 (global-unset-key (kbd "C-x C-+"))
-
-;; windows
-(bind-key* "C-1"   'delete-other-windows)
-(bind-key* "C-2"   'split-window-below)
-(bind-key* "C-3"   'split-window-right)
-(bind-key* "C-4"   'make-frame-command)
-(bind-key* "s-0"   'delete-window)
-(bind-key* "s-1"   'delete-other-windows)
-(bind-key* "s-2"   'split-window-below)
-(bind-key* "s-3"   'split-window-right)
-(bind-key* "C-x 4" 'make-frame-command)
-
-(bind-key* "s-d" 'ido-dired)
-(bind-key* "s-r" 'revert-buffer)
-(bind-key* "s-b" 'ibuffer)
-
+;; custom functions
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
-(bind-key* "C-0" 'text-scale-reset)
-(bind-key* "C-=" 'text-scale-increase)
-(bind-key* "C--" 'text-scale-decrease)
-
 (defun other-window-or-frame ()
   (interactive)
   (if (one-window-p)
       (other-frame 1)
     (other-window 1)))
-(bind-key* "M-o" 'other-window-or-frame)
-(if (one-window-p)
-    (bind-key*  "C-x o" 'other-frame)
-  (bind-key* "C-x o" 'other-window))
 
 (defun reverse-other-window-or-frame ()
   (interactive)
   (if (one-window-p)
       (other-frame -1)
     (other-window -1)))
-(bind-key* "C-x C-o" 'other-frame)
-(bind-key "C-c o" 'reverse-other-window-or-frame)
-(bind-key "C-c C-o" 'reverse-other-window-or-frame)
+;; windows
+(bind-keys
+ ;; windows
+ ("s-1"     . delete-other-windows)
+ ("s-2"     . split-window-below)
+ ("s-3"     . split-window-right)
+ ("C-x 4"   . make-frame-command)
+ ;; buffers
+ ("s-d"     . ido-dired)
+ ("s-r"     . revert-buffer)
+ ("s-b"     . ibuffer)
+ ;; text scale
+ ("C-="     . text-scale-increase)
+ ("C--"     . text-scale-decrease)
+ ;; custom functions
+ ("C-0"     . text-scale-reset)
+ ("M-o"     . other-window-or-frame)
+ ("C-x C-o" . other-frame)
+ ("C-c o"   . reverse-other-window-or-frame)
+ ("C-c C-o" . reverse-other-window-or-frame))
+
+ (if (one-window-p)
+    (bind-key  "C-x o" 'other-frame)
+  (bind-key "C-x o" 'other-window))

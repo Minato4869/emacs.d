@@ -22,14 +22,13 @@
 
 (defun compile-parent (command)
   (interactive
-   (let* ((make-directory (locate-dominating-file
-                           default-directory
-                           "Makefile"))
+   (let* ((make-directory
+           (locate-dominating-file default-directory "Makefile"))
           (command (concat "make -k -C "
-                           (shell-quote-argument make-directory)
-                           " ")))
+                           (shell-quote-argument make-directory) " ")))
      (list (compilation-read-command command))))
   (compile command))
 
-(bind-key* "<C-f9>" 'custom-recompile)
-(bind-key* "C-c <f9>" 'compile-parent)
+(bind-keys
+ ("<C-f9>"   . custom-recompile)
+ ("C-c <f9>" . compile-parent))
