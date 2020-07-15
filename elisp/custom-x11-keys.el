@@ -40,5 +40,5 @@
  ("C-c C-o" . reverse-other-window-or-frame))
 
  (if (one-window-p)
-    (bind-key  "C-x o" 'other-frame)
-  (bind-key "C-x o" 'other-window))
+    (bind-key "C-x o" 'other-frame)
+  (bind-key  "C-x o"  'other-window))
