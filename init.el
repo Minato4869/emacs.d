@@ -10,9 +10,9 @@
 ;; Actually, it's the BBC controlling us from London.
 
 ")
- '(battery-mode-line-format "[%b%p%%] ")
+ '(battery-mode-line-format "[%b%p%%]")
  '(display-time-default-load-average nil)
- '(display-time-format "%H:%M") ;; "%Y-%m-%d %H:%M")
+ '(display-time-format "%H:%M")
  '(display-time-mail-string "")
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
@@ -24,8 +24,8 @@
               haskell-mode flx diminish auctex)))
  '(whitespace-style
    (quote
-    (face trailing tabs spaces lines newline empty indentation space-after-tab
-          space-before-tab space-mark tab-mark)))
+    (face trailing tabs spaces lines newline empty indentation
+          space-after-tab space-before-tab space-mark tab-mark)))
  '(blink-cursor-mode nil)
  '(inhibit-startup-screen t)
  '(scroll-error-top-bottom t)
