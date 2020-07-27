@@ -29,6 +29,7 @@
  ("s-2"     . split-window-below)
  ("s-3"     . split-window-right)
  ("C-x 4"   . make-frame-command)
+ ("<s-tab>" . other-window)
  ;; buffers
  ("s-d"     . ido-dired)
  ("s-r"     . revert-buffer)
