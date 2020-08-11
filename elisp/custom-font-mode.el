@@ -33,7 +33,7 @@
 
 (defun menlo-font ()
   (interactive)
-  (custom-set-font "Meslo LG S:regular:pixelsize=14" ))
+  (custom-set-font "Meslo LG S:regular:pixelsize=12" ))
 
 (defun presentation-font ()
   (interactive)

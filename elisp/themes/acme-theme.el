@@ -19,7 +19,9 @@
        `(border                      ((,class (:foreground ,border))))
        `(fringe                      ((,class (:background ,fringe))))
        `(mode-line                   ((,class (:background ,mode-line :box t
-                                               :inherit foreground ))))
+                                                           :inherit foreground ))))
+       `(mode-line-inactive          ((,class (:background ,mode-line
+                                                           :inherit foreground ))))
        `(region                      ((,class (:background ,region-bg
                                                            :foreground ,region-fg))))
 
