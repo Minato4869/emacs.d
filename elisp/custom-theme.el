@@ -78,17 +78,13 @@
 
 (when (> (length custom-enabled-themes) 1)
       (disable-all-themes))
+
 (cond
  ((and (display-graphic-p) (not (daemonp)))
   (progn
     (load-theme 'naysayer t)
     (setq custom-themes-index 1)))
- ((daemonp)
-  (disable-all-themes)
-  (load-theme 'gl-dark t))
- (t
-  (load-theme 'xcode-dark t)
-  (setq custom-themes-index 2)))
+ (t (load-theme 'gl-dark t)))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
