@@ -3,7 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(battery-mode-line-format "[%b%p%%] ")
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(battery-mode-line-format "[%b%p%%]")
  '(blink-cursor-mode nil)
  '(column-number-mode t)
  '(display-time-24hr-format t)
@@ -20,7 +22,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex)))
+    (puppet-mode lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex)))
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)
