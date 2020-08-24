@@ -135,6 +135,7 @@
                  (substatement          . +)))))
 
 ;; misc
+(global-subword-mode 1)               ; iterate through CamelCase words
 (setq visible-bell nil)
 (setq vc-follow-symlinks t)
 (setq visible-cursor nil)
