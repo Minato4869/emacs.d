@@ -5,5 +5,6 @@
          "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")))
-(bind-key :maporg-mode-map
-          ("C-c e" . org-latex-export-to-pdf))
+
+(bind-keys :map org-mode-map
+          ("C-c C-c" . org-latex-export-to-pdf))
