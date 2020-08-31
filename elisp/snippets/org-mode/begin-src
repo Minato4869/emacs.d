@@ -3,6 +3,7 @@
 # key: src
 # --
 
-#+BEGIN_SRC $0
-
+#+BEGIN_SRC $1
+$2
 #+END_SRC
+$0
