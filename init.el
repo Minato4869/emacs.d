@@ -66,6 +66,7 @@
 (load-library-wrap-error "custom-ibuffer")
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-buffer-mode")
+(load-library-wrap-error "custom-org-mode")
 (load-library-wrap-error "custom-compile")
 (load-library-wrap-error "custom-tex")
 (when (or (daemonp) (display-graphic-p))
