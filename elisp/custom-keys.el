@@ -116,6 +116,7 @@
  ("<F5>"      . revert-buffer)
  ("C-c r"     . revert-buffer)
  ("C-x b"     . ibuffer)
+ ("C-c b"     . switch-to-buffer)
  ;; windows
  ("M-o"      . other-window)
  ("C-c 0"    . balance-windows)
