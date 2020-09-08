@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: tt
-# key: tt
+# name: ul
+# key: ul
 # --
-=$0=
+_$0_
