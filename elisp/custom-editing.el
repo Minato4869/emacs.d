@@ -34,6 +34,8 @@
 (xterm-mouse-mode 1)
 
 ;; mode indentation
+(setq-default c-basic-offset 8)
+(setq-default sh-basic-offset 8)
 (defun custom-indent (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
         tab-width offset
@@ -43,8 +45,11 @@
     (auto-fill-mode -1))
   (unless (equal fill nil)
     (setq fill-column fill)))
+
 (defun custom-sh-indent ()
   (setq-default sh-basic-offset 8
+                c-basic-offset 8
+                tab-width 8
                 fill-column 80
                 indent-tabs-mode nil
                 auto-fill-mode t))
@@ -70,6 +75,8 @@
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
 (add-hook 'sh-mode-hook         (lambda () (custom-sh-indent)))
+(add-hook 'shell-script-mode-hook
+          (lambda () (custom-sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'mail-mode-hook       (lambda ()  (custom-indent 4 t nil 70)))
 
