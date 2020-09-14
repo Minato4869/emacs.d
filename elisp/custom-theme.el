@@ -1,6 +1,7 @@
 (defvar custom-themes-index)
-(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
-                              custom-tango-dark monochrome acme))
+;;(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
+;;                              custom-tango-dark bw monochrome acme))
+(setq custom-themes '(bw gl-dark naysayer acme))
 (setq custom-themes-index 0)
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
@@ -79,12 +80,18 @@
 (when (> (length custom-enabled-themes) 1)
       (disable-all-themes))
 
+;;(cond
+;; ((and (display-graphic-p) (not (daemonp)))
+;;  (progn
+;;    (load-theme 'naysayer t)
+;;    (setq custom-themes-index 1)))
+;; (t (load-theme 'gl-dark t)))
 (cond
  ((and (display-graphic-p) (not (daemonp)))
   (progn
-    (load-theme 'naysayer t)
-    (setq custom-themes-index 1)))
- (t (load-theme 'gl-dark t)))
+    (load-theme 'acme t)
+    (setq custom-themes-index 3)))
+ (t (load-theme 'bw t)))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
@@ -111,6 +118,7 @@
  `(ido-incomplete-regexp        ((t (:inherit foreground))))
  `(ido-indicator                ((t (:inherit foreground))))
  `(line-number                  ((t (:inherit foreground :bold t))))
+ `(link                         ((t (:foreground ,ls-directory :underline t))))
  `(minibuffer-prompt            ((t (:inherit foreground :bold t))))
  `(mouse                        ((t (:foreground "white" :background "black"))))
  `(region                       ((t (:extend t))))

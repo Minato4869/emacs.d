@@ -1,34 +1,31 @@
-(deftheme acme
-  "acme theme (inspired by jcs")
+(deftheme bw
+  "bw theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#FFFFEA")
-      (FG                 "#000000")
+      (BG                 "#000000")
+      (FG                 "#BEBEBE")
       (warning            "#FF0000")
-      (mode-line          "#EAFFFF")
       (border             "#0000FF")
-      (fringe             "#DAD4bc")
-      (region-fg          "#000000")
-      (acme-comment       "#444444")
-      (cursor             "#005500")
-      (region-bg          "#EEEE9E"))
+      (fringe             "#121212")
+      (region-fg          "#BEBEBE")
+      (region-bg          "#114488")
+      (cursor             "#00FF00")
+      (bw-comment         "#666666")
+      )
 
   (custom-theme-set-faces
-       'acme
+       'bw
 
        `(default                     ((,class (:background ,BG :foreground ,FG))))
        `(cursor                      ((,class (:background ,cursor))))
        `(border                      ((,class (:foreground ,border))))
        `(fringe                      ((,class (:background ,fringe))))
-       `(mode-line                   ((,class (:background ,mode-line :inherit foreground
-                                                           :box t ))))
-       `(mode-line-inactive          ((,class (:background ,mode-line
-                                                           :inherit foreground ))))
+       `(mode-line                   ((,class (:background ,FG :foreground ,BG))))
        `(region                      ((,class (:background ,region-bg
                                                            :foreground ,region-fg))))
 
        `(font-lock-builtin-face       ((,class (:inherit foreground))))
-       `(font-lock-comment-face       ((,class (:foreground ,acme-comment))))
+       `(font-lock-comment-face       ((,class (:foreground ,bw-comment))))
        `(font-lock-constant-face      ((,class (:inherit foreground :underline t))))
        `(font-lock-function-name-face ((,class (:inherit foreground))))
        `(font-lock-keyword-face       ((,class (:inherit foreground :bold t))))
@@ -39,11 +36,12 @@
                                                             :inherit background
                                                             :bold t))))
 
-       `(sh-quoted-exec               ((,class ((:inherit foreground)))))
+       `(sh-quoted-exec               ((,class ((:inherit foreground :bold t)))))
+       `(org-latex-and-related        ((,class (:inherit foreground))))
 
        `(ido-subdir                   ((,class ((:inherit foreground :bold t)))))
        `(ido-only-match               ((,class ((:inherit foreground
                                                           :underline t
                                                           :bold t)))))))
 
-(provide-theme 'acme)
+(provide-theme 'bw)
