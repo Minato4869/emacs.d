@@ -33,3 +33,15 @@
    '(cua-rectangle ((t (:foreground "white" :background "maroon" :extend t))))
    '(Man-overstrike ((t (:foreground "brightred" :bold t))))
    '(Man-underline ((t (:foreground "brightgreen" :underline nil :bold t)))))))
+
+;;(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
+;;                              custom-tango-dark bw monochrome acme))
+
+;;(when (> (length custom-enabled-themes) 1)
+;;      (disable-all-themes))
+;;(cond
+;; ((and (display-graphic-p) (not (daemonp)))
+;;  (progn
+;;    (load-theme 'naysayer t)
+;;    (setq custom-themes-index 1)))
+;; (t (load-theme 'gl-dark t)))
