@@ -1,8 +1,19 @@
 (defvar custom-themes-index)
+(setq custom-themes-index 0)
 ;;(setq custom-themes '(gl-dark naysayer xcode-dark default-dark
 ;;                              custom-tango-dark bw monochrome acme))
-(setq custom-themes '(bw gl-dark naysayer acme))
-(setq custom-themes-index 0)
+(setq custom-themes '(bw gl-dark naysayer))
+(load-theme 'bw t)
+
+;;(when (> (length custom-enabled-themes) 1)
+;;      (disable-all-themes))
+;;(cond
+;; ((and (display-graphic-p) (not (daemonp)))
+;;  (progn
+;;    (load-theme 'naysayer t)
+;;    (setq custom-themes-index 1)))
+;; (t (load-theme 'gl-dark t)))
+
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
           ls-executable        "#cc0000"
@@ -76,22 +87,6 @@
  ("<f2>"   . custom-cycle-theme)
  ("C-<f2>" . custom-default-theme)
  ("S-<f2>" .custom-disable-theme))
-
-(when (> (length custom-enabled-themes) 1)
-      (disable-all-themes))
-
-;;(cond
-;; ((and (display-graphic-p) (not (daemonp)))
-;;  (progn
-;;    (load-theme 'naysayer t)
-;;    (setq custom-themes-index 1)))
-;; (t (load-theme 'gl-dark t)))
-(cond
- ((and (display-graphic-p) (not (daemonp)))
-  (progn
-    (load-theme 'acme t)
-    (setq custom-themes-index 3)))
- (t (load-theme 'bw t)))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
