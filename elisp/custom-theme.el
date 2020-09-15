@@ -1,7 +1,7 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
-(setq custom-themes '(bw gl-dark naysayer))
-(load-theme 'bw t)
+(setq custom-themes '(gl-dark gl-dark naysayer))
+(load-theme 'gl-dark t)
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
