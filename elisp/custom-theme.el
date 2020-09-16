@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
-(setq custom-themes '(gl-dark gl-dark naysayer))
+(setq custom-themes '(gl-dark bw naysayer))
 (load-theme 'gl-dark t)
 
 (if (or (display-graphic-p) (daemonp))
