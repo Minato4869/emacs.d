@@ -13,13 +13,16 @@
 (defalias 'txt           'text-mode)
 ;; term
 (defalias 'bt            'beamer-term)
+(defalias 'bt            'beamer-term)
 (defalias 'bterm         'beamer-term)
 (defalias 'fterm         'run-fterm)
 (defalias 'rx            'run-rxvt)
 (defalias 'rxvt          'run-rxvt)
-(defalias 'term          'run-rxvt)
+;;(defalias 'term          'run-rxvt)
 (defalias 'xt            'run-xterm)
 (defalias 'xterm         'run-xterm)
+(defalias 'term          'ansi-term)
+(defalias 't             'ansi-term)
 ;; themes
 (defalias 'ct            'custom-cycle-theme)
 (defalias 'cycle-theme   'custom-cycle-theme)
