@@ -22,7 +22,6 @@
 (defalias 'xt            'run-xterm)
 (defalias 'xterm         'run-xterm)
 (defalias 'term          'ansi-term)
-(defalias 't             'ansi-term)
 ;; themes
 (defalias 'ct            'custom-cycle-theme)
 (defalias 'cycle-theme   'custom-cycle-theme)
