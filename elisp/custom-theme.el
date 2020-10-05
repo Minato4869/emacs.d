@@ -1,7 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
 (setq custom-themes '(gl-dark bw naysayer))
-(load-theme 'gl-dark t)
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
@@ -119,3 +118,7 @@
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground)))))
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
+
+(when (daemonp)
+          (disable-all-themes))
+(load-theme 'gl-dark t)

@@ -109,6 +109,8 @@
  ("C-<f11>"   . font-lock-mode)
  ("<f12>"     . display-line-numbers-mode)
  ;; buffer
+ ("<M-left>"  . previous-buffer)
+ ("<M-right>" . next-buffer)
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
  ("C-c k"     . kill-buffer)

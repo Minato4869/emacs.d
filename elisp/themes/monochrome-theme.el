@@ -1,5 +1,5 @@
 (deftheme monochrome
-  "monochrome theme (inspired by jcs")
+  "monochrome theme (inspired by jcs)")
 
 (let ((class '((class color) (min-colors 89)))
       ;; light variant
