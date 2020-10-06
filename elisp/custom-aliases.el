@@ -43,3 +43,5 @@
 (defalias 'dir           'dired)
 (defalias 'es            'eshell)
 (defalias 'yas           'yas-force-update)
+(defalias 'tr            'toggle-truncate-lines)
+(defalias 'trunc         'toggle-truncate-lines)
