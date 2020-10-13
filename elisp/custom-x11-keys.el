@@ -28,6 +28,7 @@
  ("s-1"     . delete-other-windows)
  ("s-2"     . split-window-below)
  ("s-3"     . split-window-right)
+ ("s-4"     . make-frame-command)
  ("C-x 4"   . make-frame-command)
  ("<s-tab>" . other-window)
  ;; buffers
