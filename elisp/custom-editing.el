@@ -65,7 +65,7 @@
 (add-hook 'lisp-mode-hook       'custom-lisp-indent)
 (add-hook 'LaTeX-mode-hook      (lambda () (custom-indent 2 nil nil)))
 (add-hook 'TeX-mode-hook        (lambda () (custom-indent 2 nil nil)))
-(add-hook 'haskell-mode-hook    (lambda () (custom-indent 2 nil nil)))
+(add-hook 'haskell-mode-hook    (lambda () (custom-indent 2 nil nil 100)))
 (add-hook 'conf-space-mode-hook (lambda () (custom-indent 4 nil nil)))
 (add-hook 'conf-mode-hook       (lambda () (custom-indent 4 nil nil)))
 (add-hook 'conf-xdefaults-mode-hook
