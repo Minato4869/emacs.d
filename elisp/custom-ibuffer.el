@@ -1,10 +1,11 @@
 (setq ibuffer-formats
       '((mark modified read-only " "
-              (name 25 25 :left :elide)
+              ;;              (name 25 25 :left :elide)
+              (name 30 30 :left :elide)
               " "
-              (size 9 -1 :right)
+              (size 10 -1 :right)
               " "
-              (mode 16 16 :left :elide)
+              (mode 15 20 :left :elide)
               " " filename-and-process)
         (mark " "
               (name 16 -1)
