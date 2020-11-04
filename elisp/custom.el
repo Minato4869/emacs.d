@@ -20,7 +20,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (swiper lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex)))
+    (puppet-mode lua-mode yasnippet ws-butler use-package keychain-environment haskell-mode flx diminish auctex)))
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)
