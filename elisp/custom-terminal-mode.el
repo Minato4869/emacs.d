@@ -31,7 +31,7 @@
 (defun run-fterm ()
   (interactive)  (custom-open-term "fterm"))
 (defun run-beamer-term ()
-  (interactive)  (custom-open-term "beamer"))
+  (interactive)  (custom-open-term "~/bin/beamer"))
 
 (global-set-key (kbd "<s-return>") 'run-term)
 (global-set-key (kbd "C-c <return>") 'run-term)
