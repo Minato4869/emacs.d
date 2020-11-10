@@ -80,6 +80,7 @@
  ("M-W"       . backward-kill-sexp)
  ("M-U"       . upcase-word)
  ("M-L"       . downcase-word)
+ ("C-x m"     . exchange-point-and-mark)
  ;; custom function binds
  ("C-x C-0" . delete-and-balance-window)
  ("C-5"     . my-match-paren)
