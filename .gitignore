@@ -13,3 +13,4 @@ nov-places
 tramp
 *.elc
 .yas-compiled-snippets.el*
+image-dired/

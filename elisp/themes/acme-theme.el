@@ -1,5 +1,5 @@
 (deftheme acme
-  "acme theme (inspired by jcs")
+  "acme theme")
 
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#FFFFEA")

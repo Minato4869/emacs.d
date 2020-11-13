@@ -30,5 +30,5 @@
   (compile command))
 
 (bind-keys
- ("<C-f9>"   . custom-recompile)
- ("C-c <f9>" . compile-parent))
+ ("<f5>"   . custom-recompile)
+ ("C-<f5>" . compile-parent))

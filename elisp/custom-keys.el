@@ -105,6 +105,8 @@
  ("C-c m"       . exchange-point-and-mark)
  ("C-x C-m"     . exchange-point-and-mark)
  ;; misc
+ ("<f9>"        . font-lock-mode)
+ ("C-<f9>"      . global-font-lock-mode)
  ("C-<f10>"     . menu-bar-mode)
  ("<f11>"       . whitespace-mode)
  ("C-<f11>"     . font-lock-mode)
@@ -116,7 +118,6 @@
  ("<C-next>"    . next-buffer)
  ("C-c k"       . kill-buffer)
  ("C-x k"       . kill-current-buffer)
- ("<F5>"        . revert-buffer)
  ("C-c r"       . revert-buffer)
  ("C-x b"       . ibuffer)
  ("C-c b"       . switch-to-buffer)
@@ -134,8 +135,7 @@
  ("C-c <left>"  . windmove-left)
  ("C-c <up>"    . windmove-up)
  ("C-c <down>"  . windmove-down)
- ("C-c <right>" . windmove-right)
- )
+ ("C-c <right>" . windmove-right))
 
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map
