@@ -7,17 +7,9 @@
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
-(defun other-window-or-frame ()
+(defun reverse-other-frame ()
   (interactive)
-  (if (one-window-p)
-      (other-frame 1)
-    (other-window 1)))
-
-(defun reverse-other-window-or-frame ()
-  (interactive)
-  (if (one-window-p)
-      (other-frame -1)
-    (other-window -1)))
+  (other-frame -1))
 ;; windows
 (bind-keys
  ;; windows
@@ -40,11 +32,5 @@
  ("C--"     . text-scale-decrease)
  ;; custom functions
  ("C-0"     . text-scale-reset)
- ("M-o"     . other-window-or-frame)
  ("C-x C-o" . other-frame)
- ("C-c o"   . reverse-other-window-or-frame)
- ("C-c C-o" . reverse-other-window-or-frame))
-
- (if (one-window-p)
-    (bind-key "C-x o" 'other-frame)
-  (bind-key  "C-x o"  'other-window))
+ ("C-c C-o" . reverse-other-frame))

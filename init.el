@@ -20,7 +20,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (puppet-mode swiper lua-mode yasnippet
+    (ace-window puppet-mode swiper lua-mode yasnippet
                  ws-butler use-package keychain-environment
                  haskell-mode flx diminish auctex)))
  '(whitespace-style
@@ -70,6 +70,7 @@
 (load-library-wrap-error "custom-org-mode")
 (load-library-wrap-error "custom-compile")
 (load-library-wrap-error "custom-tex")
+(load-library-wrap-error "custom-aw-mode")
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)

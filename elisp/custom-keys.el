@@ -66,6 +66,10 @@
   (if (display-graphic-p)
       (message "Suspend frame is disabled for X11 frames of emacs")
     (suspend-frame)))
+
+(defun reverse-other-window ()
+  (interactive)
+  (other-window -1))
 ;; custom keys
 (bind-keys
  ("C-c h"       . help)
@@ -123,6 +127,7 @@
  ("C-c b"       . switch-to-buffer)
  ;; windows
  ("M-o"         . other-window)
+ ("C-c o"       . reverse-other-window)
  ("C-c 0"       . balance-windows)
  ("C-c ["       . shrink-window-horizontally)
  ("C-c ]"       . enlarge-window-horizontally)

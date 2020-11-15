@@ -48,3 +48,19 @@ If ARG is the atom `-', scroll upward by nearly full screen."
 ;; nav misc
 (global-set-key (kbd "M-<right>") 'forward-word)
 (global-set-key (kbd "M-<left>") 'backward-word)
+
+;;2020-11-15
+(defun other-window-or-frame ()
+  (interactive)
+  (if (one-window-p)
+      (other-frame 1)
+    (other-window 1)))
+
+(defun reverse-other-window-or-frame ()
+  (interactive)
+  (if (one-window-p)
+      (other-frame -1)
+    (other-window -1)))
+ ("C-x C-o" . other-frame)
+ ("C-c o"   . reverse-other-window-or-frame)
+ ("C-c C-o" . reverse-other-window-or-frame)

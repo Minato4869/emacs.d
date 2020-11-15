@@ -1,5 +1,5 @@
 (use-package swiper
-  :ensure nil
+  :ensure t
   :bind
   (("C-c s" . swiper))
   :config
