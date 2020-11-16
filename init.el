@@ -20,10 +20,9 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (ace-window puppet-mode swiper lua-mode yasnippet
-                 ws-butler use-package keychain-environment
-                 haskell-mode flx diminish auctex)))
- '(whitespace-style
+    (ace-window puppet-mode swiper yasnippet use-package keychain-environment
+                haskell-mode diminish auctex)))
+  '(whitespace-style
    (quote
     (face trailing tabs spaces lines newline empty indentation
           space-after-tab space-before-tab space-mark tab-mark)))
