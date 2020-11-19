@@ -1,5 +1,4 @@
 ;; disabled keybinds
-(global-unset-key (kbd "C-x C-0"))
 (global-unset-key (kbd "C-x C-="))
 (global-unset-key (kbd "C-x C--"))
 (global-unset-key (kbd "C-x C-+"))
@@ -7,11 +6,24 @@
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
-(defun reverse-other-frame ()
+;;; copy and paste
+(defun yank-primary ()
+  "Yank primary selection."
   (interactive)
-  (other-frame -1))
+  (insert
+   (gui-get-primary-selection)))
+
+(defun copy-primary ()
+  "Copy primary selection."
+  (interactive)
+  (deactivate-mark)
+  (gui-set-selection
+   'PRIMARY
+   (buffer-substring (region-beginning) (region-end))))
 ;; windows
 (bind-keys
+ ("C-M-c"       . copy-primary)
+ ("C-M-v"       . yank-primary)
  ;; windows
  ("C-1"     . delete-other-windows)
  ("C-2"     . split-window-below)
@@ -32,5 +44,4 @@
  ("C--"     . text-scale-decrease)
  ;; custom functions
  ("C-0"     . text-scale-reset)
- ("C-x C-o" . other-frame)
- ("C-c C-o" . reverse-other-frame))
+ ("C-x C-o" . other-frame))

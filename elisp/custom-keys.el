@@ -45,20 +45,6 @@
   (if (eq (point) (line-beginning-position))
       (delete-indentation)
     (kill-line (- 1 arg))))
-;;; copy and paste
-(defun yank-primary ()
-  "Yank primary selection."
-  (interactive)
-  (insert
-   (gui-get-primary-selection)))
-
-(defun copy-primary ()
-  "Copy primary selection."
-  (interactive)
-  (deactivate-mark)
-  (gui-set-selection
-   'PRIMARY
-   (buffer-substring (region-beginning) (region-end))))
 
 (defun custom-suspend-frame ()
   "Suspend frame inside of a terminal instance of Emacs."
@@ -66,10 +52,6 @@
   (if (display-graphic-p)
       (message "Suspend frame is disabled for X11 frames of emacs")
     (suspend-frame)))
-
-(defun reverse-other-window ()
-  (interactive)
-  (other-window -1))
 ;; custom keys
 (bind-keys
  ("C-c h"       . help)
@@ -78,23 +60,17 @@
  ("C-z"         . undo)
  ("M-u"         . universal-argument)
  ("C-c 5"       . query-replace)
- ("C-c C-5"     . query-replace-regexp)
  ("M-k"         . kill-whole-line)
  ("C-w"         . backward-kill-word)
  ("M-W"         . backward-kill-sexp)
  ("M-U"         . upcase-word)
  ("M-L"         . downcase-word)
- ("C-x m"       . exchange-point-and-mark)
  ;; custom function binds
  ("C-x C-0"     . delete-and-balance-window)
  ("C-5"         . my-match-paren)
- ("C-\\"        . my-match-paren)
- ("C-]"         . my-match-paren)
  ("C-x C-k"     . kill-buffer-and-window)
  ("C-u"         . backward-kill-line)
  ("C-x z"       . custom-suspend-frame)
- ("C-M-c"       . copy-primary)
- ("C-M-v"       . yank-primary)
  ("C-x C-z"     . repeat)
  ;; movement
  ("M-g"         . goto-line)
@@ -102,12 +78,10 @@
  ("M-n"         . forward-paragraph)
  ;; mark
  ("C-x C-h"     . mark-whole-buffer)
- ("C-x C-SPC"   . cua-rectangle-mark-mode)
  ("C-x SPC"     . rectangle-mark-mode)
- ("C-x C-@"     . rectangle-mark-mode)
- ("C-c C-m"     . pop-global-mark)
- ("C-c m"       . exchange-point-and-mark)
- ("C-x C-m"     . exchange-point-and-mark)
+ ("C-x C-SPC"   . cua-rectangle-mark-mode)
+ ("C-x C-m"     . pop-global-mark)
+ ("C-x m"       . exchange-point-and-mark)
  ;; misc
  ("<f9>"        . font-lock-mode)
  ("C-<f9>"      . global-font-lock-mode)
@@ -118,29 +92,11 @@
  ;; buffer
  ("<M-left>"    . previous-buffer)
  ("<M-right>"   . next-buffer)
- ("<C-prior>"   . previous-buffer)
- ("<C-next>"    . next-buffer)
- ("C-c k"       . kill-buffer)
  ("C-x k"       . kill-current-buffer)
  ("C-c r"       . revert-buffer)
  ("C-x b"       . ibuffer)
- ("C-c b"       . switch-to-buffer)
  ;; windows
- ("M-o"         . other-window)
- ("C-c o"       . reverse-other-window)
- ("C-c 0"       . balance-windows)
- ("C-c ["       . shrink-window-horizontally)
- ("C-c ]"       . enlarge-window-horizontally)
- ("C-c :"       . shrink-window)
- ("C-c '"       . enlarge-window)
- ("C-c C-["     . shrink-window-horizontally)
- ("C-c C-]"     . enlarge-window-horizontally)
- ("C-c C-:"     . shrink-window)
- ("C-c C-'"     . enlarge-window)
- ("C-c <left>"  . windmove-left)
- ("C-c <up>"    . windmove-up)
- ("C-c <down>"  . windmove-down)
- ("C-c <right>" . windmove-right))
+ ("M-o"         . other-window))
 
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map
