@@ -20,7 +20,7 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (ace-window puppet-mode swiper yasnippet use-package keychain-environment
+    (puppet-mode yasnippet use-package keychain-environment
                 haskell-mode diminish auctex)))
   '(whitespace-style
    (quote
@@ -69,7 +69,6 @@
 (load-library-wrap-error "custom-org-mode")
 (load-library-wrap-error "custom-compile")
 (load-library-wrap-error "custom-tex")
-(load-library-wrap-error "custom-aw-mode")
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
@@ -85,7 +84,6 @@
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-x11-keys"))
 
-(load-library-wrap-error "custom-swiper-mode")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-diminish-mode")
 (load-library-wrap-error "custom-aliases")

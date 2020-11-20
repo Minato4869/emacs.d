@@ -20,7 +20,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (puppet-mode swiper yasnippet use-package keychain-environment haskell-mode diminish auctex)))
+    (puppet-mode yasnippet use-package keychain-environment haskell-mode diminish auctex)))
  '(scroll-error-top-bottom t)
  '(show-paren-mode t)
  '(size-indication-mode t)
