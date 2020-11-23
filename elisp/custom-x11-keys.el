@@ -44,4 +44,4 @@
  ("C--"     . text-scale-decrease)
  ;; custom functions
  ("C-0"     . text-scale-reset)
- ("C-x C-o" . other-frame))
+ ("C-co"    . other-frame))

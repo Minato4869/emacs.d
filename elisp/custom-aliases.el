@@ -30,7 +30,9 @@
 (defalias 'lt            'load-theme)
 (defalias 'res           'reset-themes)
 ;; fonts
-(defalias 'menlo         'menlo-font)
+(defalias 'dejavu        'dejavu-font)
+(defalias 'meslo         'menlo-font)
+(defalias 'meslo         'menlo-font)
 (defalias 'ttf           'menlo-font)
 ;; misc
 (defalias 'b             'ibuffer)

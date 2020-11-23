@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
-(setq custom-themes '(gl-dark bw naysayer))
+(setq custom-themes '(gl-dark bw xcode-dark naysayer acme default-light))
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
@@ -50,21 +50,18 @@
         (mapc #'disable-theme (remove theme custom-enabled-themes)))
     (message "Unable to find theme file for '%s'" theme)))
 
-(defun presentation-mode ()
+
+(defun default-light-theme ()
   (interactive)
   (disable-all-themes)
   (load-theme 'default-light t)
   (presentation-font)
   (setq custom-theme-index 0)
-  (message "Enabled presentation mode"))
+  (message "Enabled default light theme"))
 
-(defun custom-light-theme ()
+(defun presentation-mode ()
   (interactive)
-  (disable-all-themes)
-  (load-theme 'default-light t)
-  (setq custom-theme-index 0)
-  (when (daemonp)
-    (setq custom-theme-index 0))
+  (default-light-theme)
   (message "Enabled presentation mode"))
 
 (defun reset-themes ()
@@ -78,8 +75,9 @@
 
 (bind-keys
  ("<f2>"   . custom-cycle-theme)
+ ("M-<f2>" . disable-all-themes)
  ("C-<f2>" . custom-default-theme)
- ("S-<f2>" . custom-light-theme))
+ ("S-<f2>" . default-light-theme))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
