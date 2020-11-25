@@ -172,15 +172,15 @@
 
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 
-	(defun guess-tab-settings ()
-	  (interactive)
-	  (save-excursion
-	    (goto-char (point-min))
-	    (if (re-search-forward "^\t" 8192 t)
+(defun guess-tab-settings ()
+	(interactive)
+	(save-excursion
+	  (goto-char (point-min))
+	  (if (re-search-forward "^\t" 8192 t)
           (progn
 	          (setq indent-tabs-mode t)
 	          (message "File uses tabs for indentation"))
-        (progn
-	        (setq indent-tabs-mode nil)
-	        (message "File uses spaces for indentation")))))
-	(add-hook 'find-file-hook 'guess-tab-settings)
+      (progn
+	      (setq indent-tabs-mode nil)
+	      (message "File uses spaces for indentation")))))
+(add-hook 'find-file-hook 'guess-tab-settings)

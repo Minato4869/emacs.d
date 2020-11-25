@@ -21,8 +21,8 @@
  '(package-selected-packages
    (quote
     (puppet-mode yasnippet use-package keychain-environment
-                haskell-mode diminish auctex)))
-  '(whitespace-style
+                 haskell-mode diminish auctex)))
+ '(whitespace-style
    (quote
     (face trailing tabs spaces lines newline empty indentation
           space-after-tab space-before-tab space-mark tab-mark)))

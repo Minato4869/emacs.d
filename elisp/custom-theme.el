@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
-(setq custom-themes '(gl-dark bw xcode-dark naysayer acme default-light))
+(setq custom-themes '(gl-dark naysayer acme-dark acme))
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"

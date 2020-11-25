@@ -9,15 +9,16 @@
       (border             "#0000FF")
       (fringe             "#DAD4bc")
       (region-fg          "#000000")
-      (acme-comment       "#444444")
-      (cursor             "#005500")
+      (green              "#005500")
+      (string             "#5E81AC")
+      (function-name      "#1054AF")
       (region-bg          "#EEEE9E"))
 
   (custom-theme-set-faces
        'acme
 
        `(default                     ((,class (:background ,BG :foreground ,FG))))
-       `(cursor                      ((,class (:background ,cursor))))
+       `(cursor                      ((,class (:background ,FG))))
        `(border                      ((,class (:foreground ,border))))
        `(fringe                      ((,class (:background ,fringe))))
        `(mode-line                   ((,class (:background ,mode-line :inherit foreground
@@ -28,11 +29,11 @@
                                                            :foreground ,region-fg))))
 
        `(font-lock-builtin-face       ((,class (:inherit foreground))))
-       `(font-lock-comment-face       ((,class (:foreground ,acme-comment))))
-       `(font-lock-constant-face      ((,class (:inherit foreground :underline t))))
-       `(font-lock-function-name-face ((,class (:inherit foreground))))
+       `(font-lock-comment-face       ((,class (:foreground ,green))))
+       `(font-lock-constant-face      ((,class (:inherit foreground))))
+       `(font-lock-function-name-face ((,class (:foreground ,function-name :bold t))))
        `(font-lock-keyword-face       ((,class (:inherit foreground :bold t))))
-       `(font-lock-string-face        ((,class (:inherit foreground :underline t))))
+       `(font-lock-string-face        ((,class (:foreground ,string))))
        `(font-lock-type-face          ((,class (:inherit foreground :bold t))))
        `(font-lock-variable-name-face ((,class (:inherit foreground))))
        `(font-lock-warning-face       ((,class (:foreground ,warning
