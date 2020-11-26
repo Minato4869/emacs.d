@@ -5,10 +5,12 @@
       (BG                 "#2E3440")
       (FG                 "#EAEAEA") ;; was white
       (warning            "#FF0000")
-      (fringe             "#2E3440")
+      (fringe             "#1d2330")
       (comment            "#BEBEBE") ;; was  bebebe
+      (keyword            "#9EEFEF") ;; was 98FB98
       (string             "#C8D4EC")
       (function-name      "#87CEFA")
+      (grey               "#BFBFBF")
       (blue2              "#5E81AC"))
 
   (custom-theme-set-faces
@@ -25,7 +27,7 @@
        `(font-lock-comment-face       ((,class (:foreground ,comment))))
        `(font-lock-constant-face      ((,class (:inherit foreground :underline t))))
        `(font-lock-function-name-face ((,class (:foreground ,function-name))))
-       `(font-lock-keyword-face       ((,class (:inherit foreground))))
+       `(font-lock-keyword-face       ((,class (:foreground ,keyword))))
        `(font-lock-string-face        ((,class (:foreground ,string))))
        `(font-lock-type-face          ((,class (:inherit foreground :bold t))))
        `(font-lock-variable-name-face ((,class (:inherit foreground))))

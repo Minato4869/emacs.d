@@ -103,6 +103,10 @@
  ("C-<f11>"   . font-lock-mode)
  ("<f12>"     . display-line-numbers-mode)
  ;; buffer
+ ("<C-prior>" . previous-buffer)
+ ("<C-next>"  . next-buffer)
+ ("<M-prior>" . previous-buffer)
+ ("<M-next>"  . next-buffer)
  ("<M-left>"  . previous-buffer)
  ("<M-right>" . next-buffer)
  ("C-x k"     . kill-current-buffer)

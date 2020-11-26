@@ -17,6 +17,7 @@
 
       (nay-lightgreen     "#8FEE90")
       (nay-lightgreen-hl  "#B4EEB4")
+      (nay-palegreen      "#98FB98")
       (nay-green          "#3FDF1F")
       (nay-green-string   "#3FDF1F")
       (nay-white          "#FFFFFF") ;; was #BEBEBE, white is default
@@ -38,6 +39,7 @@
 
    `(font-lock-builtin-face        ((,class (:foreground ,nay-lightgreen))))
    `(font-lock-comment-face        ((,class (:foreground ,nay-green))))
+   `(font-lock-type-face           ((,class (:foreground ,nay-palegreen))))
    `(font-lock-function-name-face  ((((class color) (background dark)) (:foreground ,nay-white))))
    `(font-lock-keyword-face        ((,class (:foreground ,nay-white))))
    `(font-lock-string-face         ((,class (:foreground ,nay-green-string))))
