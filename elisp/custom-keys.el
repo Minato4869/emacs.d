@@ -91,8 +91,8 @@
  ("M-n"       . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
- ("C-x SPC"   . rectangle-mark-mode)
- ("C-x C-SPC" . cua-rectangle-mark-mode)
+ ("C-x SPC" . rectangle-mark-mode)
+ ("C-x C-SPC"   . cua-rectangle-mark-mode)
  ("C-x C-m"   . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
