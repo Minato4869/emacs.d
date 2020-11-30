@@ -31,7 +31,7 @@
 (defvaralias 'c-basic-offset 'tab-width)
 ;; mouse
 (setq mouse-autoselect-window t)
-;;(xterm-mouse-mode 1)
+(xterm-mouse-mode 1)
 
 ;; mode indentation
 (setq-default c-basic-offset 8)

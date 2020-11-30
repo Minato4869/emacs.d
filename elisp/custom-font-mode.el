@@ -28,6 +28,13 @@
     (custom-set-font "Meslo LG S:regular:pixelsize=14"))
    (t (dejavu-font))))
 
+(defun go-font ()
+  (interactive)
+  (cond
+   ((file-directory-p "/usr/share/fonts/fonts-go")
+    (custom-set-font "Go Mono:regular:pixelsize=14"))
+   (t (dejavu-font))))
+
 (defun presentation-font ()
   (interactive)
   (cond

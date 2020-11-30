@@ -55,7 +55,6 @@
   (interactive)
   (disable-all-themes)
   (load-theme 'default-light t)
-  (presentation-font)
   (setq custom-theme-index 0)
   (message "Enabled default light theme"))
 
@@ -116,7 +115,6 @@
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground)))))
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
-
 (when (daemonp)
-          (disable-all-themes))
+  (disable-all-themes))
 (load-theme 'gl-dark t)
