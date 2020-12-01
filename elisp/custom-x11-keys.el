@@ -36,7 +36,8 @@
  ("C-x 4"   . make-frame-command)
  ("<s-tab>" . other-window)
  ;; buffers
- ("s-d"     . ido-dired)
+ ;; ("s-d"     . ido-dired)
+ ("s-d"     . dired-jump
  ("s-r"     . revert-buffer)
  ("s-b"     . ibuffer)
  ;; text scale

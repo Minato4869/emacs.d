@@ -43,13 +43,11 @@
   (setq custom-themes-index (- (length custom-themes) 1))
   (progn (message "Disabled custom theme")))
 
-
 (defun custom-try-load-theme (theme)
   (unless (ignore-errors (load-theme theme :no-confirm))
       (progn (message "Currently enabled theme: '%s'" theme)
         (mapc #'disable-theme (remove theme custom-enabled-themes)))
     (message "Unable to find theme file for '%s'" theme)))
-
 
 (defun default-light-theme ()
   (interactive)

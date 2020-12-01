@@ -1,46 +1,51 @@
-(defun custom-set-font (font)
+(defun custom-set-font (&optional fontname)
+  (cond
+   ((string-equal fontname "small")
+    (setq font "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"))
+   ((string-equal fontname "medium")
+    (setq font "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"))
+   ((string-equal fontname "large")
+    (setq font "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"))
+   ((string-equal fontname "menlo")
+    (cond ((file-directory-p "~/.fonts/Meslo-Font")
+           (setq font "Meslo LG S:regular:pixelsize=14"))
+          (t (custom-set-font))))
+   ((string-equal fontname "go")
+    (cond ((file-directory-p "/usr/share/fonts/fonts-go")
+           (setq font "Go Mono:regular:pixelsize=14"))
+          (t (custom-set-font))))
+   ((string-equal fontname "presentation")
+    (cond (file-directory-p "~/.fonts/Meslo-Font")
+          (setq font "Meslo LG S:regular:pixelsize=24")
+          (t (setq font "DejaVu Sans Mono:regular:pixelsize=30" ))))
+   (t
+    (setq font "DejaVu Sans Mono:regular:pixelsize=14")))
   (set-face-attribute 'default t :font font)
   (set-frame-font font nil t))
 
 (defun small-font ()
   (interactive)
-  (custom-set-font
-   "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"))
+  (custom-set-font "small"))
 
 (defun medium-font ()
   (interactive)
-  (custom-set-font
-   "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"))
+  (custom-set-font "medium"))
 
 (defun large-font ()
   (interactive)
-  (custom-set-font
-   "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"))
-
-(defun dejavu-font ()
-  (interactive)
-  (custom-set-font "DejaVu Sans Mono:regular:pixelsize=14" ))
+  (custom-set-font "large"))
 
 (defun menlo-font ()
   (interactive)
-  (cond
-   ((file-directory-p "~/.fonts/Meslo-Font")
-    (custom-set-font "Meslo LG S:regular:pixelsize=14"))
-   (t (dejavu-font))))
+  (custom-set-font "menlo"))
 
 (defun go-font ()
   (interactive)
-  (cond
-   ((file-directory-p "/usr/share/fonts/fonts-go")
-    (custom-set-font "Go Mono:regular:pixelsize=14"))
-   (t (dejavu-font))))
+     (custom-set-font "go"))
 
 (defun presentation-font ()
   (interactive)
-  (cond
-   ((file-directory-p "~/.fonts/Meslo-Font")
-    (custom-set-font "Meslo LG S:regular:pixelsize=24" ))
-   (t (custom-set-font "DejaVu Sans Mono:regular:pixelsize=30" ))))
+     (custom-set-font "presentation"))
 
 (bind-keys
  ("<f6>"     . small-font)

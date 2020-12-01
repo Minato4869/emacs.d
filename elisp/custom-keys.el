@@ -102,6 +102,7 @@
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . font-lock-mode)
  ("<f12>"     . display-line-numbers-mode)
+ ("C-x C-d"   . dired-jump
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
