@@ -1,5 +1,3 @@
-
-
 (use-package org
   :ensure nil
   :config

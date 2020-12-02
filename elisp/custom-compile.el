@@ -3,7 +3,7 @@
 ;; Don’t ask to kill currently running compilation, just kill it.
 (setq compilation-always-kill t)
 
-(defun colorize-compilation-buffer ()
+(defun ccompile/colourise-buffer ()
   (toggle-read-only)
   (ansi-color-apply-on-region compilation-filter-start (point))
   (toggle-read-only))
@@ -12,9 +12,9 @@
  'compilation-filter-hook
  (lambda ()
    (require 'ansi-color)
-   (colorize-compilation-buffer)))
+   (ccompile/colourise-buffer)))
 
-(defun custom-recompile ()
+(defun ccompile/recompile ()
   "Interrupt current compilation and recompile"
   (interactive)
   (ignore-errors (kill-compilation))
@@ -30,5 +30,5 @@
   (compile command))
 
 (bind-keys
- ("<f5>"   . custom-recompile)
+ ("<f5>"   . ccompile/recompile)
  ("C-<f5>" . compile-parent))

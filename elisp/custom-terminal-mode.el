@@ -1,5 +1,5 @@
 (require 'cl)
-(defun custom-parse-tramp-path (path)
+(defun cterm/parse-tramp-path (path)
   (with-temp-buffer
     (insert path)
     (goto-char (point-min))
@@ -9,13 +9,12 @@
   (loop for i from 1 to 4
       collect (match-string i)))))
 
-(defun custom-open-term (term &optional dir)
-  (interactive)
+(defun cterm/open-term (term &optional dir)
   (let ((default-directory (or dir default-directory))
-        (path  (nth 3 (custom-parse-tramp-path default-directory)))
-        (host   (nth 2 (custom-parse-tramp-path default-directory)))
-        (user   (nth 1 (custom-parse-tramp-path default-directory)))
-        (proto (nth 0 (custom-parse-tramp-path default-directory))))
+        (path  (nth 3 (cterm/parse-tramp-path default-directory)))
+        (host  (nth 2 (cterm/parse-tramp-path default-directory)))
+        (user  (nth 1 (cterm/parse-tramp-path default-directory)))
+        (proto (nth 0 (cterm/parse-tramp-path default-directory))))
     (if (and (equal proto "ssh") path)
         (if  (equal (length user) 0)
             (progn
@@ -27,11 +26,11 @@
       (call-process term nil 0))))
 
 (defun run-term ()
-  (interactive)  (custom-open-term "rxvt"))
+  (interactive)  (cterm/open-term "rxvt"))
 (defun run-fterm ()
-  (interactive)  (custom-open-term "fterm"))
+  (interactive)  (cterm/open-term "fterm"))
 (defun run-beamer-term ()
-  (interactive)  (custom-open-term "~/bin/beamer"))
+  (interactive)  (cterm/open-term "~/bin/beamer"))
 
 (global-set-key (kbd "<s-return>") 'run-term)
 (global-set-key (kbd "C-c <return>") 'run-term)

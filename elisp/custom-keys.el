@@ -22,7 +22,7 @@
   (delete-window)
   (balance-windows))
 
-(defun my-match-paren (&optional arg)
+(defun match-paren (&optional arg)
   "Go to the matching parenthesis character if one is adjacent to point."
   (interactive "^p")
   (cond ((looking-at "\\s(") (forward-sexp arg))
@@ -80,7 +80,7 @@
  ("M-L"       . downcase-word)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
- ("C-5"       . my-match-paren)
+ ("C-5"       . match-paren)
  ("C-x C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
@@ -102,7 +102,7 @@
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . font-lock-mode)
  ("<f12>"     . display-line-numbers-mode)
- ("C-x C-d"   . dired-jump
+ ("C-x C-d"   . dired-jump)
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
@@ -116,8 +116,7 @@
  ;; windows
  ("M-o"       . other-window)
  ("C-c o"     . other-window)
- ("C-x C-o"   . transpose-windows)
- )
+ ("C-x C-o"   . transpose-windows))
 
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map

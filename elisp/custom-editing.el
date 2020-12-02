@@ -36,7 +36,7 @@
 ;; mode indentation
 (setq-default c-basic-offset 8)
 (setq-default sh-basic-offset 8)
-(defun custom-indent (offset autofill tabs &optional fill)
+(defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
         tab-width offset
         auto-fill-mode autofill
@@ -46,7 +46,7 @@
   (unless (equal fill nil)
     (setq fill-column fill)))
 
-(defun custom-sh-indent ()
+(defun cedit/sh-indent ()
   (setq-default sh-basic-offset 8
                 c-basic-offset 8
                 tab-width 8
@@ -54,31 +54,31 @@
                 indent-tabs-mode nil
                 auto-fill-mode t))
 
-(defun custom-lisp-indent ()
+(defun cedit/lisp-indent ()
   (setq offset 2
         lisp-body-indent offset)
   (auto-fill-mode -1)
-  (custom-indent offset nil nil))
+  (cedit/indent-conf offset nil nil))
 
 ;; hooks
-(add-hook 'emacs-lisp-mode-hook 'custom-lisp-indent)
-(add-hook 'lisp-mode-hook       'custom-lisp-indent)
-(add-hook 'LaTeX-mode-hook      (lambda () (custom-indent 2 nil nil)))
-(add-hook 'TeX-mode-hook        (lambda () (custom-indent 2 nil nil)))
-(add-hook 'haskell-mode-hook    (lambda () (custom-indent 2 nil nil 100)))
-(add-hook 'conf-space-mode-hook (lambda () (custom-indent 4 nil nil)))
-(add-hook 'conf-mode-hook       (lambda () (custom-indent 4 nil nil)))
+(add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
+(add-hook 'lisp-mode-hook       'cedit/lisp-indent)
+(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil nil)))
+(add-hook 'TeX-mode-hook        (lambda () (cedit/indent-conf 2 nil nil)))
+(add-hook 'haskell-mode-hook    (lambda () (cedit/indent-conf 2 nil nil 100)))
+(add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
+(add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-xdefaults-mode-hook
-                                (lambda () (custom-indent 4 nil nil)))
-(add-hook 'java-mode-hook       (lambda () (custom-indent 4 t t)))
-(add-hook 'mail-mode-hook       (lambda () (custom-indent 4 t nil 70)))
+                                (lambda () (cedit/indent-conf 4 nil nil)))
+(add-hook 'java-mode-hook       (lambda () (cedit/indent-conf 4 t t)))
+(add-hook 'mail-mode-hook       (lambda () (cedit/indent-conf 4 t nil 70)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
-(add-hook 'sh-mode-hook         (lambda () (custom-sh-indent)))
+(add-hook 'sh-mode-hook         (lambda () (cedit/sh-indent)))
 (add-hook 'shell-script-mode-hook
-          (lambda () (custom-sh-indent)))
+          (lambda () (cedit/sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
-(add-hook 'mail-mode-hook       (lambda ()  (custom-indent 4 t nil 70)))
+(add-hook 'mail-mode-hook       (lambda ()  (cedit/indent-conf 4 t nil 70)))
 
 (use-package org
   :defer t
@@ -92,14 +92,14 @@
           org-confirm-babel-evaluate nil
           org-edit-preserve-indentation nil
           org-edit-src-content-indentation 0)
-    (custom-indent 2 nil nil))
+    (cedit/indent-conf 2 nil nil))
     :bind
     (("C-c C-c" . org-latex-export-to-pdf)
      ("C-c c"   . org-export-dispatch)))
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (custom-indent 4 nil nil)
+            (cedit/indent-conf 4 nil nil)
             (setq python-indent 4)))
 
 (defun c-lineup-arglist-tabs-only (ignored)
@@ -113,7 +113,7 @@
 
 (add-hook 'c-mode-hook
           (lambda ()
-            (custom-indent 8 t t)
+            (cedit/indent-conf 8 t t)
             (c-set-style "linux")
             (setq c-label-minimum-indentation 0)
             '(c-offsets-alist
@@ -169,11 +169,9 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 
 (defun guess-tab-settings ()
-	(interactive)
 	(save-excursion
 	  (goto-char (point-min))
 	  (if (re-search-forward "^\t" 8192 t)

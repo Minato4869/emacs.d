@@ -2,15 +2,15 @@
   :ensure nil
   :config
   (progn
-    (defun dired-x-mode-setup ()
+    (defun cdired/x-mode-setup ()
       (font-lock-mode t)
       (setq dired-omit-verbose nil)
       (setq-default dired-omit-mode t) ;; Turn on Omit mode.
       (dired-hide-details-mode 1))
     (setq-default dired-omit-files "^\\...+$")
 
-    (add-hook 'dired-mode-hook 'dired-x-mode-setup)
-    (defun mydired-sort ()
+    (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+    (defun cdired/sort ()
       "Sort dired listings with directories first."
       (save-excursion
         (let (buffer-read-only)
@@ -18,10 +18,10 @@
           (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
         (set-buffer-modified-p nil)))
 
-    (defadvice dired-readin
+    (defadvice cdired/readin
         (after dired-after-updating-hook first () activate)
       "Sort dired listings with directories first before adding marks."
-      (mydired-sort))))
+      (cdired/sort))))
 
 (use-package dired
   :ensure nil
