@@ -21,7 +21,7 @@
       (gl/yellow          "#C4A000"))
 
   (custom-theme-set-faces
-   'gl/dark
+   'gl-dark
 
    `(default                      ((,class (:background ,BG :foreground ,FG))))
    `(cursor                       ((,class (:background ,cursor))))
