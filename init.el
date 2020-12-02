@@ -32,6 +32,7 @@
  '(show-paren-mode t)
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
+;;(set-window-scroll-bars (minibuffer-window) nil nil)
 
 (savehist-mode 1)
 

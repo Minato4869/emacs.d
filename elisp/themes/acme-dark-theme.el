@@ -10,17 +10,16 @@
       (keyword            "#9EEFEF") ;; was 98FB98
       (string             "#C8D4EC")
       (function-name      "#87CEFA")
-      (grey               "#BFBFBF")
-      (blue2              "#5E81AC"))
+      (acmed/blue2        "#5E81AC"))
 
   (custom-theme-set-faces
        'acme-dark
 
        `(default                     ((,class (:background ,BG :foreground ,FG))))
-       `(cursor                      ((,class (:background ,blue2))))
-       `(border                      ((,class (:foreground ,blue2))))
+       `(cursor                      ((,class (:background ,acmed/blue2))))
+       `(border                      ((,class (:foreground ,acmed/blue2))))
        `(fringe                      ((,class (:background ,fringe))))
-       `(region                      ((,class (:background ,blue2
+       `(region                      ((,class (:background ,acmed/blue2
                                                            :foreground ,FG))))
 
        `(font-lock-builtin-face       ((,class (:inherit foreground))))

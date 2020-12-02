@@ -11,9 +11,7 @@
       (region-bg          "#114488")
       (cursor             "#00FF00")
       (mode-line          "#292929")
-      ;;      (bw-comment         "#666666")
-      (bw-comment         "#666666")
-      )
+      (bw-comment         "#666666"))
 
   (custom-theme-set-faces
        'bw

@@ -12,13 +12,13 @@
       (region-bg          "#00077A")
       (region-fg          "#BEBEBE")
 
-      (xc-lightblue       "#4C99EB")
-      (xc-blue            "#1492FF")
-      (xc-orange          "#FF6805")
-      (xc-yellow          "#EBD900")
-      (xc-green           "#00FF15")
-      (xc-turqois         "#00FFC0")
-      (xc-magenta         "#FF47F3")
+      (xcode/lightblue       "#4C99EB")
+      (xcode/blue            "#1492FF")
+      (xcode/orange          "#FF6805")
+      (xcode/yellow          "#EBD900")
+      (xcode/green           "#00FF15")
+      (xcode/turqois         "#00FFC0")
+      (xcode/magenta         "#FF47F3")
       )
 
   (custom-theme-set-faces
@@ -35,14 +35,14 @@
                                              :foreground ,region-fg))))
 
 
-   `(font-lock-builtin-face       ((,class (:foreground ,xc-lightblue))))
-   `(font-lock-comment-face       ((,class (:foreground ,xc-orange))))
+   `(font-lock-builtin-face       ((,class (:foreground ,xcode/lightblue))))
+   `(font-lock-comment-face       ((,class (:foreground ,xcode/orange))))
    ;; `(font-lock-constant-face ((,class (:foreground "#d315c3"))))
-   `(font-lock-function-name-face ((,class (:foreground ,xc-yellow))))
-   `(font-lock-keyword-face       ((,class (:foreground ,xc-green))))
-   `(font-lock-string-face        ((,class (:foreground ,xc-turqois))))
-   `(font-lock-type-face          ((,class (:foreground ,xc-magenta))))
-   `(font-lock-variable-name-face ((,class (:foreground ,xc-blue))))
+   `(font-lock-function-name-face ((,class (:foreground ,xcode/yellow))))
+   `(font-lock-keyword-face       ((,class (:foreground ,xcode/green))))
+   `(font-lock-string-face        ((,class (:foreground ,xcode/turqois))))
+   `(font-lock-type-face          ((,class (:foreground ,xcode/magenta))))
+   `(font-lock-variable-name-face ((,class (:foreground ,xcode/blue))))
    `(font-lock-warning-face       ((,class (:foreground ,warning :bold t))))))
 
 (provide-theme 'xcode-dark)
