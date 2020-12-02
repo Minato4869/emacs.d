@@ -43,4 +43,4 @@
    `(ido-subdir                   ((,class (:foreground ,ido-green))))
    `(ido-only-match               ((,class (:foreground ,ido-yellow))))))
 
-(provide-theme 'gl/dark)
+(provide-theme 'gl-dark)

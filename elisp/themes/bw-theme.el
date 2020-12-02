@@ -11,7 +11,7 @@
       (region-bg          "#114488")
       (cursor             "#00FF00")
       (mode-line          "#292929")
-      (bw-comment         "#666666"))
+      (bw/comment         "#666666"))
 
   (custom-theme-set-faces
        'bw
@@ -26,7 +26,7 @@
                                                            :foreground ,region-fg))))
 
        `(font-lock-builtin-face       ((,class (:inherit foreground))))
-       `(font-lock-comment-face       ((,class (:foreground ,bw-comment))))
+       `(font-lock-comment-face       ((,class (:foreground ,bw/comment))))
        `(font-lock-constant-face      ((,class (:inherit foreground :underline t))))
        `(font-lock-function-name-face ((,class (:inherit foreground))))
        `(font-lock-keyword-face       ((,class (:inherit foreground :bold t))))
