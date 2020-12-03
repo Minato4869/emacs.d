@@ -153,7 +153,7 @@
                 ("\\.epub\\'"   . nov-mode)
                 (".shrc"        . shell-script-mode)
                 (".shenv"       . shell-script-mode)
-                ("\\.xpm\\'"   . text-mode)
+                ("\\.xpm\\'"    . text-mode)
                 (".fvwm2rc'"    . conf-mode)
                 (".Xdefaults'"  . conf-xdefaults-mode)
                 (".Xresources'" . conf-xdefaults-mode)
