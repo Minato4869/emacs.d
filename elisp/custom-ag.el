@@ -3,7 +3,6 @@
 
 (define-compilation-mode ag-mode "Ag"
   "Ag results compilation mode")
-;;  (set (make-local-variable 'compilation-error-face) '((t :background "#8AE234"))))
 
 (bind-keys :map ag-mode-map
            ("p"  . compilation-previous-error)

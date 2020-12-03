@@ -113,6 +113,7 @@
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground)))))
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
-(when (daemonp)
+
+(when (and (daemonp) (display-graphic-p))
   (disable-all-themes))
 (load-theme 'gl-dark t)
