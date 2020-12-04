@@ -28,4 +28,4 @@
         ((input (read-string "ag: ")))
       (ag/string input))))
 
-(bind-key "C-c s" 'ag)
+(bind-key "C-c C-s" 'ag)

@@ -80,6 +80,7 @@
  ("M-L"       . downcase-word)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
+ ("C-c 0"     . balance-windows)
  ("C-5"       . match-paren)
  ("C-x C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
@@ -91,11 +92,12 @@
  ("M-n"       . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
- ("C-x SPC" . rectangle-mark-mode)
- ("C-x C-SPC"   . cua-rectangle-mark-mode)
+ ("C-x SPC"   . rectangle-mark-mode)
+ ("C-x C-SPC" . cua-rectangle-mark-mode)
  ("C-x C-m"   . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
+ ("C-c s"      . shell)
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)

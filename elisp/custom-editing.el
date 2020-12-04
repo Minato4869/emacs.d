@@ -78,7 +78,12 @@
 (add-hook 'shell-script-mode-hook
           (lambda () (cedit/sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
-(add-hook 'mail-mode-hook       (lambda ()  (cedit/indent-conf 4 t nil 70)))
+(add-hook 'mail-mode-hook       (lambda ()
+																	(setq standard-indent 2)
+																	(cedit/indent-conf 4 t nil 70)))
+(add-hook 'text-mode-hook       (lambda ()
+																	(setq standard-indent 2)
+																	(cedit/indent-conf 2 t nil 80)))
 
 (use-package org
   :defer t
