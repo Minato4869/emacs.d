@@ -20,6 +20,7 @@
        `(cursor                      ((,class (:background ,cursor))))
        `(border                      ((,class (:foreground ,border))))
        `(fringe                      ((,class (:background ,fringe))))
+       `(minibuffer-prompt           ((,class (:inherit forground :bold t))))
        ;; `(mode-line                   ((,class (:background ,FG :foreground ,BG))))
        `(mode-line                   ((,class (:background ,mode-line :foreground ,FG))))
        `(region                      ((,class (:background ,region-bg

@@ -33,7 +33,7 @@
    `(cursor                        ((,class (:background ,cursor))))
    `(border                        ((,class (:foreground ,border))))
    `(fringe                        ((,class (:background ,fringe))))
-   `(minibuffer-prompt             ((,class (:foreground ,minibuffer :bold nil))))
+   `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
    `(mode-line                     ((,class (:inverse-video t))))
    ;;   `(region                        ((,class (:background ,region-bg))))
    `(region                        ((,class (:background ,region-bg

@@ -19,6 +19,7 @@
        `(cursor                      ((,class (:background ,acmed/blue2))))
        `(border                      ((,class (:foreground ,acmed/blue2))))
        `(fringe                      ((,class (:background ,fringe))))
+       `(minibuffer-prompt           ((,class (:inherit forground :bold t))))
        `(region                      ((,class (:background ,acmed/blue2
                                                            :foreground ,FG))))
 

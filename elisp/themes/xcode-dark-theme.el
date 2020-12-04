@@ -29,6 +29,7 @@
    `(cursor                       ((,class (:background ,cursor))))
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
+   `(minibuffer-prompt            ((,class (:forground "cyan"))))
    `(mode-line                    ((,class (:inherit foreground :background ,modeline))))
 ;;   `(region                       ((,class (:background ,region))))
    `(region                        ((,class (:background ,region-bg
