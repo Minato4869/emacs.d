@@ -26,9 +26,7 @@
       (call-process term nil 0))))
 
 (defun run-term ()
-  (interactive)  (cterm/open-term "rxvt"))
-(defun run-fterm ()
-  (interactive)  (cterm/open-term "fterm"))
+  (interactive)  (cterm/open-term "~/bin/rxvt"))
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
