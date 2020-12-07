@@ -57,7 +57,6 @@
  '(ido-indicator ((t (:inherit foreground))))
  '(line-number ((t (:inherit foreground :bold t))))
  '(link ((t (:foreground "brightblue" :underline t))))
- '(minibuffer-prompt ((t (:inherit foreground :bold t))))
  '(mouse ((t (:foreground "white" :background "black"))))
  '(region ((t (:extend t))))
  '(trailing-whitespace ((t (:background "maroon"))))
