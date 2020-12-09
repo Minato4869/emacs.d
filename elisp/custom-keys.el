@@ -97,7 +97,7 @@
  ("C-x C-m"   . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
- ("C-c s"     . eshell)
+
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)

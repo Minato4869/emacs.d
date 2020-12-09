@@ -3,6 +3,7 @@ alias rm rm -v
 alias em  find-file $1
 alias ec  find-file $1
 alias emc find-file-other-window $1
+
 alias ls ls -1
 alias la ls -la
 alias ll ls -l

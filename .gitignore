@@ -14,3 +14,4 @@ tramp
 *.elc
 .yas-compiled-snippets.el*
 image-dired/
+old/20201119_old/
