@@ -149,6 +149,7 @@
 ;; misc
 (global-subword-mode 1)               ; iterate through CamelCase words
 (setq visible-bell nil)
+(setq ring-bell-function 'ignore);; disable audible bell on windows
 (setq vc-follow-symlinks t)
 (setq visible-cursor nil)
 (fset 'yes-or-no-p 'y-or-n-p)

@@ -41,6 +41,8 @@
 (defalias 'meslo         'menlo-font)
 (defalias 'ttf           'menlo-font)
 ;; misc
+(defalias 'ap            'apropos)
+(defalias 'qc            'quick-calc)
 (defalias 'b             'ibuffer)
 (defalias 'dir           'dired)
 (defalias 'es            'eshell)
