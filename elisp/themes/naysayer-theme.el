@@ -13,8 +13,8 @@
       (region-fg          "#BEBEBE")
       (warning            "#FF0000")
 
-      (ido-green          "#A1C659")
-      (ido-yellow         "#FFCC33")
+      (ido-subdir         "#A1C659")
+      (ido-only-match     "#FFCC33")
 
       (nay/lightgreen     "#8FEE90")
       (nay/lightgreen-hl  "#B4EEB4")
@@ -49,7 +49,7 @@
    `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
    `(highlight                     ((,class (:foreground ,nay/navyblue
                                                          :background ,nay/lightgreen-hl))))
-   `(ido-subdir                   ((,class (:foreground ,ido-green))))
-   `(ido-only-match               ((,class (:foreground ,ido-yellow))))))
+   `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
+   `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
 
 (provide-theme 'naysayer)

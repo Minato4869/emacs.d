@@ -11,8 +11,8 @@
       (region             "#114488")
       (warning            "#FF0000")
 
-      (ido-green          "#A1C659")
-      (ido-yellow         "#FFCC33")
+      (ido-subdir          "#A1C659")
+      (ido-only-match      "#FFCC33")
 
       (gl/lightblue       "#729FCF")
       (gl/darkgreen       "#4E9A06")
@@ -41,7 +41,7 @@
    `(font-lock-variable-name-face ((,class (:foreground ,gl/yellow))))
    `(font-lock-warning-face       ((,class (:foreground ,warning :bold t))))
 
-   `(ido-subdir                   ((,class (:foreground ,ido-green))))
-   `(ido-only-match               ((,class (:foreground ,ido-yellow))))))
+   `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
+   `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
 
 (provide-theme 'gl-dark)

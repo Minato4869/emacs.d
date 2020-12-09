@@ -97,7 +97,7 @@
  ("C-x C-m"   . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
- ("C-c s"      . shell)
+ ("C-c s"     . eshell)
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)
@@ -114,6 +114,7 @@
  ("<M-right>" . next-buffer)
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
+ ("<f5>"      . revert-buffer)
  ("C-x b"     . ibuffer)
  ;; windows
  ("M-o"       . other-window)

@@ -9,9 +9,11 @@
 (defalias 'ln            'display-line-numbers-mode)
 (defalias 'mb            'menu-bar-mode)
 (defalias 'sh            'shell-script-mode)
+(defalias 'el            'emacs-lisp-mode)
 (defalias 'sw            'subword-mode)
 (defalias 'pp            'puppet-mode)
 (defalias 'txt           'text-mode)
+(defalias 'fm            'follow-mode)
 ;; term
 (defalias 'bt            'beamer-term)
 (defalias 'bterm         'beamer-term)

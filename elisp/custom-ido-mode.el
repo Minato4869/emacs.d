@@ -15,6 +15,11 @@
   (interactive)
   (cido/lazy-ido-enable)
   (call-interactively 'ido-switch-buffer))
+(defun cido/lazy-ido-switch-buffer-other-window ()
+  "ibuffer wrapper"
+  (interactive)
+  (cido/lazy-ido-enable)
+  (call-interactively 'ido-switch-buffer-other-window))
 (defun cido/lazy-ido-find-file ()
   "find-file wrapper"
   (interactive)
@@ -31,4 +36,5 @@
   (("C-x C-f" . cido/lazy-ido-find-file)
    ("s-d"     . cido/lazy-ido-dired)
    ("C-x C-d" . cido/lazy-ido-dired)
-   ("C-x C-b" . cido/lazy-ido-switch-buffer)))
+   ("C-x C-b" . cido/lazy-ido-switch-buffer)
+   ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))

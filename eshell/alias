@@ -1,5 +1,8 @@
 alias z dired
 alias rm rm -v
-alias emacs find-file $1
-alias em find-file $1
+alias em  find-file $1
+alias ec  find-file $1
+alias emc find-file-other-window $1
 alias ls ls -1
+alias la ls -la
+alias ll ls -l

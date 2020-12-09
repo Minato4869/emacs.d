@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0)
-(setq custom-themes '(gl-dark naysayer acme-dark acme))
+(setq custom-themes '(gl-dark naysayer muratori acme))
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
@@ -76,6 +76,20 @@
  ("C-<f2>" . custom-default-theme)
  ("S-<f2>" . default-light-theme))
 
+(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode java-mode))
+(make-face 'font-lock-fixme-face)
+(make-face 'font-lock-study-face)
+(make-face 'font-lock-important-face)
+(make-face 'font-lock-note-face)
+(mapc (lambda (mode)
+	      (font-lock-add-keywords
+	       mode
+	       '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
+	         ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
+	         ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
+           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
+	    fixme-modes)
+
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
  `(Man-underline                ((t (:foreground ,man-green :underline nil :bold t))))
@@ -110,7 +124,13 @@
  `(whitespace-tab               ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
- `(whitespace-line              ((t (:inherit foreground)))))
+ `(whitespace-line              ((t (:inherit foreground))))
+ ;; fixme mode
+ `(font-lock-fixme-face         ((t (:foreground "Red" :bold t :underline t))))
+ `(font-lock-study-face         ((t (:foreground "Yellow" :bold t :underline t))))
+ `(font-lock-important-face	    ((t (:foreground "Yellow" :bold t :underline t))))
+ `(font-lock-note-face	        ((t (:foreground "Dark Green" :bold t :underline t))))
+ )
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
 
 (cond
@@ -119,6 +139,8 @@
     (disable-all-themes)
     (load-theme 'gl-dark t)))
  ((display-graphic-p)
-  (load-theme 'naysayer t))
+  (progn
+    (load-theme 'naysayer t)
+    (setq custom-theme-index 1)))
  (t
   (load-theme 'gl-dark t)))
