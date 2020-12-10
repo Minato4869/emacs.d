@@ -4,6 +4,8 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-C"))
+(global-unset-key (kbd "<F3>"))
+(global-unset-key (kbd "<F4>"))
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -94,10 +96,11 @@
  ("C-x C-h"   . mark-whole-buffer)
  ("C-x SPC"   . rectangle-mark-mode)
  ("C-x C-SPC" . cua-rectangle-mark-mode)
- ("C-x C-m"   . pop-global-mark)
+ ("M-m"       . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
-
+ ("C-<f3>"    . kmacro-start-macro-or-insert-counter)
+ ("C-<f4>"    . kmacro-end-or-call-macro)
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)
@@ -125,9 +128,28 @@
 (bind-keys :map emacs-lisp-mode-map
            ("C-c C-c" . eval-buffer))
 
-(unless (and (daemonp) (display-graphic-p))
-  (bind-keys
-   ("M-O a" . backward-paragraph)
-   ("M-O b" . forward-paragraph)
-   ("M-O d" . backward-word)
-   ("M-O c" . forward-word)))
+(defun ck-tmux/check-term ()
+  (when (or (not (equal "" (getenv "TMUX")))
+            (and (daemonp) (not (display-graphic-p))))
+      t))
+(defun ck-tmux/backward-paragraph()
+  (interactive)
+  (when (ck-tmux/check-term)
+    (backward-paragraph-word)))
+(defun ck-tmux/forward-paragraph()
+  (interactive)
+  (when (ck-tmux/check-term)
+    (forward-paragraph)))
+(defun ck-tmux/backward-word()
+  (interactive)
+  (when (ck-tmux/check-term)
+    (backward-word)))
+(defun ck-tmux/forward-word()
+  (interactive)
+  (when (ck-tmux/check-term)
+    (forward-word)))
+(bind-keys
+ ("\033[1;5A" . ck-tmux/backward-paragraph)
+ ("\033[1;5B" . ck-tmux/forward-paragraph)
+ ("\033[1;5D" . ck-tmux/backward-word)
+ ("\033[1;5C" . ck-tmux/forward-word))

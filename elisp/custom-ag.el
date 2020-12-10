@@ -1,9 +1,18 @@
 (require 'compile)
-
 (define-compilation-mode ag-mode "Ag"
   "Ag results compilation mode")
 
+(defun ag/find-file ()
+  (interactive)
+  (let (filename)
+    (setq filename
+          (buffer-substring (line-beginning-position) (line-end-position)))
+    (if (not (string-match "^[^:numeric:]+\:" filename))
+        (find-file-at-point (concat default-directory filename))
+      (message "Current line does not contain a filename"))))
+
 (bind-keys :map ag-mode-map
+           ("f"  . ag/find-file)
            ("p"  . compilation-previous-error)
            ("n"  . compilation-next-error)
            ("k"  . (lambda ()
@@ -12,20 +21,19 @@
                          (kill-buffer-query-functions)
                        (kill-buffer)))))
 
-(defun ag/string (string)
+(defun ag/search-string (string)
   (progn
-    (set (make-local-variable 'command-string)
-         (concat "ag " string))
+    (setq string (prin1-to-string string)) ;; escape special chars
+      (set (make-local-variable 'command-string)
+           (concat "ag -Q -S " string))
     (compilation-start command-string #'ag-mode)))
 
 (defun ag ()
   (interactive)
-  (if (use-region-p)
-      (let
-          ((input (buffer-substring-no-properties (region-beginning) (region-end))))
-        (ag/string input))
-    (let
-        ((input (read-string "ag: ")))
-      (ag/string input))))
+  (let (input)
+    (if (use-region-p)
+        (setq input (buffer-substring-no-properties (region-beginning) (region-end)))
+      (setq input (read-string "ag: ")))
+    (ag/search-string input)))
 
 (bind-key "C-c C-s" 'ag)

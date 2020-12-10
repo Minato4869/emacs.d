@@ -61,9 +61,10 @@
 (setq custom-file "~/.emacs.d/elisp/custom.el")
 (load-library "custom-load-file")
 (load-library-wrap-error "custom-editing")
+(load-library-wrap-error "custom-keys")
+
 (load-library-wrap-error "custom-dired-mode")
 (load-library-wrap-error "custom-ido-mode")
-(load-library-wrap-error "custom-keys")
 (load-library-wrap-error "custom-ibuffer")
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-buffer-mode")
