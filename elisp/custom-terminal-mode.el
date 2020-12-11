@@ -1,4 +1,4 @@
-r(defun cterm/parse-tramp-path (path)
+(defun cterm/parse-tramp-path (path)
   (with-temp-buffer
     (insert path)
     (goto-char (point-min))

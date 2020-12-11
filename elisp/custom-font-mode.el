@@ -1,23 +1,25 @@
+(setq
+  cfont/pixelsize 14
+  cfont/large     "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"
+  cfont/medium    "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"
+  cfont/ttf       "DejaVu Sans Mono:regular:pixelsize="
+  cfont/go        "Go Mono:regular:pixelsize=14"
+  cfont/menlo     "Meslo LG S:regular:pixelsize=14")
+
 (defun cfont/set-font (&optional fontname)
   (cond
    ((string-equal fontname "medium")
-    (setq font "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"))
+    (setq font cfont/medium))
    ((string-equal fontname "large")
-    (setq font "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"))
+    (setq font cfont/large))
    ((string-equal fontname "menlo")
-    (cond ((file-directory-p "~/.fonts/Meslo-Font")
-           (setq font "Meslo LG S:regular:pixelsize=14"))
-          (t (cfont/set-font))))
+    (setq font cfont/menlo))
    ((string-equal fontname "go")
-    (cond ((file-directory-p "/usr/share/fonts/fonts-go")
-           (setq font "Go Mono:regular:pixelsize=14"))
-          (t (cfont/set-font))))
+    (setq font cfont/go))
    ((string-equal fontname "presentation")
-    (cond (file-directory-p "~/.fonts/Meslo-Font")
-          (setq font "Meslo LG S:regular:pixelsize=24")
-          (t (setq font "DejaVu Sans Mono:regular:pixelsize=30" ))))
+    (setq font (concat cfont/ttf "30")))
    (t
-    (setq font "DejaVu Sans Mono:regular:pixelsize=14")))
+    (setq font (concat cfont/ttf pixelsize))))
   (set-face-attribute 'default t :font font)
   (set-frame-font font nil t))
 

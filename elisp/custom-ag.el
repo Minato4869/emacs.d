@@ -2,7 +2,7 @@
 (define-compilation-mode ag-mode "Ag"
   "Ag results compilation mode")
 
-(defvar ag/binary "ag -Q -S ")
+(setq ag/binary "ag -Q -S ")
 
 (defun ag/find-file ()
   (interactive)
