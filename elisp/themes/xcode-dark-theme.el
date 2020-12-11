@@ -8,7 +8,6 @@
       (border             "#0000FF")
       (fringe             "#121212")
       (modeline           "#292929")
-      (warning            "#FF0000")
       (region-bg          "#00077A")
       (region-fg          "#BEBEBE")
 
@@ -43,7 +42,6 @@
    `(font-lock-keyword-face       ((,class (:foreground ,xcode/green))))
    `(font-lock-string-face        ((,class (:foreground ,xcode/turqois))))
    `(font-lock-type-face          ((,class (:foreground ,xcode/magenta))))
-   `(font-lock-variable-name-face ((,class (:foreground ,xcode/blue))))
-   `(font-lock-warning-face       ((,class (:foreground ,warning :bold t))))))
+   `(font-lock-variable-name-face ((,class (:foreground ,xcode/blue))))))
 
 (provide-theme 'xcode-dark)

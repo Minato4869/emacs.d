@@ -4,7 +4,6 @@
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#FFFFEA")
       (FG                 "#000000")
-      (warning            "#FF0000")
       (mode-line          "#EAFFFF")
       (border             "#0000FF")
       (fringe             "#DAD4bc")
@@ -33,9 +32,6 @@
        `(font-lock-string-face        ((,class (:inherit foreground :underline t))))
        `(font-lock-type-face          ((,class (:inherit foreground :bold t))))
        `(font-lock-variable-name-face ((,class (:inherit foreground))))
-       `(font-lock-warning-face       ((,class (:foreground ,warning
-                                                            :inherit background
-                                                            :bold t))))
 
        `(sh-quoted-exec               ((,class ((:inherit foreground)))))
 

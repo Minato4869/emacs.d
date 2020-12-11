@@ -1,47 +1,32 @@
-(setq
-  cfont/pixelsize 14
-  cfont/large     "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"
-  cfont/medium    "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"
-  cfont/ttf       "DejaVu Sans Mono:regular:pixelsize="
-  cfont/go        "Go Mono:regular:pixelsize=14"
-  cfont/menlo     "Meslo LG S:regular:pixelsize=14")
+(setq cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
+      cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
+      cfont/ttf    "DejaVu Sans Mono:regular:pixelsize=14"
+      cfont/menlo  "Meslo LG S:regular:pixelsize=14"
+      cfont/pres   "Monospace:regular:pixelsize=14")
 
-(defun cfont/set-font (&optional fontname)
-  (cond
-   ((string-equal fontname "medium")
-    (setq font cfont/medium))
-   ((string-equal fontname "large")
-    (setq font cfont/large))
-   ((string-equal fontname "menlo")
-    (setq font cfont/menlo))
-   ((string-equal fontname "go")
-    (setq font cfont/go))
-   ((string-equal fontname "presentation")
-    (setq font (concat cfont/ttf "30")))
-   (t
-    (setq font (concat cfont/ttf pixelsize))))
+(unless (file-directory-p "~/.fonts/Meslo-Font")
+    (setq cfont/menlo cfont/ttf))
+
+(defun cfont/set-font (&optional font)
   (set-face-attribute 'default t :font font)
   (set-frame-font font nil t))
 
 (defun medium-font ()
   (interactive)
-  (cfont/set-font "medium"))
+  (cfont/set-font cfont/medium))
 
 (defun large-font ()
   (interactive)
-  (cfont/set-font "large"))
+  (cfont/set-font cfont/large))
 
 (defun menlo-font ()
   (interactive)
-  (cfont/set-font "menlo"))
-
-(defun go-font ()
-  (interactive)
-     (cfont/set-font "go"))
+  (cfont/set-font cfont/menlo))
 
 (defun presentation-font ()
   (interactive)
-     (cfont/set-font "presentation"))
+  (setq cfont/pixelsize 30)
+  (cfont/set-font (concat cfont/pres)))
 
 (bind-keys
  ("<f7>"     . medium-font)

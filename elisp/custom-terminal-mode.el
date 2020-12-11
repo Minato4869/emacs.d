@@ -29,7 +29,9 @@
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
-(global-set-key (kbd "<s-return>") 'run-term)
-(global-set-key (kbd "C-c <return>") 'run-term)
-(global-set-key (kbd "C-x <return>") 'run-term)
-(global-set-key (kbd "C-c C-t") 'run-beamer-term)
+(bind-keys*
+ ("<s-return>"   . run-term)
+ ("C-c <return>" . run-term)
+ ("C-x <return>" . run-term)
+ ("C-<return>"   . run-term)
+ ("C-c C-t"      . run-beamer-term))
