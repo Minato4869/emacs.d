@@ -1,12 +1,11 @@
-(require 'cl)
-(defun cterm/parse-tramp-path (path)
+r(defun cterm/parse-tramp-path (path)
   (with-temp-buffer
     (insert path)
     (goto-char (point-min))
     (if (condition-case nil
       (re-search-forward "^/\\(?:\\([^:@]+\\):\\)?\\(?:\\([^:@]+\\)@\\)?\\([^:@]+\\):\\([^:@]+\\)?")
     (error nil))
-  (loop for i from 1 to 4
+  (cl-loop for i from 1 to 4
       collect (match-string i)))))
 
 (defun cterm/open-term (term &optional dir)
@@ -21,7 +20,7 @@
               (message
                "Edit ~/.ssh/config or use tramp via <user>@<host>")
               (call-process term nil 0))
-          (call-process term nil 0 term "-e" "ssh" "-X" "-t" "-l"
+          (call-process term nil 0 term "-e" "ssh" "-t" "-l"
                         user host (format "cd %s; exec $SHELL" path)))
       (call-process term nil 0))))
 

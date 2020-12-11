@@ -22,8 +22,7 @@
       (cm/DarkGoldenrod3  "#CD950C")
       (cm/Red             "#FF0000")
       (cm/Yellow          "#FFFF00")
-      (cm/DarkGreen       "#006400")
-      )
+      (cm/DarkGreen       "#006400"))
 
   (custom-theme-set-faces
    'muratori
