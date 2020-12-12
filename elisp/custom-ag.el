@@ -11,21 +11,24 @@
         (find-file-at-point (concat default-directory filename))
       (message "Current line does not contain a filename"))))
 
+(defun ag/kill-buffer ()
+  (interactive)
+  (let
+      (kill-buffer-query-functions)
+    (kill-buffer)))
 (bind-keys :map ag-mode-map
-           ("f"  . ag/find-file)
-           ("p"  . compilation-previous-error)
-           ("n"  . compilation-next-error)
-           ("k"  . (lambda ()
-                     (interactive)
-                     (let
-                         (kill-buffer-query-functions)
-                       (kill-buffer)))))
+           ("<return>" . ag/find-file)
+           ("f"        . ag/find-file)
+           ("p"        . compilation-previous-error)
+           ("n"        . compilation-next-error)
+           ("k"        . ag/kill-buffer))
+
 
 (defun ag/search-string (string)
   (progn
     (setq string (prin1-to-string string)) ;; escape special chars
-      (set (make-local-variable 'command-string)
-           (concat "ag -Q -S " string))
+    (set (make-local-variable 'command-string)
+         (concat "ag -Q -S " string))
     (compilation-start command-string #'ag-mode)))
 
 (defun ag ()

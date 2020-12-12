@@ -11,7 +11,6 @@
       (minibuffer         "#00FFFF")
       (region-bg          "#0000FF")
       (region-fg          "#BEBEBE")
-      (warning            "#FF0000")
 
       (ido-subdir         "#A1C659")
       (ido-only-match     "#FFCC33")
@@ -46,7 +45,7 @@
    `(font-lock-keyword-face        ((,class (:foreground ,nay/white))))
    `(font-lock-string-face         ((,class (:foreground ,nay/green-string))))
    `(font-lock-variable-name-face  ((((class color) (background dark)) (:foreground ,nay/lightblue))))
-   `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
+;;   `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
    `(highlight                     ((,class (:foreground ,nay/navyblue
                                                          :background ,nay/lightgreen-hl))))
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))

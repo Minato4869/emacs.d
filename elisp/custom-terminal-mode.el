@@ -1,4 +1,3 @@
-(require 'cl)
 (defun cterm/parse-tramp-path (path)
   (with-temp-buffer
     (insert path)
@@ -6,7 +5,7 @@
     (if (condition-case nil
       (re-search-forward "^/\\(?:\\([^:@]+\\):\\)?\\(?:\\([^:@]+\\)@\\)?\\([^:@]+\\):\\([^:@]+\\)?")
     (error nil))
-  (loop for i from 1 to 4
+  (cl-loop for i from 1 to 4
       collect (match-string i)))))
 
 (defun cterm/open-term (term &optional dir)
@@ -21,7 +20,7 @@
               (message
                "Edit ~/.ssh/config or use tramp via <user>@<host>")
               (call-process term nil 0))
-          (call-process term nil 0 term "-e" "ssh" "-X" "-t" "-l"
+          (call-process term nil 0 term "-e" "ssh" "-t" "-l"
                         user host (format "cd %s; exec $SHELL" path)))
       (call-process term nil 0))))
 
@@ -30,7 +29,9 @@
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
-(global-set-key (kbd "<s-return>") 'run-term)
-(global-set-key (kbd "C-c <return>") 'run-term)
-(global-set-key (kbd "C-x <return>") 'run-term)
-(global-set-key (kbd "C-c C-t") 'run-beamer-term)
+(bind-keys*
+ ("<s-return>"   . run-term)
+ ("C-c <return>" . run-term)
+ ("C-x <return>" . run-term)
+ ("C-<return>"   . run-term)
+ ("C-c C-t"      . run-beamer-term))

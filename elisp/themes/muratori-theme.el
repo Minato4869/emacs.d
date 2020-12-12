@@ -11,7 +11,6 @@
       (modeline-fg        "#000000")
       (minibuffer         "#00FFFF")
       (region             "#191970")
-      (warning            "#FF0000")
 
       (ido-subdir         "#FF0000")
       (ido-only-match     "#228B22")
@@ -22,8 +21,7 @@
       (cm/DarkGoldenrod3  "#CD950C")
       (cm/Red             "#FF0000")
       (cm/Yellow          "#FFFF00")
-      (cm/DarkGreen       "#006400")
-      )
+      (cm/DarkGreen       "#006400"))
 
   (custom-theme-set-faces
    'muratori
@@ -45,7 +43,6 @@
    `(font-lock-string-face        ((,class (:foreground ,cm/olivedrab))))
    `(font-lock-type-face          ((,class (:foreground ,FG))))
    `(font-lock-variable-name-face ((,class (:foreground ,FG))))
-   `(font-lock-warning-face       ((,class (:foreground ,warning :bold t))))
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))))

@@ -4,7 +4,6 @@
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#2E3440")
       (FG                 "#EAEAEA") ;; was white
-      (warning            "#FF0000")
       (fringe             "#1d2330")
       (comment            "#BEBEBE") ;; was  bebebe
       (keyword            "#9EEFEF") ;; was 98FB98
@@ -31,9 +30,6 @@
        `(font-lock-string-face        ((,class (:foreground ,string))))
        `(font-lock-type-face          ((,class (:inherit foreground :bold t))))
        `(font-lock-variable-name-face ((,class (:inherit foreground))))
-       `(font-lock-warning-face       ((,class (:foreground ,warning
-                                                            :inherit background
-                                                            :bold t))))
 
        `(sh-quoted-exec               ((,class ((:inherit foreground)))))
 

@@ -9,7 +9,6 @@
       (fringe             "#121212")
       (modeline           "#292929")
       (region             "#114488")
-      (warning            "#FF0000")
 
       (ido-subdir          "#A1C659")
       (ido-only-match      "#FFCC33")
@@ -39,7 +38,6 @@
    `(font-lock-string-face        ((,class (:foreground ,gl/darkgreen))))
    `(font-lock-type-face          ((,class (:foreground ,gl/darkgreen))))
    `(font-lock-variable-name-face ((,class (:foreground ,gl/yellow))))
-   `(font-lock-warning-face       ((,class (:foreground ,warning :bold t))))
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))))

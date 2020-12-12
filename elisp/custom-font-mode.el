@@ -1,45 +1,32 @@
-(defun cfont/set-font (&optional fontname)
-  (cond
-   ((string-equal fontname "medium")
-    (setq font "xft:-uw-ttyp0-medium-r-normal--16-*-75-75-c-*-iso10646-1"))
-   ((string-equal fontname "large")
-    (setq font "xft:-uw-ttyp0-medium-r-normal--18-*-75-75-c-*-iso10646-1"))
-   ((string-equal fontname "menlo")
-    (cond ((file-directory-p "~/.fonts/Meslo-Font")
-           (setq font "Meslo LG S:regular:pixelsize=14"))
-          (t (cfont/set-font))))
-   ((string-equal fontname "go")
-    (cond ((file-directory-p "/usr/share/fonts/fonts-go")
-           (setq font "Go Mono:regular:pixelsize=14"))
-          (t (cfont/set-font))))
-   ((string-equal fontname "presentation")
-    (cond (file-directory-p "~/.fonts/Meslo-Font")
-          (setq font "Meslo LG S:regular:pixelsize=24")
-          (t (setq font "DejaVu Sans Mono:regular:pixelsize=30" ))))
-   (t
-    (setq font "DejaVu Sans Mono:regular:pixelsize=14")))
+(setq cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
+      cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
+      cfont/ttf    "DejaVu Sans Mono:regular:pixelsize=14"
+      cfont/menlo  "Meslo LG S:regular:pixelsize=14"
+      cfont/pres   "Monospace:regular:pixelsize=14")
+
+(unless (file-directory-p "~/.fonts/Meslo-Font")
+    (setq cfont/menlo cfont/ttf))
+
+(defun cfont/set-font (&optional font)
   (set-face-attribute 'default t :font font)
   (set-frame-font font nil t))
 
 (defun medium-font ()
   (interactive)
-  (cfont/set-font "medium"))
+  (cfont/set-font cfont/medium))
 
 (defun large-font ()
   (interactive)
-  (cfont/set-font "large"))
+  (cfont/set-font cfont/large))
 
 (defun menlo-font ()
   (interactive)
-  (cfont/set-font "menlo"))
-
-(defun go-font ()
-  (interactive)
-     (cfont/set-font "go"))
+  (cfont/set-font cfont/menlo))
 
 (defun presentation-font ()
   (interactive)
-     (cfont/set-font "presentation"))
+  (setq cfont/pixelsize 30)
+  (cfont/set-font (concat cfont/pres)))
 
 (bind-keys
  ("<f7>"     . medium-font)
