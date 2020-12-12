@@ -36,4 +36,4 @@
       (setq input (read-string "ag: ")))
     (ag/search-string input)))
 
-(bind-key "C-c C-s" 'ag)
+(bind-key* "C-c C-s" 'ag)
