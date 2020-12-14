@@ -77,18 +77,39 @@
  ("S-<f2>" . default-light-theme))
 
 (setq fixme-modes '(c++-mode c-mode emacs-lisp-mode java-mode))
-(make-face 'font-lock-fixme-face)
-(make-face 'font-lock-study-face)
-(make-face 'font-lock-important-face)
-(make-face 'font-lock-note-face)
+;; ;; fixme mode
+;;(make-face 'font-lock-fixme-face     )
+;;(make-face 'font-lock-study-face     )
+;;(make-face 'font-lock-important-face )
+;;(make-face 'font-lock-note-face      )
+(defgroup fixme nil
+	"Hilight TODO/STUDY/IMPROTANT/NOTE in special colours")
+(defface font-lock-fixme-face
+	'((t (:foreground "Red" :bold t :underline t)))
+	"Font lock face for TODO comments"
+	:group 'fixme)
+(defface font-lock-study-face
+	'((t (:foreground "Yellow" :bold t :underline t)))
+	"Font lock face for STUDY comments"
+	:group 'fixme)
+(defface font-lock-important-face
+	'((t (:foreground "Yellow" :bold t :underline t)))
+	"Font lock face for IMPORTANT comments"
+	:group 'fixme)
+(defface font-lock-note-face
+  '((t (:foreground "Dark Green" :bold t :underline t)))
+	"Font lock face for NOTE comments"
+	:group 'fixme)
+
+(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode java-mode))
 (mapc (lambda (mode)
-	      (font-lock-add-keywords
-	       mode
-	       '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
-	         ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
-	         ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
+				(font-lock-add-keywords
+				 mode
+				 '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
+					 ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
+					 ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
            ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
-	    fixme-modes)
+	 fixme-modes)
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
@@ -127,11 +148,6 @@
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
- ;; fixme mode
- `(font-lock-fixme-face         ((t (:foreground "Red" :bold t :underline t))))
- `(font-lock-study-face         ((t (:foreground "Yellow" :bold t :underline t))))
- `(font-lock-important-face	    ((t (:foreground "Yellow" :bold t :underline t))))
- `(font-lock-note-face	        ((t (:foreground "Dark Green" :bold t :underline t))))
  )
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
 
