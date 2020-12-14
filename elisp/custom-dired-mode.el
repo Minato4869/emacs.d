@@ -23,19 +23,37 @@
       "Sort dired listings with directories first before adding marks."
       (cdired/sort))))
 
+(defun dired-view-file-other-window ()
+  (if (one-window-p)
+      (split-window-horizontally)
+    (split-window-vertically))
+  (other-window 1)
+  (dired-view-file))
+
+(defun dired-find-or-view ()
+  "A `dired-find-file' which only works on directories."
+  (interactive)
+  (let ((find-file-run-dired t)
+        (file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (find-file file)
+      (dired-view-file-other-window))))
 (use-package dired
   :ensure nil
   :bind
   (:map dired-mode-map
-        ("C-h" . dired-omit-mode)
-        ("<left>" . dired-jump)
-        ("q" . dired-jump)
-        ("<return>" . dired-find-file)
-        ("<right>" . dired-find-file)
-        ("C-<right>" . dired-find-file-other-window)
-        ("S-<return>" . dired-find-file-other-window)
-        ("C-<return>" . dired-find-file-other-window)
-        ("C-d" . dired-hide-details-mode)
-        ("R" . dired-do-rename)
-        ("r" . revert-buffer)
-        (":" . execute-extended-command)))
+        ("C-h"        . dired-omit-mode)
+        ("<left>"     . dired-jump)
+        ("q"          . quit-window)
+        ("<return>"   . dired-find-file)
+        ("<right>"    . dired-find-or-view)
+        ("C-d"        . dired-hide-details-mode)
+        ("R"          . dired-do-rename)
+        ("r"          . revert-buffer)
+        (":"          . execute-extended-command)))
+
+(require 'view)
+(bind-keys :map view-mode-map
+           ("q"   . kill-buffer-and-window)
+           ("C-g" . kill-buffer-and-window)
+           ("C-q" . View-quit))
