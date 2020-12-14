@@ -76,12 +76,7 @@
  ("C-<f2>" . custom-default-theme)
  ("S-<f2>" . default-light-theme))
 
-(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode java-mode))
-;; ;; fixme mode
-;;(make-face 'font-lock-fixme-face     )
-;;(make-face 'font-lock-study-face     )
-;;(make-face 'font-lock-important-face )
-;;(make-face 'font-lock-note-face      )
+;; fixme mode
 (defgroup fixme nil
 	"Hilight TODO/STUDY/IMPROTANT/NOTE in special colours")
 (defface font-lock-fixme-face
@@ -101,15 +96,15 @@
 	"Font lock face for NOTE comments"
 	:group 'fixme)
 
-(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode java-mode))
-(mapc (lambda (mode)
-				(font-lock-add-keywords
-				 mode
-				 '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
-					 ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
-					 ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
-           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
-	 fixme-modes)
+(mapc
+ (lambda (mode)
+	 (font-lock-add-keywords
+		mode
+		'(("\\<\\(TODO\\)"      . 'font-lock-fixme-face)
+			("\\<\\(STUDY\\)"     . 'font-lock-study-face)
+			("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
+      ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
+  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
