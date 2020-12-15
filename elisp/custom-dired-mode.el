@@ -38,22 +38,25 @@
     (if (file-directory-p file)
         (find-file file)
       (dired-view-file-other-window))))
+
+(defun dired-jump-previous-dir ()
+  (interactive)
+  (setq old-buffer (buffer-name))
+  (dired-jump)
+  (kill-buffer old-buffer))
+;;  (message (concat "Killed Dired buffer: " old-buffer)))
+
 (use-package dired
   :ensure nil
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("<left>"     . dired-jump)
         ("q"          . quit-window)
         ("<return>"   . dired-find-file)
         ("<right>"    . dired-find-or-view)
+        ("<left>"     . dired-jump-previous-dir)
         ("C-d"        . dired-hide-details-mode)
         ("R"          . dired-do-rename)
         ("r"          . revert-buffer)
+        ("/"          . dired-isearch-filenames)
         (":"          . execute-extended-command)))
-
-(require 'view)
-(bind-keys :map view-mode-map
-           ("q"   . kill-buffer-and-window)
-           ("C-g" . kill-buffer-and-window)
-           ("C-q" . View-quit))

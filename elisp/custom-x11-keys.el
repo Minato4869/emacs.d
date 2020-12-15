@@ -34,7 +34,6 @@
  ("s-3"     . split-window-right)
  ("s-4"     . make-frame-command)
  ("C-x 4"   . make-frame-command)
- ("<s-tab>" . other-window)
  ;; buffers
  ;; ("s-d"     . ido-dired)
  ("s-d"     . dired-jump)

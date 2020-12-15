@@ -56,16 +56,23 @@
     (suspend-frame)))
 
 (defun transpose-windows (arg)
-   "Transpose the buffers shown in two windows."
-   (interactive "p")
-   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-     (while (/= arg 0)
-       (let ((this-win (window-buffer))
-             (next-win (window-buffer (funcall selector))))
-         (set-window-buffer (selected-window) next-win)
-         (set-window-buffer (funcall selector) this-win)
-         (select-window (funcall selector)))
-       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+(defun scroll-line-down ()
+  (interactive)
+  (scroll-up 1))
+(defun scroll-line-up ()
+  (interactive)
+  (scroll-down 1))
 
 ;; custom keys
 (bind-keys
@@ -107,6 +114,7 @@
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . font-lock-mode)
  ("<f12>"     . display-line-numbers-mode)
+ ("C-<f12>"   . display-fill-column-indicator-mode)
  ("C-x C-d"   . dired-jump)
  ;; buffer
  ("<C-prior>" . previous-buffer)
@@ -131,7 +139,7 @@
 (defun ck-tmux/check-term ()
   (when (or (not (equal "" (getenv "TMUX")))
             (and (daemonp) (not (display-graphic-p))))
-      t))
+    t))
 (defun ck-tmux/backward-paragraph()
   (interactive)
   (when (ck-tmux/check-term)
@@ -153,3 +161,29 @@
  ("\033[1;5B" . ck-tmux/forward-paragraph)
  ("\033[1;5D" . ck-tmux/backward-word)
  ("\033[1;5C" . ck-tmux/forward-word))
+
+(require 'view)
+(require 'man)
+(bind-keys :map Man-mode-map
+           ("q"      . kill-buffer-and-window)
+           ("C-g"    . kill-buffer-and-window)
+           ("<up>"   . scroll-line-up)
+           ("<down>" . scroll-line-down)
+           ("k"      . scroll-line-up)
+           ("j"      . scroll-line-down)
+           ("/"      . isearch)
+           ("g"      . beginning-of-buffer)
+           ("G"      . end-of-buffer))
+
+(bind-keys :map view-mode-map
+           ("v"      . View-exit)
+           ("C-q"    . View-quit)
+           ("<left>" . kill-buffer-and-window)
+           ("C-g"    . kill-buffer-and-window)
+           ("<up>"   . scroll-line-up)
+           ("<down>" . scroll-line-down)
+           ("k"      . scroll-line-up)
+           ("j"      . scroll-line-down)
+           ("/"      . isearch)
+           ("g"      . beginning-of-buffer)
+           ("G"      . end-of-buffer))

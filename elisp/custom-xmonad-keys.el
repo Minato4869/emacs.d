@@ -1,0 +1,12 @@
+(bind-keys*
+ ("<M-tab>"      . other-window)
+ ("<M-tab>"      . other-window)
+ ("M-["          . shrink-window-horizontally)
+ ("M-]"          . enlarge-window-horizontally)
+ ("<s-[>"        . shrink-window)
+ ("<s-]>"        . enlarge-window)
+ ("M-Q"          . kill-current-buffer)
+ ("s-t"          . transpose-windows)
+ ("<M-S-return>" . transpose-windows)
+ ("<C-M-return>" . transpose-windows)
+ )

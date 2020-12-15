@@ -32,6 +32,7 @@
   (call-interactively 'ido-dired))
 
 (use-package ido
+  :ensure nil
   :bind
   (("C-x C-f" . cido/lazy-ido-find-file)
    ("s-d"     . cido/lazy-ido-dired)

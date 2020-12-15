@@ -37,7 +37,8 @@
 
 ;; packages
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-(package-initialize)
+(when (< emacs-major-version 27)
+  (package-initialize))
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (unless (package-installed-p 'use-package)
@@ -85,7 +86,8 @@
 
   (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-terminal-mode")
-  (load-library-wrap-error "custom-x11-keys"))
+  (load-library-wrap-error "custom-x11-keys")
+  (load-library-wrap-error "custom-xmonad-keys"))
 
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-diminish-mode")

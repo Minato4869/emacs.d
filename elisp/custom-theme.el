@@ -38,8 +38,7 @@
   (progn (message "Default theme")))
 
 (defun custom-disable-theme ()
-  (interactive)
-  (disable-all-themes)
+;;  (disable-all-themes)
   (setq custom-themes-index (- (length custom-themes) 1))
   (progn (message "Disabled custom theme")))
 
