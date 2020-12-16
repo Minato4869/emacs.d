@@ -37,8 +37,8 @@
 
 ;; packages
 (when (and (>= libgnutls-version 30603) (< emacs-major-version 27))
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-  (package-initialize))
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+(package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (unless (package-installed-p 'use-package)
