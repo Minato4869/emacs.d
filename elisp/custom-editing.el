@@ -171,6 +171,7 @@
 ;; disable paren/$ jumping
 (setq-default blink-matching-paren nil)
 (setq-default show-paren-mode t)
+(setq-default show-paren-delay 0)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

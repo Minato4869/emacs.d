@@ -178,8 +178,11 @@
 (bind-keys :map view-mode-map
            ("v"      . View-exit)
            ("C-q"    . View-quit)
+           ("q"      . kill-buffer-and-window)
            ("<left>" . kill-buffer-and-window)
            ("C-g"    . kill-buffer-and-window)
+           ("s-1"    . kill-buffer-and-window)
+           ("s-0"    . kill-buffer-and-window)
            ("<up>"   . scroll-line-up)
            ("<down>" . scroll-line-down)
            ("k"      . scroll-line-up)

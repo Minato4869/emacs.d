@@ -52,7 +52,8 @@
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
         ("q"          . quit-window)
-        ("<return>"   . dired-find-file)
+        ("<C-return>"  . dired-find-file)
+        ("<return>"   . dired-find-or-view)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)
         ("C-d"        . dired-hide-details-mode)
