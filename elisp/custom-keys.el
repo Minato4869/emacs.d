@@ -6,6 +6,8 @@
 (global-unset-key (kbd "C-C"))
 (global-unset-key (kbd "<F3>"))
 (global-unset-key (kbd "<F4>"))
+(global-unset-key (kbd "<f3>"))
+(global-unset-key (kbd "<f4>"))
 ;; custom region
 (defconst custom-region-alist
   `((mark-active

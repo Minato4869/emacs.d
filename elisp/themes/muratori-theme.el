@@ -15,8 +15,8 @@
       (ido-subdir         "#FF0000")
       (ido-only-match     "#228B22")
 
-      (cm/builtin         "#6B8E23")
-      (cm/olivedrab       "#DAB98F")
+      (cm/builtin         "#DAB98F")
+      (cm/olivedrab       "#6B8E23")
       (cm/grey50          "#7F7F7F")
       (cm/DarkGoldenrod3  "#CD950C")
       (cm/Red             "#FF0000")
@@ -31,7 +31,7 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:foreground ,minibuffer))))
-   `(mode-line                    ((,class (:background ,modeline-bg :foreground ,modeline-fg))))
+;;   `(mode-line                    ((,class (:background ,modeline-bg :foreground ,modeline-fg))))
    `(region                       ((,class (:background ,region :foreground ,FG))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,cm/builtin))))
