@@ -132,39 +132,15 @@
  ;; windows
  ("M-o"       . other-window)
  ("C-c o"     . other-window)
- ("C-x C-o"   . transpose-windows))
-
+ ("C-x C-o"   . transpose-windows)
+ ("C-c t"     . transpose-windows)
+ ;; xmonad/non x11 onlu
+ ("<M-tab>"      . other-window)
+ ("<M-S-return>" . transpose-windows)
+ ("<C-M-return>" . transpose-windows))
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map
            ("C-c C-c" . eval-buffer))
-
-(defun ck-tmux/check-term ()
-  (when (or (not (equal "" (getenv "TMUX")))
-            (and (daemonp) (not (display-graphic-p))))
-    t))
-(defun ck-tmux/backward-paragraph()
-  (interactive)
-  (when (ck-tmux/check-term)
-    (backward-paragraph-word)))
-(defun ck-tmux/forward-paragraph()
-  (interactive)
-  (when (ck-tmux/check-term)
-    (forward-paragraph)))
-(defun ck-tmux/backward-word()
-  (interactive)
-  (when (ck-tmux/check-term)
-    (backward-word)))
-(defun ck-tmux/forward-word()
-  (interactive)
-  (when (ck-tmux/check-term)
-    (forward-word)))
-(bind-keys
- ("\033[1;5A" . ck-tmux/backward-paragraph)
- ("\033[1;5B" . ck-tmux/forward-paragraph)
- ("\033[1;5D" . ck-tmux/backward-word)
- ("\033[1;5C" . ck-tmux/forward-word))
-
-(require 'view)
 (require 'man)
 (bind-keys :map Man-mode-map
            ("q"      . kill-buffer-and-window)
@@ -176,7 +152,7 @@
            ("/"      . isearch)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
-
+(require 'view)
 (bind-keys :map view-mode-map
            ("v"      . View-exit)
            ("C-q"    . View-quit)
@@ -192,3 +168,8 @@
            ("/"      . isearch)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
+
+;; non x11 tui only
+(when (not (or (display-graphic-p) (daemonp)))
+  (bind-keys*
+   ("C-M-i"      . other-window)))

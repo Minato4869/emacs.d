@@ -83,11 +83,15 @@
   (display-battery-mode t)
 
   (keychain-refresh-environment)
-
-  (load-library-wrap-error "custom-font-mode")
+  (if (string-equal system-type "windows-nt")
+      (set-face-attribute
+       'default nil :family "Consolas" :height 113 :weight 'normal :width 'normal)
+    (load-library-wrap-error "custom-font-mode"))
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-x11-keys")
-  (load-library-wrap-error "custom-xmonad-keys"))
+  (when (or (equal "xmonad" (getenv "ALTWM"))
+            (equal 0 (length (getenv "ALTWM"))))
+    (load-library-wrap-error "custom-xmonad-keys")))
 
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-diminish-mode")
