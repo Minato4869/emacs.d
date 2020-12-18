@@ -136,7 +136,6 @@
  `(mouse                        ((t (:background "grey"))))
  `(region                       ((t (:extend t))))
  `(trailing-whitespace          ((t (:background ,trailing-ws))))
- `(variable-pitch               ((t (:font "Sans-Serif-14"))))
  `(whitespace-space             ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-tab               ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))

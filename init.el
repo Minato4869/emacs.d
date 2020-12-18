@@ -86,7 +86,10 @@
   (if (string-equal system-type "windows-nt")
       (set-face-attribute
        'default nil :family "Consolas" :height 113 :weight 'normal :width 'normal)
-    (load-library-wrap-error "custom-font-mode"))
+    (progn
+      (load-library-wrap-error "custom-font-mode")
+      (set-face-attribute
+       'variable-pitch nil :font "Sans-Serif-14")))
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-x11-keys")
   (when (or (equal "xmonad" (getenv "ALTWM"))
