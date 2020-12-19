@@ -1,18 +1,7 @@
 ;; Don’t ask to save files before compilation, just save them.
-(setq compilation-ask-about-save nil)
+(setq compilation-ask-about-save nil
+      compilation-always-kill t)
 ;; Don’t ask to kill currently running compilation, just kill it.
-(setq compilation-always-kill t)
-
-(defun ccompile/colourise-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-
-(add-hook
- 'compilation-filter-hook
- (lambda ()
-   (require 'ansi-color)
-   (ccompile/colourise-buffer)))
 
 (defun ccompile/recompile ()
   "Interrupt current compilation and recompile"

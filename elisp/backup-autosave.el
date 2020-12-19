@@ -10,12 +10,3 @@
 (let ((autosavedir "~/.emacs.d/autosave/"))
   (mkdir autosavedir t)
   (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
-
-;;(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
-;;(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t)))
-
-;; auto save buffers on focus loss
-;;(defun save-all ()
-;;  (interactive)
-;;  (save-some-buffers t))
-;;  (add-hook 'focus-out-hook 'save-all)

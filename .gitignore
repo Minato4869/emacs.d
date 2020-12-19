@@ -9,6 +9,7 @@ history
 url/
 gitignore.old
 ido.last*
+idlwave
 nov-places
 tramp
 *.elc
