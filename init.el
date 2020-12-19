@@ -58,7 +58,7 @@
 (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 (yas-global-mode 1)
 ;; custom files
-(setq custom-file "~/.emacs.d/elisp/custom.el")
+(setq custom-file "~/.emacs.d/.custom.el")
 (load-library "custom-load-file")
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")

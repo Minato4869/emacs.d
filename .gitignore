@@ -15,3 +15,6 @@ tramp
 .yas-compiled-snippets.el*
 image-dired/
 old/20201119_old/
+elisp/custom.el
+custom.el
+.custom.el
