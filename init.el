@@ -20,8 +20,8 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (puppet-mode yasnippet use-package keychain-environment
-                 haskell-mode diminish auctex)))
+    (puppet-mode yasnippet use-package keychain-environment haskell-mode
+                 diminish auctex)))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation
           space-after-tab space-before-tab space-mark tab-mark))
@@ -31,7 +31,6 @@
  '(show-paren-mode t)
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
-;;(set-window-scroll-bars (minibuffer-window) nil nil)
 
 (savehist-mode 1)
 
@@ -39,8 +38,9 @@
 (when (and (>= libgnutls-version 30603) (< emacs-major-version 27))
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 (package-initialize)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+(defvar melpa-archive '("melpa" . "https://melpa.org/packages/"))
+(push melpa-archive package-archives)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install-selected-packages))

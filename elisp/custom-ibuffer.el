@@ -1,3 +1,4 @@
+(require 'ibuffer)
 (setq ibuffer-formats
       '((mark modified read-only " "
               ;;              (name 25 25 :left :elide)
@@ -11,10 +12,8 @@
               (name 16 -1)
               " " filename)))
 
-(defun my-ibuffer-hook ()
-  "custom ibuffer mode hook"
-  (define-key ibuffer-mode-map (kbd "s") 'isearch-forward)
-  (define-key ibuffer-mode-map (kbd "/") 'isearch-forward)
-  (define-key ibuffer-mode-map (kbd "r") 'revert-buffer))
-
-(add-hook 'ibuffer-mode-hooks 'my-ibuffer-hook)
+(bind-keys
+ :map ibuffer-mode-map
+ ("s" . isearch-forward)
+ ("/" . isearch-forward)
+ ("r" . revert-buffer))

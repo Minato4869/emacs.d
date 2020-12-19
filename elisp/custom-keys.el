@@ -1,4 +1,4 @@
-;;; Custom keybinds
+;; Custom keybinds
 ;; disabled keybinds
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
@@ -77,7 +77,7 @@
   (scroll-down 1))
 
 ;; custom keys
-(bind-keys
+(bind-keys*
  ("C-c h"     . help)
  ;; editing
  ("C-h"       . backward-delete-char-untabify)
@@ -134,7 +134,7 @@
  ("C-c o"     . other-window)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
- ;; xmonad/non x11 onlu
+ ;; xmonad/non x11 only
  ("<M-tab>"      . other-window)
  ("<M-S-return>" . transpose-windows)
  ("<C-M-return>" . transpose-windows))

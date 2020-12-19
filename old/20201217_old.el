@@ -24,3 +24,4 @@
  ("\033[1;5B" . ck-tmux/forward-paragraph)
  ("\033[1;5D" . ck-tmux/backward-word)
  ("\033[1;5C" . ck-tmux/forward-word))
+;;(set-window-scroll-bars (minibuffer-window) nil nil)
