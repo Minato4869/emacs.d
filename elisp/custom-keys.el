@@ -104,7 +104,8 @@
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
  ("C-x SPC"   . rectangle-mark-mode)
- ("C-x C-SPC" . cua-rectangle-mark-mode)
+ ("C-x C-SPC" . rectangle-mark-mode)
+ ("C-c SPC"   . cua-rectangle-mark-mode)
  ("M-m"       . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
