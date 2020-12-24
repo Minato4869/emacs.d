@@ -75,14 +75,15 @@
 (defun scroll-line-up ()
   (interactive)
   (scroll-down 1))
-
-;; custom keys
 (bind-keys*
- ("C-c h"     . help)
- ;; editing
+ ("M-g"       . goto-line)
  ("C-h"       . backward-delete-char-untabify)
  ("C-z"       . undo)
- ("M-u"       . universal-argument)
+ ("M-u"       . universal-argument))
+;; custom keys
+(bind-keys
+ ("C-c h"     . help)
+ ;; editing
  ("C-c 5"     . query-replace)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
@@ -98,7 +99,6 @@
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)
  ;; movement
- ("M-g"       . goto-line)
  ("M-p"       . backward-paragraph)
  ("M-n"       . forward-paragraph)
  ;; mark
@@ -150,7 +150,7 @@
            ("<down>" . scroll-line-down)
            ("k"      . scroll-line-up)
            ("j"      . scroll-line-down)
-           ("/"      . isearch)
+           ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
 (require 'view)
@@ -166,7 +166,7 @@
            ("<down>" . scroll-line-down)
            ("k"      . scroll-line-up)
            ("j"      . scroll-line-down)
-           ("/"      . isearch)
+           ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
 
