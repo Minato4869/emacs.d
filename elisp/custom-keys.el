@@ -116,8 +116,8 @@
  ("C-<f10>"   . menu-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . font-lock-mode)
- ("<f12>"     . display-line-numbers-mode)
- ("C-<f12>"   . display-fill-column-indicator-mode)
+ ("<f12>"     . display-fill-column-indicator-mode)
+ ("C-<f12>"   . display-line-numbers-mode)
  ("C-x C-d"   . dired-jump)
  ;; buffer
  ("<C-prior>" . previous-buffer)
