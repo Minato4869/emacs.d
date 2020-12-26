@@ -90,8 +90,11 @@
 
   (keychain-refresh-environment)
   (if (string-equal system-type "windows-nt")
-      (set-face-attribute
-       'default nil :family "Consolas" :height 113 :weight 'normal :width 'normal)
+      (progn
+        (setq default-directory "%HOME%")
+        (set-face-attribute
+         'default nil :family "Consolas" :height 113
+         :weight 'normal :width 'normal))
     (progn
       (load-library-wrap-error "custom-font-mode")
       (set-face-attribute
