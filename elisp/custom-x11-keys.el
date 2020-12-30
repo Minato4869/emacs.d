@@ -41,4 +41,5 @@
  ("C--"   . text-scale-decrease)
  ;; custom functions
  ("C-0"   . text-scale-reset)
- ("C-c o" . other-frame))
+ ("C-c o" . other-frame)
+ ("s-t"   . transpose-windows))

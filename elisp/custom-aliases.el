@@ -41,6 +41,7 @@
 (defalias 'meslo         'menlo-font)
 (defalias 'ttf           'menlo-font)
 ;; misc
+(defalias 'xt            'xterm-mouse-mode)
 (defalias 'ap            'apropos)
 (defalias 'qc            'quick-calc)
 (defalias 'b             'ibuffer)

@@ -135,13 +135,19 @@
  ("C-c o"     . other-window)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
+ ("C-x t"     . transpose-windows)
  ;; xmonad/non x11 only
  ("<M-tab>"      . other-window)
  ("<M-S-return>" . transpose-windows)
  ("<C-M-return>" . transpose-windows))
 ;; mode specific
+(defun custom-eval-buffer ()
+  (interactive)
+  (eval-buffer)
+  (message "Evaluated current buffer"))
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c C-c" . eval-buffer))
+           ("C-c C-c" . custom-eval-buffer))
+
 (require 'man)
 (bind-keys :map Man-mode-map
            ("q"      . kill-buffer-and-window)
