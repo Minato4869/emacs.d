@@ -76,12 +76,12 @@
   (interactive)
   (scroll-down 1))
 (bind-keys*
- ("M-g"       . goto-line)
- ("C-h"       . backward-delete-char-untabify)
- ("C-z"       . undo)
- ("M-u"       . universal-argument))
+  ("C-z"       . undo)
+  ("M-u"       . universal-argument))
 ;; custom keys
 (bind-keys
+ ("C-h"       . backward-delete-char-untabify)
+ ("M-g"       . goto-line)
  ("C-c h"     . help)
  ;; editing
  ("C-c 5"     . query-replace)
@@ -103,6 +103,7 @@
  ("M-n"       . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
+ ("C-x C-@"   . rectangle-mark-mode)
  ("C-x SPC"   . rectangle-mark-mode)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)

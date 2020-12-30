@@ -91,7 +91,6 @@
   (keychain-refresh-environment)
   (if (string-equal system-type "windows-nt")
       (progn
-        (setq default-directory "%HOME%")
         (set-face-attribute
          'default nil :family "Consolas" :height 113
          :weight 'normal :width 'normal))
