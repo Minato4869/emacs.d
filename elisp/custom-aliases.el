@@ -51,3 +51,5 @@
 (defalias 'tr            'toggle-truncate-lines)
 (defalias 'trunc         'toggle-truncate-lines)
 (defalias 'sf            'set-fill-column)
+(defalias 'fi            'display-fill-column-indicator-mode)
+(defalias 'fc            'display-fill-column-indicator-mode)

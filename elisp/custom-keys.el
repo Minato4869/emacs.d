@@ -67,7 +67,7 @@
         (set-window-buffer (selected-window) next-win)
         (set-window-buffer (funcall selector) this-win)
         (select-window (funcall selector)))
-      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+      (setq arg (if (cl-plusp arg) (1- arg) (1+ arg))))))
 
 (defun scroll-line-down ()
   (interactive)
@@ -116,8 +116,8 @@
  ("C-<f10>"   . menu-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . font-lock-mode)
- ("<f12>"     . display-line-numbers-mode)
- ("C-<f12>"   . display-fill-column-indicator-mode)
+ ("<f12>"     . display-fill-column-indicator-mode)
+ ("C-<f12>"   . display-line-numbers-mode)
  ("C-x C-d"   . dired-jump)
  ;; buffer
  ("<C-prior>" . previous-buffer)
