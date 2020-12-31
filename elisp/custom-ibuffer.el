@@ -10,6 +10,7 @@
           (mark " " (name 16 -1) " " filename)))
   :bind
   (:map ibuffer-mode-map
-        ("s" . isearch-forward)
-        ("/" . isearch-forward)
-        ("r" . revert-buffer)))
+        ("M-o" . other-window)
+        ("s"   . isearch-forward)
+        ("/"   . isearch-forward)
+        ("r"   . revert-buffer)))

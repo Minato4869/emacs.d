@@ -32,6 +32,7 @@
  ("s-3"   . split-window-right)
  ("s-4"   . make-frame-command)
  ("C-x 4" . make-frame-command)
+ ("s-0"   . delete-window)
  ;; buffers
  ("s-d"   . dired-jump)
  ("s-r"   . revert-buffer)
