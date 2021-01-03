@@ -31,7 +31,7 @@
 (defun run-term ()
   (interactive)  (cterm/open-term "~/bin/rxvt"))
 (defun run-local-term ()
-  (interactive)  (cterm/open-term "~/bin/rxvt"))
+  (interactive)  (cterm/open-local-term "~/bin/rxvt"))
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
