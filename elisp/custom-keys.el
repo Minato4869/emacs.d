@@ -139,7 +139,7 @@
  ("C-x t"     . transpose-windows)
  ;; xmonad/non x11 only
  ("<M-tab>"      . other-window)
- ("<M-S-return>" . transpose-windows)
+ ("M-RET"        . transpose-windows)
  ("<C-M-return>" . transpose-windows))
 ;; mode specific
 (defun custom-eval-buffer ()

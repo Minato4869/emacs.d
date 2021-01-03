@@ -1,3 +1,7 @@
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -172,9 +176,6 @@
 (setq-default blink-matching-paren nil)
 (setq-default show-paren-mode t)
 (setq-default show-paren-delay 0)
-
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
 
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 

@@ -33,5 +33,6 @@
  ("<s-return>"   . run-term)
  ("C-c <return>" . run-term)
  ("C-x <return>" . run-term)
+ ("<M-S-return>" . run-term)
 ;; ("C-<return>"   . run-term)
  ("C-c C-t"      . run-beamer-term))
