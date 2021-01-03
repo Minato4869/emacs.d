@@ -120,6 +120,8 @@
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
  ("C-x C-d"   . dired-jump)
+ ("C-c v"     . scroll-other-window)
+ ("C-c C-v"   . scroll-other-window-down)
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
