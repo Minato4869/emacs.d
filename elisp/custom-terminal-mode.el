@@ -24,15 +24,19 @@
                         user host (format "cd %s; exec $SHELL" path)))
       (call-process term nil 0))))
 
+(defun cterm/open-local-term (term &optional dir)
+  (let (default-directory default-directory)
+        (call-process term nil 0)))
+
 (defun run-term ()
+  (interactive)  (cterm/open-term "~/bin/rxvt"))
+(defun run-local-term ()
   (interactive)  (cterm/open-term "~/bin/rxvt"))
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
 (bind-keys*
  ("<s-return>"   . run-term)
- ("C-c <return>" . run-term)
- ("C-x <return>" . run-term)
+ ("C-c <return>" . run-local-term)
  ("<M-S-return>" . run-term)
-;; ("C-<return>"   . run-term)
  ("C-c C-t"      . run-beamer-term))
