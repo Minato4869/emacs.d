@@ -2,6 +2,10 @@
 (setq compilation-ask-about-save nil
       compilation-always-kill t)
 ;; Don’t ask to kill currently running compilation, just kill it.
+(defun ccompile/colorize ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
 
 (defun ccompile/recompile ()
   "Interrupt current compilation and recompile"
@@ -17,6 +21,11 @@
                            (shell-quote-argument make-directory) " ")))
      (list (compilation-read-command command))))
   (compile command))
+(add-hook
+ 'compilation-filter-hook
+ (lambda ()
+   (require 'ansi-color)
+   (ccompile/colorize)))
 
 (bind-keys
  ("<f6>"   . ccompile/recompile)

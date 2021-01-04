@@ -84,7 +84,8 @@
  ("M-g"       . goto-line)
  ("C-c h"     . help)
  ;; editing
- ("C-c 5"     . query-replace)
+ ("C-x 5"     . query-replace)
+ ("C-c 5"     . query-replace-regexp)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
@@ -94,7 +95,7 @@
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
  ("C-5"       . match-paren)
- ("C-x C-k"   . kill-buffer-and-window)
+ ("C-c C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)
