@@ -36,8 +36,9 @@
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
 (bind-keys*
+ ("<M-S-return>"   . run-term)
  ("<s-return>"     . run-term)
  ("C-c <return>"   . run-term)
  ("C-c C-<return>" . run-local-term)
- ("<M-S-return>"   . run-term)
+ ("C-x <return>"   . run-term)
  ("C-c C-t"        . run-beamer-term))
