@@ -10,7 +10,7 @@
 
 (setq frame-title-format '("" "emacs@" system-name " - %b"))
 (setq require-final-newline t)
-
+(set-default 'truncate-lines t)
 ;; region
 (transient-mark-mode 1)
 (delete-selection-mode t)
