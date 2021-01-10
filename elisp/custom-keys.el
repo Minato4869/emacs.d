@@ -78,7 +78,11 @@
   (scroll-down 1))
 (bind-keys*
   ("C-z"       . undo)
-  ("M-u"       . universal-argument))
+  ("M-u"       . universal-argument)
+  ("C-x SPC"   . rectangle-mark-mode)
+  ("C-x C-SPC" . rectangle-mark-mode)
+  ("C-c SPC"   . cua-rectangle-mark-mode)
+  )
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -106,9 +110,6 @@
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
  ("C-x C-@"   . rectangle-mark-mode)
- ("C-x SPC"   . rectangle-mark-mode)
- ("C-x C-SPC" . rectangle-mark-mode)
- ("C-c SPC"   . cua-rectangle-mark-mode)
  ("M-m"       . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
@@ -137,14 +138,9 @@
  ("C-x b"     . ibuffer)
  ;; windows
  ("M-o"       . other-window)
- ("C-c o"     . other-window)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
- ("C-x t"     . transpose-windows)
- ;; xmonad/non x11 only
- ("<M-tab>"      . other-window)
- ("M-RET"        . transpose-windows)
- ("<C-M-return>" . transpose-windows))
+ ("C-x t"     . transpose-windows))
 ;; mode specific
 (defun custom-eval-buffer ()
   (interactive)

@@ -8,7 +8,6 @@
       (setq-default dired-omit-mode t) ;; Turn on Omit mode.
       (dired-hide-details-mode 1))
     (setq-default dired-omit-files "^\\...+$")
-
     (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
     (defun cdired/sort ()
       "Sort dired listings with directories first."
@@ -18,10 +17,11 @@
           (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
         (set-buffer-modified-p nil)))
 
-    (defadvice cdired/readin
+    (defadvice dired-readin
         (after dired-after-updating-hook first () activate)
       "Sort dired listings with directories first before adding marks."
-      (cdired/sort))))
+      (cdired/sort))
+    ))
 
 (defun dired-view-file-other-window ()
   (if (one-window-p)
