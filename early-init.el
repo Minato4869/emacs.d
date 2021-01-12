@@ -1,3 +1,3 @@
 (setq package-enable-at-startup nil
-         package-quickstart t
-        load-prefer-newer t)
+;;      package-quickstart t
+      load-prefer-newer t)
