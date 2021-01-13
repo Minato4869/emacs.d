@@ -35,8 +35,8 @@
 (savehist-mode 1)
 
 ;; packages
-(when (and (>= libgnutls-version 30603) (< emacs-major-version 27))
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+;;(when (and (>= libgnutls-version 30603) (< emacs-major-version 27))
+;;  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 (package-initialize)
 (setq package-archives nil)
 (defvar gnu-archive '("gnu" . "https://elpa.gnu.org/packages/"))
