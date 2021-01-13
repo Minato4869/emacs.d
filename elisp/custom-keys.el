@@ -133,7 +133,7 @@
  ("<M-left>"  . previous-buffer)
  ("<M-right>" . next-buffer)
  ("C-x k"     . kill-current-buffer)
- ("C-x r"     . revert-buffer)
+ ("C-c r"     . revert-buffer)
  ("<f5>"      . revert-buffer)
  ("C-x b"     . ibuffer)
  ;; windows
