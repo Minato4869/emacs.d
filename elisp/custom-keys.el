@@ -100,7 +100,7 @@
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
  ("C-5"       . match-paren)
- ("C-c C-k"   . kill-buffer-and-window)
+ ("C-x C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)
