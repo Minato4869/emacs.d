@@ -3,6 +3,7 @@
 (defalias 'beamer        'presentation-mode)
 (defalias 'cf            'conf-mode)
 (defalias 'fl            'font-lock-mode)
+(defalias 'hs            'haskell-mode)
 (defalias 'gws           'global-whitespace-mode)
 (defalias 'wsg           'global-whitespace-mode)
 (defalias 'ws            'whitespace-mode)

@@ -152,7 +152,6 @@
 (require 'man)
 (bind-keys :map Man-mode-map
            ("q"      . kill-buffer-and-window)
-           ("C-g"    . kill-buffer-and-window)
            ("<up>"   . scroll-line-up)
            ("<down>" . scroll-line-down)
            ("k"      . scroll-line-up)
