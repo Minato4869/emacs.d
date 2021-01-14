@@ -35,6 +35,9 @@
 (defalias 'lt            'load-theme)
 (defalias 'res           'reset-themes)
 ;; fonts
+(defalias 'small         'small-font)
+(defalias 'medium        'medium-font)
+(defalias 'large         'large-font)
 (defalias 'dejavu        'custom-set-font)
 (defalias 'dejavu-font   'custom-set-font)
 (defalias 'meslo         'menlo-font)
