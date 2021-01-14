@@ -13,4 +13,4 @@
         ("M-o" . other-window)
         ("s"   . isearch-forward)
         ("/"   . isearch-forward)
-        ("r"   . revert-buffer)))
+        ("r"   . ibuffer-redisplay)))
