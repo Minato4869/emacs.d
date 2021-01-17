@@ -22,9 +22,6 @@
 (defalias 'rxvt          'run-term)
 (defalias 'es            'es/shell)
 (defalias 'win           'shell)
-;;(defalias 'term        'run-rxvt)
-(defalias 'xt            'run-xterm)
-(defalias 'xterm         'run-xterm)
 (defalias 'term          'ansi-term)
 ;; themes
 (defalias 'ct            'custom-cycle-theme)
