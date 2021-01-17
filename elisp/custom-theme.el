@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
-(setq custom-themes-index 0)
-(setq custom-themes '(gl-dark naysayer muratori))
+(setq custom-themes-index 0
+			custom-themes '(gl-dark naysayer muratori))
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"

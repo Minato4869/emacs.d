@@ -1,6 +1,10 @@
-(bind-keys*
- ("<s-[>" . shrink-window)
- ("<s-]>" . enlarge-window)
- ("s-t"   . transpose-windows)
- ("M-["   . shrink-window-horizontally)
- ("M-]"   . enlarge-window-horizontally))
+(bind-keys
+ ("C-c o"        . other-frame-or-window)
+ ("<M-tab>"      . other-window)
+ ("M-RET"        . transpose-windows)
+ ("<C-M-return>" . transpose-windows)
+ ("s-t"          . transpose-windows)
+ ("<s-[>"        . shrink-window)
+ ("<s-]>"        . enlarge-window)
+ ("M-["          . shrink-window-horizontally)
+ ("M-]"          . enlarge-window-horizontally))

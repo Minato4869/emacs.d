@@ -6,16 +6,18 @@
 ;; custom
 (custom-set-variables
  '(initial-scratch-message
-";; Unfortunately, there's a radio connected to my brain
+   ";; Unfortunately, there's a radio connected to my brain
 ;; Actually, it's the BBC controlling us from London.
 
 ")
- '(battery-mode-line-format "[%b%p%%]")
+ ;; This buffer is for text that is not saved, and for Lisp evaluation.
+;; To create a file, visit it with C-x C-f and enter text in its buffer.
+ '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
  '(display-time-mail-string "")
  '(display-time-24hr-format t)
- '(display-time-day-and-date t)
+;; '(display-time-day-and-date t)
  '(size-indication-mode t)
  '(column-number-mode t)
  '(package-selected-packages
@@ -34,9 +36,6 @@
 
 (savehist-mode 1)
 
-;; packages
-;;(when (and (>= libgnutls-version 30603) (< emacs-major-version 27))
-;;  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 (package-initialize)
 (setq package-archives nil)
 (defvar gnu-archive '("gnu" . "https://elpa.gnu.org/packages/"))
@@ -46,7 +45,6 @@
 (push gnu-archive package-archives)
 (push melpa-archive package-archives)
 (setq package-archives (nreverse package-archives))
-;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install-selected-packages))
@@ -57,28 +55,28 @@
 (setq use-package-verbose t
       use-package-always-ensure t)
 ;; paths
-(add-to-list 'load-path "~/.emacs.d/elisp")
-(add-to-list 'custom-theme-load-path
-             (file-name-as-directory "~/.emacs.d/elisp/themes"))
+(let ((basedir "~/.emacs.d/elisp/"))
+  (add-to-list 'load-path basedir)
+  (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
 (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 (yas-global-mode 1)
 ;; custom files
 (setq custom-file "~/.emacs.d/.custom.el")
-(load-library "custom-load-file")
+(load-library            "custom-load-file")
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")
-
 (load-library-wrap-error "custom-dired-mode")
 (load-library-wrap-error "custom-ido-mode")
 (load-library-wrap-error "custom-ibuffer")
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-buffer-mode")
-(load-library-wrap-error "custom-org-mode")
 (load-library-wrap-error "custom-compile")
 (load-library-wrap-error "custom-tex")
 (load-library-wrap-error "custom-ag")
 (load-library-wrap-error "custom-eshell")
+(load-library-wrap-error "custom-diminish-mode")
+
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
@@ -90,22 +88,14 @@
 
   (keychain-refresh-environment)
   (if (string-equal system-type "windows-nt")
-      (progn
-        (set-face-attribute
-         'default nil :family "Consolas" :height 113
-         :weight 'normal :width 'normal))
+      (load-library-wrap-error "custom-terminal-mode")
     (progn
       (load-library-wrap-error "custom-font-mode")
-      (set-face-attribute
-       'variable-pitch nil :font "Sans-Serif-14")))
-  (load-library-wrap-error "custom-terminal-mode")
+      (load-library-wrap-error "custom-terminal-mode")
+      (unless (file-directory-p "~/.altwm")
+        (load-library-wrap-error "custom-xmonad-keys"))))
   (load-library-wrap-error "custom-x11-keys")
-  (when (or (equal "xmonad" (getenv "ALTWM"))
-            (equal 0 (length (getenv "ALTWM"))))
-    (load-library-wrap-error "custom-xmonad-keys")))
-
-(load-library-wrap-error "custom-theme")
-(load-library-wrap-error "custom-diminish-mode")
+  (load-library-wrap-error "custom-theme"))
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves
 (load-library "backup-autosave")

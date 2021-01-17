@@ -1,45 +1,43 @@
-(put 'upcase-region 'disabled nil)
+(put 'upcase-region   'disabled nil)
 (put 'downcase-region 'disabled nil)
-(put 'scroll-left 'disabled nil)
+(put 'scroll-left     'disabled nil)
 
-(prefer-coding-system 'utf-8)
+(prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(setq default-input-method "rfc1345")
 
-(setq frame-title-format '("" "emacs@" system-name " - %b"))
-(setq require-final-newline t)
 (set-default 'truncate-lines t)
+
+(setq-default default-input-method "rfc1345"
+							frame-title-format '("" "emacs@" system-name " - %b")
+							require-final-newline t
+							;; fill column
+							auto-fill-function 'do-auto-fill
+							fill-column 80
+							;; whitespace
+							show-trailing-whitespace nil
+							;; gpg
+							epg-gpg-home-directory "~/.gnupg")
 ;; region
 (transient-mark-mode 1)
 (delete-selection-mode t)
 
-;; fill column
-(setq-default auto-fill-function 'do-auto-fill)
-(setq-default fill-column 80)
-
-;; whitespace
-(setq-default show-trailing-whitespace nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; gpg
-(setq-default epg-gpg-home-directory "~/.gnupg")
-
+;; mouse
+(setq mouse-autoselect-window t)
+(xterm-mouse-mode 1)
 ;; tab width
+(defvaralias 'c-basic-offset 'tab-width)
 (setq-default indent-tabs-mode t
+							c-basic-offset 8
+							sh-basic-offset 8
               tab-width 8
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry)
-(defvaralias 'c-basic-offset 'tab-width)
-;; mouse
-(setq mouse-autoselect-window t)
-(xterm-mouse-mode 1)
 
-;; mode indentation
-(setq-default c-basic-offset 8)
-(setq-default sh-basic-offset 8)
 (defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
         tab-width offset
@@ -88,7 +86,18 @@
 (add-hook 'text-mode-hook       (lambda ()
 																	(setq standard-indent 2)
 																	(cedit/indent-conf 2 t nil 80)))
-
+(defun guess-tab-settings ()
+	(save-excursion
+	  (goto-char (point-min))
+	  (if (re-search-forward "^\t" 8192 t)
+          (progn
+	          (setq indent-tabs-mode t)
+	          (message "File uses tabs for indentation"))
+      (progn
+	      (setq indent-tabs-mode nil)
+	      (message "File uses spaces for indentation")))))
+(add-hook 'find-file-hook 'guess-tab-settings)
+;;; org
 (use-package org
   :defer t
 	:ensure nil
@@ -153,10 +162,12 @@
 
 ;; misc
 (global-subword-mode 1)               ; iterate through CamelCase words
-(setq visible-bell nil)
-(setq ring-bell-function 'ignore);; disable audible bell on windows
-(setq vc-follow-symlinks t)
-(setq visible-cursor nil)
+(setq visible-bell nil
+			ring-bell-function 'ignore ;; disable audible bell on windows
+			vc-follow-symlinks t
+			visible-cursor nil
+			frame-inhibit-implied-resize t)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq auto-mode-alist
       (append auto-mode-alist
@@ -171,26 +182,14 @@
                 ("\\gnus\\'"    . emacs-lisp-mode)
                 ("Makefile"     . makefile-gmake-mode))))
 
-(setq frame-inhibit-implied-resize t)
 
 ;; disable paren/$ jumping
-(setq-default blink-matching-paren nil)
-(setq-default show-paren-mode t)
-(setq-default show-paren-delay 0)
+(setq-default blink-matching-paren nil
+							show-paren-mode t
+							show-paren-delay 0)
 
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 
-(defun guess-tab-settings ()
-	(save-excursion
-	  (goto-char (point-min))
-	  (if (re-search-forward "^\t" 8192 t)
-          (progn
-	          (setq indent-tabs-mode t)
-	          (message "File uses tabs for indentation"))
-      (progn
-	      (setq indent-tabs-mode nil)
-	      (message "File uses spaces for indentation")))))
-(add-hook 'find-file-hook 'guess-tab-settings)
 
 (use-package notmuch
   :defer t

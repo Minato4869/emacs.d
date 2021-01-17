@@ -13,6 +13,6 @@
   (yas-recompile-all)
   (yas-reload-all))
 
-(defun custom-insert-date ()
+(defun ymd ()
   (interactive)
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))

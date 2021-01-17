@@ -4,7 +4,6 @@
       LaTeX-item-indent -2
       LaTeX-indent-level 4) ;; indents special environments
 
-
 (setq-default
  TeX-command-list
  (quote
@@ -22,9 +21,7 @@
                 document")
    ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
    ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-   ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
-
-(setq-default
+   ("Other" "" TeX-run-command t t :help "Run an arbitrary command")))
  TeX-view-program-selection
  (quote
   (((output-dvi has-no-display-manager) "dvi2tty")
