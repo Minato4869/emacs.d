@@ -191,8 +191,3 @@
 	      (setq indent-tabs-mode nil)
 	      (message "File uses spaces for indentation")))))
 (add-hook 'find-file-hook 'guess-tab-settings)
-
-(use-package notmuch
-  :defer t
-  :config
-	(xterm-mouse-mode -1))
