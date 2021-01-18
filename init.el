@@ -17,7 +17,7 @@
  '(display-time-format "%H:%M")
  '(display-time-mail-string "")
  '(display-time-24hr-format t)
-;; '(display-time-day-and-date t)
+ '(display-time-day-and-date t)
  '(size-indication-mode t)
  '(column-number-mode t)
  '(package-selected-packages
@@ -94,8 +94,8 @@
       (load-library-wrap-error "custom-terminal-mode")
       (unless (file-directory-p "~/.altwm")
         (load-library-wrap-error "custom-xmonad-keys"))))
-  (load-library-wrap-error "custom-x11-keys")
-  (load-library-wrap-error "custom-theme"))
+  (load-library-wrap-error "custom-x11-keys"))
+(load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves
 (load-library "backup-autosave")
