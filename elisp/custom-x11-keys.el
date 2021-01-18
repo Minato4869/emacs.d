@@ -12,20 +12,14 @@
   (interactive)
   (insert (gui-get-primary-selection)))
 
-(defun copy-primary ()
-  "Copy primary selection."
-  (interactive)
-  (deactivate-mark)
-  (gui-set-selection
-   'PRIMARY (buffer-substring (region-beginning) (region-end))))
 (defun other-frame-or-window ()
   (interactive)
   (if (one-window-p)
       (other-frame 1)
     (other-window 1)))
-;; windows
+
 (bind-keys
- ("C-M-c"   . copy-primary)
+ ("C-M-y"   . yank-primary)
  ("C-M-v"   . yank-primary)
  ;; windows
  ("C-1"     . delete-other-windows)
@@ -48,10 +42,4 @@
  ("C--"     . text-scale-decrease)
  ;; custom functions
  ("C-0"     . text-scale-reset)
- ("C-c o"   . other-frame)
- ("s-t"     . transpose-windows)
-  ;; xmonad/non x11 only
- ("C-c o"        . other-frame-or-window)
- ("<M-tab>"      . other-window)
- ("M-RET"        . transpose-windows)
- ("<C-M-return>" . transpose-windows))
+ ("C-c o"   . other-frame))

@@ -13,10 +13,15 @@
 (defconst custom-region-alist
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
-         (define-key m (kbd "C-w") 'kill-region)
-         (define-key m (kbd "M-L") 'downcase-region)
-         (define-key m (kbd "M-U") 'upcase-region)
-         (define-key m (kbd "M-:") 'eval-region)
+         (define-key m (kbd "C-w")        'kill-region)
+         (define-key m (kbd "<S-delete>") 'kill-region)
+         (define-key m (kbd "M-L")        'downcase-region)
+         (define-key m (kbd "C-x C-l")    'downcase-region)
+         (define-key m (kbd "M-U")        'upcase-region)
+         (define-key m (kbd "C-x C-u")    'upcase-region)
+         (define-key m (kbd "C-M-/")      'indent-region)
+         (define-key m (kbd "M-|")        'shell-command-on-region)
+         (define-key m (kbd "M-:")        'eval-region)
          m))))
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 
@@ -148,7 +153,7 @@
   (message "Evaluated current buffer"))
 (bind-keys :map emacs-lisp-mode-map
            ("C-c C-c" . custom-eval-buffer))
-
+;; man pages
 (require 'man)
 (bind-keys :map Man-mode-map
            ("q"      . kill-buffer-and-window)
@@ -159,6 +164,7 @@
            ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
+;; view mode
 (require 'view)
 (bind-keys :map view-mode-map
            ("v"      . View-exit)
@@ -175,7 +181,6 @@
            ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
-
 ;; non x11 tui only
 (when (not (or (display-graphic-p) (daemonp)))
   (bind-keys*

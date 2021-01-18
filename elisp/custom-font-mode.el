@@ -1,3 +1,4 @@
+(set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
 (setq cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
       cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
       cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
