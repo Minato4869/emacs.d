@@ -1,8 +1,8 @@
-(deftheme naysayer
-  "naysayer theme")
+(deftheme naysayer-grey
+  "naysayer-grey theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#072626")
+      (BG                 "#041818")
       (FG                 "#D3B58D")
       (cursor             "#8FEE90")
       (border             "#0000FF")
@@ -22,10 +22,11 @@
       (nay/white          "#FFFFFF") ;; was #BEBEBE, white is default
       (nay/lightblue      "#C8D4EC")
       (nay/brown          "#504038")
+      (nay/yellow         "#ffff00")
       (nay/navyblue       "#000080"))
 
   (custom-theme-set-faces
-   'naysayer
+   'naysayer-grey
 
    `(default                       ((,class (:background ,BG :foreground ,FG))))
    `(cursor                        ((,class (:background ,cursor))))
@@ -37,8 +38,9 @@
    `(region                        ((,class (:background ,region-bg
                                              :foreground ,region-fg))))
 
-   `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
-   `(font-lock-comment-face        ((,class (:foreground ,nay/green))))
+   ;;   `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
+   `(font-lock-builtin-face        ((,class (nil))))
+   `(font-lock-comment-face        ((,class (:foreground ,nay/yellow))))
    `(font-lock-type-face           ((,class (:foreground ,nay/palegreen))))
    `(font-lock-function-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
    `(font-lock-keyword-face        ((,class (:foreground ,nay/white))))
@@ -50,4 +52,5 @@
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
 
-(provide-theme 'naysayer)
+(provide-theme 'naysayer-grey
+               )

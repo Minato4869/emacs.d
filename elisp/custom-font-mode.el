@@ -1,5 +1,6 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-(setq cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
+(setq cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+      cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
       cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
       cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
       cfont/ttf    "DejaVu Sans Mono:regular:pixelsize=14"
@@ -12,6 +13,10 @@
 (defun cfont/set-font (&optional font)
   (set-face-attribute 'default t :font font)
   (set-frame-font font nil t))
+
+(defun 6x13 ()
+  (interactive)
+  (cfont/set-font cfont/6x13))
 
 (defun small-font ()
   (interactive)
