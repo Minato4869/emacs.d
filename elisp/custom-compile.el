@@ -28,5 +28,6 @@
    (ccompile/colorize)))
 
 (bind-keys
- ("<f6>"   . ccompile/recompile)
- ("C-c <f6>" . compile-parent))
+ ("<f6>"     . ccompile/recompile)
+ ("C-c <f6>" . compile-parent)
+ ("C-<f6>"   . compile))
