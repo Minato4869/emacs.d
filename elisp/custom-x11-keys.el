@@ -33,6 +33,8 @@
  ("C-x 4"   . make-frame-command)
  ("s-0"     . delete-window)
  ("C-x M-o" . other-frame)
+ ("s-j"          . other-window)
+ ("s-k"          . backward-other-window)
  ;; buffers
  ("s-d"     . dired-jump)
  ("s-r"     . revert-buffer)

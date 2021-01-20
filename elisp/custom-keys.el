@@ -81,6 +81,11 @@
 (defun scroll-line-up ()
   (interactive)
   (scroll-down 1))
+
+(defun backward-other-window ()
+  (interactive)
+  (other-window -1))
+
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
@@ -143,7 +148,7 @@
  ("C-x b"     . ibuffer)
  ;; windows
  ("M-o"       . other-window)
- ("C-x C-o"   . transpose-windows)
+ ("C-x C-o"   . backward-other-window)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
  ;; misc
