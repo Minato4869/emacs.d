@@ -42,3 +42,8 @@
  ("C-c C-<return>" . run-local-term)
  ("C-x <return>"   . run-term)
  ("C-c C-t"        . run-beamer-term))
+
+(defalias 'bt     'beamer-term)
+(defalias 'bterm  'beamer-term)
+(defalias 'rx     'run-term)
+(defalias 'rxvt   'run-term)

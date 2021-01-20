@@ -10,8 +10,6 @@
 ;; Actually, it's the BBC controlling us from London.
 
 ")
- ;; This buffer is for text that is not saved, and for Lisp evaluation.
-;; To create a file, visit it with C-x C-f and enter text in its buffer.
  '(battery-mode-line-format "[%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
@@ -40,7 +38,7 @@
 (setq package-archives nil)
 (defvar gnu-archive   '("gnu"   . "https://elpa.gnu.org/packages/"))
 (defvar elpa-archive  '("elpa"  . "https://elpa.gnu.org/packages/"))
-(defvar melpa-archive '("melpa" . "http://melpa.org/packages/"))
+(defvar melpa-archive '("melpa" . "https://melpa.org/packages/"))
 (push elpa-archive package-archives)
 (push gnu-archive package-archives)
 (push melpa-archive package-archives)

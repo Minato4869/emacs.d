@@ -12,7 +12,12 @@
   (interactive)
   (yas-recompile-all)
   (yas-reload-all))
+(defalias 'yas 'yas-force-update)
 
 (defun ymd ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
+
+(defun date ()
   (interactive)
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))

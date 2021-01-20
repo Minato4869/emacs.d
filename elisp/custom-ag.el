@@ -18,8 +18,8 @@
 (bind-keys :map ag-mode-map
            ("<return>" . ag/find-file)
            ("f"        . ag/find-file)
-           ("p"        . compilation-previous-error)
-           ("n"        . compilation-next-error)
+           ("p"        . backkward-paragraph)
+           ("n"        . forward-paragraph)
            ("k"        . ag/kill-buffer))
 
 

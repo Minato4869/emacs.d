@@ -157,3 +157,13 @@
     (setq custom-theme-index 1)))
  (t
   (load-theme 'gl-dark t)))
+
+;; themes
+(defalias 'ct            'custom-cycle-theme)
+(defalias 'cycle-theme   'custom-cycle-theme)
+(defalias 'default-theme 'custom-default-theme)
+(defalias 'deft          'custom-default-theme)
+(defalias 'dft           'custom-default-theme)
+(defalias 'dt            'disable-all-themes)
+(defalias 'lt            'load-theme)
+(defalias 'res           'reset-themes)

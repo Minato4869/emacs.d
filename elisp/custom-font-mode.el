@@ -18,8 +18,7 @@
   (interactive)
   (cfont/set-font cfont/6x13))
 
-(defun small-font ()
-  (interactive)
+(defun small-font ()(interactive)
   (cfont/set-font cfont/small))
 
 (defun medium-font ()
@@ -47,7 +46,11 @@
 
 (unless (file-directory-p "/usr/local/share/fonts/X11/misc")
   (menlo-font))
-
+(defalias 'small       'small-font)
+(defalias 'medium      'medium-font)
+(defalias 'large       'large-font)
+(defalias 'menlo       'menlo-font)
+(defalias 'meslo       'menlo-font)
 ;; small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
 ;; "-don-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1"
 ;; "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"

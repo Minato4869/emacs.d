@@ -2,6 +2,7 @@
 	(let ((buf (eshell)))
 		(switch-to-buffer (other-buffer buf))
 		(switch-to-buffer-other-window buf)))
+
 (defun es/shell()
 	(interactive)
 	(cond
@@ -13,3 +14,5 @@
     (es/shell-other-window))))
 
 (bind-key "C-c s" 'es/shell)
+
+(defalias 'es 'es/shell)
