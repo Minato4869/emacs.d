@@ -25,8 +25,8 @@
     (notmuch puppet-mode yasnippet use-package keychain-environment haskell-mode
              diminish auctex)))
  '(whitespace-style
-   '(face trailing tabs spaces lines newline empty indentation
-          space-after-tab space-before-tab space-mark tab-mark))
+   '(face trailing tabs spaces lines newline empty indentation space-after-tab
+          space-before-tab space-mark tab-mark))
  '(blink-cursor-mode nil)
  '(inhibit-startup-screen t)
  '(scroll-error-top-bottom t)

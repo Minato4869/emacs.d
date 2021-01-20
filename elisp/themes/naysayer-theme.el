@@ -19,6 +19,7 @@
       (nay/lightgreen-hl  "#B4EEB4")
       (nay/palegreen      "#98FB98")
       (nay/green          "#3FDF1F")
+      (nay/green-string   "#0FDFAF")
       (nay/white          "#FFFFFF") ;; was #BEBEBE, white is default
       (nay/lightblue      "#C8D4EC")
       (nay/brown          "#504038")
@@ -33,16 +34,16 @@
    `(fringe                        ((,class (:background ,fringe))))
    `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
    `(mode-line                     ((,class (:inverse-video t))))
-   ;;   `(region                        ((,class (:background ,region-bg))))
-   `(region                        ((,class (:background ,region-bg
-                                             :foreground ,region-fg))))
+   `(region                        ((,class (:background ,region-bg :inherit foreground))))
+;;   `(region                        ((,class (:background ,region-bg
+;;                                             :foreground ,region-fg))))
 
    `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
    `(font-lock-comment-face        ((,class (:foreground ,nay/green))))
    `(font-lock-type-face           ((,class (:foreground ,nay/palegreen))))
    `(font-lock-function-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
    `(font-lock-keyword-face        ((,class (:foreground ,nay/white))))
-   `(font-lock-string-face         ((,class (:foreground ,nay/green))))
+   `(font-lock-string-face         ((,class (:foreground ,nay/green-string))))
    `(font-lock-variable-name-face  ((((class color) (background dark)) (:foreground ,nay/lightblue))))
 ;;   `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
    `(highlight                     ((,class (:foreground ,nay/navyblue

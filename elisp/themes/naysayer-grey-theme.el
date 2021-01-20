@@ -2,7 +2,7 @@
   "naysayer-grey theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#041818")
+      (BG                 "#272727") ;; was #041818
       (FG                 "#D3B58D")
       (cursor             "#8FEE90")
       (border             "#0000FF")
@@ -34,18 +34,17 @@
    `(fringe                        ((,class (:background ,fringe))))
    `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
    `(mode-line                     ((,class (:inverse-video t))))
-   ;;   `(region                        ((,class (:background ,region-bg))))
-   `(region                        ((,class (:background ,region-bg
-                                             :foreground ,region-fg))))
+   `(region                        ((,class (:background ,region-bg :inherit foreground))))
+;;   `(region                        ((,class (:background ,region-bg
+;;                                             :foreground ,region-fg))))
 
-   ;;   `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
-   `(font-lock-builtin-face        ((,class (nil))))
+   `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
    `(font-lock-comment-face        ((,class (:foreground ,nay/yellow))))
    `(font-lock-type-face           ((,class (:foreground ,nay/palegreen))))
    `(font-lock-function-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
    `(font-lock-keyword-face        ((,class (:foreground ,nay/white))))
-   `(font-lock-string-face         ((,class (:foreground ,nay/green))))
-   `(font-lock-variable-name-face  ((((class color) (background dark)) (:foreground ,nay/lightblue))))
+   `(font-lock-string-face         ((,class (:foreground ,nay/lightblue))))
+   `(font-lock-variable-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
 ;;   `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
    `(highlight                     ((,class (:foreground ,nay/navyblue
                                                          :background ,nay/lightgreen-hl))))

@@ -112,6 +112,8 @@
  ;; movement
  ("M-p"       . backward-paragraph)
  ("M-n"       . forward-paragraph)
+ ("<M-up>"    . backward-paragraph)
+ ("<M-down>"  . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
  ("C-x C-@"   . rectangle-mark-mode)
@@ -135,8 +137,6 @@
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)
  ("<M-next>"  . next-buffer)
- ("<M-left>"  . previous-buffer)
- ("<M-right>" . next-buffer)
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
  ("<f5>"      . revert-buffer)
@@ -145,7 +145,9 @@
  ("M-o"       . other-window)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
- ("C-x t"     . transpose-lines))
+ ("C-x t"     . transpose-lines)
+ ;; misc
+ ("C-c C-f"     . find-file-at-point))
 ;; mode specific
 (defun custom-eval-buffer ()
   (interactive)

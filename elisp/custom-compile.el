@@ -30,4 +30,6 @@
 (bind-keys
  ("<f6>"     . ccompile/recompile)
  ("C-c <f6>" . compile-parent)
- ("C-<f6>"   . compile))
+ ("C-<f6>"   . compile)
+ ("C-c m"    . compile)
+ ("C-c C-m"  . ccompile/recompile))
