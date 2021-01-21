@@ -60,6 +60,7 @@
   (setq offset 2
         lisp-body-indent offset)
   (auto-fill-mode -1)
+	(electric-pair-local-mode 1)
   (cedit/indent-conf offset nil nil))
 
 ;; hooks
