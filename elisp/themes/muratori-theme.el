@@ -15,12 +15,16 @@
       (ido-subdir         "#FF0000")
       (ido-only-match     "#228B22")
 
+      (cm/doc             "#7F7F7F")
+
       (cm/builtin         "#DAB98F")
-      (cm/olivedrab       "#6B8E23")
-      (cm/grey50          "#7F7F7F")
-      (cm/DarkGoldenrod3  "#CD950C")
-      (cm/Red             "#FF0000")
-      (cm/Yellow          "#FFFF00")
+      (cm/comment         "#7F7F7F")
+      (cm/constant        "#6B8E23")
+      (cm/function        "#CDAA7D")
+      (cm/keyword         "#CD950C")
+      (cm/string          "#6B8E23")
+      (cm/type            "#CDAA7D")
+      (cm/variable        "#CDAA7D")
       (cm/DarkGreen       "#006400"))
 
   (custom-theme-set-faces
@@ -35,14 +39,15 @@
    `(region                       ((,class (:background ,region :foreground ,FG))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,cm/builtin))))
-   `(font-lock-comment-face       ((,class (:foreground ,cm/grey50))))
-   `(font-lock-constant-face      ((,class (:foreground ,cm/olivedrab))))
-   `(font-lock-doc-face           ((,class (:foreground ,cm/grey50))))
-   `(font-lock-function-name-face ((,class (:foreground ,FG))))
-   `(font-lock-keyword-face       ((,class (:foreground ,cm/DarkGoldenrod3))))
-   `(font-lock-string-face        ((,class (:foreground ,cm/olivedrab))))
-   `(font-lock-type-face          ((,class (:foreground ,FG))))
-   `(font-lock-variable-name-face ((,class (:foreground ,FG))))
+   `(font-lock-comment-face       ((,class (:foreground ,cm/comment))))
+   `(font-lock-constant-face      ((,class (:foreground ,cm/constant))))
+   `(font-lock-function-name-face ((,class (:foreground ,cm/function))))
+   `(font-lock-keyword-face       ((,class (:foreground ,cm/keyword))))
+   `(font-lock-string-face        ((,class (:foreground ,cm/string))))
+   `(font-lock-type-face          ((,class (:foreground ,cm/type))))
+   `(font-lock-variable-name-face ((,class (:foreground ,cm/variable))))
+
+   `(font-lock-doc-face           ((,class (:foreground ,cm/doc))))
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
