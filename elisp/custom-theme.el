@@ -1,6 +1,6 @@
 (defvar custom-themes-index)
 (setq custom-themes-index 0
-			custom-themes '(gl-dark naysayer naysayer-grey subl-dark muratori xcode-dark))
+			custom-themes '(gl-dark naysayer naysayer-grey xcode-dark subl-dark muratori))
 
 (if (or (display-graphic-p) (daemonp))
     (setq ls-directory         "#4286F4"
@@ -154,7 +154,7 @@
  ((display-graphic-p)
   (progn
     (load-theme 'naysayer t)
-    (setq custom-theme-index 1)))
+    (setq custom-theme-index 2)))
  (t
   (load-theme 'gl-dark t)))
 
