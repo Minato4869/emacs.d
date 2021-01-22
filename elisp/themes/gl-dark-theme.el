@@ -10,8 +10,8 @@
       (modeline           "#292929")
       (region             "#114488")
 
-      (ido-subdir          "#A1C659")
-      (ido-only-match      "#FFCC33")
+      (ido-subdir         "#A1C659")
+      (ido-only-match     "#FFCC33")
 
       (gl/builtin         "#75507B")
       (gl/comment         "#CC0000")
