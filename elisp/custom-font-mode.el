@@ -1,5 +1,6 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
 (setq cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+      cfont/knuth  "-don-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1"
       cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
       cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
       cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
@@ -10,13 +11,18 @@
 (unless (file-directory-p "~/.fonts/Meslo-Font")
     (setq cfont/menlo cfont/ttf))
 
-(defun cfont/set-font (&optional font)
-  (set-face-attribute 'default t :font font)
-  (set-frame-font font nil t))
+(defun cfont/set-font (&optional myfont)
+    (set-face-attribute 'default t :font myfont)
+    (setq default-frame-alist `((font . ,myfont)))
+    (set-frame-font myfont nil t))
 
 (defun 6x13 ()
   (interactive)
   (cfont/set-font cfont/6x13))
+
+(defun knuth ()
+  (interactive)
+  (cfont/set-font cfont/knuth))
 
 (defun small-font ()(interactive)
   (cfont/set-font cfont/small))
@@ -52,6 +58,6 @@
 (defalias 'menlo       'menlo-font)
 (defalias 'meslo       'menlo-font)
 ;; small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
-;; "-don-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1"
+;;
 ;; "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
 ;; "Go Mono:regular:pixelsize=15"
