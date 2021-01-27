@@ -2,16 +2,17 @@
   "cobalt theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#001b33")
+      (BG                 "#001B33")
       (FG                 "#D8D8D8")
       (cursor             "#FFFFFF") ;; was #FF0000
       (border             "#203F6A")
       (fringe             "#000D1a")
       (modeline           "#292929")
-      (region             "#423C38")
+      (region-bg          "#423C38")
+      (region-fg          "#D8D8D8D")
 
-      (ido-subdir         "#0080fa")
-      (ido-only-match     "#ffcc33")
+      (ido-subdir         "#0080FA")
+      (ido-only-match     "#FFCC33")
 
       (cb/builtin         "#EF851F")
       (cb/comment         "#0080FA")
@@ -31,7 +32,7 @@
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit forground :bold t))))
    `(mode-line                    ((,class (:background ,modeline :inherit foreground))))
-   `(region                       ((,class (:background ,region :foreground ,FG))))
+   `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,cb/builtin))))
    `(font-lock-comment-face       ((,class (:foreground ,cb/comment))))

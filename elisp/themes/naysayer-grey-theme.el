@@ -7,50 +7,57 @@
       (cursor             "#8FEE90")
       (border             "#0000FF")
       (fringe             "#050404")
-      (modeline           "#292929")
+      (modeline           "")
       (minibuffer         "#00FFFF")
       (region-bg          "#0000FF")
       (region-fg          "#BEBEBE")
 
-      (ido-subdir         "#A1C659")
-      (ido-only-match     "#FFCC33")
+      (ido-subdir          "#A1C659")
+      (ido-only-match      "#FFCC33")
 
-      (nay/lightgreen     "#8FEE90")
-      (nay/lightgreen-hl  "#B4EEB4")
-      (nay/palegreen      "#98FB98")
-      (nay/green          "#3FDF1F")
-      (nay/white          "#FFFFFF") ;; was #BEBEBE, white is default
-      (nay/lightblue      "#C8D4EC")
-      (nay/brown          "#504038")
-      (nay/yellow         "#ffff00")
-      (nay/navyblue       "#000080"))
+      (nay/builtin         "#8FEE90")
+      (nay/comment         "#FFFF00")
+      ;; (nay/constant        "")
+      (nay/function        "#FFFFFF")
+      (nay/keyword         "#FFFFFF")
+      (nay/string          "#C8D4EC")
+      (nay/type            "#98FB98")
+      (nay/variable        "#FFFFFF")
+
+      (nay/highlight-bg    "#B4EEEB4")
+      (nay/highlight-fg    "#0000080")
+
+      (nay/warning         "#0000080"))
 
   (custom-theme-set-faces
    'naysayer-grey
 
-   `(default                       ((,class (:background ,BG :foreground ,FG))))
-   `(cursor                        ((,class (:background ,cursor))))
-   `(border                        ((,class (:foreground ,border))))
-   `(fringe                        ((,class (:background ,fringe))))
-;;    `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
+   `(default                      ((,class (:background ,BG :foreground ,FG))))
+   `(cursor                       ((,class (:background ,cursor))))
+   `(border                       ((,class (:foreground ,border))))
+   `(fringe                       ((,class (:background ,fringe))))
+   ;; `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
    `(minibuffer-prompt            ((,class (:inherit forground :bold t))))
-   `(mode-line                     ((,class (:inverse-video t))))
-   `(region                        ((,class (:background ,region-bg :inherit foreground))))
-;;   `(region                        ((,class (:background ,region-bg
-;;                                             :foreground ,region-fg))))
+   `(mode-line                    ((,class (:inverse-video t))))
+   ;; `(region                        ((,class (:background ,region-bg
+   ;;                                           :foreground ,region-fg))))
+   `(region                       ((,class (:background ,region-bg :inherit foreground))))
 
-   `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
-   `(font-lock-comment-face        ((,class (:foreground ,nay/yellow))))
-   `(font-lock-type-face           ((,class (:foreground ,nay/palegreen))))
-   `(font-lock-function-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
-   `(font-lock-keyword-face        ((,class (:foreground ,nay/white))))
-   `(font-lock-string-face         ((,class (:foreground ,nay/lightblue))))
-   `(font-lock-variable-name-face  ((((class color) (background dark)) (:foreground ,nay/white))))
-;;   `(font-lock-warning-face        ((,class (:foreground ,nay/brown ))))
-   `(highlight                     ((,class (:foreground ,nay/navyblue
-                                                         :background ,nay/lightgreen-hl))))
+   `(font-lock-builtin-face       ((,class (:foreground ,nay/builtin))))
+   `(font-lock-comment-face       ((,class (:foreground ,nay/comment))))
+   ;;`(font-lock-constant-face      ((,class (:foreground ,nay/constant))))
+   `(font-lock-function-name-face ((,class (:foreground ,nay/function))))
+   `(font-lock-keyword-face       ((,class (:foreground ,nay/keyword))))
+   `(font-lock-string-face        ((,class (:foreground ,nay/string))))
+   `(font-lock-type-face          ((,class (:foreground ,nay/type))))
+   `(font-lock-variable-name-face ((,class (:foreground ,nay/variable))))
+   `(highlight                    ((,class (:foreground ,nay/highlight-fg
+                                                         :background ,nay/highlight-bg))))
+   ;; `(font-lock-warning-face        ((,class (:foreground ,nay/warning ))))
+
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
-   `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
+   `(ido-only-match               ((,class (:foreground ,ido-only-match))))
+   ))
 
-(provide-theme 'naysayer-grey
-               )
+
+(provide-theme 'naysayer-grey)

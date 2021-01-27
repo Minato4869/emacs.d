@@ -7,7 +7,7 @@
       (cursor             "#8FEE90")
       (border             "#0000FF")
       (fringe             "#050404")
-      (modeline           "#292929")
+      (modeline           "")
       (minibuffer         "#00FFFF")
       (region-bg          "#0000FF")
       (region-fg          "#BEBEBE")
@@ -34,9 +34,9 @@
    `(fringe                        ((,class (:background ,fringe))))
    `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
    `(mode-line                     ((,class (:inverse-video t))))
-   `(region                        ((,class (:background ,region-bg :inherit foreground))))
 ;;   `(region                        ((,class (:background ,region-bg
 ;;                                             :foreground ,region-fg))))
+   `(region                        ((,class (:background ,region-bg :inherit foreground))))
 
    `(font-lock-builtin-face        ((,class (:foreground ,nay/lightgreen))))
    `(font-lock-comment-face        ((,class (:foreground ,nay/green))))

@@ -10,7 +10,8 @@
       (modeline-bg        "#BFBFBF")
       (modeline-fg        "#000000")
       (minibuffer         "#00FFFF")
-      (region             "#191970")
+      (region-bg          "#191970")
+      (region-fg          "#161616")
 
       (ido-subdir         "#FF0000")
       (ido-only-match     "#228B22")
@@ -36,7 +37,7 @@
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:foreground ,minibuffer))))
 ;;   `(mode-line                    ((,class (:background ,modeline-bg :foreground ,modeline-fg))))
-   `(region                       ((,class (:background ,region :foreground ,FG))))
+   `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,cm/builtin))))
    `(font-lock-comment-face       ((,class (:foreground ,cm/comment))))

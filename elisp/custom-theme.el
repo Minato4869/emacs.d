@@ -10,14 +10,22 @@
           trailing-ws          "#FFB6B0"
           man-red              "#EF2929"
           man-green            "#8AE234"
-          ws-darkgray          "#444444")
+          ws-darkgray          "#444444"
+  				org-level-2          "#C4A000"
+					org-level-3          "#729FCF"
+					org-level-4          "#CC0000"
+					org-level-5          "#4E9A06")
   (setq ls-directory           "brightblue"
         ls-executable          "red"
         ls-symlink             "magenta"
         trailing-ws            "maroon"
         man-red                "brightred"
         man-green              "brightgreen"
-        ws-darkgray            "color-238"))
+        ws-darkgray            "color-238"
+				org-level-2            "yellow"
+				org-level-3            "blue"
+				org-level-4            "red"
+				org-level-5            "green"))
 
 (defun disable-all-themes ()
   "Disable all themes."
@@ -144,6 +152,11 @@
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
+ `(org-level-2                  ((t (:foreground ,org-level-2))))
+ `(org-level-3                  ((t (:foreground ,org-level-3))))
+ `(org-level-4                  ((t (:foreground ,org-level-4))))
+ `(org-level-5                  ((t (:foreground ,org-level-5))))
+
  )
 ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
 

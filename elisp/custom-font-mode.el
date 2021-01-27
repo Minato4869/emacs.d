@@ -8,6 +8,7 @@
       cfont/menlo  "Meslo LG S:regular:pixelsize=14"
       cfont/pres   "Meslo LG S:regular:pixelsize=20")
 
+(setq cfont/default cfont/medium)
 (unless (file-directory-p "~/.fonts/Meslo-Font")
     (setq cfont/menlo cfont/ttf))
 
@@ -24,10 +25,15 @@
   (interactive)
   (cfont/set-font cfont/knuth))
 
-(defun small-font ()(interactive)
+(defun small-font ()
+  (interactive)
   (cfont/set-font cfont/small))
 
 (defun medium-font ()
+  (interactive)
+  (cfont/set-font cfont/medium))
+
+(defun default-font ()
   (interactive)
   (cfont/set-font cfont/medium))
 
@@ -45,8 +51,8 @@
   (cfont/set-font (concat cfont/pres)))
 
 (bind-keys
- ("<f7>"     . medium-font)
- ("<f8>"     . large-font)
+ ("<f7>"     . 6x13)
+ ("<f8>"     . default-font)
  ("M-<f8>"   . menlo-font)
  ("M-S-<f8>" . presentation-font))
 
