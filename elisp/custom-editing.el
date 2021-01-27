@@ -7,7 +7,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-default 'truncate-lines t)
+(set-default 'truncate-lines t) ;; dont break lines at window edge
 
 (setq-default default-input-method "rfc1345"
 							frame-title-format '("" "emacs@" system-name " - %b")
@@ -182,7 +182,6 @@
                 (".Xresources'" . conf-xdefaults-mode)
                 ("\\gnus\\'"    . emacs-lisp-mode)
                 ("Makefile"     . makefile-gmake-mode))))
-
 
 ;; disable paren/$ jumping
 (setq-default blink-matching-paren nil
