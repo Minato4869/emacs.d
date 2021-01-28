@@ -7,7 +7,9 @@
       cfont/size   "14"
       cfont/ttf    "Meslo LG S:regular:pixelsize=")
 
-(setq cfont/default cfont/medium)
+(if (< (x-display-pixel-width) 768)
+    (setq cfont/default cfont/medium)
+  (setq cfont/default cfont/large))
 
 (unless (file-directory-p "~/.fonts/Meslo-Font")
       (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
