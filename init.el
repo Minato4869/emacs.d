@@ -75,11 +75,14 @@
 (load-library-wrap-error "custom-eshell")
 (load-library-wrap-error "custom-notmuch")
 (load-library-wrap-error "custom-diminish-mode")
+
 (when (or (daemonp) (display-graphic-p))
+  (setq _gui t)
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
+
   (tooltip-mode -1)
   (display-time-mode t)
   (display-battery-mode t)
@@ -88,11 +91,13 @@
   (if (string-equal system-type "windows-nt")
       (load-library-wrap-error "custom-terminal-mode")
     (progn
-      (load-library-wrap-error "custom-font-mode")
       (load-library-wrap-error "custom-terminal-mode")
-      (unless (file-directory-p "~/.altwm")
-        (load-library-wrap-error "custom-xmonad-keys"))))
-  (load-library-wrap-error "custom-x11-keys"))
+
+      (when _gui
+        (load-library-wrap-error "custom-font-mode")
+        (load-library-wrap-error "custom-x11-keys")
+        (unless (file-directory-p "~/.altwm")
+          (load-library-wrap-error "custom-xmonad-keys"))))))
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves

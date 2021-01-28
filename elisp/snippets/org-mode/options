@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: options
+# key: opt
+# --
+#+OPTIONS: tex:t
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
