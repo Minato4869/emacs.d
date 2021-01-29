@@ -58,7 +58,8 @@
  ("M-S-<f8>" . presentation-font))
 
 (unless (file-directory-p "/usr/local/share/fonts/X11/misc")
-  (menlo-font))
+  (when (display-graphic-p)
+    (menlo-font)))
 (defalias 'small       'small-font)
 (defalias 'medium      'medium-font)
 (defalias 'large       'large-font)

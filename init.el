@@ -77,7 +77,6 @@
 (load-library-wrap-error "custom-diminish-mode")
 
 (when (or (daemonp) (display-graphic-p))
-  (setq _gui t)
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
     (scroll-bar-mode -1)
@@ -88,16 +87,15 @@
   (display-battery-mode t)
 
   (keychain-refresh-environment)
-  (if (string-equal system-type "windows-nt")
-      (load-library-wrap-error "custom-terminal-mode")
-    (progn
-      (load-library-wrap-error "custom-terminal-mode")
 
-      (when _gui
-        (load-library-wrap-error "custom-font-mode")
-        (load-library-wrap-error "custom-x11-keys")
-        (unless (file-directory-p "~/.altwm")
-          (load-library-wrap-error "custom-xmonad-keys"))))))
+  (when (daemonp)
+    (find-file-noselect "~/reminder.org"))
+
+  (load-library-wrap-error "custom-terminal-mode")
+  (load-library-wrap-error "custom-font-mode")
+  (load-library-wrap-error "custom-x11-keys")
+  (unless (file-directory-p "~/.altwm")
+    (load-library-wrap-error "custom-xmonad-keys")))
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves

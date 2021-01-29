@@ -21,3 +21,23 @@
 (defun date ()
   (interactive)
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))
+
+(defun rem ()
+  (interactive)
+  (find-file "~/reminder.org")
+  (auto-revert-mode)
+  (end-of-buffer))
+
+(defun n ()
+  (interactive)
+  (find-file "~/notes.org")
+  (auto-revert-mode)
+  (org-mode)
+  (end-of-buffer))
+
+(defun nl ()
+  (interactive)
+  (find-file "~/.local/notes.local")
+  (auto-revert-mode)
+  (org-mode)
+  (end-of-buffer))
