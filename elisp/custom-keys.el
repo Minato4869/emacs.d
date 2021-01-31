@@ -87,6 +87,14 @@
   (interactive)
   (other-window -1))
 
+(defun my-goto-line ()
+  (interactive)
+  (unwind-protect
+      (progn
+        (display-line-numbers-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (display-line-numbers-mode -1)))
+
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
@@ -97,7 +105,7 @@
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
- ("M-g"       . goto-line)
+ ("M-g"       . my-goto-line)
  ("C-c h"     . help)
  ;; editing
  ("C-x 5"     . query-replace)
