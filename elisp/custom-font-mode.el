@@ -1,15 +1,15 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-(setq cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
-      cfont/knuth  "-don-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1"
-      cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
-      cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
-      cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"
-      cfont/size   "14"
-      cfont/ttf    "Meslo LG S:regular:pixelsize=")
+(setq  cfont/size   "14"
+       cfont/ttf    "Meslo LG S:regular:pixelsize="
+       cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+       cfont/knuth  "-don-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-1"
+       cfont/small  "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
+       cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
+       cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
 
 (setq cfont/default       cfont/large
       cfont/default-small cfont/medium)
-(when (< (x-display-pixel-width) 900)
+(when (< (display-pixel-height) 900)
   (setq cfont/default       cfont/medium
         cfont/default-small cfont/6x13))
 (unless (file-directory-p "~/.fonts/Meslo-Font")

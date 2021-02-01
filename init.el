@@ -88,14 +88,16 @@
 
   (keychain-refresh-environment)
 
-  (when (daemonp)
-    (find-file-noselect "~/reminder.org"))
+
 
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-x11-keys")
   (unless (file-directory-p "~/.altwm")
-    (load-library-wrap-error "custom-xmonad-keys")))
+    (load-library-wrap-error "custom-xmonad-keys"))
+
+  (when (daemonp)
+    (find-file-noselect "~/reminder.org")))
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves
