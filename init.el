@@ -88,8 +88,6 @@
 
   (keychain-refresh-environment)
 
-
-
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-x11-keys")
