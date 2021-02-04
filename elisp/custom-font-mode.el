@@ -13,7 +13,7 @@
       cfont/default-small cfont/medium)
 (when (< (display-pixel-height) 900)
   (setq cfont/default-small cfont/6x13
-        cfont/default       cfont/medium))
+        cfont/default       cfont/small))
 (defun cfont/set-font (&optional myfont)
     (set-face-attribute 'default t :font myfont)
     (setq default-frame-alist `((font . ,myfont)))
