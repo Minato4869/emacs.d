@@ -8,8 +8,12 @@
        cfont/large  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
 
 (unless (file-directory-p "~/.fonts/Meslo-Font")
-      (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
-
+  (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
+(setq cfont/default       cfont/large
+      cfont/default-small cfont/medium)
+(when (< (display-pixel-height) 900)
+  (setq cfont/default-small cfont/6x13
+        cfont/default       cfont/medium))
 (defun cfont/set-font (&optional myfont)
     (set-face-attribute 'default t :font myfont)
     (setq default-frame-alist `((font . ,myfont)))
@@ -17,15 +21,10 @@
 
 (defun default-font ()
   (interactive)
-  (setq cfont/default       cfont/large)
-  (when (< (display-pixel-height) 900)
-    (setq cfont/default       cfont/medium))
+
   (cfont/set-font cfont/default))
 (defun default-small-font ()
   (interactive)
-  (setq cfont/default-small cfont/medium)
-  (when (< (display-pixel-height) 900)
-    (setq cfont/default-small cfont/6x13))
   (cfont/set-font cfont/default-small))
 
 (defun 6x13 ()
