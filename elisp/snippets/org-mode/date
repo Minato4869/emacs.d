@@ -2,4 +2,4 @@
 # name: date
 # key: date
 # --
-#+DATE: $0
+`(format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")`$0

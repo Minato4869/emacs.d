@@ -31,6 +31,11 @@
 (defun rem ()
   (interactive)
   (load-note "reminder.org"))
+(defun rema ()
+  (interactive)
+  (load-note "reminder.archive.org"))
+(defalias 'arem 'rema)
+
 (defun n ()
   (interactive)
   (load-note "notes.org"))
