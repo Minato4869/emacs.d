@@ -1,18 +1,15 @@
-(deftheme gl-dark
-  "gl-dark theme")
+(deftheme gl-light
+  "gl-light theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#000000")
-      (FG                 "#BEBEBE")
+      (BG                 "#FFFFFF")
+      (FG                 "#000000")
       (cursor             "#FF0000") ;; was #DB0600
       (border             "#0000FF")
-      (fringe             "#121212")
-      (modeline           "#292929")
+      (fringe             "#BEBEBE")
+      (modeline           "#CCCCCC")
       (region-bg          "#114488")
-      (region-fg          "#BEBEBE")
-
-      (ido-subdir         "#A1C659")
-      (ido-only-match     "#FFCC33")
+      (region-fg          "#FFFFFF")
 
       (gl/builtin         "#75507B")
       (gl/comment         "#CC0000")
@@ -24,7 +21,7 @@
       (gl/variable        "#C4A000"))
 
   (custom-theme-set-faces
-   'gl-dark
+   'gl-light
 
    `(default                      ((,class (:background ,BG :foreground ,FG))))
    `(cursor                       ((,class (:background ,cursor))))
@@ -41,9 +38,6 @@
    `(font-lock-keyword-face       ((,class (:foreground ,gl/keyword))))
    `(font-lock-string-face        ((,class (:foreground ,gl/string))))
    `(font-lock-type-face          ((,class (:foreground ,gl/type))))
-   `(font-lock-variable-name-face ((,class (:foreground ,gl/variable))))
+   `(font-lock-variable-name-face ((,class (:foreground ,gl/variable))))))
 
-   `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
-   `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
-
-(provide-theme 'gl-dark)
+(provide-theme 'gl-light)
