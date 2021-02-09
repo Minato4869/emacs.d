@@ -54,6 +54,11 @@
   (interactive)
   (cfont/set-font (concat cfont/ttf cfont/size)))
 
+(defun reset-fonts ()
+  (interactive)
+  (load-file "~/.emacs.d/elisp/custom-font-mode.el")
+  (mesage "resetting fonts"))
+
 (bind-keys
  ("<f7>"     . default-small-font)
  ("<f8>"     . default-font)

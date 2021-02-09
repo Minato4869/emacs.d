@@ -26,6 +26,11 @@
 				org-level-4            "red"
 				org-level-5            "green"))
 
+(defun reset-theme ()
+  (interactive)
+  (load-file "~/.emacs.d/elisp/custom-theme.el")
+  (mesage "resetting themes"))
+
 (defun disable-all-themes ()
   "Disable all themes."
   (interactive)
