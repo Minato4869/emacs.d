@@ -44,4 +44,8 @@
  ("C-0"     . text-scale-reset)
  ("C-c o"   . other-frame)
  ("<s-left>"  . previous-buffer)
- ("<s-right>" . next-buffer))
+ ("<s-right>" . next-buffer)
+ ;; window transposing
+ ("M-RET"        . transpose-windows)
+ ("<C-M-return>" . transpose-windows)
+ ("s-t"          . transpose-windows))

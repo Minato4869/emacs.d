@@ -10,7 +10,7 @@
 ;; Actually, it's the BBC controlling us from London.
 
 ")
- '(battery-mode-line-format "[%b%p%%]")
+ '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
  '(display-time-mail-string "")

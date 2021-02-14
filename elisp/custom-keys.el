@@ -100,8 +100,7 @@
   ("M-u"       . universal-argument)
   ("C-x SPC"   . rectangle-mark-mode)
   ("C-x C-SPC" . rectangle-mark-mode)
-  ("C-c SPC"   . cua-rectangle-mark-mode)
-  )
+  ("C-c SPC"   . cua-rectangle-mark-mode))
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -157,8 +156,6 @@
  ("C-x b"     . ibuffer)
  ;; windows
  ("M-o"       . other-window)
-;; ("C-x C-o"   . backward-other-window)
- ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
  ;; misc
@@ -202,3 +199,8 @@
 (when (not (or (display-graphic-p) (daemonp)))
   (bind-keys*
    ("C-M-i"      . other-window)))
+
+(use-package ace-window
+  :ensure nil
+  :bind
+  (("C-x C-o" . ace-window)))
