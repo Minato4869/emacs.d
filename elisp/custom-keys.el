@@ -153,7 +153,7 @@
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
  ("<f5>"      . revert-buffer)
- ("C-x b"     . ibuffer)
+ ("C-x C-b"   . ibuffer)
  ;; windows
  ("M-o"       . other-window)
  ("C-c t"     . transpose-windows)

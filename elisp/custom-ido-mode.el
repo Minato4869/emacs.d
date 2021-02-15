@@ -37,5 +37,5 @@
   (("s-d"     . cido/lazy-ido-dired)
    ("C-x C-f" . cido/lazy-ido-find-file)
    ("C-x C-d" . cido/lazy-ido-dired)
-   ("C-x C-b" . cido/lazy-ido-switch-buffer)
+   ("C-x b"   . cido/lazy-ido-switch-buffer)
    ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
