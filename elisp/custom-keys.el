@@ -4,10 +4,8 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-C"))
-(global-unset-key (kbd "<F3>"))
-(global-unset-key (kbd "<F4>"))
-(global-unset-key (kbd "<f3>"))
-(global-unset-key (kbd "<f4>"))
+;;(global-unset-key (kbd "<f3>"))
+;;(global-unset-key (kbd "<f4>"))
 (global-unset-key (kbd "M-l"))
 ;; custom region
 (defconst custom-region-alist
@@ -138,10 +136,13 @@
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)
+
  ("<f11>"     . whitespace-mode)
- ("C-<f11>"   . font-lock-mode)
+ ("C-<f11>"   . global-whitespace-mode)
+
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
+
  ("C-x C-d"   . dired-jump)
  ("C-c v"     . scroll-other-window)
  ("C-c C-v"   . scroll-other-window-down)
@@ -152,21 +153,17 @@
  ("<M-next>"  . next-buffer)
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
- ("<f5>"      . revert-buffer)
  ("C-x C-b"   . ibuffer)
  ;; windows
  ("M-o"       . other-window)
  ("C-c t"     . transpose-windows)
- ("C-x t"     . transpose-lines)
- ;; misc
- ("C-c C-f"     . find-file-at-point))
+ ("C-x t"     . transpose-lines))
 ;; mode specific
-(defun custom-eval-buffer ()
-  (interactive)
-  (eval-buffer)
-  (message "Evaluated current buffer"))
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c C-c" . custom-eval-buffer))
+           ("C-c C-c" . (lambda()
+                          (interactive)
+                          (eval-buffer)
+                          (message "Evaluated current buffer"))))
 ;; man pages
 (require 'man)
 (bind-keys :map Man-mode-map
