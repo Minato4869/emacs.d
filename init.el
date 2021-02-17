@@ -72,7 +72,6 @@
 (load-library-wrap-error "custom-compile")
 (load-library-wrap-error "custom-tex")
 (load-library-wrap-error "custom-ag")
-(load-library-wrap-error "custom-eshell")
 (load-library-wrap-error "custom-notmuch")
 (load-library-wrap-error "custom-diminish-mode")
 
