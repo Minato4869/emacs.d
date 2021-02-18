@@ -189,3 +189,5 @@
 							show-paren-delay 0)
 
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
+
+(winner-mode 1)

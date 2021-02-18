@@ -84,9 +84,8 @@
 
 (bind-keys
  ("<f2>"   . custom-cycle-theme)
- ("M-<f2>" . disable-all-themes)
- ("C-<f2>" . custom-default-theme)
- ("S-<f2>" . default-light-theme))
+ ("S-<f2>" . disable-all-themes)
+ ("C-<f2>" . custom-default-theme))
 
 ;; fixme mode
 (defgroup fixme nil
@@ -149,7 +148,7 @@
  `(line-number                  ((t (:inherit foreground :bold t))))
  `(link                         ((t (:foreground ,ls-directory :underline t))))
  `(mouse                        ((t (:background "grey"))))
- `(region                       ((t (:extend t))))
+;; `(region                       ((t (:extend t))))
  `(trailing-whitespace          ((t (:background ,trailing-ws))))
  `(whitespace-space             ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-tab               ((t (:foreground ,ws-darkgray :inherit background))))
@@ -160,9 +159,8 @@
  `(org-level-3                  ((t (:foreground ,org-level-3))))
  `(org-level-4                  ((t (:foreground ,org-level-4))))
  `(org-level-5                  ((t (:foreground ,org-level-5))))
-
+;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg))))
  )
-;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg)))))
 
 (cond
  ((daemonp)
@@ -184,3 +182,4 @@
 (defalias 'dat           'disable-all-themes)
 (defalias 'lt            'load-theme)
 (defalias 'res           'reset-themes)
+(defalias 'light         'default-light-theme)
