@@ -1,5 +1,6 @@
 ;; Custom keybinds
 ;; disabled keybinds
+(global-unset-key (kbd "<f1>"))
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
@@ -96,9 +97,9 @@
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
-  ("C-x SPC"   . rectangle-mark-mode)
   ("C-x C-SPC" . rectangle-mark-mode)
-  ("C-c SPC"   . cua-rectangle-mark-mode))
+  ("C-c SPC"   . cua-rectangle-mark-mode)
+  ("C-x C-@"   . rectangle-mark-mode))
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -116,7 +117,7 @@
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
  ("C-5"       . match-paren)
- ("C-x C-k"   . kill-buffer-and-window)
+ ("C-c C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)
@@ -127,8 +128,7 @@
  ("<M-down>"  . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
- ("C-x C-@"   . rectangle-mark-mode)
- ("M-m"       . pop-global-mark)
+ ("C-c m"     . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
  ("C-<f3>"    . kmacro-start-macro-or-insert-counter)
@@ -136,13 +136,10 @@
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)
-
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . global-whitespace-mode)
-
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
-
  ("C-x C-d"   . dired-jump)
  ("C-c v"     . scroll-other-window)
  ("C-c C-v"   . scroll-other-window-down)
@@ -152,6 +149,7 @@
  ("<M-prior>" . previous-buffer)
  ("<M-next>"  . next-buffer)
  ("C-x k"     . kill-current-buffer)
+ ("C-x k"     . kill-buffer)
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . ibuffer)
  ;; windows
