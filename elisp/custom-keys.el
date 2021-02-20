@@ -148,8 +148,8 @@
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)
  ("<M-next>"  . next-buffer)
+ ("C-x C-k"   . kill-buffer)
  ("C-x k"     . kill-current-buffer)
- ("C-x k"     . kill-buffer)
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . ibuffer)
  ;; windows
