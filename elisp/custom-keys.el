@@ -194,8 +194,3 @@
 (when (not (or (display-graphic-p) (daemonp)))
   (bind-keys*
    ("C-M-i"      . other-window)))
-
-(use-package ace-window
-  :ensure nil
-  :bind
-  (("C-x C-o" . ace-window)))

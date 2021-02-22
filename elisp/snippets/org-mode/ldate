@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ldate
+# key: ldate
+# --
+`(format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")`$0

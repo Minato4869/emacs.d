@@ -95,6 +95,7 @@
 
   (when (daemonp)
     (find-file-noselect "~/reminder.org")))
+(load-library-wrap-error "custom-ace-window")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves

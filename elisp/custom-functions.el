@@ -20,7 +20,11 @@
 
 (defun date ()
   (interactive)
+  (insert (format-time-string "%a %e %b (%Y-%m-%d)")))
+(defun ldate ()
+  (interactive)
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))
+
 
 (defun load-note (file)
   (find-file (concat "~/" file))
