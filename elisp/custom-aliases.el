@@ -30,3 +30,8 @@
 (defalias 'sf            'set-fill-column)
 (defalias 'fi            'display-fill-column-indicator-mode)
 (defalias 'fc            'display-fill-column-indicator-mode)
+;;
+(defalias 'wu            'winner-undo)
+(defalias 'win-undo      'winner-undo)
+(defalias 'wr            'winner-redo)
+(defalias 'win-redo      'winner-redo)

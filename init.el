@@ -32,6 +32,13 @@
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
 
+(add-hook
+ 'kill-buffer-query-functions
+ (lambda ()
+   (if (not (equal (buffer-name) "*scratch*")) t
+     (message "Not allowed to kill %s, burying instead" (buffer-name))
+     (bury-buffer) nil)))
+
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
@@ -93,8 +100,9 @@
   (unless (file-directory-p "~/.altwm")
     (load-library-wrap-error "custom-xmonad-keys"))
 
-  (when (daemonp)
-    (find-file-noselect "~/reminder.org")))
+  (if (daemonp)
+      (find-file-noselect "~/reminder.org")
+    (setq confirm-kill-emacs 'yes-or-no-p)))
 (load-library-wrap-error "custom-ace-window")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
