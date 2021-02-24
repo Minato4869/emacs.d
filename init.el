@@ -71,17 +71,8 @@
 (load-library            "custom-load-file")
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")
-(load-library-wrap-error "custom-dired-mode")
-(load-library-wrap-error "custom-ido-mode")
-(load-library-wrap-error "custom-ibuffer")
 (load-library-wrap-error "custom-functions")
-(load-library-wrap-error "custom-buffer-mode")
-(load-library-wrap-error "custom-compile")
-(load-library-wrap-error "custom-tex")
-(load-library-wrap-error "custom-ag")
-(load-library-wrap-error "custom-notmuch")
-(load-library-wrap-error "custom-diminish-mode")
-
+(load-library-wrap-error "custom-internal-modes")
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
@@ -96,15 +87,11 @@
 
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
-  (load-library-wrap-error "custom-x11-keys")
-  (unless (file-directory-p "~/.altwm")
-    (load-library-wrap-error "custom-xmonad-keys"))
-
   (if (daemonp)
       (find-file-noselect "~/reminder.org")
     (setq confirm-kill-emacs 'yes-or-no-p)))
-(load-library-wrap-error "custom-ace-window")
+
+(load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-theme")
-(load-library-wrap-error "custom-aliases")
 ;; manage backups/autosaves
 (load-library "backup-autosave")
