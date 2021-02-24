@@ -194,3 +194,68 @@
 (when (not (or (display-graphic-p) (daemonp)))
   (bind-keys*
    ("C-M-i"      . other-window)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; x11
+(when (or (daemonp) (display-graphic-p))
+  ;; disabled keybinds
+(global-unset-key (kbd "C-x C-="))
+(global-unset-key (kbd "C-x C--"))
+(global-unset-key (kbd "C-x C-+"))
+;; custom functions
+(defun text-scale-reset ()
+  (interactive)
+  (text-scale-set 0))
+;;; copy and paste
+(defun yank-primary ()
+  "Yank primary selection."
+  (interactive)
+  (insert (gui-get-primary-selection)))
+
+(defun other-frame-or-window ()
+  (interactive)
+  (if (one-window-p)
+      (other-frame 1)
+    (other-window 1)))
+
+(bind-keys
+ ("C-M-y"           . yank-primary)
+ ("C-M-v"           . yank-primary)
+ ;; windows
+ ("C-1"             . delete-other-windows)
+ ("C-2"             . split-window-below)
+ ("C-3"             . split-window-right)
+ ("C-4"             . make-frame-command)
+ ("s-1"             . delete-other-windows)
+ ("s-2"             . split-window-below)
+ ("s-3"             . split-window-right)
+ ("s-4"             . make-frame-command)
+ ("C-x 4"           . make-frame-command)
+ ("s-0"             . delete-window)
+ ("C-x M-o"         . other-frame)
+ ;; buffers
+ ("s-d"             . dired-jump)
+ ("s-r"             . revert-buffer)
+ ("s-b"             . ibuffer)
+ ;; text scale
+ ("C-="             . text-scale-increase)
+ ("C--"             . text-scale-decrease)
+ ;; custom functions
+ ("C-0"             . text-scale-reset)
+ ("C-c o"           . other-frame)
+ ("<s-left>"        . previous-buffer)
+ ("<s-right>"       . next-buffer)
+ ;; window transposing
+ ("M-RET"           . transpose-windows)
+ ("<C-M-return>"    . transpose-windows)
+ ("s-t"             . transpose-windows)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; xmonad
+(unless (file-directory-p "~/.altwm")
+  (bind-keys
+   ("<M-tab>"      . other-window)
+   ("<M-iso-lefttab>" . backward-other-window)
+   ("<s-[>"        . shrink-window)
+   ("<s-]>"        . enlarge-window)
+   ("M-["          . shrink-window-horizontally)
+   ("M-]"          . enlarge-window-horizontally)
+   ("M-S-SPC"      . balance-windows)))

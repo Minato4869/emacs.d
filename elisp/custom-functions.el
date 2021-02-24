@@ -26,35 +26,101 @@
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; notes
+
 (defun load-note (file)
   (find-file (concat "~/" file))
   (auto-revert-mode)
   (org-mode)
   (end-of-buffer))
 
-(defun rem ()
-  (interactive)
-  (load-note "reminder.org"))
-(defun rema ()
-  (interactive)
-  (load-note "reminder.archive.org"))
-(defalias 'arem 'rema)
+(defun rem ()  (interactive) (load-note "reminder.org"))
+(defun n ()    (interactive) (load-note "notes.org"))
+(defun nlc ()  (interactive) (load-note ".local/notes.local"))
+(defun plan () (interactive) (load-note ".plan"))
+(defun uni ()  (interactive) (load-note ".local/uni_notes.org"))
+(defun til ()  (interactive) (load-note ".local/til_notes.org"))
+(defalias 'plan 'p)
 
-(defun n ()
-  (interactive)
-  (load-note "notes.org"))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ag
+(require 'compile)
 
-(defun nlc ()
-  (interactive)
-  (load-note ".local/notes.local"))
+(define-compilation-mode ag-mode "Ag"
+  "Ag results compilation mode")
 
-(defun plan ()
+(defun ag/find-file ()
   (interactive)
-  (load-note ".plan"))
+  (let (filename
+          (buffer-substring (line-beginning-position) (line-end-position)))
+    (if (not (string-match "^[^:numeric:]+\:" filename))
+        (find-file-at-point (concat default-directory filename))
+      (message "Current line does not contain a filename"))))
 
-(defun uni ()
+(defun ag/kill-buffer ()
   (interactive)
-  (load-note ".local/uni_notes.org"))
-(defun til ()
+  (let
+      (kill-buffer-query-functions)
+    (kill-buffer)))
+(bind-keys :map ag-mode-map
+           ("<return>" . ag/find-file)
+           ("f"        . ag/find-file)
+           ("p"        . backkward-paragraph)
+           ("n"        . forward-paragraph)
+           ("k"        . ag/kill-buffer))
+
+
+(defun ag/search-string (string)
+  (progn
+    (setq string (prin1-to-string string)) ;; escape special chars
+    (set (make-local-variable 'command-string)
+         (concat "ag -Q -S " string))
+    (compilation-start command-string #'ag-mode)))
+
+(defun ag ()
   (interactive)
-  (load-note ".local/til_notes.org"))
+  (let (input)
+    (if (use-region-p)
+        (setq input (buffer-substring-no-properties (region-beginning) (region-end)))
+      (setq input (read-string "ag: ")))
+    (ag/search-string input)))
+
+(bind-key* "C-c C-s" 'ag)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; compile
+;; Don’t ask to save files before compilation, just save them.
+(setq compilation-ask-about-save nil
+      compilation-always-kill t)
+;; Don’t ask to kill currently running compilation, just kill it.
+(defun ccompile/colorize ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+
+(defun ccompile/recompile ()
+  "Interrupt current compilation and recompile"
+  (interactive)
+  (ignore-errors (kill-compilation))
+  (recompile))
+
+(defun compile-parent (command)
+  (interactive
+   (let* ((make-directory
+           (locate-dominating-file default-directory "Makefile"))
+          (command (concat "make -k -C "
+                           (shell-quote-argument make-directory) " ")))
+     (list (compilation-read-command command))))
+  (compile command))
+(add-hook
+ 'compilation-filter-hook
+ (lambda ()
+   (require 'ansi-color)
+   (ccompile/colorize)))
+
+(bind-keys
+ ("<f6>"     . ccompile/recompile)
+ ("C-c <f6>" . compile-parent)
+ ("C-<f6>"   . compile)
+ ("C-c m"    . compile)
+ ("C-c C-m"  . ccompile/recompile))

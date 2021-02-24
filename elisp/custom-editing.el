@@ -191,3 +191,27 @@
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 
 (winner-mode 1)
+
+(add-hook 'minibuffer-exit-hook
+					'(lambda ()
+						 (let ((buffer "*Completions*"))
+							 (and (get-buffer buffer)
+										(kill-buffer buffer)))))
+
+;; reuse compilation window even if it is in anoter frame
+(add-to-list 'display-buffer-alist
+						 '("\\*compilaition\\*"
+						 . (nil (reusable-frames . visible))))
+
+(setq backup-by-copying t   ; don't clobber symlinks
+      version-control t     ; use versioned backups
+      delete-old-versions t
+      kept-new-versions 12
+      kept-old-versions 6)
+
+(let ((backupdir "~/.emacs.d/backup/"))
+  (mkdir backupdir t)
+  (setq backup-directory-alist `(("." . ,backupdir))))
+(let ((autosavedir "~/.emacs.d/autosave/"))
+  (mkdir autosavedir t)
+  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
