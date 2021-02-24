@@ -32,8 +32,6 @@
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
 
-
-
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
