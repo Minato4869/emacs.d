@@ -1,19 +1,12 @@
-(defun arrayify (start end quote)
-  "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
-  (interactive "r\nMQuote: ")
-  (let ((insertion
-         (mapconcat
-          (lambda (x) (format "%s%s%s" quote x quote))
-          (split-string (buffer-substring start end)) ", ")))
-    (delete-region start end)
-    (insert insertion)))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; yas
 (defun yas-force-update ()
   (interactive)
   (yas-recompile-all)
   (yas-reload-all))
 (defalias 'yas 'yas-force-update)
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; date
 (defun ymd ()
   (interactive)
   (insert (format-time-string "%Y-%m-%d")))
@@ -124,3 +117,14 @@
  ("C-<f6>"   . compile)
  ("C-c m"    . compile)
  ("C-c C-m"  . ccompile/recompile))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; misc
+(defun arrayify (start end quote)
+  "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
+  (interactive "r\nMQuote: ")
+  (let ((insertion
+         (mapconcat
+          (lambda (x) (format "%s%s%s" quote x quote))
+          (split-string (buffer-substring start end)) ", ")))
+    (delete-region start end)
+    (insert insertion)))

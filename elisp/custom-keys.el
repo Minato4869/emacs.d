@@ -1,4 +1,6 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom keybinds
+
 ;; disabled keybinds
 (global-unset-key (kbd "<f1>"))
 (global-unset-key (kbd "<f2>"))
@@ -131,8 +133,6 @@
  ("C-c m"     . pop-global-mark)
  ("C-x m"     . exchange-point-and-mark)
  ;; misc
- ("C-<f3>"    . kmacro-start-macro-or-insert-counter)
- ("C-<f4>"    . kmacro-end-or-call-macro)
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
  ("C-<f10>"   . menu-bar-mode)
@@ -190,10 +190,6 @@
            ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
-;; non x11 tui only
-(when (not (or (display-graphic-p) (daemonp)))
-  (bind-keys*
-   ("C-M-i"      . other-window)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
@@ -210,12 +206,6 @@
   "Yank primary selection."
   (interactive)
   (insert (gui-get-primary-selection)))
-
-(defun other-frame-or-window ()
-  (interactive)
-  (if (one-window-p)
-      (other-frame 1)
-    (other-window 1)))
 
 (bind-keys
  ("C-M-y"           . yank-primary)
@@ -247,7 +237,7 @@
  ;; window transposing
  ("M-RET"           . transpose-windows)
  ("<C-M-return>"    . transpose-windows)
- ("s-t"             . transpose-windows)))
+ ("s-t"             . transpose-windows))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; xmonad
 (unless (file-directory-p "~/.altwm")
@@ -258,4 +248,4 @@
    ("<s-]>"        . enlarge-window)
    ("M-["          . shrink-window-horizontally)
    ("M-]"          . enlarge-window-horizontally)
-   ("M-S-SPC"      . balance-windows)))
+   ("M-S-SPC"      . balance-windows))))

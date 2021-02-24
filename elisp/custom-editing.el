@@ -79,7 +79,7 @@
 (add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
 (add-hook 'sh-mode-hook         (lambda () (cedit/sh-indent)))
 (add-hook 'shell-script-mode-hook
-          (lambda () (cedit/sh-indent)))
+                                (lambda () (cedit/sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'mail-mode-hook       (lambda ()
 																	(setq standard-indent 2)
@@ -191,13 +191,18 @@
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 
 (winner-mode 1)
-
-(add-hook 'minibuffer-exit-hook
-					'(lambda ()
-						 (let ((buffer "*Completions*"))
-							 (and (get-buffer buffer)
-										(kill-buffer buffer)))))
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; buffer hooks
+(add-hook 'minibuffer-exit-hook '(lambda ()
+																	 (let ((buffer "*Completions*"))
+																		 (and (get-buffer buffer)
+																					(kill-buffer buffer)))))
+(add-hook 'kill-buffer-query-functions
+          (lambda ()
+            (if (not (or (equal (buffer-name) "*scratch*")
+                         (equal (buffer-name) "reminder.org"))) t
+              (message "Not allowed to kill %s, burying instead" (buffer-name))
+              (bury-buffer) nil)))
 ;; reuse compilation window even if it is in anoter frame
 (add-to-list 'display-buffer-alist
 						 '("\\*compilaition\\*"

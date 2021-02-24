@@ -3,7 +3,7 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-;; custom
+;;;
 (custom-set-variables
  '(initial-scratch-message
    ";; Unfortunately, there's a radio connected to my brain
@@ -32,12 +32,7 @@
  '(menu-bar-mode nil)
  '(use-dialog-box nil))
 
-(add-hook
- 'kill-buffer-query-functions
- (lambda ()
-   (if (not (equal (buffer-name) "*scratch*")) t
-     (message "Not allowed to kill %s, burying instead" (buffer-name))
-     (bury-buffer) nil)))
+
 
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -68,7 +63,20 @@
 (yas-global-mode 1)
 ;; custom files
 (setq custom-file "~/.emacs.d/.custom.el")
-(load-library            "custom-load-file")
+(defun load-library-wrap-error (lib)
+  "Load library lib and catch any errors that it might throw.
+Errors will be logged to the buffer *Init Errors*"
+  (condition-case err (load-library lib)
+    (error
+     (progn
+       (switch-to-buffer "*Init Errors*")
+       (let (buf (get-buffer-create "*Init Errors*"))
+         (with-temp-buffer
+           (erase-buffer) (insert "Error in '" lib
+                   ":\n  " (error-message-string err) "\n")
+           (print "**")
+           (print (car err))
+           (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")
 (load-library-wrap-error "custom-functions")
@@ -93,5 +101,3 @@
 
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-theme")
-;; manage backups/autosaves
-(load-library "backup-autosave")
