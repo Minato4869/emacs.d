@@ -98,4 +98,5 @@ Errors will be logged to the buffer *Init Errors*"
     (setq confirm-kill-emacs 'yes-or-no-p)))
 
 (load-library-wrap-error "custom-external-modes")
+(load-library-wrap-error "custom-aliases")
 (load-library-wrap-error "custom-theme")
