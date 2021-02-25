@@ -3,7 +3,7 @@
 
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#000000")
-      (FG                 "#FFFFFF")
+      (FG                 "#CCCCCC") ;; was #FFFFFF
       (cursor             "#DB0600") ;; was #FF0000
       (border             "#0000FF")
       (fringe             "#121212")
