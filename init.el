@@ -75,10 +75,11 @@ Errors will be logged to the buffer *Init Errors*"
            (print "**")
            (print (car err))
            (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
-(load-library-wrap-error "custom-editing")
-(load-library-wrap-error "custom-keys")
-(load-library-wrap-error "custom-functions")
-(load-library-wrap-error "custom-internal-modes")
+(load-library "custom-editing")
+(load-library "custom-keys")
+(load-library "custom-functions")
+(load-library "custom-internal-modes")
+
 (when (or (daemonp) (display-graphic-p))
   (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
@@ -91,12 +92,12 @@ Errors will be logged to the buffer *Init Errors*"
 
   (keychain-refresh-environment)
 
-  (load-library-wrap-error "custom-terminal-mode")
-  (load-library-wrap-error "custom-font-mode")
+  (load-library "custom-terminal-mode")
+  (load-library "custom-font-mode")
   (if (daemonp)
       (find-file-noselect "~/reminder.org")
     (setq confirm-kill-emacs 'yes-or-no-p)))
 
-(load-library-wrap-error "custom-external-modes")
-(load-library-wrap-error "custom-aliases")
-(load-library-wrap-error "custom-theme")
+(load-library "custom-external-modes")
+(load-library "custom-aliases")
+(load-library "custom-theme")

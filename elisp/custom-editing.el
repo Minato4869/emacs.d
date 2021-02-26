@@ -199,8 +199,7 @@
 																					(kill-buffer buffer)))))
 (add-hook 'kill-buffer-query-functions
           (lambda ()
-            (if (not (or (equal (buffer-name) "*scratch*")
-                         (equal (buffer-name) "reminder.org"))) t
+            (if (not (equal (buffer-name) "*scratch*")) t
               (message "Not allowed to kill %s, burying instead" (buffer-name))
               (bury-buffer) nil)))
 ;; reuse compilation window even if it is in anoter frame
