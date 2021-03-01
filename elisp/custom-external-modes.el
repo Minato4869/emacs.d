@@ -27,3 +27,6 @@
     (diminish 'yas-minor-mode)
     (diminish 'eldoc-mode)
     (diminish 'auto-fill-function)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; notmuch
+(setq notmuch-multipart/alternative-discouraged '())

@@ -169,9 +169,10 @@
     (disable-all-themes)
     (load-theme 'gl-dark t)))
  ((and (display-graphic-p) (not (daemonp)))
-  (progn
-    (load-theme 'naysayer t)
-    (setq custom-theme-index 2)))
+  ;; (progn
+	;;  (load-theme 'naysayer t)
+	;;  (setq custom-theme-index 2)))
+  (setq custom-theme-index 0))
  (t
   (load-theme 'gl-dark t)))
 
