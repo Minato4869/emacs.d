@@ -169,10 +169,9 @@
     (disable-all-themes)
     (load-theme 'gl-dark t)))
  ((and (display-graphic-p) (not (daemonp)))
-  ;; (progn
-	;;  (load-theme 'naysayer t)
-	;;  (setq custom-theme-index 2)))
-  (setq custom-theme-index 0))
+   (progn
+	   (load-theme 'naysayer t)
+	   (setq custom-theme-index 2)))
  (t
   (load-theme 'gl-dark t)))
 
@@ -181,7 +180,7 @@
 (defalias 'cycle-theme   'custom-cycle-theme)
 (defalias 'default-theme 'custom-default-theme)
 (defalias 'dft           'custom-default-theme)
-(defalias 'dat           'disable-all-themes)
+(defalias 'da            'disable-all-themes)
 (defalias 'lt            'load-theme)
 (defalias 'res           'reset-themes)
 (defalias 'light         'default-light-theme)

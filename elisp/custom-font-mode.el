@@ -10,11 +10,13 @@
 (unless (file-directory-p "~/.fonts/Meslo-Font")
   (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
 (setq cfont/default       cfont/medium
-      cfont/default-small cfont/small)
+      cfont/default-small cfont/small
+      cfont/size          "10")
 (when (< (display-pixel-height) 900)
   (setq cfont/default       cfont/small
-        cfont/default-small cfont/6x13))
-(when (> (display-pixel-height) 1080)
+        cfont/default-small cfont/6x13
+        cfont/size          "12"))
+(when (> (display-pixel-height) 1200)
   (setq cfont/default       cfont/large
         cfont/default-small cfont/medium))
 

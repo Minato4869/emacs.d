@@ -28,8 +28,7 @@
 (defalias 'linum         'display-line-numbers-mode)
 (defalias 'tr            'toggle-truncate-lines)
 (defalias 'sf            'set-fill-column)
-(defalias 'fi            'display-fill-column-indicator-mode)
-(defalias 'fc            'display-fill-column-indicator-mode)
+(defalias 'fci            'display-fill-column-indicator-mode)
 ;;
 (defalias 'wu            'winner-undo)
 (defalias 'win-undo      'winner-undo)

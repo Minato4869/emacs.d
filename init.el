@@ -20,8 +20,8 @@
  '(column-number-mode t)
  '(package-selected-packages
    (quote
-    (ace-window notmuch puppet-mode yasnippet use-package keychain-environment
-                haskell-mode diminish auctex)))
+    (markdown-mode ace-window notmuch puppet-mode yasnippet use-package
+                   keychain-environment haskell-mode diminish auctex)))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
