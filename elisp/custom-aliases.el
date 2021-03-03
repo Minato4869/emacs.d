@@ -16,7 +16,7 @@
 (defalias 'pp            'puppet-mode)
 (defalias 'txt           'text-mode)
 (defalias 'fm            'follow-mode)
-
+(defalias 'oc            'occur)
 (defalias 'win           'shell)
 (defalias 'term          'ansi-term)
 ;;
