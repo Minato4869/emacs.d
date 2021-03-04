@@ -1,7 +1,6 @@
 ;;; global aliases of default functions
 ;; modes
 (defalias 'af            'auto-fill-mode)
-(defalias 'beamer        'presentation-mode)
 (defalias 'cf            'conf-mode)
 (defalias 'fl            'font-lock-mode)
 (defalias 'hs            'haskell-mode)

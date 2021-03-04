@@ -1,31 +1,38 @@
-(defvar custom-themes-index)
-(setq custom-themes-index 0
-			custom-themes
-			'(gl-dark naysayer naysayer-grey default-dark xcode-dark default-light))
-
 (if (or (display-graphic-p) (daemonp))
-    (setq ls-directory         "#4286F4"
-          ls-executable        "#cc0000"
-          ls-symlink           "#75507B"
-          trailing-ws          "#FFB6B0"
-          man-red              "#EF2929"
-          man-green            "#8AE234"
-          ws-darkgray          "#444444"
-  				org-level-2          "#C4A000"
-					org-level-3          "#729FCF"
-					org-level-4          "#CC0000"
-					org-level-5          "#4E9A06")
-  (setq ls-directory           "brightblue"
-        ls-executable          "red"
-        ls-symlink             "magenta"
-        trailing-ws            "maroon"
-        man-red                "brightred"
-        man-green              "brightgreen"
-        ws-darkgray            "color-238"
-				org-level-2            "yellow"
-				org-level-3            "blue"
-				org-level-4            "red"
-				org-level-5            "green"))
+    (setq ls-directory  "#4286F4"
+          ls-executable "#cc0000"
+          ls-symlink    "#75507B"
+          trailing-ws   "#FFB6B0"
+          man-red       "#EF2929"
+          man-green     "#8AE234"
+          ws-darkgray   "#444444"
+  				org-level-2   "#C4A000"
+					org-level-3   "#729FCF"
+					org-level-4   "#CC0000"
+					org-level-5   "#4E9A06")
+  (setq ls-directory    "brightblue"
+        ls-executable   "red"
+        ls-symlink      "magenta"
+        trailing-ws     "maroon"
+        man-red         "brightred"
+        man-green       "brightgreen"
+        ws-darkgray     "color-238"
+				org-level-2     "yellow"
+				org-level-3     "blue"
+				org-level-4     "red"
+				org-level-5     "green"))
+
+(setq custom-themes-index 0
+			custom-themes '(gl-dark naysayer))
+
+(defadvice load-theme (before theme-dont-propagate activate)
+  "Disable theme before loading new one."
+  (mapc #'disable-theme custom-enabled-themes))
+
+(defun custom-cycle-theme ()
+  (interactive)
+  (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
+	(load-theme (nth custom-themes-index custom-themes) :no-confirm))
 
 (defun reset-theme ()
   (interactive)
@@ -38,50 +45,18 @@
   (dolist (i custom-enabled-themes)
     (disable-theme i)))
 
-(defun custom-cycle-theme ()
-  (interactive)
-  (disable-all-themes)
-  (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
-  (custom-try-load-theme (nth custom-themes-index custom-themes)))
-
 (defun custom-default-theme ()
+  "Load default theme"
   (interactive)
   (disable-all-themes)
-  (custom-try-load-theme (nth 0 custom-themes))
-  (setq custom-theme-index 0)
-  (progn (message "Default theme")))
+  (load-theme 'gl-dark t))
 
-(defun custom-disable-theme ()
-;;  (disable-all-themes)
-  (setq custom-themes-index (- (length custom-themes) 1))
-  (progn (message "Disabled custom theme")))
-
-(defun custom-try-load-theme (theme)
-  (unless (ignore-errors (load-theme theme :no-confirm))
-      (progn (message "Currently enabled theme: '%s'" theme)
-        (mapc #'disable-theme (remove theme custom-enabled-themes)))
-    (message "Unable to find theme file for '%s'" theme)))
-
-(defun default-light-theme ()
+(defun beamer ()
   (interactive)
   (disable-all-themes)
+	(cfont/set-font (concat cfont/ttf "30"))
   (load-theme 'default-light t)
-  (setq custom-theme-index 0)
-  (message "Enabled default light theme"))
-
-(defun presentation-mode ()
-  (interactive)
-  (default-light-theme)
   (message "Enabled presentation mode"))
-
-(defun reset-themes ()
-  (interactive)
-  (disable-all-themes)
-  (custom-try-load-theme (nth custom-themes-index custom-themes))
-  (if (< (display-pixel-width) 1600)
-       (medium-font)
-     (large-font))
-  (message "Enabled default mode"))
 
 (bind-keys
  ("<f2>"   . custom-cycle-theme)
@@ -164,14 +139,9 @@
  )
 
 (cond
- ((daemonp)
-  (progn
-    (disable-all-themes)
-    (load-theme 'gl-dark t)))
  ((and (display-graphic-p) (not (daemonp)))
-   (progn
-	   (load-theme 'naysayer t)
-	   (setq custom-theme-index 2)))
+	(load-theme 'naysayer t)
+	(setq  custom-themes-index 1))
  (t
   (load-theme 'gl-dark t)))
 

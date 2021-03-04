@@ -95,7 +95,12 @@ Errors will be logged to the buffer *Init Errors*"
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
   (if (daemonp)
-      (find-file-noselect "~/reminder.org")
+      (progn
+        (setq default-frame-alist
+              '((width  . 80)
+                (height . 55)))
+                ;;(fullscreen . fullheight)))
+      (find-file-noselect "~/reminder.org"))
     (setq confirm-kill-emacs 'yes-or-no-p)))
 
 (load-library "custom-external-modes")
