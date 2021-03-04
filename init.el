@@ -94,13 +94,17 @@ Errors will be logged to the buffer *Init Errors*"
 
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
+  (let ((h (display-pixel-height))
+        (w 80))
+    (cond
+     ((>  h 1080)
+      (setq default-frame-alist '((width  . w) (height . 58))))
+     ((> h 768)
+      (setq default-frame-alist '((width  . w) (height . 48))))
+     (t
+      (setq default-frame-alist '((width  . w) (height . 48))))))
   (if (daemonp)
-      (progn
-        (setq default-frame-alist
-              '((width  . 80)
-                (height . 55)))
-                ;;(fullscreen . fullheight)))
-      (find-file-noselect "~/reminder.org"))
+      (find-file-noselect "~/reminder.org")
     (setq confirm-kill-emacs 'yes-or-no-p)))
 
 (load-library "custom-external-modes")

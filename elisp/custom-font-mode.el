@@ -51,5 +51,6 @@
     (ttf-font)))
 (defalias 'df          'default-font)
 (defalias 'dfs         'default-small-font)
+(defalias 'small       'default-small-font)
 (defalias 'ttf         'ttf-font)
 (defalias 'menlo       'ttf-font)
