@@ -94,15 +94,14 @@ Errors will be logged to the buffer *Init Errors*"
 
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
-  (let ((h (display-pixel-height))
-        (w 80))
+  (let ((h (display-pixel-height)))
     (cond
      ((>  h 1080)
-      (setq default-frame-alist '((width  . w) (height . 58))))
+      (setq default-frame-alist '((width  . 80) (height . 58))))
      ((> h 768)
-      (setq default-frame-alist '((width  . w) (height . 48))))
+      (setq default-frame-alist '((width  . 80) (height . 48))))
      (t
-      (setq default-frame-alist '((width  . w) (height . 48))))))
+      (setq default-frame-alist '((width  . 80) (height . 48))))))
   (if (daemonp)
       (find-file-noselect "~/reminder.org")
     (setq confirm-kill-emacs 'yes-or-no-p)))

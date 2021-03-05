@@ -37,7 +37,7 @@
 (defun reset-theme ()
   (interactive)
   (load-file "~/.emacs.d/elisp/custom-theme.el")
-  (mesage "resetting themes"))
+  (message "resetting themes"))
 
 (defun disable-all-themes ()
   "Disable all themes."

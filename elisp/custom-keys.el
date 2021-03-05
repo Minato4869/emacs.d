@@ -61,7 +61,7 @@
   "Suspend frame inside of a terminal instance of Emacs."
   (interactive)
   (if (display-graphic-p)
-      (message "Suspend frame is disabled for X11 frames of emacs")
+      (message "Suspend frame is disabled for X1 1frames of emacs")
     (suspend-frame)))
 
 (defun transpose-windows (arg)
@@ -237,7 +237,8 @@
  ;; window transposing
  ("M-RET"           . transpose-windows)
  ("<C-M-return>"    . transpose-windows)
- ("s-t"             . transpose-windows))
+ ("s-t"             . transpose-windows)
+ ("s-o"             . transpose-windows))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; xmonad
 (unless (file-directory-p "~/.altwm")
