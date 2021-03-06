@@ -36,12 +36,8 @@
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit forground :bold t))))
    `(mode-line                    ((,class (:foreground ,modeline-fg :background ,modeline-bg))))
-;;                                                        :box (:color ,modeline-box :line-width 1)))))
-   `(mode-line-buffer-id          ((,class (:inherit bold :foreground ,modeline-fgid ;;))))
-                                                     :underline (:color ,modeline-box :line-width 2)
-                                                     :overline (:color ,modeline-box :line-width 2)))))
+   `(mode-line-buffer-id          ((,class (:inherit bold :foreground ,modeline-fgid))))
    `(mode-line-inactive           ((,class (:foreground ,modeline-fg :background ,modeline-bgi))))
-;;                                                        :box (:color ,modeline-box :line-width 1)))))
    `(region                       ((,class (:background ,region-bg :foreground ,FG))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,glg/builtin))))
