@@ -4,7 +4,7 @@
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#292b2e")
       (FG                 "#b2b2b2")
-      (cursor             "#e3dedd")
+      (cursor             "#bc6ec5")
       (border             "#5d4d7a")
       (fringe             "#4b4e4f")
       (modeline-fg        "#b2b2b2")
