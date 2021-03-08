@@ -210,6 +210,7 @@
 (bind-keys
  ("C-M-y"           . yank-primary)
  ("C-M-v"           . yank-primary)
+ ("s-5"             . query-replace-regexp)
  ;; windows
  ("C-1"             . delete-other-windows)
  ("C-2"             . split-window-below)

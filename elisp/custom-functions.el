@@ -45,8 +45,7 @@
 
 (defun ag/find-file ()
   (interactive)
-  (let (filename
-          (buffer-substring (line-beginning-position) (line-end-position)))
+  (let ((filename (buffer-substring (line-beginning-position) (line-end-position))))
     (if (not (string-match "^[^:numeric:]+\:" filename))
         (find-file-at-point (concat default-directory filename))
       (message "Current line does not contain a filename"))))

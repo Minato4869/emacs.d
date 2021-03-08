@@ -131,36 +131,36 @@
     (* (max steps 1)
        c-basic-offset)))
 
-(add-hook 'c-mode-hook
-          (lambda ()
-            (cedit/indent-conf 8 t t)
-            (c-set-style "linux")
-            (setq c-label-minimum-indentation 0)
-            '(c-offsets-alist
-              . ((arglist-close         . c-lineup-arglist-tabs-only)
-                 (arglist-cont-nonempty . (c-lineup-gcc-asm-reg
-                                           c-lineup-arglist-tabs-only))
-                 (arglist-intro         . +)
-                 (brace-list-intro      . +)
-                 (c                     . c-lineup-C-comments)
-                 (case-lbael            . 0)
-                 (comment-intro         . c-lineup-comment)
-                 (cpp-define-intro      . +)
-                 (cpp-macro             . -1000)
-                 (cpp-macro-cont        . +)
-                 (defun-block-intro     . +)
-                 (else-clause           . 0)
-                 (func-decl-cont        . +)
-                 (inclass               . +)
-                 (inher-cont            . c-lineup-multi-inher)
-                 (knr-argdecl-intro     . 0)
-                 (label                 . -1000)
-                 (statement             . 0)
-                 (statement-block-intro . +)
-                 (statement-case-intro  . +)
-                 (statement-cont        . +)
-                 (substatement          . +)))))
-
+(defun custom-c-mode (offset autofill tabs &optional fill)
+	(cedit/indent-conf offset autofill tabs fill)
+	(c-set-style "linux")
+  (setq c-label-minimum-indentation 0)
+  '(c-offsets-alist
+    . ((arglist-close         . c-lineup-arglist-tabs-only)
+       (arglist-cont-nonempty . (c-lineup-gcc-asm-reg
+                                 c-lineup-arglist-tabs-only))
+       (arglist-intro         . +)
+       (brace-list-intro      . +)
+       (c                     . c-lineup-C-comments)
+       (case-lbael            . 0)
+       (comment-intro         . c-lineup-comment)
+       (cpp-define-intro      . +)
+       (cpp-macro             . -1000)
+       (cpp-macro-cont        . +)
+       (defun-block-intro     . +)
+       (else-clause           . 0)
+       (func-decl-cont        . +)
+       (inclass               . +)
+       (inher-cont            . c-lineup-multi-inher)
+       (knr-argdecl-intro     . 0)
+       (label                 . -1000)
+       (statement             . 0)
+       (statement-block-intro . +)
+       (statement-case-intro  . +)
+       (statement-cont        . +)
+       (substatement          . +))))
+(add-hook 'c-mode-hook   (lambda () (custom-c-mode 8 t t 80)))
+(add-hook 'c++-mode-hook (lambda () (custom-c-mode 4 t t 100)))
 ;; misc
 (global-subword-mode 1)               ; iterate through CamelCase words
 (setq visible-bell nil
@@ -197,11 +197,14 @@
 																	 (let ((buffer "*Completions*"))
 																		 (and (get-buffer buffer)
 																					(kill-buffer buffer)))))
-(add-hook 'kill-buffer-query-functions
-          (lambda ()
-            (if (not (equal (buffer-name) "*scratch*")) t
-              (message "Not allowed to kill %s, burying instead" (buffer-name))
-              (bury-buffer) nil)))
+(defun custom-bury-buffer ()
+  (if (not (or (equal (buffer-name) "*scratch*")
+							 (equal (buffer-name) "reminder.org")))
+      t
+		(message "Not allowed to kill %s, burying instead" (buffer-name))
+    (bury-buffer) nil))
+(add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
+
 ;; reuse compilation window even if it is in anoter frame
 (add-to-list 'display-buffer-alist
 						 '("\\*compilaition\\*"
