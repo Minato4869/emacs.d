@@ -21,7 +21,7 @@
  '(package-selected-packages
    (quote
     (markdown-mode ace-window notmuch puppet-mode yasnippet use-package
-          keychain-environment haskell-mode diminish auctex)))
+          dired-sidebar keychain-environment haskell-mode diminish auctex)))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
@@ -108,9 +108,8 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library "custom-aliases")
 (load-library "custom-theme")
 
-(let ((l "~/.emacs.local.el")
-      (p "~/.emacs.d/personal.el"))
-  (when (file-directory-p l)
-    (load-library l))
-  (when (file-directory-p p)
-    (load-library p)))
+(when (daemonp)
+  (when (file-directory-p "~/.emacs.local.el")
+    (load "~/.emacs.local.el"))
+  (when (file-symlink-p "~/.emacs.d/personal.el")
+    (load-library "~/.emacs.d/personal.el")))

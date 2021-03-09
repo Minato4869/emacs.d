@@ -72,14 +72,14 @@
 (add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-xdefaults-mode-hook
-                                (lambda () (cedit/indent-conf 4 nil nil)))
+          (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'java-mode-hook       (lambda () (cedit/indent-conf 4 t t)))
 (add-hook 'mail-mode-hook       (lambda () (cedit/indent-conf 4 t nil 70)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
 (add-hook 'sh-mode-hook         (lambda () (cedit/sh-indent)))
 (add-hook 'shell-script-mode-hook
-                                (lambda () (cedit/sh-indent)))
+          (lambda () (cedit/sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'mail-mode-hook       (lambda ()
 																	(setq standard-indent 2)
@@ -91,9 +91,9 @@
 	(save-excursion
 	  (goto-char (point-min))
 	  (if (re-search-forward "^\t" 8192 t)
-          (progn
-	          (setq indent-tabs-mode t)
-	          (message "File uses tabs for indentation"))
+        (progn
+	        (setq indent-tabs-mode t)
+	        (message "File uses tabs for indentation"))
       (progn
 	      (setq indent-tabs-mode nil)
 	      (message "File uses spaces for indentation")))))
@@ -113,9 +113,9 @@
           org-edit-preserve-indentation nil
           org-edit-src-content-indentation 0)
     (cedit/indent-conf 2 nil nil))
-    :bind
-    (("C-c C-c" . org-latex-export-to-pdf)
-     ("C-c c"   . org-export-dispatch)))
+  :bind
+  (("C-c C-c" . org-latex-export-to-pdf)
+   ("C-c c"   . org-export-dispatch)))
 
 (add-hook 'python-mode-hook
           (lambda ()
@@ -131,36 +131,52 @@
     (* (max steps 1)
        c-basic-offset)))
 
-(defun custom-c-mode (offset autofill tabs &optional fill)
-	(cedit/indent-conf offset autofill tabs fill)
-	(c-set-style "linux")
-  (setq c-label-minimum-indentation 0)
-  '(c-offsets-alist
-    . ((arglist-close         . c-lineup-arglist-tabs-only)
-       (arglist-cont-nonempty . (c-lineup-gcc-asm-reg
-                                 c-lineup-arglist-tabs-only))
-       (arglist-intro         . +)
-       (brace-list-intro      . +)
-       (c                     . c-lineup-C-comments)
-       (case-lbael            . 0)
-       (comment-intro         . c-lineup-comment)
-       (cpp-define-intro      . +)
-       (cpp-macro             . -1000)
-       (cpp-macro-cont        . +)
-       (defun-block-intro     . +)
-       (else-clause           . 0)
-       (func-decl-cont        . +)
-       (inclass               . +)
-       (inher-cont            . c-lineup-multi-inher)
-       (knr-argdecl-intro     . 0)
-       (label                 . -1000)
-       (statement             . 0)
-       (statement-block-intro . +)
-       (statement-case-intro  . +)
-       (statement-cont        . +)
-       (substatement          . +))))
-(add-hook 'c-mode-hook   (lambda () (custom-c-mode 8 t t 80)))
-(add-hook 'c++-mode-hook (lambda () (custom-c-mode 4 t t 100)))
+(add-hook 'c-mode-hook
+          (lambda ()
+	          (cedit/indent-conf  8 t t 80)
+	          (c-set-style "linux")
+            (setq c-label-minimum-indentation 0)
+            '(c-offsets-alist
+              . ((arglist-close         . c-lineup-arglist-tabs-only)
+                 (arglist-cont-nonempty . (c-lineup-gcc-asm-reg
+                                           c-lineup-arglist-tabs-only))
+                 (arglist-intro         . +)
+                 (brace-list-intro      . +)
+                 (c                     . c-lineup-C-comments)
+                 (case-lbael            . 0)
+                 (comment-intro         . c-lineup-comment)
+                 (cpp-define-intro      . +)
+                 (cpp-macro             . -1000)
+                 (cpp-macro-cont        . +)
+                 (defun-block-intro     . +)
+                 (else-clause           . 0)
+                 (func-decl-cont        . +)
+                 (inclass               . +)
+                 (inher-cont            . c-lineup-multi-inher)
+                 (knr-argdecl-intro     . 0)
+                 (label                 . -1000)
+                 (statement             . 0)
+                 (statement-block-intro . +)
+                 (statement-case-intro  . +)
+                 (statement-cont        . +)
+                 (substatement          . +)))))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+	          (cedit/indent-conf  4 t t 120)
+	          (c-set-style "stroustrup")
+            (setq c++-tab-always-indent t
+                  c-indent-level 4
+                  c-label-minimum-indentation 0
+                  tab-width 4
+									indent-tabs-mode t)
+						(c-set-offset 'innamespace '0)
+						(c-set-offset 'inextern-lang '0)
+						(c-set-offset 'inline-open '0)
+						(c-set-offset 'label '*)
+						(c-set-offset 'case-label '*)
+						(c-set-offset 'access-label '/)))
+
 ;; misc
 (global-subword-mode 1)               ; iterate through CamelCase words
 (setq visible-bell nil
@@ -208,7 +224,7 @@
 ;; reuse compilation window even if it is in anoter frame
 (add-to-list 'display-buffer-alist
 						 '("\\*compilaition\\*"
-						 . (nil (reusable-frames . visible))))
+						   . (nil (reusable-frames . visible))))
 
 (setq backup-by-copying t   ; don't clobber symlinks
       version-control t     ; use versioned backups

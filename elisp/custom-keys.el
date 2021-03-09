@@ -141,8 +141,8 @@
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
  ("C-x C-d"   . dired-jump)
- ("C-c v"     . scroll-other-window)
- ("C-c C-v"   . scroll-other-window-down)
+ ("M-V"       . scroll-other-window)
+ ("C-c v"     . scroll-other-window-down)
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
@@ -152,7 +152,7 @@
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . ibuffer)
- ;; windows
+  ;; windows
  ("M-o"       . other-window)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
@@ -208,7 +208,6 @@
   (insert (gui-get-primary-selection)))
 
 (bind-keys
- ("C-M-y"           . yank-primary)
  ("C-M-v"           . yank-primary)
  ("s-5"             . query-replace-regexp)
  ;; windows
