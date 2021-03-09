@@ -232,9 +232,9 @@
       kept-new-versions 12
       kept-old-versions 6)
 
-(let ((backupdir "~/.emacs.d/backup/"))
-  (mkdir backupdir t)
-  (setq backup-directory-alist `(("." . ,backupdir))))
-(let ((autosavedir "~/.emacs.d/autosave/"))
-  (mkdir autosavedir t)
-  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
+(let ((backupdir "~/.emacs.d/backup/")
+			(autosavedir "~/.emacs.d/autosave/"))
+	(mkdir backupdir t)
+	(setq backup-directory-alist `(("." . ,backupdir)))
+	(mkdir autosavedir t)
+	(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))

@@ -14,7 +14,8 @@
 	:ensure nil
   :config
 	(xterm-mouse-mode -1)
-	(setq notmuch-search-oldest-first nil))
+	(setq notmuch-search-oldest-first nil
+				notmuch-multipart/alternative-discouraged '()))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; diminish
 (require 'diminish)
@@ -28,5 +29,11 @@
     (diminish 'eldoc-mode)
     (diminish 'auto-fill-function)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; notmuch
-(setq notmuch-multipart/alternative-discouraged '())
+(use-package neotree
+	:ensure nil
+	:defer t
+  :bind
+	(("<f1>" . neotree-toggle))
+	:config
+	(setq neo-theme 'ascii
+				neo-smart-open t))
