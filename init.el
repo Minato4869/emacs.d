@@ -102,17 +102,14 @@ Errors will be logged to the buffer *Init Errors*"
       (setq default-frame-alist '((width  . 80) (height . 48))))
      (t
       (setq default-frame-alist '((width  . 80) (height . 48))))))
-  (setq confirm-kill-emacs 'y-or-n-p)
-
-  (when (daemonp)
-    (find-file-noselect "~/reminder.org")))
+  (setq confirm-kill-emacs 'y-or-n-p))
 
 (load-library "custom-external-modes")
 (load-library "custom-aliases")
 (load-library "custom-theme")
 
 (let ((l "~/.emacs.local.el")
-      (p "~/.emacs.d/personal/personal.el"))
+      (p "~/.emacs.d/personal.el"))
   (when (file-directory-p l)
     (load-library l))
   (when (file-directory-p p)
