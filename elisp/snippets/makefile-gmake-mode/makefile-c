@@ -4,8 +4,8 @@
 # expand-env: ((yas-indent-line 'fixed))
 # --
 CC = gcc
-CFLAGS = -std=gnu11 -Wall -Werror -Wextra -g
-
+CFLAGS = -std=c99 -Wall -Wextra -g
+#LDLIBS =
 .PHONY: all clean
 
 all: program1 program2

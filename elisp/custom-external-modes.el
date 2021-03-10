@@ -34,6 +34,24 @@
 	:defer t
   :bind
 	(("<f1>" . neotree-toggle))
+	(:map neotree-mode-map
+				("h"       . neotree-select-up-node)
+				("j"       . neotree-next-line)
+				("k"       . neotree-previous-line)
+				("l"       . neotree-quick-look)
+				("a"       . neotree-select-up-node)
+				("s"       . neotree-next-line)
+				("w"       . neotree-previous-line)
+				("d"       . neotree-quick-look)
+				("d"       . neotree-change-root)
+				("<left>"     . neotree-select-up-node)
+				("<down>"     . neotree-next-line)
+				("<up>"       . neotree-previous-line)
+				("<right>"    . neotree-quick-look)
+				("C-<right>"  . neotree-change-root)
+				("C-h"     . neotree-hidden-file-toggle)
+				("u"       . neotree-select-up-node)
+	 )
 	:config
 	(setq neo-theme 'ascii
 				neo-smart-open t))
