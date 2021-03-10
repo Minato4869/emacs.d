@@ -27,8 +27,7 @@
   (auto-revert-mode)
   (org-mode)
   (end-of-buffer))
-
-(defun rem ()  (interactive) (load-note "reminder.org"))
+(defun rem ()  (interactive) (load-note ".personal/notes/reminder/reminder.org"))
 (defun n ()    (interactive) (load-note "notes.org"))
 (defun nlc ()  (interactive) (load-note ".local/notes.local"))
 (defun plan () (interactive) (load-note ".plan"))

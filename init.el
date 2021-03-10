@@ -81,7 +81,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library "custom-internal-modes")
 
 (when (or (daemonp) (display-graphic-p))
-  (unless (file-directory-p "~/git/dotfiles/x11/Xresources")
+  (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
     (menu-bar-mode -1)
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
@@ -94,14 +94,15 @@ Errors will be logged to the buffer *Init Errors*"
 
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
-  (let ((h (display-pixel-height)))
+  (let ((h (display-pixel-height))
+        (w 80))
     (cond
      ((>  h 1080)
-      (setq default-frame-alist '((width  . 80) (height . 58))))
+      (setq default-frame-alist `((width  . ,w) (height . 58))))
      ((> h 768)
-      (setq default-frame-alist '((width  . 80) (height . 48))))
+      (setq default-frame-alist `((width  . ,w) (height . 48))))
      (t
-      (setq default-frame-alist '((width  . 80) (height . 48))))))
+      (setq default-frame-alist `((width  . ,w) (height . 48))))))
   (setq confirm-kill-emacs 'y-or-n-p))
 
 (load-library "custom-external-modes")
@@ -109,7 +110,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library "custom-theme")
 
 (when (daemonp)
-  (when (file-directory-p "~/.emacs.local.el")
-    (load "~/.emacs.local.el"))
-  (when (file-symlink-p "~/.emacs.d/personal.el")
-    (load-library "~/.emacs.d/personal.el")))
+  (find-file-noselect "~/.personal/notes/reminder/reminder.org"))
+(let ((ln "~/.emacs.local.el"))
+  (when (file-regular-p ln)
+    (load-file ln)))

@@ -35,15 +35,11 @@
   :bind
 	(("<f1>" . neotree-toggle))
 	(:map neotree-mode-map
-				("h"       . neotree-select-up-node)
-				("j"       . neotree-next-line)
-				("k"       . neotree-previous-line)
-				("l"       . neotree-quick-look)
 				("a"       . neotree-select-up-node)
 				("s"       . neotree-next-line)
 				("w"       . neotree-previous-line)
 				("d"       . neotree-quick-look)
-				("d"       . neotree-change-root)
+				("D"       . neotree-change-root)
 				("<left>"     . neotree-select-up-node)
 				("<down>"     . neotree-next-line)
 				("<up>"       . neotree-previous-line)

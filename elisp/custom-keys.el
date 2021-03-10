@@ -241,7 +241,7 @@
  ("s-o"             . transpose-windows))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; xmonad
-(unless (file-directory-p "~/.altwm")
+(unless (file-regular-p "~/.altwm")
   (bind-keys
    ("<M-tab>"      . other-window)
    ("<M-iso-lefttab>" . backward-other-window)
