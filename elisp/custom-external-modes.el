@@ -45,6 +45,7 @@
 				("<up>"       . neotree-previous-line)
 				("<right>"    . neotree-quick-look)
 				("C-<right>"  . neotree-change-root)
+				("<C-return>" . neotree-change-root)
 				("C-h"     . neotree-hidden-file-toggle)
 				("u"       . neotree-select-up-node)
 	 )
