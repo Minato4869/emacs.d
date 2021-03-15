@@ -144,6 +144,8 @@
  ("C-x C-d"   . dired-jump)
  ("M-V"       . scroll-other-window)
  ("C-c v"     . scroll-other-window-down)
+ ("C-c 1"     . shell-command)
+ ("C-c 7"     . async-shell-command)
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
