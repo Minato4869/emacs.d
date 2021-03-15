@@ -10,6 +10,7 @@
 ;;(global-unset-key (kbd "<f3>"))
 ;;(global-unset-key (kbd "<f4>"))
 (global-unset-key (kbd "M-l"))
+
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -185,7 +186,7 @@
            ("<left>" . kill-buffer-and-window)
            ("C-g"    . kill-buffer-and-window)
            ("s-1"    . kill-buffer-and-window)
-           ("s-0"    . kill-buffer-and-window)
+;;           ("s-0"    . kill-buffer-and-window)
            ("<up>"   . scroll-line-up)
            ("<down>" . scroll-line-down)
            ("k"      . scroll-line-up)
@@ -218,12 +219,12 @@
  ("C-2"             . split-window-below)
  ("C-3"             . split-window-right)
  ("C-4"             . make-frame-command)
- ("s-1"             . delete-other-windows)
+;; ("s-1"             . delete-other-windows)
  ("s-2"             . split-window-below)
  ("s-3"             . split-window-right)
  ("s-4"             . make-frame-command)
  ("C-x 4"           . make-frame-command)
- ("s-0"             . delete-window)
+;; ("s-0"             . delete-window)
  ("C-x M-o"         . other-frame)
  ;; buffers
  ("s-d"             . dired-jump)
