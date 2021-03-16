@@ -103,7 +103,7 @@ Errors will be logged to the buffer *Init Errors*"
       (setq default-frame-alist `((width  . ,w) (height . 48))))
      (t
       (setq default-frame-alist `((width  . ,w) (height . 48))))))
-  (setq confirm-kill-emacs 'y-or-n-p))
+  (setq confirm-kill-emacs 'yes-or-no-p))
 
 (load-library "custom-external-modes")
 (load-library "custom-aliases")
