@@ -28,12 +28,14 @@
   (org-mode)
   (end-of-buffer))
 (defun rem ()  (interactive) (load-note ".personal/notes/reminder/reminder.org"))
+(defun arem ()  (interactive) (load-note ".personal/notes/reminder/reminder.archive.org"))
 (defun n ()    (interactive) (load-note "notes.org"))
 (defun nlc ()  (interactive) (load-note ".local/notes.local.org"))
 (defun plan () (interactive) (load-note ".plan"))
 (defun uni ()  (interactive) (load-note ".local/uni_notes.org"))
 (defun til ()  (interactive) (load-note ".local/til_notes.org"))
 (defalias 'plan 'p)
+(defalias 'rema 'arem)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ag
