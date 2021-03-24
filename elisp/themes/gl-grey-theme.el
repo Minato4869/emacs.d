@@ -35,8 +35,8 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit forground :bold t))))
-   `(mode-line ((t (:background ,modeline-bg :foreground ,modeline-fg  :box (:line-width 1 :color ,modeline-bg)))))
-   `(mode-line ((t (:background ,modeline-bg :foreground ,modeline-fg  :box (:line-width 1 :color ,modeline-bg)))))
+   `(mode-line                    ((,class (:background ,modeline-bg :foreground ,modeline-fg
+                                                        :box (:line-width 1 :color ,modeline-bg)))))
    `(mode-line-buffer-id          ((,class (:inherit bold :foreground ,modeline-fgid
                                                      :box (:line-width 1)))))
 

@@ -94,13 +94,12 @@ Errors will be logged to the buffer *Init Errors*"
 
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
-  (let ((h (display-pixel-height))
-        (w 80))
+
+
+  (let ((w 80))
     (cond
-     ((>  h 1080)
+     ((> (display-pixel-height) 1080)
       (setq default-frame-alist `((width  . ,w) (height . 58))))
-     ((> h 768)
-      (setq default-frame-alist `((width  . ,w) (height . 48))))
      (t
       (setq default-frame-alist `((width  . ,w) (height . 48))))))
   (setq confirm-kill-emacs 'yes-or-no-p))
