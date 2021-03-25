@@ -100,8 +100,9 @@
 
 (defun my-ibuffer ()
   (interactive)
-  (ibuffer)
-  (ibuffer-update))
+  (progn
+    (ibuffer)
+    (ibuffer-update t)))
 
 (bind-keys*
   ("C-z"       . undo)
