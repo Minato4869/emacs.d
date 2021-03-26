@@ -6,10 +6,10 @@
           man-red       "#FF0000" ;; was "#EF2929"
           man-green     "#00FF00" ;; was "#8AE234"
           ws-darkgray   "#444444"
-  				org-level-2   "#C4A000"
-					org-level-3   "#729FCF"
-					org-level-4   "#CC0000"
-					org-level-5   "#4E9A06")
+          org-level-2   "#C4A000"
+          org-level-3   "#729FCF"
+          org-level-4   "#CC0000"
+          org-level-5   "#4E9A06")
   (setq ls-directory    "brightblue"
         ls-executable   "red"
         ls-symlink      "magenta"
@@ -17,13 +17,13 @@
         man-red         "brightred"
         man-green       "brightgreen"
         ws-darkgray     "color-238"
-				org-level-2     "yellow"
-				org-level-3     "blue"
-				org-level-4     "red"
-				org-level-5     "green"))
+        org-level-2     "yellow"
+        org-level-3     "blue"
+        org-level-4     "red"
+        org-level-5     "green"))
 
 (setq custom-themes-index 0
-			custom-themes '(gl-dark naysayer gl-grey))
+       custom-themes '(gl-dark naysayer gl-grey))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
@@ -32,7 +32,7 @@
 (defun custom-cycle-theme ()
   (interactive)
   (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
-	(load-theme (nth custom-themes-index custom-themes) :no-confirm))
+  (load-theme (nth custom-themes-index custom-themes) :no-confirm))
 
 (defun reset-theme ()
   (interactive)

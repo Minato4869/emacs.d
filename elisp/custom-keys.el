@@ -98,6 +98,15 @@
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
 
+(defun my-beginning-of-line ()
+  (interactive)
+  (unwind-protect
+      (progn
+        (display-line-numbers-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (display-line-numbers-mode -1)))
+
+
 (defun my-ibuffer ()
   (interactive)
   (progn
