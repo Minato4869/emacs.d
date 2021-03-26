@@ -106,7 +106,7 @@ Errors will be logged to the buffer *Init Errors*"
 
 (load-library "custom-external-modes")
 (load-library "custom-aliases")
-;;(load-library "custom-theme")
+(load-library "custom-theme")
 
 (when (daemonp)
   (find-file-noselect "~/.personal/notes/reminder/reminder.org"))
