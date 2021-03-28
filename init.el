@@ -21,7 +21,8 @@
  '(package-selected-packages
    (quote
     (markdown-mode ace-window notmuch puppet-mode yasnippet use-package magit
-          neotree keychain-environment haskell-mode diminish auctex)))
+                   neotree keychain-environment haskell-mode diminish
+                   auctex nord-theme warm-night-theme)))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
