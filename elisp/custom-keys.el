@@ -173,6 +173,7 @@
  ("C-x C-b"   . my-ibuffer)
   ;; windows
  ("M-o"       . other-window)
+ ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific

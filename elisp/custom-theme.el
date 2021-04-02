@@ -139,6 +139,8 @@
  )
 
 (cond
+ ((not (string= "" (getenv "SSH_CONNECTION")))
+	(load-theme 'warm-night t))
  ((and (display-graphic-p) (not (daemonp)))
 	(load-theme 'naysayer t)
 	(setq  custom-themes-index 1))
