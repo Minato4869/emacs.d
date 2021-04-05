@@ -188,16 +188,17 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq auto-mode-alist
       (append auto-mode-alist
-              '(("neomutt"      . mail-mode)
-                ("\\.epub\\'"   . nov-mode)
-                (".shrc"        . shell-script-mode)
-                (".shenv"       . shell-script-mode)
-                ("\\.xpm\\'"    . text-mode)
-                (".fvwm2rc'"    . conf-mode)
-                (".Xdefaults'"  . conf-xdefaults-mode)
-                (".Xresources'" . conf-xdefaults-mode)
-                ("\\gnus\\'"    . emacs-lisp-mode)
-                ("Makefile"     . makefile-gmake-mode))))
+              '(("neomutt"       . mail-mode)
+                ("\\.epub\\'"    . nov-mode)
+                (".shrc"         . shell-script-mode)
+                (".shenv"        . shell-script-mode)
+                ("\\.xpm\\'"     . text-mode)
+                (".fvwm2rc'"     . conf-mode)
+                (".Xdefaults'"   . conf-xdefaults-mode)
+                (".Xresources'"  . conf-xdefaults-mode)
+                ("\\gnus\\'"     . emacs-lisp-mode)
+								("\\reminder\\'" . emacs-lisp-mode)
+                ("Makefile"      . makefile-gmake-mode))))
 
 ;; disable paren/$ jumping
 (setq-default blink-matching-paren nil

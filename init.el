@@ -111,6 +111,9 @@ Errors will be logged to the buffer *Init Errors*"
 
 (when (daemonp)
   (find-file-noselect "~/.personal/notes/reminder/reminder.org"))
-(let ((ln "~/.emacs.local.el"))
+(let ((ln "~/.emacs.local.el")
+      (pl "~/.local/emacs.personal.el"))
   (when (file-regular-p ln)
-    (load-file ln)))
+    (load-file ln))
+  (when (file-regular-p pl)
+    (load-file pl)))
