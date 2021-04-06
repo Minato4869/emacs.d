@@ -110,6 +110,8 @@
 
 (use-package dired
   :ensure nil
+  :config
+  (put 'dired-find-alternate-file 'disabled nil)
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
