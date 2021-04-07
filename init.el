@@ -22,7 +22,7 @@
    (quote
     (markdown-mode ace-window notmuch puppet-mode yasnippet use-package magit
                    neotree keychain-environment haskell-mode diminish
-                   auctex nord-theme warm-night-theme notmuch)))
+                   auctex  notmuch)))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
@@ -96,13 +96,8 @@ Errors will be logged to the buffer *Init Errors*"
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
 
-
-  (let ((w 80))
-    (cond
-     ((> (display-pixel-height) 1080)
-      (setq default-frame-alist `((width  . ,w) (height . 58))))
-     (t
-      (setq default-frame-alist `((width  . ,w) (height . 48))))))
+  (setq default-frame-alist
+        `((width  . 80) (height . 48))) ;; was 48 and 58 for 1440p
   (setq confirm-kill-emacs 'yes-or-no-p))
 
 (load-library "custom-external-modes")
