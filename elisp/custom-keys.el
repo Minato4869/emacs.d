@@ -106,13 +106,6 @@
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
 
-
-(defun my-ibuffer ()
-  (interactive)
-  (progn
-    (ibuffer)
-    (ibuffer-update t)))
-
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
@@ -152,6 +145,7 @@
  ;; misc
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
+ ("M-<f9>"    . font-lock-fontify-buffer)
  ("C-<f10>"   . menu-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . global-whitespace-mode)
@@ -170,7 +164,7 @@
  ("C-x C-k"   . kill-buffer)
  ("C-x k"     . kill-current-buffer)
  ("C-c r"     . revert-buffer)
- ("C-x C-b"   . my-ibuffer)
+ ("C-x C-b"   . ibuffer)
   ;; windows
  ("M-o"       . other-window)
  ("C-x C-o"   . transpose-windows)
@@ -245,7 +239,7 @@
  ;; buffers
  ("s-d"             . dired-jump)
  ("s-r"             . revert-buffer)
- ("s-b"             . my-ibuffer)
+ ("s-b"             . ibuffer)
  ;; text scale
  ("C-="             . text-scale-increase)
  ("C--"             . text-scale-decrease)

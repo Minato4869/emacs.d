@@ -53,6 +53,8 @@
                 " " filename-and-process)
           (mark " " (name 16 -1) " " filename)))
   :bind
+  (("C-x C-b"   . ibuffer)
+   ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
         ("M-o" . other-window)
         ("s"   . isearch-forward)
@@ -110,8 +112,6 @@
 
 (use-package dired
   :ensure nil
-  :config
-  (put 'dired-find-alternate-file 'disabled nil)
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
