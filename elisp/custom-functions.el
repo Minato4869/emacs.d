@@ -36,11 +36,12 @@
 (defun nlc ()  (interactive) (load-note ".local/notes.local.org"))
 (defun plan ()
   (interactive)
-  (load-note ".plan")
+  (load-note ".personal/notes/plan/plan.org")
   (outline-show-all))
 (defun uni ()  (interactive) (load-note ".local/uni_notes.org"))
 (defun til ()  (interactive) (load-note ".local/til_notes.org"))
-(defalias 'plan 'p)
+(defalias 'p 'plan)
+(defalias 'pl 'plan)
 (defalias 'rema 'arem)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
