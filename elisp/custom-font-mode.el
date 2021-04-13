@@ -31,6 +31,10 @@
 (defun default-small-font ()
   (interactive)
   (cfont/set-font cfont/default-small))
+
+(defun 6x13 ()
+  (interactive)
+  (cfont/set-font cfont/6x13))
 (defun ttf-font ()
   (interactive)
   (cfont/set-font (concat cfont/ttf cfont/size)))
