@@ -18,6 +18,10 @@
   (interactive)
   (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))
 
+(defun time ()
+  (interactive)
+  (insert (format-time-string "%H:%M")))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; notes
