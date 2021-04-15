@@ -1,5 +1,5 @@
-(deftheme gl-grey
-  "gl-grey theme")
+(deftheme gl-solar
+  "gl-solar theme")
 
 (let ((class '((class color) (min-colors 89)))
       (BG                 "#292b2e")
@@ -28,7 +28,7 @@
       (glg/variable        "#268bd2"))
 
   (custom-theme-set-faces
-   'gl-grey
+   'gl-solar
 
    `(default                      ((,class (:background ,BG :foreground ,FG))))
    `(cursor                       ((,class (:background ,cursor))))
@@ -54,4 +54,4 @@
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
 
-(provide-theme 'gl-grey)
+(provide-theme 'gl-solar)
