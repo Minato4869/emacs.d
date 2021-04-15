@@ -64,11 +64,6 @@
   :type 'boolean
   :group 'srcery)
 
-(defcustom srcery-invert-region t
-  "Use inverse video for region."
-  :type 'boolean
-  :group 'srcery)
-
 (defcustom srcery-transparent-background nil
   "Sets black background color to nil in terminal."
   :type 'boolean
@@ -418,12 +413,8 @@
       (,srcery-256-class (:foreground ,srcery-256-gray-4))))
 
    `(region
-     ((,srcery-class ,(if srcery-invert-region
-                          `(:inverse-video t)
-                        `(:background ,srcery-gray-3)))
-      (,srcery-256-class ,(if srcery-invert-region
-                              `(:inverse-video t)
-                            `(:background ,srcery-256-gray-3)))))
+     ((,srcery-class (:inverse-video t :background ,srcery-gray-3))
+      (,srcery-class (:inverse-video t :background ,srcery-256-gray-3))))
 
    `(secondary-selection
      ((,srcery-class (:background ,srcery-gray-3))

@@ -130,13 +130,14 @@
  ((getenv "SSH_CONNECTION")
 	(load-theme 'warm-night t))
  ((and (display-graphic-p) (not (daemonp)))
-	(if (string-equal system-type "windows-nt")
-			(progn
-				(load-theme 'naysayer t)
-				(setq  custom-themes-index 1))
-		(progn
-			(load-theme 'nord t)
-			(setq  custom-themes-index 2))))
+;;	(if (string-equal system-type "windows-nt")
+;;			(progn
+;;				(load-theme 'naysayer t)
+;;				(setq  custom-themes-index 1))
+;;		(progn
+;;			(load-theme 'nord t)
+	;;			(setq  custom-themes-index 2))))
+	(load-theme 'srcery t))
 (t
 	(load-theme 'gl-dark t)))
 
