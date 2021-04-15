@@ -21,7 +21,13 @@
       (gl/keyword         "#729FCF")
       (gl/string          "#4E9A06")
       (gl/type            "#4E9A06")
-      (gl/variable        "#C4A000"))
+      (gl/variable        "#C4A000")
+
+      (org-level-2        "#C4A000")
+      (org-level-3        "#729FCF")
+      (org-level-4        "#CC0000")
+      (org-level-5        "#4E9A06")
+      )
 
   (custom-theme-set-faces
    'gl-dark
@@ -44,6 +50,11 @@
    `(font-lock-variable-name-face ((,class (:foreground ,gl/variable))))
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
-   `(ido-only-match               ((,class (:foreground ,ido-only-match))))))
+   `(ido-only-match               ((,class (:foreground ,ido-only-match))))
+
+   `(org-level-2                  ((,class (:foreground ,org-level-2))))
+   `(org-level-3                  ((,class (:foreground ,org-level-3))))
+   `(org-level-4                  ((,class (:foreground ,org-level-4))))
+   `(org-level-5                  ((,class (:foreground ,org-level-5))))))
 
 (provide-theme 'gl-dark)
