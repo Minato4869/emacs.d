@@ -12,7 +12,7 @@
         trailing-ws     "maroon"
         man-red         "brightred"
         man-green       "brightgreen"
-        ws-darkgray     "color-238")
+        ws-darkgray     "color-238"))
 
 (setq custom-themes-index 0
        custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey))
