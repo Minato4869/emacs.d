@@ -23,7 +23,7 @@
         org-level-5     "green"))
 
 (setq custom-themes-index 0
-       custom-themes '(gl-dark nord naysayer warm-night gl-solar naysayer-grey))
+       custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
