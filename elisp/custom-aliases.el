@@ -35,3 +35,5 @@
 (defalias 'win-undo      'winner-undo)
 (defalias 'wr            'winner-redo)
 (defalias 'win-redo      'winner-redo)
+(defalias 'qr            'query-replace)
+(defalias 'qrr           'query-replace-regexp)
