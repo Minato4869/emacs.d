@@ -96,10 +96,9 @@ Errors will be logged to the buffer *Init Errors*"
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
 
-  (setq confirm-kill-emacs 'yes-or-no-p)
-
   (setq default-frame-alist
         `((width  . 80) (height . 48)))) ;; was 48 and 58 for 1440p
+(setq confirm-kill-emacs 'yes-or-no-p)
 
 (load-library "custom-external-modes")
 (load-library "custom-aliases")
