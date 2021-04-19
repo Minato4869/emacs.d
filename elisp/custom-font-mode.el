@@ -15,7 +15,6 @@
   (setq cfont/default-small cfont/small
         cfont/default       cfont/medium))
 
->>>>>>> 3808b22f19a5246946ee3470a1c37d48cc6b2990
 (defun cfont/set-font (&optional myfont)
     (set-face-attribute 'default t :font myfont)
     (setq default-frame-alist `((font . ,myfont)))

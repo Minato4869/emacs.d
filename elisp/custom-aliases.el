@@ -14,6 +14,7 @@
 (defalias 'sh            'shell-script-mode)
 (defalias 'el            'emacs-lisp-mode)
 (defalias 'sw            'subword-mode)
+(defalias 'org           'org-mode)
 (defalias 'pp            'puppet-mode)
 (defalias 'txt           'text-mode)
 (defalias 'fm            'follow-mode)
@@ -40,3 +41,6 @@
 (defalias 'wredo         'winner-redo)
 (defalias 'qr            'query-replace)
 (defalias 'qrr           'query-replace-regexp)
+;;
+(defalias 'highlight-current-line 'hl-line-mode)
+(defalias 'highlight-line-mode     'hl-line-mode)
