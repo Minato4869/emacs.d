@@ -46,7 +46,7 @@
 (defun beamer ()
   (interactive)
   (disable-all-themes)
-	(cfont/set-font (concat cfont/ttf "30"))
+  (cfont/set-font (concat cfont/ttf "30"))
   (load-theme 'default-light t)
   (message "Enabled presentation mode"))
 
@@ -57,31 +57,31 @@
 
 ;; fixme mode
 (defgroup fixme nil
-	"Hilight TODO/STUDY/IMPROTANT/NOTE in special colours")
+  "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours")
 (defface font-lock-fixme-face
-	'((t (:foreground "Red" :bold t :underline t)))
-	"Font lock face for TODO comments"
-	:group 'fixme)
+  '((t (:foreground "Red" :bold t :underline t)))
+  "Font lock face for TODO comments"
+  :group 'fixme)
 (defface font-lock-study-face
-	'((t (:foreground "Yellow" :bold t :underline t)))
-	"Font lock face for STUDY comments"
-	:group 'fixme)
+  '((t (:foreground "Yellow" :bold t :underline t)))
+  "Font lock face for STUDY comments"
+  :group 'fixme)
 (defface font-lock-important-face
-	'((t (:foreground "Yellow" :bold t :underline t)))
-	"Font lock face for IMPORTANT comments"
-	:group 'fixme)
+  '((t (:foreground "Yellow" :bold t :underline t)))
+  "Font lock face for IMPORTANT comments"
+  :group 'fixme)
 (defface font-lock-note-face
   '((t (:foreground "Dark Green" :bold t :underline t)))
-	"Font lock face for NOTE comments"
-	:group 'fixme)
+  "Font lock face for NOTE comments"
+  :group 'fixme)
 
 (mapc
  (lambda (mode)
-	 (font-lock-add-keywords
-		mode
-		'(("\\<\\(TODO\\)"      . 'font-lock-fixme-face)
-			("\\<\\(STUDY\\)"     . 'font-lock-study-face)
-			("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
+   (font-lock-add-keywords
+    mode
+    '(("\\<\\(TODO\\)"      . 'font-lock-fixme-face)
+      ("\\<\\(STUDY\\)"     . 'font-lock-study-face)
+      ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
   '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
 
@@ -128,17 +128,17 @@
 
 (cond
  ((getenv "SSH_CONNECTION")
-	(load-theme 'warm-night t))
+  (load-theme 'warm-night t))
  ((and (display-graphic-p) (not (daemonp)))
-	(if (string-equal system-type "windows-nt")
-			(progn
-				(load-theme 'naysayer t)
-				(setq  custom-themes-index 1))
-		(progn
-			(load-theme 'nord t)
-			(setq  custom-themes-index 2))))
+  (if (string-equal system-type "windows-nt")
+      (progn
+        (load-theme 'naysayer t)
+        (setq  custom-themes-index 1))
+    (progn
+      (load-theme 'nord t)
+      (setq  custom-themes-index 2))))
 (t
-	(load-theme 'gl-dark t)))
+ (load-theme 'gl-dark t)))
 
 
 ;; themes
