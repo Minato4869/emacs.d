@@ -22,33 +22,6 @@
   (interactive)
   (insert (format-time-string "%H:%M")))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; notes
-
-(defun load-note (file)
-  (find-file (concat "~/" file))
-  (auto-revert-mode)
-  (org-mode)
-  (end-of-buffer))
-(defun rem ()
-  (interactive)
-  (load-note ".personal/notes/reminder/reminder.org.gpg")
-  (outline-show-all))
-(defun arem () (interactive) (load-note ".personal/notes/reminder/reminder.archive.org.gpg"))
-(defun n ()    (interactive) (load-note "notes.org.gpg"))
-(defun nlc ()  (interactive) (load-note ".local/notes.local.org.gpg"))
-(defun plan ()
-  (interactive)
-  (load-note ".personal/notes/plan/plan.org.gpg")
-  (outline-show-all))
-(defun uni ()  (interactive) (load-note ".local/uni_notes.org.gpg"))
-(defun til ()  (interactive) (load-note ".local/til_notes.org.gpg"))
-(defalias 'p 'plan)
-(defalias 'pl 'plan)
-(defalias 'rema 'arem)
-(defalias 'notes 'n)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ag
 (require 'compile)
