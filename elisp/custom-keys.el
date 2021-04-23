@@ -152,7 +152,6 @@
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . global-whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
- ("C-<f12>"   . display-line-numbers-mode)
  ("C-x C-d"   . dired-jump)
  ("M-V"       . scroll-other-window)
  ("C-c v"     . scroll-other-window-down)
@@ -163,8 +162,8 @@
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)
  ("<M-next>"  . next-buffer)
- ("C-x C-k"   . kill-buffer)
  ("C-x k"     . kill-current-buffer)
+ ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . ibuffer)
   ;; windows

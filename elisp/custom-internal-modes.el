@@ -56,6 +56,7 @@
   (("C-x C-b"   . ibuffer)
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
+        ("C-x C-f" . cido/lazy-ido-find-file)
         ("M-o" . other-window)
         ("s"   . isearch-forward)
         ("/"   . isearch-forward)
