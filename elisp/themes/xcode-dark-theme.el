@@ -2,8 +2,8 @@
   "xcode-dark theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#000000")
-      (FG                 "#CCCCCC") ;; was #FFFFFF
+      (BG)
+      (FG)                           ;; was #FFFFFF
       (cursor             "#DB0600") ;; was #FF0000
       (border             "#0000FF")
       (fringe             "#121212")
@@ -17,7 +17,11 @@
       (xcode/string       "#00FFC0")
       (xcode/type         "#FF47F3")
       (xcode/variable     "#1492FF"))
-
+  (if (display-graphic-p)
+      (setq BG "#000000"
+            FG "#CCCCCC")
+    (setq BG "unspecified-bg"
+          FG "unspecified-fg"))
   (custom-theme-set-faces
    'xcode-dark
 

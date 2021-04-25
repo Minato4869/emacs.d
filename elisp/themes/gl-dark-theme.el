@@ -2,8 +2,8 @@
   "gl-dark theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#000000")
-      (FG                 "#BEBEBE")
+      (BG)
+      (FG)
       (cursor             "#FF0000") ;; was #DB0600
       (border             "#0000FF")
       (fringe             "#121212")
@@ -28,7 +28,11 @@
       (org-level-4        "#CC0000")
       (org-level-5        "#4E9A06")
       )
-
+  (if (display-graphic-p)
+      (setq BG "#000000"
+            FG "#BEBEBE")
+    (setq BG "unspecified-bg"
+          FG "unspecified-fg"))
   (custom-theme-set-faces
    'gl-dark
 

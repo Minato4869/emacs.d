@@ -105,9 +105,6 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library "custom-aliases")
 (load-library "custom-theme")
 
-;;(when (daemonp)
-;;  (find-file-noselect "~/.personal/notes/reminder/reminder.org")
-;;  (find-file-noselect "~/.personal/notes/plan/plan.org"))
 (let ((ln "~/.emacs.local.el")
       (pl "~/.local/emacs.personal.el"))
   (when (file-regular-p ln)
