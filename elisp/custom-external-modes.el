@@ -5,7 +5,8 @@
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind
-  (("C-c o"   . ace-window)))
+  (("C-c o"   . ace-window)
+	 ("C-x o"   . ace-window)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; notmuch
 (use-package notmuch
