@@ -14,6 +14,9 @@
         man-green       "brightgreen"
         ws-darkgray     "color-238"))
 
+(defun theme/display-colors ()
+  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
+
 (setq custom-themes-index 0
        custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey))
 

@@ -1,27 +1,30 @@
 (deftheme <themename>
   "<themename> theme")
+;; (defun theme/display-colors ()
+;;  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "")
-      (FG                 "")
-      (cursor             "") ;; was #FF0000
-      (border             "")
-      (fringe             "")
-      (modeline           "")
-      (region-bg          "")
-      (region-fg          "")
+      (BG  (when (theme/display-colors) ""))
+      (FG  (when (theme/display-colors) ""))
+      (FG                               "")
+      (cursor                           "")
+      (border                           "")
+      (fringe                           "")
+      (modeline                         "")
+      (region-bg                        "")
+      (region-fg                        "")
 
-      (ido-subdir          "#A1C659")
-      (ido-only-match      "#FFCC33")
+      (ido-subdir                       "")
+      (ido-only-match                   "")
 
-      (<theme>/builtin         "")
-      (<theme>/comment         "")
-      (<theme>/constant        "")
-      (<theme>/function        "")
-      (<theme>/keyword         "")
-      (<theme>/string          "")
-      (<theme>/type            "")
-      (<theme>/variable        ""))
+      (<theme>/builtin                  "")
+      (<theme>/comment                  "")
+      (<theme>/constant                 "")
+      (<theme>/function                 "")
+      (<theme>/keyword                  "")
+      (<theme>/string                   "")
+      (<theme>/type                     "")
+      (<theme>/variable                 ""))
 
   (custom-theme-set-faces
    '<themename>

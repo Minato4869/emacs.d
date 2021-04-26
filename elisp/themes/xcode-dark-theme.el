@@ -2,26 +2,22 @@
   "xcode-dark theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG)
-      (FG)                           ;; was #FFFFFF
-      (cursor             "#DB0600") ;; was #FF0000
-      (border             "#0000FF")
-      (fringe             "#121212")
-      (modeline           "#292929")
-      (region             "#00077a")
+      (BG  (when (theme/display-colors) "#000000"))
+      (FG  (when (theme/display-colors) "#FFFFFF"))
+      (cursor                           "#DB0600")
+      (border                           "#0000FF")
+      (fringe                           "#121212")
+      (modeline                         "#292929")
+      (region                           "#00077a")
 
-      (xcode/builtin      "#4C99EB")
-      (xcode/comment      "#FF6805")
-      (xcode/function     "#EBD900")
-      (xcode/keyword      "#00FF15")
-      (xcode/string       "#00FFC0")
-      (xcode/type         "#FF47F3")
-      (xcode/variable     "#1492FF"))
-  (if (display-graphic-p)
-      (setq BG "#000000"
-            FG "#CCCCCC")
-    (setq BG "unspecified-bg"
-          FG "unspecified-fg"))
+      (xcode/builtin                    "#4C99EB")
+      (xcode/comment                    "#FF6805")
+      (xcode/function                   "#EBD900")
+      (xcode/keyword                    "#00FF15")
+      (xcode/string                     "#00FFC0")
+      (xcode/type                       "#FF47F3")
+      (xcode/variable                   "#1492FF"))
+
   (custom-theme-set-faces
    'xcode-dark
 
