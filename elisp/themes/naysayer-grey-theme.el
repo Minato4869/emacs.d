@@ -37,7 +37,7 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
-   `(minibuffer-prompt            ((,class (:inherit forground :bold t))))
+   `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
    `(mode-line                    ((,class (:inverse-video t))))
    ;; `(region                        ((,class (:background ,region-bg
    ;;                                           :foreground ,region-fg))))
