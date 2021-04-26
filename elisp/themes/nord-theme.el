@@ -117,6 +117,7 @@
   (nord13 (if (nord-display-truecolor-or-graphic-p) "#EBCB8B" "yellow"))
   (nord14 (if (nord-display-truecolor-or-graphic-p) "#A3BE8C" "green"))
   (nord15 (if (nord-display-truecolor-or-graphic-p) "#B48EAD" "magenta"))
+  (nord-fringe (if (nord-display-truecolor-or-graphic-p) "#364055" "brightblack")) ;; was 384257
   (nord-annotation (if (nord-display-truecolor-or-graphic-p) "#D08770" "brightyellow"))
   (nord-attribute (if (nord-display-truecolor-or-graphic-p) "#8FBCBB" "cyan"))
   (nord-class (if (nord-display-truecolor-or-graphic-p) "#8FBCBB" "cyan"))
@@ -219,7 +220,8 @@
     `(custom-state ((,class (:foreground ,nord14))))
     `(custom-themed ((,class (:foreground ,nord8 :background ,nord2))))
     `(cursor ((,class (:background ,nord4))))
-    `(fringe ((,class (:foreground ,nord4 :background ,nord0))))
+;;    `(fringe ((,class (:foreground ,nord4 :background ,nord0))))
+    `(fringe ((,class (:foreground ,nord4 :background ,nord-fringe))))
     `(file-name-shadow ((,class (:inherit shadow))))
     `(header-line ((,class (:foreground ,nord4 :background ,nord2))))
     `(help-argument-name ((,class (:foreground ,nord8))))
@@ -511,7 +513,7 @@
    `(diff-hl-change ((,class (:background ,nord13))))
    `(diff-hl-insert ((,class (:background ,nord14))))
    `(diff-hl-delete ((,class (:background ,nord11))))
-   
+
     ;; > Evil
     `(evil-ex-info ((,class (:foreground ,nord8))))
     `(evil-ex-substitute-replacement ((,class (:foreground ,nord9))))

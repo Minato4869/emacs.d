@@ -6,7 +6,7 @@
 ;;;
 (custom-set-variables
  '(initial-scratch-message
-   ";; Unfortunately, there's a radio connected to my brain
+";; Unfortunately, there's a radio connected to my brain
 ;; Actually, it's the BBC controlling us from London.
 
 ")
