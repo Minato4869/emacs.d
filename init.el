@@ -91,7 +91,7 @@ Errors will be logged to the buffer *Init Errors*"
   (display-time-mode t)
   (display-battery-mode t)
 
-;;  (keychain-refresh-environment)
+  (keychain-refresh-environment)
 
   (load-library "custom-terminal-mode")
   (load-library "custom-font-mode")
