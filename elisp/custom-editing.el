@@ -218,8 +218,7 @@
 																					(kill-buffer buffer)))))
 (defun custom-bury-buffer ()
   (if (not (or (equal (buffer-name) "*scratch*")
-							 (equal (buffer-name) "reminder.org")
-               (equal (buffer-name) "plan.org")))
+							 (string-match "^\\(reminder\\|plan\\).*" (buffer-name))))
       t
 		(message "Not allowed to kill %s, burying instead" (buffer-name))
     (bury-buffer) nil))
