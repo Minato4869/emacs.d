@@ -170,6 +170,7 @@
   ;; windows
  ("M-o"       . other-window)
  ("C-x C-o"   . transpose-windows)
+ ("C-c C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
