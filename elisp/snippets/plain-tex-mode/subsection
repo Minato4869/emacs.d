@@ -2,9 +2,6 @@
 # name: subsec
 # key: subsec
 # --
-
-% - * subsection -----------------------------------------------
-\beginsection { ${subsectionname} }
-
+\beginsection { ${subsectionname} } %% subsection
 
 $0

@@ -10,12 +10,14 @@
 (unless (file-directory-p "~/.fonts/Meslo-Font")
   (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
 
-(if(< (display-pixel-height) 1440)
-    (setq cfont/default-small cfont/6x13
-          cfont/default       cfont/6x13
-          cfont/size          "12")
+(cond
+ ((< (display-pixel-height) 1440)
+  (setq cfont/default-small cfont/6x13
+        cfont/default       cfont/6x13
+        cfont/size          "12"))
+ (t
   (setq cfont/default-small cfont/small
-        cfont/default       cfont/medium))
+        cfont/default       cfont/medium)))
 
 (defun cfont/set-font (&optional myfont)
     (set-face-attribute 'default t :font myfont)

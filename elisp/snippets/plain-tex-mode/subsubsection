@@ -2,9 +2,6 @@
 # name: subsubsec
 # key: subsubsec
 # --
-
-% - * subsubsection ----------------------------------
-\beginsection {\bigcmr {\bf\quad $1 }}
-
+\beginsection {\bigcmr {\bf\quad $1 }} %% subsubsection
 
 $0

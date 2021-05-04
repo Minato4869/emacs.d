@@ -113,3 +113,12 @@
           (split-string (buffer-substring start end)) ", ")))
     (delete-region start end)
     (insert insertion)))
+
+(defun desktop-restore-session ()
+  (interactive)
+  (find-file "~/.local/emacs/.emacs.desktop")
+  (desktop-revert))
+
+(defun reset-emacs ()
+  (interactive)
+  (load "~/.emacs.d/init.el"))

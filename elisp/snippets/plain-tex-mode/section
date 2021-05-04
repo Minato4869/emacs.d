@@ -2,10 +2,6 @@
 # name: sec
 # key: sec
 # --
+\beginsection {\bigbf ${sectionname}} % section
 
-% - * section ------------------------------------------------------------
-\beginsection {\bigbf ${sectionname}}
-
-
-%
 $0
