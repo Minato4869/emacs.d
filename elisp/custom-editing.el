@@ -88,7 +88,7 @@
 																	(setq standard-indent 2)
 																	(cedit/indent-conf 2 t nil 80)))
 (add-hook 'org-mode-hook       (lambda ()
-																	(setq electric-indent-local-mode -1)))
+																	(electric-indent-local-mode -1)))
 (defun guess-tab-settings ()
 	(save-excursion
 	  (goto-char (point-min))
