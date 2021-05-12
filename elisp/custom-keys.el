@@ -172,6 +172,7 @@
  ("C-x C-o"   . transpose-windows)
  ("C-c C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
+ ("<f1>"      . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map

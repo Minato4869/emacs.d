@@ -18,7 +18,8 @@
 							;; whitespace
 							show-trailing-whitespace nil
 							;; gpg
-							epg-gpg-home-directory "~/.gnupg")
+							epg-gpg-home-directory "~/.gnupg"
+							ispell-dictionary "de_AT")
 ;; region
 (transient-mark-mode 1)
 (delete-selection-mode t)
