@@ -61,21 +61,25 @@
 
 ;; fixme mode
 (defgroup fixme nil
-  "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours")
+  "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours") ;; were underlined
 (defface font-lock-fixme-face
-  '((t (:foreground "Red" :bold t :underline t)))
+  '((t (:foreground "#FFC0CB" :bold t))) ;; was red
   "Font lock face for TODO comments"
   :group 'fixme)
+(defface font-lock-done-face
+  '((t (:foreground "#98fb98C0CB" :bold t)))
+  "Font lock face for DONE comments"
+  :group 'fixme)
 (defface font-lock-study-face
-  '((t (:foreground "Yellow" :bold t :underline t)))
+  '((t (:foreground "Yellow" :bold t)))
   "Font lock face for STUDY comments"
   :group 'fixme)
 (defface font-lock-important-face
-  '((t (:foreground "Yellow" :bold t :underline t)))
+  '((t (:foreground "red" :bold t))) ;; was Yellow
   "Font lock face for IMPORTANT comments"
   :group 'fixme)
 (defface font-lock-note-face
-  '((t (:foreground "Dark Green" :bold t :underline t)))
+  '((t (:foreground "Dark Green" :bold t)))
   "Font lock face for NOTE comments"
   :group 'fixme)
 
@@ -84,6 +88,7 @@
    (font-lock-add-keywords
     mode
     '(("\\<\\(TODO\\)"      . 'font-lock-fixme-face)
+      ("\\<\\(DONE\\)"      . 'font-lock-done-face)
       ("\\<\\(STUDY\\)"     . 'font-lock-study-face)
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))

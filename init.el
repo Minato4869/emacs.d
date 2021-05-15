@@ -3,7 +3,7 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-;;;
+;
 (custom-set-variables
  '(initial-scratch-message
 ";; Unfortunately, there's a radio connected to my brain
@@ -19,10 +19,9 @@
  '(size-indication-mode t)
  '(column-number-mode t)
  '(package-selected-packages
-   (quote
-    (markdown-mode ace-window notmuch puppet-mode yasnippet use-package magit
-                   keychain-environment haskell-mode diminish
-                   auctex  notmuch)))
+   '(ace-window notmuch puppet-mode yasnippet use-package magit
+                keychain-environment haskell-mode diminish
+                auctex))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
@@ -34,7 +33,6 @@
  '(use-dialog-box nil))
 
 (savehist-mode 1)
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
 (defvar gnu-archive   '("gnu"   . "https://elpa.gnu.org/packages/"))

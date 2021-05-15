@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: added
+# key: added
+# --
+* added `(format-time-string "%Y-%m-%d")`
+$0

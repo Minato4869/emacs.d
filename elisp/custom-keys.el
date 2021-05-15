@@ -7,8 +7,8 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-C"))
-(global-unset-key (kbd "<C-up>"))
-(global-unset-key (kbd "<C-down>"))
+;;(global-unset-key (kbd "<C-up>"))
+;;(global-unset-key (kbd "<C-down>"))
 ;;(global-unset-key (kbd "<f3>"))
 ;;(global-unset-key (kbd "<f4>"))
 (global-unset-key (kbd "M-l"))
@@ -183,12 +183,9 @@
 ;; man pages
 (require 'man)
 (bind-keys :map Man-mode-map
-           ("q"      . kill-buffer-and-window)
-           ("<up>"   . scroll-line-up)
-           ("<down>" . scroll-line-down)
+           ("C-q"      . kill-buffer-and-window)
            ("k"      . scroll-line-up)
            ("j"      . scroll-line-down)
-           ("/"      . isearch-forward)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
 ;; view mode
