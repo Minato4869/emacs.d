@@ -121,4 +121,6 @@
 
 (defun reset-emacs ()
   (interactive)
+  (setq default-frame-alist
+        `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))

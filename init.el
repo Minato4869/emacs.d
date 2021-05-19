@@ -3,10 +3,10 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-;
+                                        ;
 (custom-set-variables
  '(initial-scratch-message
-";; Unfortunately, there's a radio connected to my brain
+   ";; Unfortunately, there's a radio connected to my brain
 ;; Actually, it's the BBC controlling us from London.
 
 ")
@@ -70,42 +70,35 @@ Errors will be logged to the buffer *Init Errors*"
        (let (buf (get-buffer-create "*Init Errors*"))
          (with-temp-buffer
            (erase-buffer) (insert "Error in '" lib
-                   ":\n  " (error-message-string err) "\n")
+                                  ":\n  " (error-message-string err) "\n")
            (print "**")
            (print (car err))
            (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
-(load-library "custom-editing")
-(load-library "custom-keys")
-(load-library "custom-functions")
-(load-library "custom-internal-modes")
+(load-library-wrap-error "custom-editing")
+(load-library-wrap-error "custom-keys")
+(load-library-wrap-error "custom-functions")
+(load-library-wrap-error "custom-internal-modes")
 
 (when (or (daemonp) (display-graphic-p))
-  (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
-    (menu-bar-mode -1)
-    (scroll-bar-mode -1)
-    (tool-bar-mode -1))
-
   (tooltip-mode -1)
   (display-time-mode t)
   (display-battery-mode t)
 
-  (keychain-refresh-environment)
-
-  (load-library "custom-terminal-mode")
-  (load-library "custom-font-mode")
+  (load-library-wrap-error "custom-terminal-mode")
+  (load-library-wrap-error "custom-font-mode")
 
   (setq confirm-kill-emacs 'yes-or-no-p)
 
-  (setq default-frame-alist
-        `((width  . 80) (height . 48)))) ;; was 48 and 58 for 1440p
+  (when (daemonp)
+		(keychain-refresh-environment)
+		(load-library-wrap-error "custom-desktop-save")
+		(let ((ln "~/.emacs.local.el")
+					(pl "~/.local/emacs.personal.el"))
+			(when (file-regular-p ln)
+				(load-file ln))
+			(when (file-regular-p pl)
+				(load-file pl)))))
 
-(load-library "custom-external-modes")
-(load-library "custom-aliases")
-(load-library "custom-theme")
-
-(let ((ln "~/.emacs.local.el")
-      (pl "~/.local/emacs.personal.el"))
-  (when (file-regular-p ln)
-    (load-file ln))
-  (when (file-regular-p pl)
-    (load-file pl)))
+(load-library-wrap-error "custom-external-modes")
+(load-library-wrap-error "custom-aliases")
+(load-library-wrap-error "custom-theme")

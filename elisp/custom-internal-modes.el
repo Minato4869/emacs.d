@@ -65,6 +65,7 @@
 ;; dired
 (use-package dired-x
   :ensure nil
+  :defer t
   :config
   (progn
     (defun cdired/x-mode-setup ()
@@ -113,6 +114,7 @@
 
 (use-package dired
   :ensure nil
+  :defer t
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
@@ -130,6 +132,7 @@
 ;; tex
 (use-package tex
   :ensure nil
+  :defer t
   :config
   (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
         font-latex-fontify-sectioning 'color
