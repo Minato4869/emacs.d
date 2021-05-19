@@ -97,7 +97,8 @@ Errors will be logged to the buffer *Init Errors*"
 			(when (file-regular-p ln)
 				(load-file ln))
 			(when (file-regular-p pl)
-				(load-file pl)))))
+				(load-file pl)))
+		))
 
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")

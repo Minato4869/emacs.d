@@ -2,4 +2,4 @@
 # name: todo
 # key: todo
 # --
-* TODO `(format-time-string "%Y-%m-%d")` $0
+* TODO ymd$0
