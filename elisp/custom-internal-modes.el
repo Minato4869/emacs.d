@@ -65,7 +65,6 @@
 ;; dired
 (use-package dired-x
   :ensure nil
-  :defer t
   :config
   (progn
     (defun cdired/x-mode-setup ()
@@ -114,7 +113,6 @@
 
 (use-package dired
   :ensure nil
-  :defer t
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)

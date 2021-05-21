@@ -130,6 +130,9 @@
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
+ ("s--"       . balance-windows)
+ ("s-="       . balance-windows)
+ ("s-0"       . balance-windows)
  ("C-5"       . match-paren)
  ("C-c C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)

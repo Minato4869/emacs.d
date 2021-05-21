@@ -80,16 +80,23 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-internal-modes")
 
 (when (or (daemonp) (display-graphic-p))
+	(unless (file-regular-p "~/git/dotfiles/x11/Xresources")
+    (menu-bar-mode -1)
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1))
+
   (tooltip-mode -1)
-  (display-time-mode t)
-  (display-battery-mode t)
+
 
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
 
   (setq confirm-kill-emacs 'yes-or-no-p)
-
+  (setq default-frame-alist
+        `((width  . 80) (height . 48))) ;; was 48 and 58 for 1440p
   (when (daemonp)
+		(display-time-mode t)
+		(display-battery-mode t)
 		(keychain-refresh-environment)
 		(load-library-wrap-error "custom-desktop-save")
 		(let ((ln "~/.emacs.local.el")

@@ -1,4 +1,4 @@
-  (deftheme gl-grey
+(deftheme gl-grey
   "gl-grey theme")
 ;; (defun theme/display-colors ()
 ;;  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
@@ -10,20 +10,7 @@
       (border                           "#FF00FF")
       (fringe                           "#1A1A1A")
       (region-bg                        "#114488")
-      (region-fg                        "#E5E5E5")
-
-      (gl/builtin                       "#E5E5E5")
-      (gl/comment                       "#E5E5E5")
-      (gl/constant                      "#E5E5E5")
-      (gl/function                      "#E5E5E5")
-      (gl/keyword                       "#E5E5E5")
-      (gl/string                        "#E5E5E5")
-      (gl/type                          "#E5E5E5")
-      (gl/variable                      "#E5E5E5")
-      (org-level-2                      "#E5E5E5")
-      (org-level-3                      "#E5E5E5")
-      (org-level-4                      "#E5E5E5")
-      (org-level-5                      "#E5E5E5"))
+      (region-fg                        "#E5E5E5"))
 
   (setq global-font-lock-mode nil)
   (custom-theme-set-faces
@@ -36,18 +23,18 @@
    `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
    `(region                       ((,class (:background ,region-bg :foreground ,FG))))
 
-   `(font-lock-builtin-face       ((,class (:foreground ,gl/fg))))
-   `(font-lock-comment-face       ((,class (:foreground ,gl/fg))))
-   `(font-lock-constant-face      ((,class (:foreground ,gl/fg))))
-   `(font-lock-function-name-face ((,class (:foreground ,gl/fg))))
-   `(font-lock-keyword-face       ((,class (:foreground ,gl/fg))))
-   `(font-lock-string-face        ((,class (:foreground ,gl/fg))))
-   `(font-lock-type-face          ((,class (:foreground ,gl/fg))))
-   `(font-lock-variable-name-face ((,class (:foreground ,gl/fg))))
+   `(font-lock-builtin-face       ((,class (:inherit foreground))))
+   `(font-lock-comment-face       ((,class (:inherit foreground))))
+   `(font-lock-constant-face      ((,class (:inherit foreground))))
+   `(font-lock-function-name-face ((,class (:inherit foreground))))
+   `(font-lock-keyword-face       ((,class (:inherit foreground))))
+   `(font-lock-string-face        ((,class (:inherit foreground))))
+   `(font-lock-type-face          ((,class (:inherit foreground))))
+   `(font-lock-variable-name-face ((,class (:inherit foreground))))
 
-   `(org-level-2                  ((,class (:foreground ,org-level-2))))
-   `(org-level-3                  ((,class (:foreground ,org-level-3))))
-   `(org-level-4                  ((,class (:foreground ,org-level-4))))
-   `(org-level-5                  ((,class (:foreground ,org-level-5))))))
+   `(org-level-2                  ((,class (:inherit foreground))))
+   `(org-level-3                  ((,class (:inherit foreground))))
+   `(org-level-4                  ((,class (:inherit foreground))))
+   `(org-level-5                  ((,class (:inherit foreground))))))
 
 (provide-theme 'gl-grey)
