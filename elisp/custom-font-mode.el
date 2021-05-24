@@ -9,14 +9,12 @@
 (unless (file-directory-p "~/.fonts/Meslo-Font")
   (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
 
-(cond
- ((< (display-pixel-height) 1440)
-  (setq cfont/default-small cfont/6x13
-        cfont/default       cfont/small
-        cfont/size          "12"))
- (t
+(if (< (display-pixel-height) 1440)
+    (setq cfont/default-small cfont/6x13
+          cfont/default       cfont/small
+          cfont/size          "12")
   (setq cfont/default-small cfont/small
-        cfont/default       cfont/medium)))
+        cfont/default       cfont/medium))
 
 (defun cfont/set-font (&optional myfont)
     (set-face-attribute 'default t :font myfont)
@@ -50,10 +48,6 @@
  ("M-<f8>"   . ttf-font)
  ("M-S-<f8>" . presentation-font))
 
-(when (display-graphic-p)
-  (if (file-directory-p "/usr/local/share/fonts/X11/misc")
-      (default-font)
-    (ttf-font)))
 (defalias 'df          'default-font)
 (defalias 'dfs         'default-small-font)
 (defalias 'ttf         'ttf-font)

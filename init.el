@@ -3,7 +3,6 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-                                        ;
 (custom-set-variables
  '(initial-scratch-message
    ";; Unfortunately, there's a radio connected to my brain
@@ -38,13 +37,12 @@
 (defvar gnu-archive   '("gnu"   . "https://elpa.gnu.org/packages/"))
 (defvar elpa-archive  '("elpa"  . "https://elpa.gnu.org/packages/"))
 (defvar melpa-archive '("melpa" . "https://melpa.org/packages/"))
-(push elpa-archive package-archives)
-(push gnu-archive package-archives)
+(push elpa-archive  package-archives)
+(push gnu-archive   package-archives)
 (push melpa-archive package-archives)
 (setq package-archives (nreverse package-archives))
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install-selected-packages))
+  (package-refresh-contents))
 
 (require 'use-package)
 (require 'bind-key)
@@ -87,13 +85,14 @@ Errors will be logged to the buffer *Init Errors*"
 
   (tooltip-mode -1)
 
-
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
 
   (setq confirm-kill-emacs 'yes-or-no-p)
-  (setq default-frame-alist
-        `((width  . 80) (height . 48))) ;; was 48 and 58 for 1440p
+  (add-hook 'before-make-frame-hook
+            (lambda ()
+              (setq default-frame-alist
+                    `((width  . 80) (height . 48))))) ;; was 48 and 58 for 1440p
   (when (daemonp)
 		(display-time-mode t)
 		(display-battery-mode t)
