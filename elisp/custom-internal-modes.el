@@ -116,7 +116,6 @@
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("q"          . quit-window)
         ("<return>"   . dired-find-file)
         ("C-<return>" . dired-find-file-other-window)
         ("<right>"    . dired-find-or-view)
