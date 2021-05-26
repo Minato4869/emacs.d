@@ -7,8 +7,6 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-C"))
-;;(global-unset-key (kbd "<C-up>"))
-;;(global-unset-key (kbd "<C-down>"))
 ;;(global-unset-key (kbd "<f3>"))
 ;;(global-unset-key (kbd "<f4>"))
 (global-unset-key (kbd "M-l"))
@@ -162,6 +160,8 @@
  ("C-c 1"     . shell-command)
  ("C-c 7"     . async-shell-command)
  ;; buffer
+ ("<M-left>"  . previous-buffer)
+ ("<M-right>" . next-buffer)
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)
