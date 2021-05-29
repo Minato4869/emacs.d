@@ -2,8 +2,8 @@
   "default-dark theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG)
-      (FG)
+      (BG  (when (theme/display-colors) "#000000"))
+      (FG  (when (theme/display-colors) "#BEBEBE"))
       (cursor             "#DB0600") ;; was #FF0000
       (border             "#0000FF")
       (fringe             "#1A1A1A")
@@ -18,7 +18,8 @@
       (dt/comment         "#FF7F24")
       (dt/constant        "#7FFFD4")
       (dt/function        "#87CEFA")
-      (dt/keyword         "#1E90FF") ;; was #00ffff
+      (dt/keyword         "#00FFFF") ;; default
+;;      (dt/keyword         "#1E90FF")
       (dt/string          "#FFA07A")
       (dt/type            "#98FB98")
       (dt/variable        "#EEDD82"))
