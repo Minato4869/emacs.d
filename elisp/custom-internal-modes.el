@@ -168,7 +168,8 @@
     (tab-bar-mode t)
     (setq tab-bar-close-button-show nil
           tab-bar-new-button-show nil
-          tab-bar-tab-hints t)
+          tab-bar-tab-hints t
+          tabbar-use-images nil)
     :bind
     (("C-c <left>"      . tab-bar-switch-to-prev-tab)
      ("C-c <right>"     . tab-bar-switch-to-next-tab)
@@ -178,4 +179,7 @@
      ("M-<right>"       . tab-bar-switch-to-next-tab)
      ("M-s b"           . tab-bar-switch-to-prev-tab)
      ("M-s f"           . tab-bar-switch-to-next-tab)
+     ("M-s 0"           . tab-bar-close-tab)
+     ("M-s x"           . tab-bar-close-tab)
+     ("M-s 4"           . tab-bar-new-tab)
      ("M-s c"           . tab-bar-new-tab))))
