@@ -32,14 +32,14 @@
   (cido/lazy-ido-enable)
   (call-interactively 'ido-dired))
 
-(use-package ido
-  :ensure nil
-  :bind
-  (("s-d"     . cido/lazy-ido-dired)
-   ("C-x C-f" . cido/lazy-ido-find-file)
-   ("C-x d"   . cido/lazy-ido-dired)
-   ("C-x b"   . cido/lazy-ido-switch-buffer)
-   ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
+(use-package ido :ensure nil)
+
+(bind-keys*
+ ("s-d"     . cido/lazy-ido-dired)
+ ("C-x C-f" . cido/lazy-ido-find-file)
+ ("C-x d"   . cido/lazy-ido-dired)
+ ("C-x b"   . cido/lazy-ido-switch-buffer)
+ ("C-c b"   . cido/lazy-ido-switch-buffer-other-window))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ibuffer
 (use-package ibuffer
@@ -56,8 +56,6 @@
   (("C-x C-b"   . ibuffer)
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
-        ("C-x C-f" . cido/lazy-ido-find-file)
-        ("M-o" . other-window)
         ("s"   . isearch-forward)
         ("/"   . isearch-forward)
         ("r"   . ibuffer-redisplay)))
@@ -116,7 +114,6 @@
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("<return>"   . dired-find-file)
         ("C-<return>" . dired-find-file-other-window)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)

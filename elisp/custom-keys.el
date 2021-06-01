@@ -6,20 +6,13 @@
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
-(global-unset-key (kbd "C-C"))
-;;(global-unset-key (kbd "<f3>"))
-;;(global-unset-key (kbd "<f4>"))
-(global-unset-key (kbd "M-l"))
 
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
          (define-key m (kbd "C-w")        'kill-region)
-         (define-key m (kbd "<S-delete>") 'kill-region)
          (define-key m (kbd "M-L")        'downcase-region)
-         (define-key m (kbd "C-x C-l")    'downcase-region)
-         (define-key m (kbd "M-U")        'upcase-region)
          (define-key m (kbd "C-x C-u")    'upcase-region)
          (define-key m (kbd "C-M-/")      'indent-region)
          (define-key m (kbd "M-|")        'shell-command-on-region)
@@ -105,13 +98,17 @@
         (display-line-numbers-mode 1)
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
-
+(defun text-scale-reset ()
+  (interactive)
+  (text-scale-set 0))
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
   ("C-x C-SPC" . rectangle-mark-mode)
   ("C-c SPC"   . cua-rectangle-mark-mode)
-  ("C-x C-@"   . rectangle-mark-mode))
+  ("C-x C-@"   . rectangle-mark-mode)
+  ("M-o"       . other-window)
+  )
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -119,6 +116,7 @@
  ("C-c h"     . help)
  ;; editing
  ("C-x 5"     . query-replace)
+ ("C-x C-5"   . query-replace-regexp)
  ("C-c 5"     . query-replace-regexp)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
@@ -128,9 +126,6 @@
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
- ("s--"       . balance-windows)
- ("s-="       . balance-windows)
- ("s-0"       . balance-windows)
  ("C-5"       . match-paren)
  ("C-c C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
@@ -171,9 +166,7 @@
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . ibuffer)
   ;; windows
- ("M-o"       . other-window)
  ("C-x C-o"   . transpose-windows)
- ("C-c C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("<f1>"      . transpose-windows)
  ("C-x t"     . transpose-lines))
@@ -186,39 +179,24 @@
 ;; man pages
 (require 'man)
 (bind-keys :map Man-mode-map
-           ("C-q"      . kill-buffer-and-window)
+           ("C-q"    . kill-buffer-and-window)
            ("k"      . scroll-line-up)
-           ("j"      . scroll-line-down)
-           ("g"      . beginning-of-buffer)
+           ("C-f"    . scroll-line-down)
+           ("C-b"    . beginning-of-buffer)
            ("G"      . end-of-buffer))
 ;; view mode
 (require 'view)
 (bind-keys :map view-mode-map
-           ("v"      . View-exit)
            ("C-q"    . View-quit)
-           ("q"      . kill-buffer-and-window)
-           ("<left>" . kill-buffer-and-window)
-           ("C-g"    . kill-buffer-and-window)
-           ("s-1"    . kill-buffer-and-window)
-;;           ("s-0"    . kill-buffer-and-window)
-           ("<up>"   . scroll-line-up)
-           ("<down>" . scroll-line-down)
-           ("k"      . scroll-line-up)
-           ("j"      . scroll-line-down)
-           ("/"      . isearch-forward)
+           ("C-f"    . scroll-line-up)
+           ("C-b"    . scroll-line-down)
            ("g"      . beginning-of-buffer)
            ("G"      . end-of-buffer))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
-  ;; disabled keybinds
-(global-unset-key (kbd "C-x C-="))
-(global-unset-key (kbd "C-x C--"))
-(global-unset-key (kbd "C-x C-+"))
 ;; custom functions
-(defun text-scale-reset ()
-  (interactive)
-  (text-scale-set 0))
+
 ;;; copy and paste
 (defun yank-primary ()
   "Yank primary selection."
@@ -227,43 +205,28 @@
 
 (bind-keys
  ("C-M-v"           . yank-primary)
+ ("<insert>"        . yank-primary)
  ("s-5"             . query-replace-regexp)
  ;; windows
  ("C-2"             . split-window-below)
  ("C-3"             . split-window-right)
  ("C-4"             . make-frame-command)
- ;; ("s-1"             . delete-other-windows)
  ("s-2"             . split-window-below)
  ("s-3"             . split-window-right)
  ("s-4"             . make-frame-command)
  ("C-x 4"           . make-frame-command)
-;; ("s-0"             . delete-window)
  ("C-x M-o"         . other-frame)
  ;; buffers
  ("s-d"             . dired-jump)
  ("s-r"             . revert-buffer)
  ("s-b"             . ibuffer)
  ;; text scale
- ("C-="             . text-scale-increase)
- ("C--"             . text-scale-decrease)
- ;; custom functions
  ("C-0"             . text-scale-reset)
+ ("C--"             . text-scale-decrease)
+ ("C-="             . text-scale-increase)
+ ;; custom functions
  ("C-c o"           . other-frame)
- ("<s-left>"        . previous-buffer)
- ("<s-right>"       . next-buffer)
  ;; window transposing
  ("M-RET"           . transpose-windows)
- ("<C-M-return>"    . transpose-windows)
- ("s-t"             . transpose-windows)
- ("s-o"             . transpose-windows))
+ ("s-o"             . transpose-windows)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; xmonad
-(unless (file-regular-p "~/.altwm")
-  (bind-keys
-   ("<M-tab>"      . other-window)
-   ("<M-iso-lefttab>" . backward-other-window)
-   ("<s-[>"        . shrink-window)
-   ("<s-]>"        . enlarge-window)
-   ("M-["          . shrink-window-horizontally)
-   ("M-]"          . enlarge-window-horizontally)
-   ("M-S-SPC"      . balance-windows))))
