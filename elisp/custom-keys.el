@@ -6,7 +6,6 @@
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
-
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -55,7 +54,7 @@
   "Suspend frame inside of a terminal instance of Emacs."
   (interactive)
   (if (display-graphic-p)
-      (message "Suspend frame is disabled for X1 1frames of emacs")
+      (message "Suspend frame is disabled for X11 frames of emacs")
     (suspend-frame)))
 
 (defun transpose-windows (arg)
@@ -155,8 +154,6 @@
  ("C-c 1"     . shell-command)
  ("C-c 7"     . async-shell-command)
  ;; buffer
- ("<M-left>"  . previous-buffer)
- ("<M-right>" . next-buffer)
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)

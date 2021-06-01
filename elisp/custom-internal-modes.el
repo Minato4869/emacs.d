@@ -159,3 +159,23 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; tex
+(when (daemonp)
+  (use-package tab-bar
+    :ensure nil
+    :config
+    (tab-bar-mode t)
+    (setq tab-bar-close-button-show nil
+          tab-bar-new-button-show nil
+          tab-bar-tab-hints t)
+    :bind
+    (("C-c <left>"      . tab-bar-switch-to-prev-tab)
+     ("C-c <right>"     . tab-bar-switch-to-next-tab)
+     ("M-s <left>"      . tab-bar-switch-to-prev-tab)
+     ("M-s <right>"     . tab-bar-switch-to-next-tab)
+     ("M-<left>"        . tab-bar-switch-to-prev-tab)
+     ("M-<right>"       . tab-bar-switch-to-next-tab)
+     ("M-s b"           . tab-bar-switch-to-prev-tab)
+     ("M-s f"           . tab-bar-switch-to-next-tab)
+     ("M-s c"           . tab-bar-new-tab))))

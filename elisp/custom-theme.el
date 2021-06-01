@@ -131,7 +131,10 @@
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
-;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg))))
+ ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg))))
+ '(tab-bar                      ((t (:background "#333333" :face "6x13"))))
+ '(tab-bar-tab-inactive         ((t (:background "#333333" :foreground "#e5e5e5"))))
+ '(tab-bar-tab                  ((t (:background "#666666" :foreground "#e5e5e5"))))
  )
 
 (cond
