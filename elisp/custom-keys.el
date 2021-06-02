@@ -38,7 +38,9 @@
   "If a buffer is within its own window, kill both"
   (interactive)
   (if (one-window-p)
-      (kill-current-buffer)
+      (progn
+        (kill-current-buffer)
+        (tab-bar-close-tab))
     (progn
       (kill-current-buffer)
       (delete-and-balance-window))))
@@ -107,6 +109,7 @@
   ("C-c SPC"   . cua-rectangle-mark-mode)
   ("C-x C-@"   . rectangle-mark-mode)
   ("M-o"       . other-window)
+  ("C-c C-k"   . kill-buffer-and-window)
   )
 ;; custom keys
 (bind-keys
@@ -126,7 +129,6 @@
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
  ("C-5"       . match-paren)
- ("C-c C-k"   . kill-buffer-and-window)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)

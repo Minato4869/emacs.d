@@ -99,7 +99,7 @@ Errors will be logged to the buffer *Init Errors*"
 		(keychain-refresh-environment)
 		(load-library-wrap-error "custom-desktop-save")
 		(let ((ln "~/.emacs.local.el")
-					(pl "~/.local/emacs.personal.el"))
+					(pl "~/.emacs.personal.el"))
 			(when (file-regular-p ln)
 				(load-file ln))
 			(when (file-regular-p pl)

@@ -159,8 +159,8 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; tex
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; tab bar
 (when (daemonp)
   (use-package tab-bar
     :ensure nil
@@ -177,8 +177,13 @@
      ("M-s <right>"     . tab-bar-switch-to-next-tab)
      ("M-<left>"        . tab-bar-switch-to-prev-tab)
      ("M-<right>"       . tab-bar-switch-to-next-tab)
-     ("M-s b"           . tab-bar-switch-to-prev-tab)
-     ("M-s f"           . tab-bar-switch-to-next-tab)
+     ("M-s M-s"         . tab-bar-switch-to-recent-tab)
+     ("M-s s"           . tab-bar-switch-to-tab)
+     ("M-s p"           . tab-bar-switch-to-prev-tab)
+     ("M-s n"           . tab-bar-switch-to-next-tab)
+     ("M-s x"           . tab-bar-close-tab)
+     ("M-s k"           . tab-bar-close-tab)
+     ("M-s f"           . find-file-other-tab)
      ("M-s 0"           . tab-bar-close-tab)
      ("M-s x"           . tab-bar-close-tab)
      ("M-s 4"           . tab-bar-new-tab)
