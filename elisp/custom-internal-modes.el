@@ -32,14 +32,14 @@
   (cido/lazy-ido-enable)
   (call-interactively 'ido-dired))
 
-(use-package ido
-  :ensure nil
-  :bind
-  (("s-d"     . cido/lazy-ido-dired)
-   ("C-x C-f" . cido/lazy-ido-find-file)
-   ("C-x d"   . cido/lazy-ido-dired)
-   ("C-x b"   . cido/lazy-ido-switch-buffer)
-   ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
+(use-package ido :ensure nil)
+
+(bind-keys*
+ ("s-d"     . cido/lazy-ido-dired)
+ ("C-x C-f" . cido/lazy-ido-find-file)
+ ("C-x d"   . cido/lazy-ido-dired)
+ ("C-x b"   . cido/lazy-ido-switch-buffer)
+ ("C-c b"   . cido/lazy-ido-switch-buffer-other-window))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ibuffer
 (use-package ibuffer
@@ -56,8 +56,6 @@
   (("C-x C-b"   . ibuffer)
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
-        ("C-x C-f" . cido/lazy-ido-find-file)
-        ("M-o" . other-window)
         ("s"   . isearch-forward)
         ("/"   . isearch-forward)
         ("r"   . ibuffer-redisplay)))
@@ -116,7 +114,6 @@
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("<return>"   . dired-find-file)
         ("C-<return>" . dired-find-file-other-window)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)
@@ -162,3 +159,27 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; tex
+(when (daemonp)
+  (use-package tab-bar
+    :ensure nil
+    :config
+    (tab-bar-mode t)
+    (setq tab-bar-close-button-show nil
+          tab-bar-new-button-show nil
+          tab-bar-tab-hints t
+          tabbar-use-images nil)
+    :bind
+    (("C-c <left>"      . tab-bar-switch-to-prev-tab)
+     ("C-c <right>"     . tab-bar-switch-to-next-tab)
+     ("M-s <left>"      . tab-bar-switch-to-prev-tab)
+     ("M-s <right>"     . tab-bar-switch-to-next-tab)
+     ("M-<left>"        . tab-bar-switch-to-prev-tab)
+     ("M-<right>"       . tab-bar-switch-to-next-tab)
+     ("M-s b"           . tab-bar-switch-to-prev-tab)
+     ("M-s f"           . tab-bar-switch-to-next-tab)
+     ("M-s 0"           . tab-bar-close-tab)
+     ("M-s x"           . tab-bar-close-tab)
+     ("M-s 4"           . tab-bar-new-tab)
+     ("M-s c"           . tab-bar-new-tab))))
