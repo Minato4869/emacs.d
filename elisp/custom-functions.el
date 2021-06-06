@@ -100,8 +100,9 @@
  ("<f6>"     . ccompile/recompile)
  ("C-c <f6>" . compile-parent)
  ("C-<f6>"   . compile))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; misc
+;; desktop save
 (defun arrayify (start end quote)
   "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
   (interactive "r\nMQuote: ")
@@ -122,3 +123,11 @@
   (setq default-frame-alist
         `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; notes
+(defun load-note (file)
+  (find-file (concat "~/" file))
+  (auto-revert-mode)
+  (org-mode)
+  (end-of-buffer))
