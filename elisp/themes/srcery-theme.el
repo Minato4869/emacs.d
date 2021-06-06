@@ -1753,16 +1753,16 @@
       (,srcery-256-class (:inherit region :foreground ,srcery-256-bright-white :box (:line-width 1 :style released-button)))))
 
    `(org-level-1
-     ((,srcery-class (:weight bold :foreground ,srcery-bright-blue :height ,(if srcery-org-height 1.3 1.0)))
-      (,srcery-256-class (:weight bold :foreground ,srcery-256-bright-blue :height ,(if srcery-org-height 1.3 1.0)))))
+     ((,srcery-class (:weight bold :foreground ,srcery-bright-blue :weight extra-bold ))
+      (,srcery-256-class (:weight bold :foreground ,srcery-256-bright-blue :weight extra-bold))))
 
    `(org-level-2
-     ((,srcery-class (:weight bold :foreground ,srcery-green :height ,(if srcery-org-height 1.2 1.0)))
-      (,srcery-256-class (:weight bold :foreground ,srcery-256-green :height ,(if srcery-org-height 1.2 1.0)))))
+     ((,srcery-class (:weight bold :foreground ,srcery-green :weight bold))
+      (,srcery-256-class (:weight bold :foreground ,srcery-256-green :weight bold))))
 
    `(org-level-3
-     ((,srcery-class (:bold nil :foreground ,srcery-yellow :height ,(if srcery-org-height 1.1 1.0)))
-      (,srcery-256-class (:bold nil :foreground ,srcery-256-yellow :height ,(if srcery-org-height 1.1 1.0)))))
+     ((,srcery-class (:bold nil :foreground ,srcery-yellow :weight semi-bold))
+      (,srcery-256-class (:bold nil :foreground ,srcery-256-yellow :weight semi-bold))))
 
    `(org-level-4
      ((,srcery-class (:bold nil :foreground ,srcery-blue))
