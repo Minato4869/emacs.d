@@ -27,7 +27,12 @@
       (nay/highlight-bg    "#B4EEEB4")
       (nay/highlight-fg    "#0000080")
 
-      (nay/warning         "#0000080"))
+      (nay/warning         "#0000080")
+
+      (org-level-2                      "#C8D4EC")
+      (org-level-3                      "#FFFFFF")
+      (org-level-4                      "#FFFF00")
+      (org-level-5                      "#8FEE90"))
 
   (custom-theme-set-faces
    'naysayer-grey
@@ -57,6 +62,11 @@
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))
+
+   `(org-level-2                  ((,class (:foreground ,org-level-2))))
+   `(org-level-3                  ((,class (:foreground ,org-level-3))))
+   `(org-level-4                  ((,class (:foreground ,org-level-4))))
+   `(org-level-5                  ((,class (:foreground ,org-level-5))))
    ))
 
 

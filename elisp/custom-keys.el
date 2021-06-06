@@ -6,6 +6,7 @@
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
+(global-unset-key (kbd "M-l"))
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -128,6 +129,9 @@
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
+ ("s--"       . balance-windows)
+ ("s-="       . balance-windows)
+ ("s-0"       . balance-windows)
  ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
@@ -156,6 +160,8 @@
  ("C-c 1"     . shell-command)
  ("C-c 7"     . async-shell-command)
  ;; buffer
+ ("<M-left>"  . previous-buffer)
+ ("<M-right>" . next-buffer)
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)

@@ -412,9 +412,12 @@
      ((,srcery-class (:foreground ,srcery-gray-4))
       (,srcery-256-class (:foreground ,srcery-256-gray-4))))
 
+;;   `(region
+;;     ((,srcery-class (:inverse-video t :background ,srcery-gray-3))
+;;      (,srcery-class (:inverse-video t :background ,srcery-256-gray-3))))
    `(region
-     ((,srcery-class (:inverse-video t :background ,srcery-gray-3))
-      (,srcery-class (:inverse-video t :background ,srcery-256-gray-3))))
+     ((,srcery-class (:background ,srcery-gray-3))
+      (,srcery-class (:background ,srcery-256-gray-3))))
 
    `(secondary-selection
      ((,srcery-class (:background ,srcery-gray-3))
@@ -1752,6 +1755,17 @@
      ((,srcery-class (:inherit region :foreground ,srcery-bright-white :box (:line-width 1 :style released-button)))
       (,srcery-256-class (:inherit region :foreground ,srcery-256-bright-white :box (:line-width 1 :style released-button)))))
 
+;;   `(org-level-1
+;;     ((,srcery-class (:weight bold :foreground ,srcery-bright-blue :height ,(if srcery-org-height 1.3 1.0)))
+;;      (,srcery-256-class (:weight bold :foreground ,srcery-256-bright-blue :height ,(if srcery-org-height 1.3 1.0)))))
+;;
+;;   `(org-level-2
+;;     ((,srcery-class (:weight bold :foreground ,srcery-green :height ,(if srcery-org-height 1.2 1.0)))
+;;      (,srcery-256-class (:weight bold :foreground ,srcery-256-green :height ,(if srcery-org-height 1.2 1.0)))))
+;;
+;;   `(org-level-3
+;;     ((,srcery-class (:bold nil :foreground ,srcery-yellow :height ,(if srcery-org-height 1.1 1.0)))
+;;      (,srcery-256-class (:bold nil :foreground ,srcery-256-yellow :height ,(if srcery-org-height 1.1 1.0)))))
    `(org-level-1
      ((,srcery-class (:weight bold :foreground ,srcery-bright-blue :weight extra-bold ))
       (,srcery-256-class (:weight bold :foreground ,srcery-256-bright-blue :weight extra-bold))))
@@ -1763,7 +1777,6 @@
    `(org-level-3
      ((,srcery-class (:bold nil :foreground ,srcery-yellow :weight semi-bold))
       (,srcery-256-class (:bold nil :foreground ,srcery-256-yellow :weight semi-bold))))
-
    `(org-level-4
      ((,srcery-class (:bold nil :foreground ,srcery-blue))
       (,srcery-256-class (:bold nil :foreground ,srcery-256-blue))))
