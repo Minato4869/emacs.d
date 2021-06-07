@@ -147,7 +147,7 @@
      ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
 
      ("Spell" "(TeX-ispell-document \"\")"
-    TeX-run-function nil t :help "Spell-check the
+      TeX-run-function nil t :help "Spell-check the
                 document")
      ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
@@ -162,34 +162,48 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; tab bar
 (when (daemonp)
-  (use-package tab-bar
-    :ensure nil
-    :config
-    (tab-bar-mode t)
-    (setq tab-bar-close-button-show nil
-          tab-bar-new-button-show nil
-          tab-bar-tab-hints t
-          tabbar-use-images nil)
-    (defun tab-bar-close-current-tab ()
-      (interactive)
-      (when (y-or-n-p "Close current tab? ")
-        (tab-bar-close-tab)))
-    :bind
-    (("C-c <left>"      . tab-bar-switch-to-prev-tab)
-     ("C-c <right>"     . tab-bar-switch-to-next-tab)
-     ("M-s <left>"      . tab-bar-switch-to-prev-tab)
-     ("M-s <right>"     . tab-bar-switch-to-next-tab)
-     ("M-<left>"        . tab-bar-switch-to-prev-tab)
-     ("M-<right>"       . tab-bar-switch-to-next-tab)
-     ("C-M-<left>"        . tab-bar-switch-to-prev-tab)
-     ("C-M-<right>"       . tab-bar-switch-to-next-tab)
-     ("M-s M-s"         . tab-bar-switch-to-recent-tab)
-     ("M-s s"           . tab-bar-switch-to-tab)
-     ("M-s p"           . tab-bar-switch-to-prev-tab)
-     ("M-s n"           . tab-bar-switch-to-next-tab)
-     ("M-s x"           . tab-bar-close-current-tab)
-     ("M-s k"           . tab-bar-close-current-tab)
-     ("M-s 0"           . tab-bar-close-tab)
-     ("M-s f"           . find-file-other-tab)
-     ("M-s 4"           . tab-bar-new-tab)
-     ("M-s c"           . tab-bar-new-tab))))
+  (tab-bar-mode t))
+(use-package tab-bar
+  :ensure nil
+  :config
+  (setq tab-bar-close-button-show nil
+        tab-bar-new-button-show nil
+        tab-bar-tab-hints t
+        tabbar-use-images nil)
+  (defun tab-bar-close-current-tab ()
+    (interactive)
+    (when (y-or-n-p "Close current tab? ")
+      (tab-bar-close-tab)))
+  :bind
+  (("M-s <left>"      . tab-bar-switch-to-prev-tab)
+   ("M-s <right>"     . tab-bar-switch-to-next-tab)
+   ("M-<left>"        . tab-bar-switch-to-prev-tab)
+   ("M-<right>"       . tab-bar-switch-to-next-tab)
+   ("C-M-<left>"      . tab-bar-switch-to-prev-tab)
+   ("C-M-<right>"     . tab-bar-switch-to-next-tab)
+   ("M-s M-s"         . tab-bar-switch-to-recent-tab)
+   ("M-s s"           . tab-bar-switch-to-tab)
+   ("M-s p"           . tab-bar-switch-to-prev-tab)
+   ("M-s n"           . tab-bar-switch-to-next-tab)
+   ("M-s x"           . tab-bar-close-current-tab)
+   ("M-s k"           . tab-bar-close-current-tab)
+   ("M-s 0"           . tab-bar-close-tab)
+   ("M-s f"           . find-file-other-tab)
+   ("M-s 4"           . tab-bar-new-tab)
+   ("M-s c"           . tab-bar-new-tab)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; org
+(use-package org
+  :defer t
+  :ensure nil
+  :config
+  (progn
+    (setq org-highlight-latex-and-related
+          '(latex script entities)
+          indent-rigidly t
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t
+          org-confirm-babel-evaluate nil
+          org-edit-preserve-indentation nil
+          org-edit-src-content-indentation 0)
+    (cedit/indent-conf 2 nil nil)))

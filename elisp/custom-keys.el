@@ -2,8 +2,8 @@
 ;; Custom keybinds
 
 ;; disabled keybinds
-(global-unset-key (kbd "<f1>"))
-(global-unset-key (kbd "<f2>"))
+;;(global-unset-key (kbd "<f1>"))
+;;(global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "M-l"))
@@ -52,6 +52,26 @@
   (if (eq (point) (line-beginning-position))
       (delete-indentation)
     (kill-line (- 1 arg))))
+
+
+;; zsh like C-a/C-e
+(defun beginning-or-prev-line ()
+  "Kill ARG lines backward."
+  (interactive)
+  (if (eq (point) (line-beginning-position))
+      (progn
+        (previous-line)
+        (beginning-of-line))
+    (beginning-of-line)))
+
+(defun end-or-next-line ()
+  "Kill ARG lines backward."
+  (interactive)
+  (if (eq (point) (line-end-position))
+      (progn
+        (next-line)
+        (end-of-line))
+    (end-of-line)))
 
 (defun custom-suspend-frame ()
   "Suspend frame inside of a terminal instance of Emacs."
@@ -115,6 +135,8 @@
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
+ ("C-a"       . beginning-or-prev-line)
+ ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)
  ("C-c h"     . help)
  ;; editing
@@ -160,8 +182,6 @@
  ("C-c 1"     . shell-command)
  ("C-c 7"     . async-shell-command)
  ;; buffer
- ("<M-left>"  . previous-buffer)
- ("<M-right>" . next-buffer)
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
  ("<M-prior>" . previous-buffer)

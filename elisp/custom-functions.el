@@ -64,7 +64,6 @@
       (setq input (read-string "ag: ")))
     (ag/search-string input)))
 
-(bind-key* "C-c C-s" 'ag)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
 ;; Don’t ask to save files before compilation, just save them.

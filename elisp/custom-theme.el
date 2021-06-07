@@ -124,16 +124,16 @@
  `(line-number                  ((t (:inherit foreground :bold t))))
  `(link                         ((t (:foreground ,ls-directory :underline t))))
  `(mouse                        ((t (:background "grey"))))
-;; `(region                       ((t (:extend t))))
  `(trailing-whitespace          ((t (:background ,trailing-ws))))
  `(whitespace-space             ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-tab               ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
- ;; `(show-paren-match            ((t (:inherit :foreground  :background ,sp-match-bg))))
- '(tab-bar                      ((t (:background "#333333" :face "6x13"))))
- '(tab-bar-tab-inactive         ((t (:background "#333333" :foreground "#e5e5e5")))) ;; was 333333 and e5e5e5
+ ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
+ '(menu                         ((t (:background "#292929" :foreground "#bebebe" ))))
+ '(tab-bar                      ((t (:background "#292929" ))))
+ '(tab-bar-tab-inactive         ((t (:background "#292929" :foreground "#bebebe"))))
  '(tab-bar-tab                  ((t (:background "#666666" :foreground "#e5e5e5"))))
  )
 
