@@ -198,6 +198,7 @@
   :config
   (progn
     (cedit/indent-conf 2 nil nil)
+    (setq-default org-display-custom-times t)
     (setq org-highlight-latex-and-related '(latex script entities)
           indent-rigidly t
           org-src-fontify-natively t
@@ -218,5 +219,8 @@
             ("VALID"    . "palegreen")
             ("BUG"      . "pink")
             ("WONT FIX" . "red")
-            ("FIXED"    . "palegreen")))
+            ("FIXED"    . "palegreen"))
+          org-time-stamp-custom-formats
+          '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
+          )
     ))

@@ -96,8 +96,7 @@
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
       ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
- '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode
-            org-mode))
+ '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
@@ -141,7 +140,7 @@
  '(tab-bar                      ((t (:background "#292929"))))
  '(tab-bar-tab-inactive         ((t (:background "#292929" :foreground "#bebebe"))))
  '(tab-bar-tab                  ((t (:background "#666666" :foreground "#e5e5e5"))))
- )
+)
 
 (cond
  ((getenv "SSH_CONNECTION")

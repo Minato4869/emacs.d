@@ -26,7 +26,8 @@
       (org-level-2                      "#C4A000")
       (org-level-3                      "#729FCF")
       (org-level-4                      "#CC0000")
-      (org-level-5                      "#4E9A06"))
+      (org-level-5                      "#4E9A06")
+      (org-date                         "#2C78BF")) ;; was cyan
   (custom-theme-set-faces
    'gl-dark
 
@@ -53,6 +54,7 @@
    `(org-level-2                  ((,class (:foreground ,org-level-2))))
    `(org-level-3                  ((,class (:foreground ,org-level-3))))
    `(org-level-4                  ((,class (:foreground ,org-level-4))))
-   `(org-level-5                  ((,class (:foreground ,org-level-5))))))
-
+   `(org-level-5                  ((,class (:foreground ,org-level-5))))
+   `(org-date                     ((,class (:foreground ,org-date :underline nil))))
+   ))
 (provide-theme 'gl-dark)

@@ -26,3 +26,5 @@ package-quickstart.el
 local
 *personal*
 .emacs.desktop
+
+bookmarks
