@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wontfix
+# key: wf
+# --
+WONTFIX $0

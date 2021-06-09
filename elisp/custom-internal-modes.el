@@ -32,8 +32,9 @@
   (cido/lazy-ido-enable)
   (call-interactively 'ido-dired))
 
-(use-package ido :ensure nil)
-
+(use-package ido
+  :ensure nil
+  :defer t )
 (bind-keys*
  ("s-d"     . cido/lazy-ido-dired)
  ("C-x C-f" . cido/lazy-ido-find-file)
@@ -56,8 +57,6 @@
   (("C-x C-b"   . ibuffer)
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
-        ("s"   . isearch-forward)
-        ("/"   . isearch-forward)
         ("r"   . ibuffer-redisplay)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; dired
@@ -198,12 +197,26 @@
   :ensure nil
   :config
   (progn
-    (setq org-highlight-latex-and-related
-          '(latex script entities)
+    (cedit/indent-conf 2 nil nil)
+    (setq org-highlight-latex-and-related '(latex script entities)
           indent-rigidly t
           org-src-fontify-natively t
           org-src-tab-acts-natively t
           org-confirm-babel-evaluate nil
           org-edit-preserve-indentation nil
-          org-edit-src-content-indentation 0)
-    (cedit/indent-conf 2 nil nil)))
+          org-adapt-indentation nil
+          org-edit-src-content-indentation 0
+          org-todo-keywords
+          '((sequence "TODO"     "|" "DONE")
+            (sequence "VIABLE" "|" "INVIABLE")
+            (sequence "VALID" "|" "INVALID")
+            (sequence "BUG" "|" "FIXED" "WONT FIX"))
+          org-todo-keyword-faces
+          '(("INVIABLE" . "pink")
+            ("VIABLE"   . "palegreen")
+            ("INVALID"  . "pink")
+            ("VALID"    . "palegreen")
+            ("BUG"      . "pink")
+            ("WONT FIX" . "red")
+            ("FIXED"    . "palegreen")))
+    ))

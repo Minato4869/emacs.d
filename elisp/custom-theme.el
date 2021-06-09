@@ -66,12 +66,16 @@
   "Font lock face for TODO comments"
   :group 'fixme)
 (defface font-lock-done-face
-  '((t (:foreground "#98fb98C0CB" :bold t)))
+  '((t (:foreground "#98fb98" :bold t)))
   "Font lock face for DONE comments"
   :group 'fixme)
 (defface font-lock-study-face
   '((t (:foreground "Yellow" :bold t)))
   "Font lock face for STUDY comments"
+  :group 'fixme)
+(defface font-lock-wontfix-face
+  '((t (:foreground "red" :bold t))) ;; was Yellow
+  "Font lock face for WONTFIX comments"
   :group 'fixme)
 (defface font-lock-important-face
   '((t (:foreground "red" :bold t))) ;; was Yellow
@@ -90,8 +94,10 @@
       ("\\<\\(DONE\\)"      . 'font-lock-done-face)
       ("\\<\\(STUDY\\)"     . 'font-lock-study-face)
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
+      ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
-  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
+ '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode
+            org-mode))
 
 (custom-set-faces
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
