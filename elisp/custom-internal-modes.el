@@ -206,8 +206,8 @@
           org-confirm-babel-evaluate nil
           org-edit-preserve-indentation nil
           org-adapt-indentation nil
-          org-edit-src-content-indentation 0
-          org-todo-keywords
+          org-edit-src-content-indentation 0)
+    (setq org-todo-keywords
           '((sequence "TODO"     "|" "DONE")
             (sequence "VIABLE" "|" "INVIABLE")
             (sequence "VALID" "|" "INVALID")
@@ -222,5 +222,12 @@
             ("FIXED"    . "palegreen"))
           org-time-stamp-custom-formats
           '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
-          )
+    (setq org-capture-templates
+          '(("t" "Todo"     entry (file corg/reminder) "* TODO %<%Y-%m-%d> %?\n")
+            ("r" "Reminder" entry (file corg/reminder) "* TODO %<%Y-%m-%d> %?\n")
+            ("p" "Plan" entry (file corg/plan)         "* TODO %<%Y-%m-%d> %?\n")
+            ("n" "Notes" entry (file corg/notes)       "*  %<%a %e %b (%Y-%m-%d)> %?\n")
+            ("nl" "Local notes" entry (file corg/notes-local) "*  %<%a %e %b (%Y-%m-%d)> %?\n")
+          ))
     )
+  )

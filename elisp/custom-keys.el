@@ -227,7 +227,7 @@
   (insert (gui-get-primary-selection)))
 
 (bind-keys
- ("C-c v"           . yank-primary)
+ ("C-M-v"           . yank-primary)
  ("<insert>"        . yank-primary)
  ("s-5"             . query-replace-regexp)
  ;; windows

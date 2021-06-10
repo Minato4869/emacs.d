@@ -135,6 +135,7 @@
  `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
+;; `(nobreak-space                ((t (:foreground "cyan"))))
  ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
  '(menu                         ((t (:background "#292929" :foreground "#bebebe" ))))
  '(tab-bar                      ((t (:background "#292929"))))

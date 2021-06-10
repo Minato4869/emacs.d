@@ -252,7 +252,7 @@
     `(mode-line-highlight ((,class (:inherit highlight))))
     `(mode-line-inactive ((,class (:foreground ,nord4 :background ,nord-uniform-mode-lines-background))))
     `(next-error ((,class (:inherit error))))
-    `(nobreak-space ((,class (:foreground ,nord3))))
+;;    `(nobreak-space ((,class (:foreground ,nord3))))
     `(outline-1 ((,class (:foreground ,nord8 :weight bold))))
     `(outline-2 ((,class (:inherit outline-1))))
     `(outline-3 ((,class (:inherit outline-1))))
