@@ -223,4 +223,4 @@
           org-time-stamp-custom-formats
           '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
           )
-    ))
+    )
