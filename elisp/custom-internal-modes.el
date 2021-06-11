@@ -223,11 +223,11 @@
           org-time-stamp-custom-formats
           '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
     (setq org-capture-templates
-          '(("t" "Todo"     entry (file corg/reminder) "* TODO %<%Y-%m-%d> %?\n")
-            ("r" "Reminder" entry (file corg/reminder) "* TODO %<%Y-%m-%d> %?\n")
-            ("p" "Plan" entry (file corg/plan)         "* TODO %<%Y-%m-%d> %?\n")
-            ("n" "Notes" entry (file corg/notes)       "*  %<%a %e %b (%Y-%m-%d)> %?\n")
-            ("nl" "Local notes" entry (file corg/notes-local) "*  %<%a %e %b (%Y-%m-%d)> %?\n")
+          '(("t" "Todo"         entry (file corg/reminder)    "* TODO %<%Y-%m-%d> %?\n")
+            ("r" "Reminder"     entry (file corg/reminder)    "* TODO %<%Y-%m-%d> %?\n")
+            ("p" "Plan"         entry (file corg/plan)        "* TODO %<%Y-%m-%d> %?\n")
+            ("n" "Notes"        entry (file corg/notes)       "*  %<%a %e %b (%Y-%m-%d)>\n %?\n")
+            ("l" "Local notes" entry (file corg/notes-local) "*  %<%a %e %b (%Y-%m-%d)>\n %?\n")
           ))
     )
   )
