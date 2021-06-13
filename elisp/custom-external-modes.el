@@ -44,29 +44,30 @@
 	 '(elscreen-tab-control-face        ((t (:background "#292929" :foreground "#bebebe"))))
 	 '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
 	 '(elscreen-tab-other-screen-face   ((t (:background "#292929" :bebebe "#foreground")))))
+	(setq-default elscreen-prefix-key "\M-s")
 	(custom-set-variables
-	  '(elscreen-display-screen-number nil)
-		'(elscreen-tab-display-kill-screen nil)
-		'(elscreen-tab-display-control nil))
+	 '(elscreen-display-screen-number nil)
+	 '(elscreen-tab-display-kill-screen nil)
+	 '(elscreen-tab-display-control nil))
 	(defun elscreen-close-current-tab ()
     (interactive)
     (when (y-or-n-p "Close current screen? ")
       (elscreen-kill)))
 
+	(bind-keys
+   ("M-<left>"        . elscreen-previous)
+   ("M-<right>"       . elscreen-next))
 	(bind-keys*
+	 ("M-["             . elscreen-previous)
+   ("M-]"             . elscreen-next)
 	 ("M-s <left>"      . elscreen-previous)
    ("M-s <right>"     . elscreen-next)
-   ("M-<left>"        . elscreen-previous)
-   ("M-<right>"       . elscreen-next)
-	 ("M-s p"           . elscreen-previous)
-   ("M-s n"           . elscreen-next)
    ("M-s M-s"         . elscreen-toggle)
    ("M-s s"           . elscreen-toggle)
    ("M-s x"           . elscreen-kill)
    ("M-s k"           . elscreen-close-current-tab)
-   ("M-s 0"           . elscreen-close-current-tab)
-   ("M-s 4"           . elscreen-create)
-   ("M-s c"           . elscreen-create)))
+	 ("M-s g"           . elscreen-goto)
+   ("M-s 4"           . elscreen-create)))
 (when (daemonp)
 	(elscreen-start))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,13 +89,13 @@
 	:defer t
 	:bind
 	(:map orgalist-mode-map
-	 ("M-<left>"  . nil)
-	 ("M-<right>" . nil)
-	 ("S-<up>"    . orgalist--maybe-move-up)
-   ("S-<down>"  . orgalist--maybe-move-down)
-   ("S-<left>"  . orgalist--maybe-outdent-tree)
-   ("S-<right>" . orgalist--maybe-indent-tree)
-	 ))
+				("M-<left>"  . nil)
+				("M-<right>" . nil)
+				("S-<up>"    . orgalist--maybe-move-up)
+				("S-<down>"  . orgalist--maybe-move-down)
+				("S-<left>"  . orgalist--maybe-outdent-tree)
+				("S-<right>" . orgalist--maybe-indent-tree)
+				))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; browse-kill-ring

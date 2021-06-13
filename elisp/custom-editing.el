@@ -1,3 +1,5 @@
+;; disable modes
+;; enable modes
 (put 'upcase-region   'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left     'disabled nil)
@@ -202,7 +204,9 @@
                                           (kill-buffer buffer)))))
 (defun custom-bury-buffer ()
   (if (not (or (equal (buffer-name) "*scratch*")
-               (string-match "^\\(reminder\\|plan\\).*" (buffer-name))))
+               (string-match "^\\(reminder\\|plan\\).org.gpg" (buffer-name))
+               (string-match (concat (system-name) ".org.gpg") (buffer-name))
+               (string-match "^notes.org.gpg" (buffer-name))))
       t
     (message "Not allowed to kill %s, burying instead" (buffer-name))
     (bury-buffer) nil))

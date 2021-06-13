@@ -12,8 +12,6 @@
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
          (define-key m (kbd "C-w")        'kill-region)
-         (define-key m (kbd "M-L")        'downcase-region)
-         (define-key m (kbd "C-x C-u")    'upcase-region)
          (define-key m (kbd "C-M-/")      'indent-region)
          (define-key m (kbd "M-|")        'shell-command-on-region)
          (define-key m (kbd "M-:")        'eval-region)
@@ -21,12 +19,6 @@
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 
 ;; custom functions
-(defun delete-and-balance-window ()
-  "Balance remaining windows on deletion."
-  (interactive)
-  (delete-window)
-  (balance-windows))
-
 (defun match-paren (&optional arg)
   "Go to the matching parenthesis character if one is adjacent to point."
   (interactive "^p")
@@ -114,25 +106,17 @@
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
 
-(defun my-beginning-of-line ()
-  (interactive)
-  (unwind-protect
-      (progn
-        (display-line-numbers-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (display-line-numbers-mode -1)))
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
+
 (bind-keys*
   ("C-z"       . undo)
   ("M-u"       . universal-argument)
   ("C-x C-SPC" . rectangle-mark-mode)
   ("C-c SPC"   . cua-rectangle-mark-mode)
   ("C-x C-@"   . rectangle-mark-mode)
-  ("M-o"       . other-window)
-  ("C-c C-k"   . kill-buffer-and-window)
-  )
+  ("M-o"       . other-window))
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -140,6 +124,7 @@
  ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)
  ("C-c h"     . help)
+ ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-x 5"     . query-replace)
  ("C-x C-5"   . query-replace-regexp)
@@ -147,14 +132,11 @@
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
- ("M-U"       . upcase-word)
- ("M-L"       . downcase-word)
+ ("M-U"       . upcase-dwim)
+ ("M-L"       . downcase-dwim)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
- ("s--"       . balance-windows)
- ("s-="       . balance-windows)
- ("s-0"       . balance-windows)
  ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
@@ -166,8 +148,6 @@
  ("<M-down>"  . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
- ("C-c m"     . pop-global-mark)
- ("C-x m"     . exchange-point-and-mark)
  ;; misc
  ("<f9>"      . font-lock-mode)
  ("C-<f9>"    . global-font-lock-mode)
@@ -177,7 +157,6 @@
  ("C-<f11>"   . global-whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
- ("C-x C-d"   . dired-jump)
  ("C-c 1"     . shell-command)
  ("C-c 7"     . async-shell-command)
  ;; buffer
@@ -188,11 +167,8 @@
  ("C-x k"     . kill-current-buffer)
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
- ("C-x C-b"   . ibuffer)
   ;; windows
  ("C-x C-o"   . transpose-windows)
- ("C-c t"     . transpose-windows)
- ("<f1>"      . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map
@@ -241,9 +217,7 @@
  ("C-x 4"           . make-frame-command)
  ("C-x M-o"         . other-frame)
  ;; buffers
- ("s-d"             . dired-jump)
  ("s-r"             . revert-buffer)
- ("s-b"             . ibuffer)
  ;; text scale
  ("C-0"             . text-scale-reset)
  ("C--"             . text-scale-decrease)

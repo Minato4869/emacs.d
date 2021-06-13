@@ -115,6 +115,8 @@
   :ensure nil
   :defer nil
   :bind
+  (("s-d"     . dired-jump)
+   ("C-x C-d" . dired-jump))
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
         ("C-<return>" . dired-find-file-other-window)
