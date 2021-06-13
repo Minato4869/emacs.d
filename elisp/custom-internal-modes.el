@@ -34,7 +34,7 @@
 
 (use-package ido
   :ensure nil
-  :defer t )
+  :defer t)
 (bind-keys*
  ("s-d"     . cido/lazy-ido-dired)
  ("C-x C-f" . cido/lazy-ido-find-file)
@@ -45,6 +45,7 @@
 ;; ibuffer
 (use-package ibuffer
   :ensure nil
+  :defer t
   :config
   (setq ibuffer-formats
         '((mark modified read-only ;; " "(name 25 25 :left :elide)
@@ -53,6 +54,7 @@
                 " " (mode 15 20 :left :elide)
                 " " filename-and-process)
           (mark " " (name 16 -1) " " filename)))
+  (defalias 'ib             'ibuffer)
   :bind
   (("C-x C-b"   . ibuffer)
    ("s-b"       . ibuffer))
@@ -62,6 +64,7 @@
 ;; dired
 (use-package dired-x
   :ensure nil
+  :defer nil
   :config
   (progn
     (defun cdired/x-mode-setup ()
@@ -110,6 +113,7 @@
 
 (use-package dired
   :ensure nil
+  :defer nil
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
@@ -158,43 +162,12 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; tab bar
-(when (daemonp)
-  (tab-bar-mode t))
-(use-package tab-bar
-  :ensure nil
-  :config
-  (setq tab-bar-close-button-show nil
-        tab-bar-new-button-show nil
-        tab-bar-tab-hints t
-        tabbar-use-images nil)
-  (defun tab-bar-close-current-tab ()
-    (interactive)
-    (when (y-or-n-p "Close current tab? ")
-      (tab-bar-close-tab)))
-  :bind
-  (("M-s <left>"      . tab-bar-switch-to-prev-tab)
-   ("M-s <right>"     . tab-bar-switch-to-next-tab)
-   ("M-<left>"        . tab-bar-switch-to-prev-tab)
-   ("M-<right>"       . tab-bar-switch-to-next-tab)
-   ("C-M-<left>"      . tab-bar-switch-to-prev-tab)
-   ("C-M-<right>"     . tab-bar-switch-to-next-tab)
-   ("M-s M-s"         . tab-bar-switch-to-recent-tab)
-   ("M-s s"           . tab-bar-switch-to-tab)
-   ("M-s p"           . tab-bar-switch-to-prev-tab)
-   ("M-s n"           . tab-bar-switch-to-next-tab)
-   ("M-s x"           . tab-bar-close-current-tab)
-   ("M-s k"           . tab-bar-close-current-tab)
-   ("M-s 0"           . tab-bar-close-tab)
-   ("M-s f"           . find-file-other-tab)
-   ("M-s 4"           . tab-bar-new-tab)
-   ("M-s c"           . tab-bar-new-tab)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org
 (use-package org
-  :defer t
   :ensure nil
+  :defer t
   :config
   (progn
     (cedit/indent-conf 2 nil nil)

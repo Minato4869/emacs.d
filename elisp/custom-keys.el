@@ -92,6 +92,7 @@
           (set-window-buffer (funcall selector) this-win)
           (select-window (funcall selector)))
         (setq arg (if (cl-plusp arg) (1- arg) (1+ arg)))
+        (other-window -1)
         (message "Transposing windows")))))
 
 (defun scroll-line-down ()

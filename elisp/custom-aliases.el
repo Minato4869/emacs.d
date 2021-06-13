@@ -25,12 +25,11 @@
 (defalias 'xt            'xterm-mouse-mode)
 (defalias 'ap            'apropos)
 (defalias 'qc            'quick-calc)
-(defalias 'b             'ibuffer)
 (defalias 'dir           'dired-jump)
 (defalias 'linum         'display-line-numbers-mode)
 (defalias 'tr            'toggle-truncate-lines)
 (defalias 'sf            'set-fill-column)
-(defalias 'fci            'display-fill-column-indicator-mode)
+(defalias 'fci           'display-fill-column-indicator-mode)
 ;;
 (defalias 'wu            'winner-undo)
 (defalias 'win-undo      'winner-undo)
@@ -41,6 +40,7 @@
 (defalias 'wredo         'winner-redo)
 (defalias 'qr            'query-replace)
 (defalias 'qrr           'query-replace-regexp)
+(defalias 'b             'balance-windows)
 ;;
 (defalias 'highlight-current-line 'hl-line-mode)
 (defalias 'highlight-line-mode     'hl-line-mode)

@@ -137,11 +137,7 @@
  `(whitespace-line              ((t (:inherit foreground))))
 ;; `(nobreak-space                ((t (:foreground "cyan"))))
  ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
- '(menu                         ((t (:background "#292929" :foreground "#bebebe" ))))
- '(tab-bar                      ((t (:background "#292929"))))
- '(tab-bar-tab-inactive         ((t (:background "#292929" :foreground "#bebebe"))))
- '(tab-bar-tab                  ((t (:background "#666666" :foreground "#e5e5e5"))))
-)
+ '(menu                         ((t (:background "#292929" :foreground "#bebebe")))))
 
 (cond
  ((getenv "SSH_CONNECTION")

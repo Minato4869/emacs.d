@@ -1,11 +1,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; yas
-(defun yas-force-update ()
-  (interactive)
-  (yas-recompile-all)
-  (yas-reload-all))
-(defalias 'yas 'yas-force-update)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; date
 (defun ymd ()
   (interactive)

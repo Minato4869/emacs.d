@@ -17,10 +17,6 @@
  '(display-time-day-and-date t)
  '(size-indication-mode t)
  '(column-number-mode t)
- '(package-selected-packages
-   '(ace-window notmuch puppet-mode yasnippet use-package magit
-                keychain-environment haskell-mode diminish
-                auctex))
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
@@ -42,9 +38,15 @@
 (push melpa-archive package-archives)
 (setq package-archives (nreverse package-archives))
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (require 'use-package)
+(setq use-package-verbose t)
+(defun my-package-install-refresh-contents (&rest args)
+  (package-refresh-contents)
+  (advice-remove 'package-install 'my-package-install-refresh-contents))
+(advice-add 'package-install :before 'my-package-install-refresh-contents)
 (require 'bind-key)
 
 (setq use-package-verbose t
