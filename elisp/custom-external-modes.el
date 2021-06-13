@@ -35,8 +35,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elscreen
-(when (daemonp)
-	(elscreen-start))
 (use-package elscreen
 	:ensure t
 	:defer t
@@ -68,8 +66,9 @@
    ("M-s k"           . elscreen-close-current-tab)
    ("M-s 0"           . elscreen-close-current-tab)
    ("M-s 4"           . elscreen-create)
-   ("M-s c"           . elscreen-create))
-	)
+   ("M-s c"           . elscreen-create)))
+(when (daemonp)
+	(elscreen-start))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; yas
 (use-package yasnippet
