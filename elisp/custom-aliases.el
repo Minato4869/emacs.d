@@ -9,7 +9,6 @@
 (defalias 'gws           'global-whitespace-mode)
 (defalias 'wsg           'global-whitespace-mode)
 (defalias 'ws            'whitespace-mode)
-(defalias 'ln            'display-line-numbers-mode)
 (defalias 'mb            'menu-bar-mode)
 (defalias 'sh            'shell-script-mode)
 (defalias 'el            'emacs-lisp-mode)
