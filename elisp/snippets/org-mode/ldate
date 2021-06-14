@@ -2,4 +2,4 @@
 # name: ldate
 # key: ldate
 # --
-* `(format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")`$0
+* `(format-time "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")`$0

@@ -169,6 +169,7 @@
  ("C-c r"     . revert-buffer)
   ;; windows
  ("C-x C-o"   . transpose-windows)
+ ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
 (bind-keys :map emacs-lisp-mode-map

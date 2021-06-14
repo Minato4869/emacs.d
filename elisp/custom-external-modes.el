@@ -118,6 +118,7 @@
 (use-package projectile           :ensure t :defer t)
 (use-package iflipb               :ensure t :defer t)
 (use-package puppet-mode          :ensure t :defer t)
+(use-package wgrep                :ensure t :defer t)
 
 
 ;;; interesting packages:

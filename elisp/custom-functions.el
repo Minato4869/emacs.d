@@ -2,60 +2,18 @@
 ;; date
 (defun ymd ()
   (interactive)
-  (insert (format-time-string "%Y-%m-%d")))
+  (insert (format-time-string "<%Y-%m-%d>")))
 
 (defun date ()
   (interactive)
-  (insert (format-time-string "%a %e %b (%Y-%m-%d)")))
+  (insert (format-time-string "<%a %e %b (%Y-%m-%d)>")))
 (defun ldate ()
   (interactive)
-  (insert (format-time-string "%a %b %e %H:%M  %Y (%Y-%m-%d)")))
+  (insert (format-time-string "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")))
 
 (defun time ()
   (interactive)
-  (insert (format-time-string "%H:%M")))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ag
-(require 'compile)
-
-(define-compilation-mode ag-mode "Ag"
-  "Ag results compilation mode")
-
-(defun ag/find-file ()
-  (interactive)
-  (let ((filename (buffer-substring (line-beginning-position) (line-end-position))))
-    (if (not (string-match "^[^:numeric:]+\:" filename))
-        (find-file-at-point (concat default-directory filename))
-      (message "Current line does not contain a filename"))))
-
-(defun ag/kill-buffer ()
-  (interactive)
-  (let
-      (kill-buffer-query-functions)
-    (kill-buffer)))
-(bind-keys :map ag-mode-map
-           ("<return>" . ag/find-file)
-           ("f"        . ag/find-file)
-           ("p"        . backkward-paragraph)
-           ("n"        . forward-paragraph)
-           ("k"        . ag/kill-buffer))
-
-
-(defun ag/search-string (string)
-  (progn
-    (setq string (prin1-to-string string)) ;; escape special chars
-    (set (make-local-variable 'command-string)
-         (concat "ag -Q -S " string))
-    (compilation-start command-string #'ag-mode)))
-
-(defun ag ()
-  (interactive)
-  (let (input)
-    (if (use-region-p)
-        (setq input (buffer-substring-no-properties (region-beginning) (region-end)))
-      (setq input (read-string "ag: ")))
-    (ag/search-string input)))
+  (insert (format-time-string "<%H:%M>")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
