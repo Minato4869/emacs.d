@@ -183,10 +183,10 @@
           org-adapt-indentation nil
           org-edit-src-content-indentation 0)
     (setq org-todo-keywords
-          '((sequence "TODO"     "|" "DONE")
+          '((sequence "TODO"   "|" "DONE")
             (sequence "VIABLE" "|" "INVIABLE")
-            (sequence "VALID" "|" "INVALID")
-            (sequence "BUG" "|" "FIXED" "WONT FIX"))
+            (sequence "VALID"  "|" "INVALID")
+            (sequence "BUG"    "|" "FIXED" "WONT FIX"))
           org-todo-keyword-faces
           '(("INVIABLE" . "pink")
             ("VIABLE"   . "palegreen")
@@ -196,13 +196,17 @@
             ("WONT FIX" . "red")
             ("FIXED"    . "palegreen"))
           org-time-stamp-custom-formats
-          '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
+          '("<%Y-%m-%d>" . "<%a %b %e (%Y-%m-%d)>"))
+;;          '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
     (setq org-capture-templates
-          '(("t" "Todo"         entry (file corg/reminder)    "* TODO %<%Y-%m-%d> %?\n")
-            ("r" "Reminder"     entry (file corg/reminder)    "* TODO %<%Y-%m-%d> %?\n")
-            ("p" "Plan"         entry (file corg/plan)        "* TODO %<%Y-%m-%d> %?\n")
-            ("n" "Notes"        entry (file corg/notes)       "*  %<%a %e %b (%Y-%m-%d)>\n %?\n")
-            ("l" "Local notes" entry (file corg/notes-local) "*  %<%a %e %b (%Y-%m-%d)>\n %?\n")
+          '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
+            ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
+            ("p" "Plan"         entry (file corg/plan)        "* TODO %t %?\n")
+            ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
+            ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
+            ("m" "Misc notes"   entry (file corg/misc)        "* %T\n%?\n")
+            ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
+            ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
           ))
     )
   )
