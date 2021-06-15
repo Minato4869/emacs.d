@@ -110,7 +110,7 @@
 (use-package auctex               :ensure t :defer t)
 (use-package dumb-jump            :ensure t :defer t)
 (use-package haskell-mode         :ensure t :defer t)
-(use-package keychain-environment :ensure t :defer nil)
+(use-package keychain-environment :ensure t :defer t)
 (use-package goto-chg             :ensure t :defer t)
 (use-package go-mode              :ensure t :defer t)
 (use-package lua-mode             :ensure t :defer t)
