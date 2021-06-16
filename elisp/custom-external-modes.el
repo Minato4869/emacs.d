@@ -53,21 +53,21 @@
     (interactive)
     (when (y-or-n-p "Close current screen? ")
       (elscreen-kill)))
-
-	(bind-keys
-   ("M-<left>"        . elscreen-previous)
+	:bind
+	(("M-<left>"        . elscreen-previous)
    ("M-<right>"       . elscreen-next))
-	(bind-keys*
-	 ("M-["             . elscreen-previous)
-   ("M-]"             . elscreen-next)
-	 ("M-s <left>"      . elscreen-previous)
-   ("M-s <right>"     . elscreen-next)
-   ("M-s M-s"         . elscreen-toggle)
-   ("M-s s"           . elscreen-toggle)
-   ("M-s x"           . elscreen-kill)
-   ("M-s k"           . elscreen-close-current-tab)
-	 ("M-s g"           . elscreen-goto)
-   ("M-s 4"           . elscreen-create)))
+	:bind*
+	 (("M-["             . elscreen-previous)
+		("M-]"             . elscreen-next)
+		("M-s <left>"      . elscreen-previous)
+		("M-s <right>"     . elscreen-next)
+		("M-s M-s"         . elscreen-toggle)
+		("M-s s"           . elscreen-toggle)
+		("M-s x"           . elscreen-kill)
+		("M-s k"           . elscreen-close-current-tab)
+		("M-s g"           . elscreen-goto)
+		("M-s 4"           . elscreen-create)))
+
 (when (daemonp)
 	(elscreen-start))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -86,7 +86,7 @@
 ;; orgalist
 (use-package orgalist
   :ensure t
-	:defer t
+	:defer nil
 	:bind
 	(:map orgalist-mode-map
 				("M-<left>"  . nil)

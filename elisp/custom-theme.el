@@ -99,6 +99,8 @@
  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
 
 (custom-set-faces
+ `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"
+                                               :box  (:line-width -1 :style released-button)))))
  `(Man-overstrike               ((t (:foreground ,man-red :bold t))))
  `(Man-underline                ((t (:foreground ,man-green :underline nil :bold t))))
  `(diff-added                   ((t (:foreground "green"))))

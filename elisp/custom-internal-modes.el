@@ -34,13 +34,13 @@
 
 (use-package ido
   :ensure nil
-  :defer t)
-(bind-keys*
- ("s-d"     . cido/lazy-ido-dired)
- ("C-x C-f" . cido/lazy-ido-find-file)
- ("C-x d"   . cido/lazy-ido-dired)
- ("C-x b"   . cido/lazy-ido-switch-buffer)
- ("C-c b"   . cido/lazy-ido-switch-buffer-other-window))
+  :defer t
+  :bind*
+ (("s-d"     . cido/lazy-ido-dired)
+  ("C-x C-f" . cido/lazy-ido-find-file)
+  ("C-x d"   . cido/lazy-ido-dired)
+  ("C-x b"   . cido/lazy-ido-switch-buffer)
+  ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ibuffer
 (use-package ibuffer
@@ -209,4 +209,6 @@
             ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
           ))
     )
+  :bind
+  ("C-c C-." . date)
   )

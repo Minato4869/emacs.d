@@ -17,6 +17,8 @@
  '(display-time-day-and-date t)
  '(size-indication-mode t)
  '(column-number-mode t)
+ '(diff-switches "-urN") ;; no separators; use +/- instead of >/<, unify
+ '(dired-auto-revert-buffer t)
  '(whitespace-style
    '(face trailing tabs spaces lines newline empty indentation space-after-tab
           space-before-tab space-mark tab-mark))
