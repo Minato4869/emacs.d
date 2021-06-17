@@ -10,7 +10,7 @@
 (set-keyboard-coding-system 'utf-8)
 
 (set-default 'truncate-lines t) ;; dont break lines at window edge
-
+(defvaralias 'c-basic-offset 'tab-width)
 (setq-default default-input-method "rfc1345"
               frame-title-format '("" "emacs@" system-name " - %b")
               require-final-newline t
@@ -21,29 +21,29 @@
               show-trailing-whitespace nil
               ;; gpg
               epg-gpg-home-directory "~/.gnupg"
-              ispell-dictionary "de_AT")
-;; region
-(transient-mark-mode 1)
-(delete-selection-mode t)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; mouse
-(setq mouse-autoselect-window t)
-(xterm-mouse-mode 1)
-;; tab width
-(defvaralias 'c-basic-offset 'tab-width)
-(setq-default indent-tabs-mode t
+              ispell-dictionary "de_AT"
+              ;; tab width
+              indent-tabs-mode t
               c-basic-offset 8
               sh-basic-offset 8
               tab-width 8
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry)
+;; region
+(transient-mark-mode 1)
+(delete-selection-mode t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; mouse
+(setq mouse-autoselect-window t)
+(xterm-mouse-mode 1)
+
 
 (defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
         tab-width offset
+        standard-indent offset
         auto-fill-mode autofill
         indent-tabs-mode tabs)
   (when (equal autofill nil)
@@ -54,22 +54,22 @@
 (defun cedit/sh-indent ()
   (setq-default sh-basic-offset 8
                 c-basic-offset 8
+                standard-intent 8
                 tab-width 8
                 fill-column 80
                 indent-tabs-mode nil
                 auto-fill-mode t))
 
 (defun cedit/lisp-indent ()
-  (setq offset 2
-        lisp-body-indent offset)
+  (setq-default offset 2
+                lisp-body-indent offset)
   (auto-fill-mode -1)
-;;  (electric-pair-local-mode 1)
   (cedit/indent-conf offset nil nil))
 
 ;; hooks
 (add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook       'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook       (lambda () (cedit/indent-conf 2 nil nil)))
+(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil nil)))
 (add-hook 'TeX-mode-hook        (lambda () (cedit/indent-conf 2 nil nil)))
 (add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
@@ -170,6 +170,7 @@
       frame-inhibit-implied-resize t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
 (setq auto-mode-alist
       (append auto-mode-alist
               '(("neomutt"       . mail-mode)
@@ -225,4 +226,4 @@
   (mkdir backupdir t)
   (setq backup-directory-alist `(("." . ,backupdir)))
   (mkdir autosavedir t)
-  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave/" t))))
+  (setq auto-save-file-name-transforms `((".*" ,autosavedir t))))

@@ -2,7 +2,7 @@
 ;; ido
 (use-package ido
   :ensure nil
-  :defer nil
+  :defer t
   :config
   (defun cido/lazy-ido-enable ()
     "since ido is loaded with Emacs, use-package cannot defer"
@@ -72,20 +72,19 @@
       (setq-default dired-omit-mode t) ;; Turn on Omit mode.
       (dired-hide-details-mode 1))
     (setq-default dired-omit-files "^\\...+$")
-  (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-  (defun cdired/sort ()
-    "Sort dired listings with directories first."
-    (save-excursion
-      (let (buffer-read-only)
-        (forward-line 2) ;; beyond dir. header
-        (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-      (set-buffer-modified-p nil)))
-  (add-hook 'dired-after-readin-hook 'cdired/sort)
-;;  (defadvice dired-readin
-;;      (after dired-after-updating-hook first () activate)
-;;    "Sort dired listings with directories first before adding marks."
-;;    (cdired/sort))
-  ))
+    (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+    (defun cdired/sort ()
+      "Sort dired listings with directories first."
+      (save-excursion
+        (let (buffer-read-only)
+          (forward-line 2) ;; beyond dir. header
+          (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+        (set-buffer-modified-p nil)))
+    (defadvice dired-readin
+        (after dired-after-updating-hook first () activate)
+      "Sort dired listings with directories first before adding marks."
+      (cdired/sort))))
+;;  (message (concat "Killed Dired buffer: " old-buffer)))
 
 (use-package dired
   :ensure nil
@@ -112,9 +111,7 @@
     (setq old-buffer (buffer-name))
     (dired-jump)
     (kill-buffer old-buffer))
-  ;;  (message (concat "Killed Dired buffer: " old-buffer)))
-
-  :bind
+  :bind*
   (("s-d"     . dired-jump)
    ("C-x C-d" . dired-jump))
   (:map dired-mode-map
@@ -211,3 +208,45 @@
             ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
             )))
   :bind ("C-c C-." . date))
+=======
+  :init (add-hook 'org-mode-hook (lambda () (cedit/indent-conf 2 nil nil)))
+  :config
+  (electric-indent-local-mode -1)
+  (setq-default org-display-custom-times t)
+  (setq org-highlight-latex-and-related '(latex script entities)
+        indent-rigidly t
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-confirm-babel-evaluate nil
+        org-edit-preserve-indentation nil
+        org-adapt-indentation nil
+        org-edit-src-content-indentation 0)
+  (setq org-todo-keywords
+        '((sequence "TODO"   "|" "DONE")
+          (sequence "VIABLE" "|" "INVIABLE")
+          (sequence "VALID"  "|" "INVALID")
+          (sequence "BUG"    "|" "FIXED" "WONT FIX"))
+        org-todo-keyword-faces
+        '(("INVIABLE" . "pink")
+          ("VIABLE"   . "palegreen")
+          ("INVALID"  . "pink")
+          ("VALID"    . "palegreen")
+          ("BUG"      . "pink")
+          ("WONT FIX" . "red")
+          ("FIXED"    . "palegreen"))
+        org-time-stamp-custom-formats
+        '("<%Y-%m-%d>" . "<%a %b %e (%Y-%m-%d)>"))
+  (setq org-capture-templates
+        '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
+          ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
+          ("p" "Plan"         entry (file corg/plan)        "* TODO %t %?\n")
+          ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
+          ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
+          ("m" "Misc notes"   entry (file corg/misc)        "* %T\n%?\n")
+          ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
+          ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
+          ))
+  :bind
+  (:map org-mode-map
+        ("C-c C-." . date)))
+>>>>>>> 287a4b2feb29fbad06f5856fefaf5375712c4e28

@@ -25,8 +25,8 @@
       (call-process term nil 0))))
 
 (defun cterm/open-local-term (term)
- 	(let ((default-directory default-directory))
- 		(start-process term nil term)))
+  (let ((default-directory default-directory))
+    (start-process term nil term)))
 
 (defun run-term ()
   (interactive)  (cterm/open-term "~/bin/rxvt"))
