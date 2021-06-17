@@ -1,46 +1,47 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido
-(defun cido/lazy-ido-enable ()
-  "since ido is loaded with Emacs, use-package cannot defer"
-  (ido-mode t)
-  (setq
-   ido-enable-flex-matching t
-   ido-auto-merge-work-directories-length -1
-   ido-default-buffer-method 'selected-window
-   ido-default-file-method 'selected-window
-   ido-everywhere t)
-  (if (require 'ido-sort-mtime nil t)
-      (ido-sort-mtime-mode t)))
-(defun cido/lazy-ido-switch-buffer ()
-  "ibuffer wrapper"
-  (interactive)
-  (cido/lazy-ido-enable)
-  (call-interactively 'ido-switch-buffer))
-(defun cido/lazy-ido-switch-buffer-other-window ()
-  "ibuffer wrapper"
-  (interactive)
-  (cido/lazy-ido-enable)
-  (call-interactively 'ido-switch-buffer-other-window))
-(defun cido/lazy-ido-find-file ()
-  "find-file wrapper"
-  (interactive)
-  (cido/lazy-ido-enable)
-  (call-interactively 'ido-find-file))
-(defun cido/lazy-ido-dired ()
-  "find-file wrapper"
-  (interactive)
-  (cido/lazy-ido-enable)
-  (call-interactively 'ido-dired))
 
 (use-package ido
   :ensure nil
   :defer t
+  :config
+  (defun cido/lazy-ido-enable ()
+    "since ido is loaded with Emacs, use-package cannot defer"
+    (ido-mode t)
+    (setq
+     ido-enable-flex-matching t
+     ido-auto-merge-work-directories-length -1
+     ido-default-buffer-method 'selected-window
+     ido-default-file-method 'selected-window
+     ido-everywhere t)
+    (if (require 'ido-sort-mtime nil t)
+        (ido-sort-mtime-mode t)))
+  (defun cido/lazy-ido-switch-buffer ()
+    "ibuffer wrapper"
+    (interactive)
+    (cido/lazy-ido-enable)
+    (call-interactively 'ido-switch-buffer))
+  (defun cido/lazy-ido-switch-buffer-other-window ()
+    "ibuffer wrapper"
+    (interactive)
+    (cido/lazy-ido-enable)
+    (call-interactively 'ido-switch-buffer-other-window))
+  (defun cido/lazy-ido-find-file ()
+    "find-file wrapper"
+    (interactive)
+    (cido/lazy-ido-enable)
+    (call-interactively 'ido-find-file))
+  (defun cido/lazy-ido-dired ()
+    "find-file wrapper"
+    (interactive)
+    (cido/lazy-ido-enable)
+    (call-interactively 'ido-dired))
+
   :bind*
- (("s-d"     . cido/lazy-ido-dired)
-  ("C-x C-f" . cido/lazy-ido-find-file)
-  ("C-x d"   . cido/lazy-ido-dired)
-  ("C-x b"   . cido/lazy-ido-switch-buffer)
-  ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
+  (("C-x C-f" . cido/lazy-ido-find-file)
+   ("C-x d"   . cido/lazy-ido-dired)
+   ("C-x b"   . cido/lazy-ido-switch-buffer)
+   ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ibuffer
 (use-package ibuffer
@@ -81,39 +82,38 @@
           (forward-line 2) ;; beyond dir. header
           (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
         (set-buffer-modified-p nil)))
-
     (defadvice dired-readin
         (after dired-after-updating-hook first () activate)
       "Sort dired listings with directories first before adding marks."
-      (cdired/sort))
-    ))
-
-(defun dired-view-file-other-window ()
-  (if (one-window-p)
-      (split-window-horizontally)
-    (split-window-vertically))
-  (other-window 1)
-  (dired-view-file))
-
-(defun dired-find-or-view ()
-  "A `dired-find-file' which only works on directories."
-  (interactive)
-  (let ((find-file-run-dired t)
-        (file (dired-get-file-for-visit)))
-    (if (file-directory-p file)
-        (find-file file)
-      (dired-view-file-other-window))))
-
-(defun dired-jump-previous-dir ()
-  (interactive)
-  (setq old-buffer (buffer-name))
-  (dired-jump)
-  (kill-buffer old-buffer))
+      (cdired/sort))))
 ;;  (message (concat "Killed Dired buffer: " old-buffer)))
 
 (use-package dired
   :ensure nil
   :defer nil
+  :config
+  (defun dired-view-file-other-window ()
+    (interactive)
+    (if (one-window-p)
+        (split-window-horizontally)
+      (split-window-vertically))
+    (other-window 1)
+    (dired-view-file))
+
+  (defun dired-find-or-view ()
+    "A `dired-find-file' which only works on directories."
+    (interactive)
+    (let ((find-file-run-dired t)
+          (file (dired-get-file-for-visit)))
+      (if (file-directory-p file)
+          (find-file file)
+        (dired-view-file-other-window))))
+
+  (defun dired-jump-previous-dir ()
+    (interactive)
+    (setq old-buffer (buffer-name))
+    (dired-jump)
+    (kill-buffer old-buffer))
   :bind
   (("s-d"     . dired-jump)
    ("C-x C-d" . dired-jump))
@@ -170,45 +170,42 @@
 (use-package org
   :ensure nil
   :defer t
+  :init (add-hook 'org-mode-hook (lambda () (cedit/indent-conf 2 nil nil)))
   :config
-  (progn
-    (cedit/indent-conf 2 nil nil)
-    (setq-default org-display-custom-times t)
-    (setq org-highlight-latex-and-related '(latex script entities)
-          indent-rigidly t
-          org-src-fontify-natively t
-          org-src-tab-acts-natively t
-          org-confirm-babel-evaluate nil
-          org-edit-preserve-indentation nil
-          org-adapt-indentation nil
-          org-edit-src-content-indentation 0)
-    (setq org-todo-keywords
-          '((sequence "TODO"   "|" "DONE")
-            (sequence "VIABLE" "|" "INVIABLE")
-            (sequence "VALID"  "|" "INVALID")
-            (sequence "BUG"    "|" "FIXED" "WONT FIX"))
-          org-todo-keyword-faces
-          '(("INVIABLE" . "pink")
-            ("VIABLE"   . "palegreen")
-            ("INVALID"  . "pink")
-            ("VALID"    . "palegreen")
-            ("BUG"      . "pink")
-            ("WONT FIX" . "red")
-            ("FIXED"    . "palegreen"))
-          org-time-stamp-custom-formats
-          '("<%Y-%m-%d>" . "<%a %b %e (%Y-%m-%d)>"))
-;;          '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
-    (setq org-capture-templates
-          '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
-            ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
-            ("p" "Plan"         entry (file corg/plan)        "* TODO %t %?\n")
-            ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
-            ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
-            ("m" "Misc notes"   entry (file corg/misc)        "* %T\n%?\n")
-            ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
-            ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
+  (setq-default org-display-custom-times t)
+  (setq org-highlight-latex-and-related '(latex script entities)
+        indent-rigidly t
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-confirm-babel-evaluate nil
+        org-edit-preserve-indentation nil
+        org-adapt-indentation nil
+        org-edit-src-content-indentation 0)
+  (setq org-todo-keywords
+        '((sequence "TODO"   "|" "DONE")
+          (sequence "VIABLE" "|" "INVIABLE")
+          (sequence "VALID"  "|" "INVALID")
+          (sequence "BUG"    "|" "FIXED" "WONT FIX"))
+        org-todo-keyword-faces
+        '(("INVIABLE" . "pink")
+          ("VIABLE"   . "palegreen")
+          ("INVALID"  . "pink")
+          ("VALID"    . "palegreen")
+          ("BUG"      . "pink")
+          ("WONT FIX" . "red")
+          ("FIXED"    . "palegreen"))
+        org-time-stamp-custom-formats
+        '("<%Y-%m-%d>" . "<%a %b %e (%Y-%m-%d)>"))
+  (setq org-capture-templates
+        '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
+          ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
+          ("p" "Plan"         entry (file corg/plan)        "* TODO %t %?\n")
+          ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
+          ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
+          ("m" "Misc notes"   entry (file corg/misc)        "* %T\n%?\n")
+          ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
+          ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
           ))
-    )
   :bind
-  ("C-c C-." . date)
-  )
+  (:map org-mode-map
+        ("C-c C-." . date)))

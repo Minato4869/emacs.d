@@ -96,7 +96,7 @@
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
       ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
- '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode))
+ '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode puppet-mode))
 
 (custom-set-faces
  `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"

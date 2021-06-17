@@ -52,7 +52,7 @@
  ("C-<f6>"   . compile))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; desktop save
+;; misc
 (defun arrayify (start end quote)
   "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
   (interactive "r\nMQuote: ")
@@ -82,3 +82,9 @@
   (auto-revert-mode)
   (org-mode)
   (end-of-buffer))
+
+;; packages
+(defun my-package-install-refresh-contents (&rest args)
+  (package-refresh-contents)
+  (advice-remove 'package-install 'my-package-install-refresh-contents))
+(advice-add 'package-install :before 'my-package-install-refresh-contents)
