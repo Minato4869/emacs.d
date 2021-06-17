@@ -18,21 +18,6 @@
 	(setq notmuch-search-oldest-first nil
 				notmuch-multipart/alternative-discouraged '()))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; diminish
-(use-package diminish 	;; hide/"diminish" always enabled modes
-	:ensure t
-	:defer nil
-	:config
-	(when (fboundp 'diminish)
-		(progn
-			(diminish 'subword-mode) ;; iterate over camelCase
-			(diminish 'ws-butler-mode)
-			(diminish 'ws-butler-global-mode)
-			(diminish 'yas-minor-mode)
-			(diminish 'eldoc-mode)
-			(diminish 'auto-fill-function))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; elscreen
 (use-package elscreen
@@ -47,8 +32,7 @@
 	(setq-default elscreen-prefix-key "\M-s")
 	(custom-set-variables
 	 '(elscreen-display-screen-number nil)
-	 '(elscreen-tab-display-kill-screen nil)
-	 '(elscreen-tab-display-control nil))
+	 '(elscreen-tab-display-kill-screen nil))
 	(defun elscreen-close-current-tab ()
     (interactive)
     (when (y-or-n-p "Close current screen? ")
@@ -76,17 +60,20 @@
   :ensure t
 	:defer t
 	:config
+	(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 	(defun yas-force-update ()
 		(interactive)
 		(yas-recompile-all)
 		(yas-reload-all))
-	(defalias 'yas 'yas-force-update))
+	(defalias 'yas 'yas-force-update)
+	:init
+	(yas-global-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; orgalist
 (use-package orgalist
   :ensure t
-	:defer nil
+	:defer t
 	:bind
 	(:map orgalist-mode-map
 				("M-<left>"  . nil)
@@ -102,14 +89,22 @@
 (use-package browse-kill-ring
   :ensure t
 	:defer t
-	:config
-	(defalias 'bkr 'browse-kill-ring))
+	:init
+	(defalias 'bkr 'browse-kill-ring)
+	(defalias 'kr  'browse-kill-ring))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; haskell-mode
+(use-package haskell-mode
+	:ensure t
+	:defer t
+	:init
+	(add-hook 'haskell-mode-hook    (lambda () (cedit/indent-conf 2 nil nil 80))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages without config
 (use-package auctex               :ensure t :defer t)
 (use-package dumb-jump            :ensure t :defer t)
-(use-package haskell-mode         :ensure t :defer t)
 (use-package keychain-environment :ensure t :defer t)
 (use-package goto-chg             :ensure t :defer t)
 (use-package go-mode              :ensure t :defer t)
@@ -120,6 +115,21 @@
 (use-package puppet-mode          :ensure t :defer t)
 (use-package wgrep                :ensure t :defer t)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; diminish (must be loaded last)
+(use-package diminish 	;; hide/"diminish" always enabled modes
+	:ensure t
+	:defer nil
+	:config
+	(when (fboundp 'diminish)
+		(progn
+			(diminish 'subword-mode) ;; iterate over camelCase
+			(diminish 'ws-butler-mode)
+			(diminish 'ws-butler-global-mode)
+			(diminish 'yas-minor-mode)
+			(diminish 'eldoc-mode)
+			(diminish 'auto-fill-function))))
 
 ;;; interesting packages:
 ;; narrowed-page-navigation

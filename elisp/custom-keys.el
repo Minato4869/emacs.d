@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Custom keybinds
+;; custom keybinds
 
 ;; disabled keybinds
 ;;(global-unset-key (kbd "<f1>"))

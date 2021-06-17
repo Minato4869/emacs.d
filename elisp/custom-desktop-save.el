@@ -1,4 +1,3 @@
-(load-library "/usr/share/emacs/27.2/lisp/desktop.elc")
 (setq desktop-path '("~/.local/emacs/")
       desktop-dirname "~/.local/emacs/"
       desktop-base-file-name "emacs-desktop")

@@ -58,8 +58,6 @@
   (add-to-list 'load-path basedir)
   (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
-(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
-(yas-global-mode 1)
 ;; custom files
 (setq custom-file "~/.emacs.d/.custom.el")
 (defun load-library-wrap-error (lib)
