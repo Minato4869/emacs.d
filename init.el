@@ -76,27 +76,27 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-internal-modes")
 
 (when (or (daemonp) (display-graphic-p))
-	(unless (file-regular-p "~/git/dotfiles/x11/Xresources")
+  (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
   (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
-  (setq confirm-kill-emacs 'yes-or-no-p)
-
-  (when (daemonp)
-		(add-hook 'before-make-frame-hook
-							(lambda ()
-								(setq default-frame-alist
-											`((width  . 80) (height . 48)))))
-		(display-time-mode t)
-		(display-battery-mode t)
-		(keychain-refresh-environment)
-		(load-library-wrap-error "custom-desktop-save")))
+  (setq confirm-kill-emacs 'yes-or-no-p))
 
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")
 (load-library-wrap-error "custom-theme")
+(when (daemonp)
+  (add-hook 'before-make-frame-hook
+            (lambda ()
+              (setq default-frame-alist
+                    `((width  . 80) (height . 48)))))
+  (display-time-mode t)
+  (display-battery-mode t)
+  (keychain-refresh-environment)
+  (load-library-wrap-error "custom-desktop-save"))
+
 (let ((ln "~/.emacs.local.el")
-			(pl "~/.emacs.personal.el"))
-	(when (file-regular-p ln)	(load-file ln))
-	(when (file-regular-p pl)	(load-file pl)))
+      (pl "~/.emacs.personal.el"))
+  (when (file-regular-p ln) (load-file ln))
+  (when (file-regular-p pl) (load-file pl)))

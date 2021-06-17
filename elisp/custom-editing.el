@@ -43,6 +43,7 @@
 (defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
         tab-width offset
+        standard-indent offset
         auto-fill-mode autofill
         indent-tabs-mode tabs)
   (when (equal autofill nil)
@@ -53,21 +54,22 @@
 (defun cedit/sh-indent ()
   (setq-default sh-basic-offset 8
                 c-basic-offset 8
+                standard-intent 8
                 tab-width 8
                 fill-column 80
                 indent-tabs-mode nil
                 auto-fill-mode t))
 
 (defun cedit/lisp-indent ()
-  (setq offset 2
-        lisp-body-indent offset)
+  (setq-default offset 2
+                lisp-body-indent offset)
   (auto-fill-mode -1)
   (cedit/indent-conf offset nil nil))
 
 ;; hooks
 (add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook       'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook       (lambda () (cedit/indent-conf 2 nil nil)))
+(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil nil)))
 (add-hook 'TeX-mode-hook        (lambda () (cedit/indent-conf 2 nil nil)))
 (add-hook 'haskell-mode-hook    (lambda () (cedit/indent-conf 2 nil nil 80)))
 (add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
@@ -88,8 +90,6 @@
 (add-hook 'text-mode-hook       (lambda ()
                                   (setq standard-indent 2)
                                   (cedit/indent-conf 2 t nil 80)))
-(add-hook 'org-mode-hook       (lambda ()
-                                 (electric-indent-local-mode -1)))
 (defun guess-tab-settings ()
   (save-excursion
     (goto-char (point-min))

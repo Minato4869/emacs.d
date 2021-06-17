@@ -172,6 +172,7 @@
   :defer t
   :init (add-hook 'org-mode-hook (lambda () (cedit/indent-conf 2 nil nil)))
   :config
+  (electric-indent-local-mode -1)
   (setq-default org-display-custom-times t)
   (setq org-highlight-latex-and-related '(latex script entities)
         indent-rigidly t

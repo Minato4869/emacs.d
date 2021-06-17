@@ -4,7 +4,7 @@
 # expand-env: ((yas-indent-line 'fixed))
 # --
 CC = g++
-CFLAGS = -std=c++17 -Wall -Wextra -g
+CFLAGS = -std=c++17 -Wall -Wextra -pedantic -g
 LDLIBS =
 
 .PHONY: all clean
