@@ -24,8 +24,6 @@
   :ensure t
   :defer  t
   :config
-  (when (daemonp)
-    (elscreen-start))
   (custom-set-faces
    '(elscreen-tab-background-face     ((t (:background "#292929"))))
    '(elscreen-tab-control-face        ((t (:background "#292929" :foreground "#bebebe"))))
@@ -50,6 +48,8 @@
     ("M-s x"       . elscreen-kill)
     ("M-s k"       . elscreen-close-current-tab)
     ("M-s g"       . elscreen-goto)))
+(when (daemonp)
+  (elscreen-start))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; yas
 (use-package yasnippet

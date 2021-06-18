@@ -86,10 +86,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")
 (load-library-wrap-error "custom-theme")
-(let ((ln "~/.emacs.local.el")
-      (pl "~/.emacs.personal.el"))
-  (when (file-regular-p ln) (load-file ln))
-  (when (file-regular-p pl) (load-file pl)))
+
 (when (daemonp)
   (add-hook 'before-make-frame-hook
             (lambda ()
@@ -99,3 +96,8 @@ Errors will be logged to the buffer *Init Errors*"
   (display-battery-mode t)
   (keychain-refresh-environment)
   (load-library-wrap-error "custom-desktop-save"))
+
+(let ((ln "~/.emacs.local.el")
+      (pl "~/.emacs.personal.el"))
+  (when (file-regular-p ln) (load-file ln))
+  (when (file-regular-p pl) (load-file pl)))

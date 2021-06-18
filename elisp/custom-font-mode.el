@@ -10,7 +10,7 @@
 
 (if (< (display-pixel-height) 1440)
     (setq cfont/default-small cfont/6x13
-          cfont/default       cfont/small
+          cfont/default       cfont/6x13
           cfont/size          "12")
   (setq cfont/default-small cfont/small
         cfont/default       cfont/medium))
@@ -52,3 +52,5 @@
 (defalias 'menlo  'ttf)
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)
+
+(default-font)
