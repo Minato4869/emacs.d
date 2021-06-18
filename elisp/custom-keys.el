@@ -226,6 +226,5 @@
  ;; custom functions
  ("C-c o"           . other-frame)
  ;; window transposing
- ("M-RET"           . transpose-windows)
  ("s-o"             . transpose-windows)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

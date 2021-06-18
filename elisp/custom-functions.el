@@ -74,15 +74,6 @@
         `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))
 
-;; notes
-(defun load-note (file &optional p_prefix)
-  (if (string= "" p_prefix)
-      (find-file (concat "~/" file))
-    (find-file (concat p_prefix file)))
-  (auto-revert-mode)
-  (org-mode)
-  (end-of-buffer))
-
 ;; packages
 (defun my-package-install-refresh-contents (&rest args)
   (package-refresh-contents)

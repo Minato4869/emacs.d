@@ -205,8 +205,10 @@
             ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
             ("m" "Misc notes"   entry (file corg/misc)        "* %T\n%?\n")
             ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
-            ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n")
-            )))
+            ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
+  (defalias 'ca     'org-capture)
+  (defalias 'agenda 'org-agenda)
+
   :bind
   (:map org-mode-map
         ("C-c C-." . date)))
