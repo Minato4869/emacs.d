@@ -44,7 +44,7 @@
 ;; ibuffer
 (use-package ibuffer
   :ensure nil
-  :defer t
+  :defer nil
   :config
   (setq ibuffer-formats
         '((mark modified read-only ;; " "(name 25 25 :left :elide)
@@ -56,6 +56,7 @@
   (defalias 'ib             'ibuffer)
   :bind
   (("C-x C-b"   . ibuffer)
+   ("C-c b"     . ibuffer-other-window)
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
         ("r"   . ibuffer-redisplay)))
