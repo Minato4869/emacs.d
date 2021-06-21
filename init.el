@@ -9,7 +9,7 @@
 
 ")
  '(default-frame-alist
-    '((width . 81) (height . 56)))
+    '((width . 80) (height . 56)))
  '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
@@ -88,10 +88,6 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-theme")
 
 (when (daemonp)
-  (add-hook 'before-make-frame-hook
-            (lambda ()
-              (setq default-frame-alist
-                    `((width  . 81) (height . 56)))))
   (display-time-mode t)
   (display-battery-mode t)
   (keychain-refresh-environment)

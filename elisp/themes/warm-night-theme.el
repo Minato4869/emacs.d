@@ -98,8 +98,10 @@
    `(org-block ((,class (:foreground ,fg3))))
    `(org-quote ((,class (:inherit org-block :slant italic))))
    `(org-verse ((,class (:inherit org-block :slant italic))))
-   `(org-todo ((,class (:foreground ,keyword :bold t))))
-   `(org-done ((,class (:bold t :foreground ,bg4))))
+;;   `(org-todo ((,class (:foreground ,keyword :bold t)))) ;; default
+   ;;   `(org-done ((,class (:bold t :foreground ,bg4)))) ;; default
+   `(org-todo ((,class (:foreground "Red" :bold t)))) ;; default
+   `(org-done ((,class (:foreground "Dark Green" :bold t)))) ;; default
    `(org-warning ((,class (:underline t :foreground ,warning))))
    `(org-agenda-structure ((,class (:weight bold :foreground ,fg3  :background ,bg3))))
    `(org-agenda-date ((,class (:foreground ,var :height 1.1 ))))

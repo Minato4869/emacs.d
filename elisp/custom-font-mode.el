@@ -52,5 +52,3 @@
 (defalias 'menlo  'ttf)
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)
-
-(default-font)
