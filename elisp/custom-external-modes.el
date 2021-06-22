@@ -57,7 +57,9 @@
   :defer  t
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
-  (yas-global-mode 1)
+	(yas-global-mode 1)
+	(setq yas-prompt-functions '(yas-ido-prompt))
+
   :config
   (defun yas-force-update ()
     (interactive)

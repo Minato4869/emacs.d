@@ -2,4 +2,4 @@
 # name: ymd
 # key: ymd
 # --
-`(format-time-string "<%Y-%m-%d>")`$0
+* `(format-time-string "<%Y-%m-%d>")`$0
