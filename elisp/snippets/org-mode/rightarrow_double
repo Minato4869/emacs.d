@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: Rightarrow
+# key: ra
 # key: Ra
 # --
 \Rightarrow $0

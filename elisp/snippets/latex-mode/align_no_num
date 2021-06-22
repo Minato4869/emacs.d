@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: align no num
-# key: align*
+# key: align
 # --
 \begin{align*}
 $0

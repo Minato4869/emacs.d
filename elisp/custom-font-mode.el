@@ -2,7 +2,7 @@
 (setq  cfont/size   "14"
        cfont/ttf    "Meslo LG S:antialias=true:regular:pixelsize="
        cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
-       cfont/small  "-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1"
+       cfont/small  cfont/6x13
        cfont/medium "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
 
 (unless (file-directory-p "~/.fonts/Meslo-Font")

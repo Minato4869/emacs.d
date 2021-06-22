@@ -8,8 +8,6 @@
 ;; Actually, it's the BBC controlling us from London.
 
 ")
- '(default-frame-alist
-    '((width . 80) (height . 56)))
  '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
@@ -30,6 +28,9 @@
  '(menu-bar-mode nil)
  '(tooltip-mode nil)
  '(use-dialog-box nil))
+(add-hook 'before-make-frame-hook
+          (lambda ()
+            (setq default-frame-alist `((width  . 81) (height . 56)))))
 
 (savehist-mode 1)
 (package-initialize)
