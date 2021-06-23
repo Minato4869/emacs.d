@@ -1,3 +1,6 @@
+;;; interesting packages:
+;; narrowed-page-navigation
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ace-window
 (use-package ace-window
@@ -50,17 +53,20 @@
     ("M-s g"       . elscreen-goto)))
 (when (daemonp)
   (elscreen-start))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; yas
 (use-package yasnippet
   :ensure t
   :defer  t
   :init
-  (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 	(yas-global-mode 1)
-	(setq yas-prompt-functions '(yas-ido-prompt))
 
   :config
+	(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets")
+				yas-prompt-functions '(yas-ido-prompt
+															 yas-completing-prompt
+															 yas-no-prompt))
   (defun yas-force-update ()
     (interactive)
     (yas-recompile-all)
@@ -113,7 +119,6 @@
 (use-package puppet-mode          :ensure t :defer t)
 (use-package wgrep                :ensure t :defer t)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
@@ -124,6 +129,3 @@
   (diminish 'yas-minor-mode)
   (diminish 'eldoc-mode)
   (diminish 'auto-fill-function))
-
-;;; interesting packages:
-;; narrowed-page-navigation
