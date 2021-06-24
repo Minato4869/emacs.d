@@ -46,6 +46,8 @@
   :bind*
    (("M-s <left>"  . elscreen-previous)
     ("M-s <right>" . elscreen-next)
+		("M-h"         . elscreen-previous)
+		("M-l"         . elscreen-next)
     ("M-s M-s"     . elscreen-toggle)
     ("M-s s"       . elscreen-toggle)
     ("M-s x"       . elscreen-kill)
