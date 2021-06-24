@@ -20,9 +20,9 @@
               (message
                "Edit ~/.ssh/config or use tramp via <user>@<host>")
               (call-process term nil 0))
-          (call-process term nil 0 term "-e" "ssh" "-t" "-l"
+          (call-process term nil 0 term "-g" "80x24" "-e" "ssh" "-t" "-l"
                         user host (format "cd %s; exec $SHELL" path)))
-      (call-process term nil 0))))
+      (call-process term nil 0 term "-g" "80x24"))))
 
 (defun cterm/open-local-term (term)
   (let ((default-directory default-directory))

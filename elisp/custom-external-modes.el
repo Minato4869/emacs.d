@@ -46,6 +46,8 @@
   :bind*
    (("M-s <left>"  . elscreen-previous)
     ("M-s <right>" . elscreen-next)
+		("<s-left>"  . elscreen-previous)
+    ("<s-right>" . elscreen-next)
 		("M-h"         . elscreen-previous)
 		("M-l"         . elscreen-next)
     ("M-s M-s"     . elscreen-toggle)
@@ -60,13 +62,12 @@
 ;; yas
 (use-package yasnippet
   :ensure t
-  :defer  t
+  :defer  nil
   :init
+	(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
 	(yas-global-mode 1)
-
   :config
-	(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets")
-				yas-prompt-functions '(yas-ido-prompt
+	(setq yas-prompt-functions '(yas-ido-prompt
 															 yas-completing-prompt
 															 yas-no-prompt))
   (defun yas-force-update ()
