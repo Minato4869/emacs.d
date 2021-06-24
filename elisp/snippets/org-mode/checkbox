@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: checkmark_alt
+# name: checkbox
 # key: [
 # --
-[ ] $0
+- [ ] $0
