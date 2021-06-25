@@ -98,6 +98,16 @@
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode puppet-mode))
 
+(mapc
+ (lambda (mode)
+   (font-lock-add-keywords
+    mode
+    '(("\\<\\(STUDY\\)"     . 'font-lock-study-face)
+      ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
+      ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
+      ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
+ '(org-mode orgalist-mode))
+
 (custom-set-faces
  `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"
                                                :box  (:line-width -1 :style released-button)))))
