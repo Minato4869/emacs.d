@@ -154,15 +154,10 @@
 (cond
  ((getenv "SSH_CONNECTION")
   (load-theme 'warm-night t))
- ((and (display-graphic-p) (not (daemonp))
-  (if (string-equal system-type "windows-nt")
-      (progn
-        (load-theme 'naysayer t)
-        (setq  custom-themes-index 1))
-    (progn
-      (load-theme 'nord t)
-      (setq  custom-themes-index 2)))))
- (t
+ ((string-equal system-type "windows-nt")
+  (load-theme 'naysayer t)
+  (setq  custom-themes-index 1))
+ ((or (daemonp) (not (display-graphic-p)))
   (load-theme 'gl-dark t)))
 
 
