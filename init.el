@@ -30,8 +30,8 @@
  '(use-dialog-box nil))
 (add-hook 'before-make-frame-hook
           (lambda ()
-            (setq default-frame-alist `((width  . 81) (height . 56)))))
-
+            (setq default-frame-alist `((width  . 81) (height . 57)))))
+                                        ; 81x56 with titlebar
 (savehist-mode 1)
 (package-initialize)
 (setq package-archives nil)
