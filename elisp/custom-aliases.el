@@ -41,5 +41,4 @@
 (defalias 'qrr           'query-replace-regexp)
 (defalias 'b             'balance-windows)
 ;;
-(defalias 'highlight-current-line 'hl-line-mode)
-(defalias 'highlight-line-mode     'hl-line-mode)
+(defalias 'conf          'conf-mode)
