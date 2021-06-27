@@ -8,6 +8,9 @@
       (border                           "#0000FF")
       (fringe                           "#121212")
       (modeline                         "#292929")
+      (mli-fg                            "#CCCCCC")
+      (mli-bg                            "#4D4D4D")
+      (mli-box                           "#666666")
       (region-bg                        "#114488")
       (region-fg                        "#BEBEBE")
 
@@ -37,6 +40,8 @@
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
    `(mode-line                    ((,class (:background ,modeline :inherit foreground))))
+   `(mode-line-inactive           ((,class (:background ,mli-bg :foreground ,mli-fg
+                                                        :box (:line-width -1 :color ,mli-box :style nil)))))
    `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,gl/builtin))))

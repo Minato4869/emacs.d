@@ -18,7 +18,7 @@
   (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
 
 (setq custom-themes-index 0
-      custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey default-dark))
+      custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
@@ -81,8 +81,12 @@
   '((t (:foreground "red" :bold t))) ;; was Yellow
   "Font lock face for IMPORTANT comments"
   :group 'fixme)
+(defface font-lock-cancelled-face
+  '((t (:foreground "Grey30" :bold t))) ;; was Yellow
+  "Font lock face for CANCELLED comments"
+  :group 'fixme)
 (defface font-lock-note-face
-  '((t (:foreground "Dark Green" :bold t)))
+  '((t (:foreground "ForestGreen" :bold t))) ;; was DarkGreen
   "Font lock face for NOTE comments"
   :group 'fixme)
 
@@ -94,6 +98,7 @@
       ("\\<\\(DONE\\)"      . 'font-lock-done-face)
       ("\\<\\(STUDY\\)"     . 'font-lock-study-face)
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
+      ("\\<\\(CANCELLED\\)" . 'font-lock-cancelled-face)
       ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode puppet-mode))
@@ -105,6 +110,7 @@
     '(("\\<\\(STUDY\\)"     . 'font-lock-study-face)
       ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
       ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
+      ("\\<\\(CANCELLED\\)" . 'font-lock-cancelled-face)
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
  '(org-mode orgalist-mode))
 
