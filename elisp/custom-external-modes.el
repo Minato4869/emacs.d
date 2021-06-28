@@ -40,14 +40,11 @@
     (interactive)
     (when (y-or-n-p "Close current screen? ")
       (elscreen-kill)))
-  :bind
-  (("M-<left>"     . elscreen-previous)
-   ("M-<right>"    . elscreen-next))
   :bind*
    (("M-s <left>"  . elscreen-previous)
     ("M-s <right>" . elscreen-next)
-		("<s-left>"  . elscreen-previous)
-    ("<s-right>" . elscreen-next)
+		("M-<left>"    . elscreen-previous)
+		("M-<right>"   . elscreen-next)
 		("M-h"         . elscreen-previous)
 		("M-l"         . elscreen-next)
     ("M-s M-s"     . elscreen-toggle)
