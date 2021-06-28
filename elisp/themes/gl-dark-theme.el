@@ -30,7 +30,8 @@
       (org-level-3                      "#729FCF")
       (org-level-4                      "#CC0000")
       (org-level-5                      "#4E9A06")
-      (org-date                         "#2C78BF")) ;; was cyan
+      (org-date                         "#2C78BF") ;; was cyan
+      )
   (custom-theme-set-faces
    'gl-dark
 
