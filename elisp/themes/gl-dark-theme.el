@@ -31,6 +31,8 @@
       (org-level-4                      "#CC0000")
       (org-level-5                      "#4E9A06")
       (org-date                         "#2C78BF") ;; was cyan
+
+      (sh-quoted-exec                   "#FA8072")
       )
   (custom-theme-set-faces
    'gl-dark
@@ -62,5 +64,8 @@
    `(org-level-4                  ((,class (:foreground ,org-level-4))))
    `(org-level-5                  ((,class (:foreground ,org-level-5))))
    `(org-date                     ((,class (:foreground ,org-date :underline nil))))
+   `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
+
+
    ))
 (provide-theme 'gl-dark)

@@ -156,7 +156,7 @@
 ;; `(nobreak-space                ((t (:foreground "cyan"))))
  ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
  '(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
- '(sh-quoted-exec               ((t (:foreground "#FA8072"))))
+ '(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
 
  )
 
