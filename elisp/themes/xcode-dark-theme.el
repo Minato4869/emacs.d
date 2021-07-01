@@ -10,13 +10,13 @@
       (modeline                         "#292929")
       (region                           "#00077a")
 
-      (font-lock-builtin-face                    "#4C99EB")
-      (font-lock-comment-face                    "#FF6805")
-      (font-lock-function-face                   "#EBD900")
-      (font-lock-keyword-face                    "#00FF15")
-      (font-lock-string-face                     "#00FFC0")
-      (font-lock-type-face                      "#FF47F3")
-      (font-lock-variable-face                   "#1492FF"))
+      (font-lock-builtin-face           "#4C99EB")
+      (font-lock-comment-face           "#FF6805")
+      (font-lock-function-name-face     "#EBD900")
+      (font-lock-keyword-face           "#00FF15")
+      (font-lock-string-face            "#00FFC0")
+      (font-lock-type-face              "#FF47F3")
+      (font-lock-variable-name-face     "#1492FF"))
 
   (custom-theme-set-faces
    'xcode-dark
@@ -31,10 +31,10 @@
 
    `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
    `(font-lock-comment-face       ((,class (:foreground ,font-lock-comment-face))))
-   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-face))))
+   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-name-face))))
    `(font-lock-keyword-face       ((,class (:foreground ,font-lock-keyword-face))))
    `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
    `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
-   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-face))))))
+   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))))
 
 (provide-theme 'xcode-dark)

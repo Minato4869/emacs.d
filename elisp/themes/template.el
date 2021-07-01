@@ -1,5 +1,5 @@
 (deftheme <themename>
-  "<themename>")
+  "<themename> theme")
 
 (let ((class '((class color) (min-colors 89)))
       (BG  (when (theme/display-colors) ""))
@@ -22,17 +22,17 @@
       (font-lock-builtin-face           "")
       (font-lock-comment-face           "")
       (font-lock-constant-face          "")
-      (font-lock-function-face          "")
+      (font-lock-function-name-face     "")
       (font-lock-keyword-face           "")
       (font-lock-string-face            "")
       (font-lock-type-face              "")
-      (font-lock-variable-face          "")
+      (font-lock-variable-name-face     "")
 
       (org-level-2                      "")
       (org-level-3                      "")
       (org-level-4                      "")
       (org-level-5                      "")
-      (org-date                         "")
+      (org-date                         "") ;; was cyan
 
       (sh-quoted-exec                   "")
       )
@@ -52,11 +52,11 @@
    `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
    `(font-lock-comment-face       ((,class (:foreground ,font-lock-comment-face))))
    `(font-lock-constant-face      ((,class (:foreground ,font-lock-constant-face))))
-   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-face))))
+   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-name-face))))
    `(font-lock-keyword-face       ((,class (:foreground ,font-lock-keyword-face))))
    `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
    `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
-   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-face))))
+   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
 
    `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
    `(ido-only-match               ((,class (:foreground ,ido-only-match))))
@@ -67,7 +67,5 @@
    `(org-level-5                  ((,class (:foreground ,org-level-5))))
    `(org-date                     ((,class (:foreground ,org-date :underline nil))))
    `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
-
-
    ))
 (provide-theme '<themename>)

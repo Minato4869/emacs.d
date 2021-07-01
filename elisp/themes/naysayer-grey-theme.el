@@ -2,37 +2,27 @@
   "naysayer-grey theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                 "#272727") ;; was #041818
-      (FG                 "#D3B58D")
-      (cursor             "#8FEE90")
-      (border             "#0000FF")
-      (fringe             "#050404")
-      (modeline           "")
-      (minibuffer         "#00FFFF")
-      (region-bg          "#0000FF")
-      (region-fg          "#BEBEBE")
+      (BG                           "#272727") ;; was #041818
+      (FG                           "#D3B58D")
+      (cursor                       "#8FEE90")
+      (border                       "#0000FF")
+      (fringe                       "#050404")
+      (minibuffer-prompt            "#00FFFF")
+      (region-bg                    "#0000FF")
+      (region-fg                    "#BEBEBE")
 
-      (ido-subdir          "#A1C659")
-      (ido-only-match      "#FFCC33")
+      (font-lock-builtin-face       "#8FEE90")
+      (font-lock-comment-face       "#FFFF00")
+      (font-lock-function-name-face "#FFFFFF")
+      (font-lock-keyword-face       "#FFFFFF")
+      (font-lock-string-face        "#C8D4EC")
+      (font-lock-type-face          "#98FB98")
+      (font-lock-variable-name-face "#FFFFFF")
 
-      (nay/builtin         "#8FEE90")
-      (nay/comment         "#FFFF00")
-      ;; (nay/constant        "")
-      (nay/function        "#FFFFFF")
-      (nay/keyword         "#FFFFFF")
-      (nay/string          "#C8D4EC")
-      (nay/type            "#98FB98")
-      (nay/variable        "#FFFFFF")
-
-      (nay/highlight-bg    "#B4EEEB4")
-      (nay/highlight-fg    "#0000080")
-
-      (nay/warning         "#0000080")
-
-      (org-level-2                      "#C8D4EC")
-      (org-level-3                      "#FFFFFF")
-      (org-level-4                      "#FFFF00")
-      (org-level-5                      "#8FEE90"))
+      (org-level-2                  "#C8D4EC")
+      (org-level-3                  "#FFFFFF")
+      (org-level-4                  "#FFFF00")
+      (org-level-5                  "#8FEE90"))
 
   (custom-theme-set-faces
    'naysayer-grey
@@ -41,27 +31,17 @@
    `(cursor                       ((,class (:background ,cursor))))
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
-   `(minibuffer-prompt             ((,class (:foreground ,minibuffer))))
-   `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
+   `(minibuffer-prompt            ((,class (:foreground ,minibuffer-prompt))))
    `(mode-line                    ((,class (:inverse-video t))))
-   ;; `(region                        ((,class (:background ,region-bg
-   ;;                                           :foreground ,region-fg))))
    `(region                       ((,class (:background ,region-bg :inherit foreground))))
 
-   `(font-lock-builtin-face       ((,class (:foreground ,nay/builtin))))
-   `(font-lock-comment-face       ((,class (:foreground ,nay/comment))))
-   ;;`(font-lock-constant-face      ((,class (:foreground ,nay/constant))))
-   `(font-lock-function-name-face ((,class (:foreground ,nay/function))))
-   `(font-lock-keyword-face       ((,class (:foreground ,nay/keyword))))
-   `(font-lock-string-face        ((,class (:foreground ,nay/string))))
-   `(font-lock-type-face          ((,class (:foreground ,nay/type))))
-   `(font-lock-variable-name-face ((,class (:foreground ,nay/variable))))
-   `(highlight                    ((,class (:foreground ,nay/highlight-fg
-                                                         :background ,nay/highlight-bg))))
-   ;; `(font-lock-warning-face        ((,class (:foreground ,nay/warning ))))
-
-   `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
-   `(ido-only-match               ((,class (:foreground ,ido-only-match))))
+   `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
+   `(font-lock-comment-face       ((,class (:foreground ,font-lock-comment-face))))
+   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-name-face))))
+   `(font-lock-keyword-face       ((,class (:foreground ,font-lock-keyword-face))))
+   `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
+   `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
+   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
 
    `(org-level-2                  ((,class (:foreground ,org-level-2))))
    `(org-level-3                  ((,class (:foreground ,org-level-3))))
