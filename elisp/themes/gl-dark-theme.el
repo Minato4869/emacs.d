@@ -7,11 +7,11 @@
       (cursor                           "#FF0000")
       (border                           "#0000FF")
       (fringe                           "#121212")
-      (mode-line                        "#292929")
+      (mode-line-bg                     "#292929")
 
-      (mode-line-fg                     "#CCCCCC")
-      (mode-line-bg                     "#4D4D4D")
-      (mode-line-box                    "#666666")
+      (mode-line-inactive-fg            "#CCCCCC")
+      (mode-line-inactive-bg            "#4D4D4D")
+      (mode-line-inactive-box           "#666666")
 
       (region-bg                        "#114488")
       (region-fg                        "#BEBEBE")
@@ -44,9 +44,9 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
-   `(mode-line                    ((,class (:background ,mode-line :inherit foreground))))
-   `(mode-line-inactive           ((,class (:background ,mode-line-bg :foreground ,mode-line-fg
-                                                        :box (:line-width -1 :color ,mode-line-box :style nil)))))
+   `(mode-line                    ((,class (:background ,mode-line-bg :inherit foreground))))
+   `(mode-line-inactive           ((,class (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
+                                                        :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
    `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))

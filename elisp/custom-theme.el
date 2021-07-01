@@ -18,7 +18,8 @@
   (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
 
 (setq custom-themes-index 0
-      custom-themes '(gl-dark nord naysayer warm-night srcery naysayer-grey))
+      custom-themes '(gl-dark nord naysayer warm-night srcery
+                              naysayer-grey gl-grey))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
