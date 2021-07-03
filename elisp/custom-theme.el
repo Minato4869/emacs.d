@@ -122,6 +122,7 @@
  `(diff-added                   ((t (:foreground "green"))))
  `(diff-refine-added            ((t (:foreground "green" :underline t))))
  `(diff-header                  ((t (nil))))
+ `(diff-context                 ((t (nil))))
  `(diff-removed                 ((t (:foreground "red"))))
  `(diff-refine-removed          ((t (:foreground "red" :underline t))))
  `(dired-directory              ((t (:foreground ,ls-directory ))))

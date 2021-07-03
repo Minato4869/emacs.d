@@ -7,17 +7,14 @@
       (cursor                           "")
       (border                           "")
       (fringe                           "")
-      (mode-line                        "")
+      (mode-line-bg                     "")
 
-      (mode-line-fg                     "#CCCCCC")
-      (mode-line-bg                     "#4D4D4D")
-      (mode-line-box                    "#666666")
+      (mode-line-inactive-fg            "")
+      (mode-line-inactive-bg            "")
+      (mode-line-inactive-box           "")
 
       (region-bg                        "")
       (region-fg                        "")
-
-      (ido-subdir                       "")
-      (ido-only-match                   "")
 
       (font-lock-builtin-face           "")
       (font-lock-comment-face           "")
@@ -27,14 +24,6 @@
       (font-lock-string-face            "")
       (font-lock-type-face              "")
       (font-lock-variable-name-face     "")
-
-      (org-level-2                      "")
-      (org-level-3                      "")
-      (org-level-4                      "")
-      (org-level-5                      "")
-      (org-date                         "") ;; was cyan
-
-      (sh-quoted-exec                   "")
       )
   (custom-theme-set-faces
    '<themename>
@@ -44,9 +33,9 @@
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))
    `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
-   `(mode-line                    ((,class (:background ,mode-line :inherit foreground))))
-   `(mode-line-inactive           ((,class (:background ,mode-line-bg :foreground ,mode-line-fg
-                                                        :box (:line-width -1 :color ,mode-line-box :style nil)))))
+   `(mode-line                    ((,class (:background ,mode-line-bg :inherit foreground))))
+   `(mode-line-inactive           ((,class (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
+                                                        :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
    `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
@@ -57,15 +46,5 @@
    `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
    `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
    `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
-
-   `(ido-subdir                   ((,class (:foreground ,ido-subdir))))
-   `(ido-only-match               ((,class (:foreground ,ido-only-match))))
-
-   `(org-level-2                  ((,class (:foreground ,org-level-2))))
-   `(org-level-3                  ((,class (:foreground ,org-level-3))))
-   `(org-level-4                  ((,class (:foreground ,org-level-4))))
-   `(org-level-5                  ((,class (:foreground ,org-level-5))))
-   `(org-date                     ((,class (:foreground ,org-date :underline nil))))
-   `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
    ))
 (provide-theme '<themename>)

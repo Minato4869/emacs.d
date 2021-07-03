@@ -177,22 +177,7 @@
                           (interactive)
                           (eval-buffer)
                           (message "Evaluated current buffer"))))
-;; man pages
-(require 'man)
-(bind-keys :map Man-mode-map
-           ("C-q"    . kill-buffer-and-window)
-           ("k"      . scroll-line-up)
-           ("C-f"    . scroll-line-down)
-           ("C-b"    . beginning-of-buffer)
-           ("G"      . end-of-buffer))
-;; view mode
-(require 'view)
-(bind-keys :map view-mode-map
-           ("C-q"    . View-quit)
-           ("C-f"    . scroll-line-up)
-           ("C-b"    . scroll-line-down)
-           ("g"      . beginning-of-buffer)
-           ("G"      . end-of-buffer))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
