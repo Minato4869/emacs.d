@@ -153,6 +153,7 @@
  ("C-<f9>"    . global-font-lock-mode)
  ("M-<f9>"    . font-lock-fontify-buffer)
  ("C-<f10>"   . menu-bar-mode)
+ ("M-<f10>"   . scroll-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . global-whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
