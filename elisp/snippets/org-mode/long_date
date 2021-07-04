@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ldate.1
+# key: ldate.1
+# --
+* `(format-time "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")` $0

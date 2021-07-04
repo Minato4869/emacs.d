@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: date_no_subj
-# key: date
-# --
-`(format-time-string "<%a %e %b (%Y-%m-%d)>")` $0
