@@ -182,6 +182,7 @@
                 (".Xresources'"  . conf-xdefaults-mode)
                 ("\\gnus\\'"     . emacs-lisp-mode)
                 ("\\emacs\\'"    . emacs-lisp-mode)
+                ("\\conkyrc\\'"  . lua-mode)
                 ("Makefile"      . makefile-gmake-mode))))
 
 ;; disable paren/$ jumping

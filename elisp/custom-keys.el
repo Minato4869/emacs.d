@@ -153,6 +153,7 @@
  ("C-<f9>"    . global-font-lock-mode)
  ("M-<f9>"    . font-lock-fontify-buffer)
  ("C-<f10>"   . menu-bar-mode)
+ ("M-<f10>"   . scroll-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("C-<f11>"   . global-whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
@@ -177,22 +178,7 @@
                           (interactive)
                           (eval-buffer)
                           (message "Evaluated current buffer"))))
-;; man pages
-(require 'man)
-(bind-keys :map Man-mode-map
-           ("C-q"    . kill-buffer-and-window)
-           ("k"      . scroll-line-up)
-           ("C-f"    . scroll-line-down)
-           ("C-b"    . beginning-of-buffer)
-           ("G"      . end-of-buffer))
-;; view mode
-(require 'view)
-(bind-keys :map view-mode-map
-           ("C-q"    . View-quit)
-           ("C-f"    . scroll-line-up)
-           ("C-b"    . scroll-line-down)
-           ("g"      . beginning-of-buffer)
-           ("G"      . end-of-buffer))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))

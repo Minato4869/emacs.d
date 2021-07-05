@@ -123,6 +123,7 @@
  `(diff-added                   ((t (:foreground "green"))))
  `(diff-refine-added            ((t (:foreground "green" :underline t))))
  `(diff-header                  ((t (nil))))
+ `(diff-context                 ((t (nil))))
  `(diff-removed                 ((t (:foreground "red"))))
  `(diff-refine-removed          ((t (:foreground "red" :underline t))))
  `(dired-directory              ((t (:foreground ,ls-directory ))))
@@ -157,6 +158,7 @@
 ;; `(nobreak-space                ((t (:foreground "cyan"))))
  ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
  '(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
+ '(scroll-bar                   ((t (:stipple nil : :inherit background :foreground "grey80"))))
  '(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
 
  )

@@ -1,5 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ido
+;; == ido
 (use-package ido
   :ensure nil
   :defer t
@@ -40,8 +39,8 @@
    ("C-x d"   . cido/lazy-ido-dired)
    ("C-x b"   . cido/lazy-ido-switch-buffer)
    ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ibuffer
+
+;; == ibuffer
 (use-package ibuffer
   :ensure nil
   :defer nil
@@ -60,8 +59,8 @@
    ("s-b"       . ibuffer))
   (:map ibuffer-mode-map
         ("r"   . ibuffer-redisplay)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; dired
+
+;; == dired
 (use-package dired-x
   :ensure nil
   :defer nil
@@ -125,8 +124,8 @@
         ("r"          . revert-buffer)
         ("/"          . dired-isearch-filenames)
         (":"          . execute-extended-command)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; tex
+
+;; == tex
 (use-package tex
   :ensure nil
   :defer t
@@ -163,8 +162,7 @@
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org
+;; == org
 (use-package org
   :ensure nil
   :defer t
@@ -213,3 +211,33 @@
   :bind
   (:map org-mode-map
         ("C-c C-." . date)))
+
+;; == man
+(use-package man
+  :ensure nil
+  :defer t
+  :bind
+  (:map Man-mode-map
+        ("C-q"    . kill-buffer-and-window)
+        ("k"      . scroll-line-up)
+        ("C-f"    . scroll-line-down)
+        ("C-b"    . beginning-of-buffer)
+        ("G"      . end-of-buffer)))
+
+;; == view
+(use-package view
+  :ensure nil
+  :defer t
+  :config
+  (defun View-quit-and-kill ()
+    (interactive)
+    (View-quit)
+    (delete-window))
+  :bind
+  (:map view-mode-map
+        ("q"      . View-quit-and-kill)
+        ("C-q"    . View-quit)
+        ("C-f"    . scroll-line-up)
+        ("C-b"    . scroll-line-down)
+        ("g"      . beginning-of-buffer)
+        ("G"      . end-of-buffer)))

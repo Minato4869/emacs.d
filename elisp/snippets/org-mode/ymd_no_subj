@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: ymd_no_subj
-# key: ymd
-# --
-`(format-time-string "<%Y-%m-%d>")`$0
