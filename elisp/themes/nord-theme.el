@@ -277,7 +277,7 @@
     `(package-status-unsigned ((,class (:underline ,nord13))))
     `(query-replace ((,class (:foreground ,nord8 :background ,nord2))))
     `(region ((,class (:foreground ,nord-region-highlight-foreground :background ,nord-region-highlight-background))))
-    `(scroll-bar ((,class (:background ,nord3))))
+;;    `(scroll-bar ((,class (:background ,nord3))))
     `(secondary-selection ((,class (:background ,nord2))))
 
     ;; `show-paren-match-face` and `show-paren-mismatch-face` are deprecated since Emacs version 22.1 and were
