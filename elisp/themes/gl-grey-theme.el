@@ -23,7 +23,16 @@
       (font-lock-keyword-face           "#E5E5E5")
       (font-lock-string-face            "#E5E5E5")
       (font-lock-type-face              "#E5E5E5")
-      (font-lock-variable-name-face     "#E5E5E5"))
+      (font-lock-variable-name-face     "#E5E5E5")
+
+      (org-level-1                      "#E5E5E5")
+      (org-level-2                      "#E5E5E5")
+      (org-level-3                      "#E5E5E5")
+      (org-level-4                      "#E5E5E5")
+      (org-level-5                      "#E5E5E5")
+      (org-date                         "#2C78BF") ;; was cyan
+
+      (sh-quoted-exec                   "#E5E5E5"))
   (custom-theme-set-faces
    'gl-grey
 
@@ -45,5 +54,13 @@
    `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
    `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
    `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
+
+   `(org-level-1                  ((,class (:foreground ,org-level-1 :weight extra-bold))))
+   `(org-level-2                  ((,class (:foreground ,org-level-2 :weight bold))))
+   `(org-level-3                  ((,class (:foreground ,org-level-3))))
+   `(org-level-4                  ((,class (:foreground ,org-level-4))))
+   `(org-level-5                  ((,class (:foreground ,org-level-5))))
+   `(org-date                     ((,class (:foreground ,org-date :underline nil))))
+   `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
    ))
 (provide-theme 'gl-grey)

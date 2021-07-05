@@ -152,14 +152,14 @@
  `(trailing-whitespace          ((t (:background ,trailing-ws))))
  `(whitespace-space             ((t (:foreground ,ws-darkgray :inherit background))))
  `(whitespace-tab               ((t (:foreground ,ws-darkgray :inherit background))))
- `(whitespace-empty             ((t (:foreground "firebrick" :inherit  background))))
+ `(whitespace-empty             ((t (:foreground "firebrick"  :inherit  background))))
  `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
 ;; `(nobreak-space                ((t (:foreground "cyan"))))
- ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
- '(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
- '(scroll-bar                   ((t (:stipple nil : :inherit background :foreground "grey80"))))
- '(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
+;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
+ `(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
+ `(scroll-bar                   ((t (:stipple nil :inherit default))))
+ `(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
 
  )
 
