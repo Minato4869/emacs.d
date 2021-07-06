@@ -30,7 +30,7 @@
       (org-level-3                      "#E5E5E5")
       (org-level-4                      "#E5E5E5")
       (org-level-5                      "#E5E5E5")
-      (org-date                         "#2C78BF") ;; was cyan
+      (org-date                         "#1E90FF")
 
       (sh-quoted-exec                   "#E5E5E5"))
   (custom-theme-set-faces
