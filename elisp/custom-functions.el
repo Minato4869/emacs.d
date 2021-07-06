@@ -2,7 +2,7 @@
 ;; date
 (defun ymd ()
   (interactive)
-  (insert (format-time-string "<%Y-%m-%d>")))
+  (insert (format-time-string "<%Y-%m-%d %a>")))
 
 (defun ldate ()
   (interactive)
@@ -14,6 +14,7 @@
 (defun time ()
   (interactive)
   (insert (format-time-string "<%H:%M>")))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile

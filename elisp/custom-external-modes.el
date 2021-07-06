@@ -1,6 +1,6 @@
 ;;; interesting packages:
 ;; narrowed-page-navigation
-
+;; so-long mode
 
 ;; == ace-window
 (use-package ace-window

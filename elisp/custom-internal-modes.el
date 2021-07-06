@@ -162,7 +162,7 @@
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
 
-;; == org
+ == org
 (use-package org
   :ensure nil
   :defer t
@@ -192,10 +192,7 @@
             ("VALID"    . "palegreen")
             ("BUG"      . "pink")
             ("WONT FIX" . "red")
-            ("FIXED"    . "palegreen"))
-          org-time-stamp-custom-formats
-          '("<%Y-%m-%d>" . "<%a %b %e (%Y-%m-%d)>"))
-    ;;          '("<%a %e %b (%Y-%m-%d)>" . "<%a %b %e %H:%M  %Y (%Y-%m-%d)>"))
+            ("FIXED"    . "palegreen")))
     (setq org-capture-templates
           '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
             ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
