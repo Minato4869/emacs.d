@@ -19,7 +19,7 @@
 
 (setq custom-themes-index 0
       custom-themes '(gl-dark nord naysayer warm-night srcery
-                              naysayer-grey gl-grey))
+                              naysayer-grey gl-grey xcode-dark))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."

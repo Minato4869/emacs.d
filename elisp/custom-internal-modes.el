@@ -162,7 +162,7 @@
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
 
- == org
+;; == org
 (use-package org
   :ensure nil
   :defer t
@@ -171,7 +171,6 @@
   :config
   (progn
     (cedit/indent-conf 2 nil nil)
-    (setq-default org-display-custom-times t)
     (setq org-highlight-latex-and-related '(latex script entities)
           indent-rigidly t
           org-src-fontify-natively t

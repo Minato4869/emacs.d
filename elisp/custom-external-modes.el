@@ -43,10 +43,10 @@
   :bind*
    (("M-s <left>"  . elscreen-previous)
     ("M-s <right>" . elscreen-next)
-		("M-<left>"    . elscreen-previous)
-		("M-<right>"   . elscreen-next)
-		("M-h"         . elscreen-previous)
-		("M-l"         . elscreen-next)
+    ("M-<left>"    . elscreen-previous)
+    ("M-<right>"   . elscreen-next)
+    ("M-h"         . elscreen-previous)
+    ("M-l"         . elscreen-next)
     ("M-s M-s"     . elscreen-toggle)
     ("M-s s"       . elscreen-toggle)
     ("M-s x"       . elscreen-kill)
@@ -61,12 +61,12 @@
   :ensure t
   :defer  nil
   :init
-	(setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
-	(yas-global-mode 1)
+  (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
+  (yas-global-mode 1)
   :config
-	(setq yas-prompt-functions '(yas-ido-prompt
-															 yas-completing-prompt
-															 yas-no-prompt))
+ (setq yas-prompt-functions '(yas-ido-prompt
+                              yas-completing-prompt
+                              yas-no-prompt))
   (defun yas-force-update ()
     (interactive)
     (yas-recompile-all)
@@ -89,31 +89,31 @@
 ;; == browse-kill-ring
 (use-package browse-kill-ring
   :ensure t
-	:defer t
-	:init
-	(defalias 'bkr 'browse-kill-ring)
-	(defalias 'kr  'browse-kill-ring))
+  :defer t
+  :init
+  (defalias 'bkr 'browse-kill-ring)
+  (defalias 'kr  'browse-kill-ring))
 
 
 ;; == haskell-mode
 (use-package haskell-mode
-	:ensure t
-	:defer t
-	:init
-	(add-hook 'haskell-mode-hook
-						(lambda () (cedit/indent-conf 2 nil nil 80))))
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'haskell-mode-hook
+            (lambda () (cedit/indent-conf 2 nil nil 80))))
 
 (use-package magit
   :ensure t
-	:defer t
-	:config
+  :defer t
+  :config
   (custom-set-faces
- 	 '(magit-diff-header                   ((t (:inherit diff-header))))
-	 '(magit-diff-context-highlight        ((t (:inherit diff-context))))
+   '(magit-diff-header                   ((t (:inherit diff-header))))
+   '(magit-diff-context-highlight        ((t (:inherit diff-context))))
    '(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
-	 '(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
-	 '(magit-diff-added-highlight          ((t (:inherit diff-added)))))
-	)
+   '(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
+   '(magit-diff-added-highlight          ((t (:inherit diff-added)))))
+  )
 
 ;; == packages without config
 (use-package auctex               :ensure t :defer t)
