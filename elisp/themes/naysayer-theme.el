@@ -17,7 +17,10 @@
       (font-lock-keyword-face       "#FFFFFF")
       (font-lock-string-face        "#FFFFFF")
       (font-lock-type-face          "#0FDFAF")
-      (font-lock-variable-name-face "#C8D4EC"))
+      (font-lock-variable-name-face "#C8D4EC")
+
+      (org-todo                     "#ffc0cb")
+      (org-done                     "#98fb98"))
 
   (custom-theme-set-faces
    'naysayer
@@ -37,6 +40,10 @@
    `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
    `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
    `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
+
+   `(org-todo                     ((,class (:foreground ,org-todo :bold t))))
+   `(org-done                     ((,class (:foreground ,org-done :bold t))))
+
 ))
 
 

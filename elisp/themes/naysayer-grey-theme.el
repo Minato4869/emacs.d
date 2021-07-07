@@ -22,7 +22,10 @@
       (org-level-2                  "#C8D4EC")
       (org-level-3                  "#FFFFFF")
       (org-level-4                  "#FFFF00")
-      (org-level-5                  "#8FEE90"))
+      (org-level-5                  "#8FEE90")
+      (org-todo                     "#ffc0cb")
+      (org-done                     "#98fb98")
+      )
 
   (custom-theme-set-faces
    'naysayer-grey
@@ -47,6 +50,9 @@
    `(org-level-3                  ((,class (:foreground ,org-level-3))))
    `(org-level-4                  ((,class (:foreground ,org-level-4))))
    `(org-level-5                  ((,class (:foreground ,org-level-5))))
+   `(org-todo                     ((,class (:foreground ,org-todo :bold t))))
+   `(org-done                     ((,class (:foreground ,org-done :bold t))))
+
    ))
 
 

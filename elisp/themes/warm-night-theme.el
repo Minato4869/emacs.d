@@ -100,8 +100,8 @@
    `(org-verse ((,class (:inherit org-block :slant italic))))
 ;;   `(org-todo ((,class (:foreground ,keyword :bold t)))) ;; default
    ;;   `(org-done ((,class (:bold t :foreground ,bg4)))) ;; default
-   `(org-todo ((,class (:foreground "Red" :bold t))))
-   `(org-done ((,class (:foreground "Forest Green" :bold t)))) ;; was darkgreen
+   `(org-todo ((,class (:foreground "#ff0000" :bold t)))) ;; is red1
+   `(org-done ((,class (:foreground "#228b22" :bold t)))) ;; is forestgreen
    `(org-warning ((,class (:underline t :foreground ,warning))))
    `(org-agenda-structure ((,class (:weight bold :foreground ,fg3  :background ,bg3))))
    `(org-agenda-date ((,class (:foreground ,var :height 1.1 ))))
