@@ -65,26 +65,23 @@
   :ensure nil
   :defer nil
   :config
-  (progn
-    (defun cdired/x-mode-setup ()
-      (font-lock-mode t)
-      (setq dired-omit-verbose nil)
-      (setq-default dired-omit-mode t) ;; Turn on Omit mode.
-      (dired-hide-details-mode 1))
-    (setq-default dired-omit-files "^\\...+$")
-    (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-    (defun cdired/sort ()
-      "Sort dired listings with directories first."
-      (save-excursion
-        (let (buffer-read-only)
-          (forward-line 2) ;; beyond dir. header
-          (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-        (set-buffer-modified-p nil)))
-    (defadvice dired-readin
-        (after dired-after-updating-hook first () activate)
-      "Sort dired listings with directories first before adding marks."
-      (cdired/sort))))
-;;  (message (concat "Killed Dired buffer: " old-buffer)))
+  (setq-default dired-omit-files "^\\...+$")
+  (when (or (string-equal system-type "gnu/linux")
+            (file-regular-p "/usr/local/share/gls"))
+            (setq dired-listing-switches
+                  "-laH --group-directories-first"))
+  (setq dired-omit-verbose nil
+        dired-omit-mode t)
+
+  (defun cdired/x-mode-setup ()
+    (font-lock-mode t)
+    (dired-hide-details-mode 1))
+  (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+  :bind
+  (:map dired-mode-map
+        ("C-h"        . dired-omit-mode)
+        ("C-d"        . dired-hide-details-mode))
+    )
 
 (use-package dired
   :ensure nil
