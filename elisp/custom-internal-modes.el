@@ -173,9 +173,9 @@
           org-src-fontify-natively t
           org-src-tab-acts-natively t
           org-confirm-babel-evaluate nil
-          org-edit-preserve-indentation nil
+          org-src-preserve-indentation t
           org-adapt-indentation nil
-          org-edit-src-content-indentation 0)
+          org-src-content-indentation 0)
     (setq org-todo-keywords
           '((sequence "TODO"   "|" "DONE")
             (sequence "VIABLE" "|" "INVIABLE")

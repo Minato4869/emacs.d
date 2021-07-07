@@ -3,7 +3,7 @@
 
 (let ((class '((class color) (min-colors 89)))
       (BG  (when (theme/display-colors) "#000000"))
-      (FG  (when (theme/display-colors) "#FFFFFF"))
+      (FG  (when (theme/display-colors) "#E5E5E5")) ;; was #ffffff
       (cursor                           "#DB0600")
       (border                           "#0000FF")
       (fringe                           "#121212")
