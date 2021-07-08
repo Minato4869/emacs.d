@@ -4,6 +4,7 @@
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left     'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'compose-mail    'disabled t)
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)

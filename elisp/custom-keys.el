@@ -112,7 +112,7 @@
   (text-scale-set 0))
 
 (bind-keys*
-;;  ("C-z"       . undo)
+  ("C-z"       . undo)
   ("M-u"       . universal-argument)
   ("C-x C-SPC" . rectangle-mark-mode)
   ("C-c SPC"   . cua-rectangle-mark-mode)
