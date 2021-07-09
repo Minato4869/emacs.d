@@ -115,6 +115,15 @@
       ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
  '(org-mode orgalist-mode))
 
+(cond
+ ((getenv "SSH_CONNECTION")
+  (load-theme 'warm-night t))
+ ((string-equal system-type "windows-nt")
+  (load-theme 'naysayer t)
+  (setq  custom-themes-index 1))
+ ((or (daemonp) (not (display-graphic-p)))
+  (load-theme 'gl-dark t)))
+
 (custom-set-faces
  `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"
                                                :box  (:line-width -1 :style released-button)))))
@@ -134,7 +143,7 @@
  `(eshell-ls-directory          ((t (:foreground ,ls-directory))))
  `(eshell-ls-executable         ((t (:foreground ,ls-executable))))
  `(eshell-ls-symlink            ((t (:foreground ,ls-symlink))))
-;; `(error                        ((t (:foreground "red"))))
+;; `(error                        ((t (:foreground "red" :bold t))))
  `(font-latex-sectioning-0-face ((t (:inherit font-lock-variable-name-face))))
  `(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-0-face))))
  `(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-1-face))))
@@ -142,7 +151,7 @@
  `(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-3-face))))
  `(font-latex-sectioning-5-face ((t (:inherit font-latex-sectioning-4-face))))
  `(font-lock-warning-face       ((t (:foreground "red" :bold t ))))
- `(hl-line                      ((t (:extend t))))
+ `(hl-line                      ((t (:inherit region :extend t))))
  `(ido-first-match              ((t (:inherit foreground :bold t :underline t))))
  `(ido-incomplete-regexp        ((t (:inherit foreground))))
  `(ido-indicator                ((t (:inherit foreground))))
@@ -160,18 +169,8 @@
  `(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
  `(scroll-bar                   ((t (:stipple nil :inherit default))))
  `(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
-
+ `(org-date                     ((t (:inherit org-date :underline nil))))
  )
-
-(cond
- ((getenv "SSH_CONNECTION")
-  (load-theme 'warm-night t))
- ((string-equal system-type "windows-nt")
-  (load-theme 'naysayer t)
-  (setq  custom-themes-index 1))
- ((or (daemonp) (not (display-graphic-p)))
-  (load-theme 'gl-dark t)))
-
 
 ;; themes
 (defalias 'ct            'custom-cycle-theme)

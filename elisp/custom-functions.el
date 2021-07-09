@@ -69,14 +69,15 @@
   (find-file "~/.local/emacs/.emacs.desktop")
   (desktop-revert))
 
-(defun reset-emacs ()
-  (interactive)
-  (setq default-frame-alist
-        `((width  . 80) (height . 48)))
-  (load "~/.emacs.d/init.el"))
-
 ;; packages
 (defun my-package-install-refresh-contents (&rest args)
   (package-refresh-contents)
   (advice-remove 'package-install 'my-package-install-refresh-contents))
 (advice-add 'package-install :before 'my-package-install-refresh-contents)
+
+
+(defun reset_emacs ()
+  (interactive)
+  (setq default-frame-alist
+        `((width  . 80) (height . 48)))
+  (load "~/.emacs.d/init.el"))

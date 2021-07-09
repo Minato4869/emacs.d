@@ -67,12 +67,10 @@
    `(org-level-3                  ((,class (:foreground ,org-level-3))))
    `(org-level-4                  ((,class (:foreground ,org-level-4))))
    `(org-level-5                  ((,class (:foreground ,org-level-5))))
-   `(org-date                     ((,class (:foreground ,org-date :underline nil))))
+   `(org-date                     ((,class (:foreground ,org-date))))
    `(org-todo                     ((,class (:foreground ,org-todo :bold t))))
    `(org-done                     ((,class (:foreground ,org-done :bold t))))
 
    `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
-
-
    ))
 (provide-theme 'gl-dark)
