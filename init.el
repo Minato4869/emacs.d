@@ -33,6 +33,7 @@
             (setq default-frame-alist `((width  . 80) (height . 57)))))
                                         ; 81x56 with titlebar
 (savehist-mode 1)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
 (defvar gnu-archive   '("gnu"   . "https://elpa.gnu.org/packages/"))
