@@ -1849,9 +1849,9 @@
      ((,srcery-class (:foreground ,srcery-bright-green))
       (,srcery-256-class (:foreground ,srcery-256-bright-green))))
 
-   `(org-todo
-     ((,srcery-class (:foreground ,srcery-yellow :weight bold))
-      (,srcery-256-class (:foreground ,srcery-256-yellow :weight bold))))
+   `(org-todo ;; was yellow
+     ((,srcery-class (:foreground ,srcery-red :weight bold))
+      (,srcery-256-class (:foreground ,srcery-256-red :weight bold))))
 
    `(org-verbatim
      ((,srcery-class (:foreground ,srcery-bright-orange))
