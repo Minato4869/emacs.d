@@ -204,7 +204,9 @@
 
   :bind
   (:map org-mode-map
-        ("C-c C-." . date)))
+        ("C-c <right>" . org-metaright)
+        ("C-c <left>"  . org-metaleft)
+        ("C-c C-."     . org-time-stamp)))
 
 ;; == man
 (use-package man

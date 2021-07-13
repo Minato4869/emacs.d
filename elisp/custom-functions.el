@@ -81,3 +81,4 @@
   (setq default-frame-alist
         `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))
+(defalias 'reset-emacs 'reset_emacs)

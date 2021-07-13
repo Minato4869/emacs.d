@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: deadline
+# key: dl
+# --
+DEADLINE: $0
