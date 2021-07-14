@@ -52,7 +52,7 @@
                 " " (mode 15 20 :left :elide)
                 " " filename-and-process)
           (mark " " (name 16 -1) " " filename)))
-  (defalias 'ib             'ibuffer)
+  (defalias 'ib 'ibuffer)
   :bind
   (("C-x C-b"   . ibuffer)
    ("C-c b"     . ibuffer-other-window)
@@ -177,7 +177,7 @@
           org-adapt-indentation nil
           org-src-content-indentation 0)
     (setq org-todo-keywords
-          '((sequence "TODO" "INPROGRESS" "|" "DONE")
+          '((sequence "TODO" "INPROGRESS" "|" "DONE" "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")
             (sequence "VALID"  "|" "INVALID")
             (sequence "BUG"    "|" "FIXED" "WONT FIX"))
@@ -185,6 +185,7 @@
           '(("INVIABLE"   . "pink")
             ("VIABLE"     . "palegreen")
             ("INVALID"    . "pink")
+            ("CANCELLED"  . "#565252") ;;"grey50")
             ("INPROGRESS" . "goldenrod1")
             ("VALID"      . "palegreen")
             ("BUG"        . "pink")

@@ -36,9 +36,10 @@
   (custom-set-variables
    '(elscreen-display-screen-number nil)
    '(elscreen-tab-display-kill-screen nil))
-  (defun elscreen-close-current-tab ()
+  (defun elscreen-kill-buffer-and-screen ()
     (interactive)
-    (when (y-or-n-p "Close current screen? ")
+    (when (y-or-n-p "Kill current buffer and close screen? ")
+      (kill-current-buffer)
       (elscreen-kill)))
   :bind*
   (("M-<left>"    . elscreen-previous)
@@ -48,7 +49,7 @@
    ("M-s M-s"     . elscreen-toggle)
    ("M-s s"       . elscreen-toggle)
    ("M-s x"       . elscreen-kill)
-   ("M-s k"       . elscreen-close-current-tab)
+   ("M-s k"       . elscreen-kill-buffer-and-screen)
    ("M-s g"       . elscreen-goto)))
 (when (daemonp)
   (elscreen-start))
