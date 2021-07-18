@@ -177,7 +177,7 @@
           org-adapt-indentation nil
           org-src-content-indentation 0)
     (setq org-todo-keywords
-          '((sequence "TODO" "INPROGRESS" "|" "DONE" "CANCELLED")
+          '((sequence "TODO" "|" "DONE" "INPROGRESS" "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")
             (sequence "VALID"  "|" "INVALID")
             (sequence "BUG"    "|" "FIXED" "WONT FIX"))
