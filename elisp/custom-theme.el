@@ -144,6 +144,7 @@
  `(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-2-face))))
  `(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-3-face))))
  `(font-latex-sectioning-5-face ((t (:inherit font-latex-sectioning-4-face))))
+ `(font-latex-verbatim-face     ((t (:foreground "burlywood"))))
  `(font-lock-warning-face       ((t (:foreground "red" :bold t ))))
  `(hl-line                      ((t (:inherit region :extend t))))
  `(ido-first-match              ((t (:inherit foreground :bold t :underline t))))

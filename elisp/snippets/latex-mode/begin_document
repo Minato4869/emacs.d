@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: bgdoc
-# key: bgdoc
+# name: doc
+# key: doc
 # --
 \documentclass[a4paper,12pt]{scrartcl}
 

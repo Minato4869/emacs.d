@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: src
+# key: src
+# --
+\begin{verbatim}
+$0
+\end{verbatim}

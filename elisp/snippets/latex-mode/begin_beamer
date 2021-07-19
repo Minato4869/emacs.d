@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Begin Beamer
-# key: bgbeamer
+# key: beamer
 # --
 \documentclass[t]{beamer}
 \usepackage[utf8]{inputenc}

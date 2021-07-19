@@ -20,6 +20,8 @@
 (defalias 'oc            'occur)
 (defalias 'win           'shell)
 (defalias 'term          'ansi-term)
+(defalias 'tex           'plain-tex-mode)
+(defalias 'latex         'latex-mode)
 ;;
 (defalias 'xt            'xterm-mouse-mode)
 (defalias 'ap            'apropos)
