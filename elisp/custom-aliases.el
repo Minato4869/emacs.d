@@ -3,6 +3,8 @@
 (defalias 'af            'auto-fill-mode)
 (defalias 'cf            'conf-mode)
 (defalias 'fl            'font-lock-mode)
+(defalias 'gfl           'globalfont-lock-mode)
+(defalias 'fontify       'font-lock-fontify-buffer)
 (defalias 'fy            'font-lock-fontify-buffer)
 (defalias 'fb            'font-lock-fontify-buffer)
 (defalias 'hs            'haskell-mode)
