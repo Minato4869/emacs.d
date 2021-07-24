@@ -3,7 +3,7 @@
 (defun ymd ()
   (interactive)
   (insert (format-time-string "<%Y-%m-%d %a>")))
-
+(defalias 'date 'ymd)
 (defun ldate ()
   (interactive)
   (insert (format-time-string "<%a %e %b (%Y-%m-%d)>")))
