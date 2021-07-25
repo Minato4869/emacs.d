@@ -197,9 +197,9 @@
  ("C-2"             . split-window-below)
  ("C-3"             . split-window-right)
  ("C-4"             . make-frame-command)
- ("s-2"             . split-window-below)
- ("s-3"             . split-window-right)
- ("s-4"             . make-frame-command)
+ ("M-2"             . split-window-below)
+ ("M-3"             . split-window-right)
+ ("M-4"             . make-frame-command)
  ("C-x 4"           . make-frame-command)
  ("C-x M-o"         . other-frame)
  ;; buffers

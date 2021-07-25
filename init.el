@@ -87,6 +87,7 @@ Errors will be logged to the buffer *Init Errors*"
 
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")
+;;(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-theme")
 
 (when (daemonp)
@@ -100,6 +101,15 @@ Errors will be logged to the buffer *Init Errors*"
         (save-buffers-kill-terminal)
       (message "Quit")))
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+(cond
+ ((getenv "SSH_CONNECTION")
+  (load-theme 'warm-night t))
+ ((string-equal system-type "windows-nt")
+  (load-theme 'naysayer t)
+  (setq custom-themes-index 1))
+ ((or (daemonp) (not (display-graphic-p)))
+  (load-theme 'gl-dark t)))
 
 (let ((ln "~/.emacs.local.el")
       (pl "~/.emacs.personal.el"))
