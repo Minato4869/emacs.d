@@ -87,7 +87,7 @@ Errors will be logged to the buffer *Init Errors*"
 
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")
-;;(load-library-wrap-error "custom-colours")
+(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-theme")
 
 (when (daemonp)

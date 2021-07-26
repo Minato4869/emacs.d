@@ -75,6 +75,7 @@
  `(diff-refine-removed          ((t (:foreground "red" :underline t))))
  `(dired-directory              ((t (:foreground ,dired-directory ))))
  `(dired-symlink                ((t (:foreground ,dired-symlink))))
+;; `(error                        ((t (:foreground "red" :bold t))))
  `(eshell-ls-archive            ((t (:inherit foreground))))
  `(eshell-ls-backup             ((t (:inherit foreground))))
  `(eshell-ls-clutter            ((t (:inherit foreground))))
@@ -100,7 +101,7 @@
  `(whitespace-space             ((t (:foreground ,whitespace-space :inherit background))))
  `(whitespace-tab               ((t (:inherit     whitespace-space))))
  `(whitespace-empty             ((t (:foreground "firebrick"  :inherit  background))))
- `(whitespace-trailing          ((t (:foreground ,trailing-ws :inherit background))))
+ `(whitespace-trailing          ((t (:foreground ,trailing-whitespace :inherit background))))
  `(whitespace-line              ((t (:inherit foreground))))
  `(nobreak-space                ((t (:foreground "cyan"))))
 ;; v-- default colours bg: 333333 fg: e5e5e5, tab: 666666
