@@ -162,7 +162,7 @@
 ;; == org
 (use-package org
   :ensure nil
-  :defer t
+  :defer nil
   :init
   (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
   :config
@@ -175,7 +175,8 @@
           org-confirm-babel-evaluate nil
           org-src-preserve-indentation t
           org-adapt-indentation nil
-          org-src-content-indentation 0)
+          org-src-content-indentation 0
+          org-startup-folded t)
     (setq org-todo-keywords
           '((sequence "TODO" "|" "DONE" "INPROGRESS" "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")

@@ -38,9 +38,9 @@
    '(elscreen-tab-display-kill-screen nil))
   (defun elscreen-kill-buffer-and-screen ()
     (interactive)
-    (when (y-or-n-p "Kill current buffer and close screen? ")
+;;    (when (y-or-n-p "Kill current buffer and close screen? ")
       (kill-current-buffer)
-      (elscreen-kill)))
+      (elscreen-kill))
   :bind*
   (("M-<left>"    . elscreen-previous)
    ("M-<right>"   . elscreen-next)
