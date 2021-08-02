@@ -172,11 +172,13 @@
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
+(defun my-eval-buffer ()
+  (interactive)
+  (eval-buffer)
+  (message "Evaluated current buffer"))
+
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c C-c" . (lambda()
-                          (interactive)
-                          (eval-buffer)
-                          (message "Evaluated current buffer"))))
+           ("C-c C-c" . my-eval-buffer))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
