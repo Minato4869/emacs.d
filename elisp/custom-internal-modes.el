@@ -87,22 +87,6 @@
   :ensure nil
   :defer nil
   :config
-  (defun dired-view-file-other-window ()
-    (if (one-window-p)
-        (split-window-horizontally)
-      (split-window-vertically))
-    (other-window 1)
-    (dired-view-file))
-
-  (defun dired-find-or-view ()
-    "A `dired-find-file' which only works on directories."
-    (interactive)
-    (let ((find-file-run-dired t)
-          (file (dired-get-file-for-visit)))
-      (if (file-directory-p file)
-          (find-file file)
-        (dired-view-file-other-window))))
-
   (defun dired-jump-previous-dir ()
     (interactive)
     (setq old-buffer (buffer-name))
@@ -113,14 +97,11 @@
    ("C-x C-d" . dired-jump))
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("C-<return>" . dired-find-file-other-window)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)
         ("C-d"        . dired-hide-details-mode)
-        ("R"          . dired-do-rename)
         ("r"          . revert-buffer)
-        ("/"          . dired-isearch-filenames)
-        (":"          . execute-extended-command)))
+        ("/"          . occur)))
 
 ;; == tex
 (use-package tex

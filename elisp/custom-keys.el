@@ -196,9 +196,6 @@
  ("<insert>"        . yank-primary)
  ("s-5"             . query-replace-regexp)
  ;; windows
- ("C-2"             . split-window-below)
- ("C-3"             . split-window-right)
- ("C-4"             . make-frame-command)
  ("s-2"             . split-window-below)
  ("s-3"             . split-window-right)
  ("s-4"             . make-frame-command)
