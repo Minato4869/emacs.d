@@ -68,8 +68,8 @@
   (setq-default dired-omit-files "^\\...+$")
   (when (or (string-equal system-type "gnu/linux")
             (file-regular-p "/usr/local/share/gls"))
-            (setq dired-listing-switches
-                  "-laH --group-directories-first"))
+    (setq dired-listing-switches
+          "-laH --group-directories-first"))
   (setq dired-omit-verbose nil
         dired-omit-mode t)
 
@@ -81,7 +81,7 @@
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
         ("C-d"        . dired-hide-details-mode))
-    )
+  )
 
 (use-package dired
   :ensure nil
@@ -92,10 +92,28 @@
     (setq old-buffer (buffer-name))
     (dired-jump)
     (kill-buffer old-buffer))
+  (defun dired-view-file-other-window ()
+    (if (one-window-p)
+        (split-window-horizontally)
+      (split-window-vertically))
+    (other-window 1)
+    (dired-view-file))
+
+  (defun dired-find-or-view ()
+    "A `dired-find-file' which only works on directories."
+    (interactive)
+    (let ((find-file-run-dired t)
+          (file (dired-get-file-for-visit)))
+      (if (file-directory-p file)
+          (find-file file)
+        (dired-view-file-other-window))))
+
   :bind*
   (("s-d"     . dired-jump)
    ("C-x C-d" . dired-jump))
   (:map dired-mode-map
+        ("C-<return>" . dired-find-file-other-window)
+        ("C-<right>"  . dired-find-file-other-window)
         ("C-h"        . dired-omit-mode)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)
