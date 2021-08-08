@@ -89,6 +89,10 @@
   (set-frame-width (selected-frame) width)
   (set-frame-height (selected-frame) height))
 
+(defun resize-frame-80x25 ()
+  (interactive)
+  (cf/resize-frame 80 25))
+
 (defun resize-frame-80x57 ()
   (interactive)
   (cf/resize-frame 80 57))
@@ -105,6 +109,7 @@
   (cf/resize-frame 180 57))
 
 (bind-keys
+ ("s-1"     . resize-frame-80x25)
  ("C-1"     . resize-frame-80x57)
  ("C-2"     . resize-frame-120x57)
  ("C-3"     . resize-frame-160x57)
