@@ -97,9 +97,9 @@
   (interactive)
   (cf/resize-frame 80 57))
 
-(defun resize-frame-120x57 ()
+(defun resize-frame-115x57 ()
   (interactive)
-  (cf/resize-frame 120 57))
+  (cf/resize-frame 115 57))
 (defun resize-frame-160x57 ()
   (interactive)
   (cf/resize-frame 160 57))
@@ -111,6 +111,6 @@
 (bind-keys
  ("s-1"     . resize-frame-80x25)
  ("C-1"     . resize-frame-80x57)
- ("C-2"     . resize-frame-120x57)
+ ("C-2"     . resize-frame-115x57)
  ("C-3"     . resize-frame-160x57)
  ("C-4"     . resize-frame-180x57))
