@@ -1,27 +1,27 @@
 ;; fixme mode
 (defgroup fixme nil
   "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours") ;; were underlined
-(defface font-lock-fixme-face
+(defface ccol/fixme-face
   '((t (:foreground "#FFC0CB" :bold t))) ;; was red
   "Font lock face for TODO comments"
   :group 'fixme)
-(defface font-lock-done-face
+(defface ccol/done-face
   '((t (:foreground "#98fb98" :bold t)))
   "Font lock face for DONE comments"
   :group 'fixme)
-(defface font-lock-study-face
+(defface ccol/study-face
   '((t (:foreground "Yellow" :bold t)))
   "Font lock face for STUDY comments"
   :group 'fixme)
-(defface font-lock-wontfix-face
+(defface ccol/wontfix-face
   '((t (:foreground "red" :bold t))) ;; was Yellow
   "Font lock face for WONTFIX comments"
   :group 'fixme)
-(defface font-lock-important-face
+(defface ccol/important-face
   '((t (:foreground "red" :bold t))) ;; was Yellow
   "Font lock face for IMPORTANT comments"
   :group 'fixme)
-(defface font-lock-note-face
+(defface ccol/note-face
   '((t (:foreground "ForestGreen" :bold t))) ;; was DarkGreen
   "Font lock face for NOTE comments"
   :group 'fixme)
@@ -30,22 +30,22 @@
  (lambda (mode)
    (font-lock-add-keywords
     mode
-    '(("\\<\\(TODO\\)"      . 'font-lock-fixme-face)
-      ("\\<\\(DONE\\)"      . 'font-lock-done-face)
-      ("\\<\\(STUDY\\)"     . 'font-lock-study-face)
-      ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
-      ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
-      ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
+    '(("\\<\\(TODO\\)"      . 'ccol/fixme-face)
+      ("\\<\\(DONE\\)"      . 'ccol/done-face)
+      ("\\<\\(STUDY\\)"     . 'ccol/study-face)
+      ("\\<\\(IMPORTANT\\)" . 'ccol/important-face)
+      ("\\<\\(WONT\ FIX\\)" . 'ccol/wontfix-face)
+      ("\\<\\(NOTE\\)"      .  'ccol/note-face))))
  '(c++-mode c-mode emacs-lisp-mode java-mode latex-mode plain-tex-mode puppet-mode))
 
 (mapc
  (lambda (mode)
    (font-lock-add-keywords
     mode
-    '(("\\<\\(STUDY\\)"     . 'font-lock-study-face)
-      ("\\<\\(IMPORTANT\\)" . 'font-lock-important-face)
-      ("\\<\\(WONT\ FIX\\)" . 'font-lock-wontfix-face)
-      ("\\<\\(NOTE\\)"      .  'font-lock-note-face))))
+    '(("\\<\\(STUDY\\)"     . 'ccol/study-face)
+      ("\\<\\(IMPORTANT\\)" . 'ccol/important-face)
+      ("\\<\\(WONT\ FIX\\)" . 'ccol/wontfix-face)
+      ("\\<\\(NOTE\\)"      .  'ccol/note-face))))
  '(org-mode orgalist-mode))
 (setq dired-directory         "brightblue"
       dired-symlink           "magenta"
