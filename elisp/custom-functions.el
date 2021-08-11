@@ -109,8 +109,8 @@
   (cf/resize-frame 180 57))
 
 (bind-keys
- ("s-1"     . resize-frame-80x25)
- ("C-1"     . resize-frame-80x57)
- ("C-2"     . resize-frame-115x57)
- ("C-3"     . resize-frame-160x57)
- ("C-4"     . resize-frame-180x57))
+ ("C-1"     . resize-frame-80x25)
+ ("C-2"     . resize-frame-80x57)
+ ("C-3"     . resize-frame-115x57)
+ ("C-4"     . resize-frame-160x57)
+ ("C-6"     . resize-frame-180x57))
