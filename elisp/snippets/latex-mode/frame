@@ -2,10 +2,9 @@
 # name: frame
 # key: frame
 # --
-% ------------------------------------------------------------------------------
-\section{}
+%\section{}
 \begin{frame}[fragile]
-\hypertarget{$1}{}
+%\hypertarget{}{}
 \frametitle{}
 $0
 \end{frame}
