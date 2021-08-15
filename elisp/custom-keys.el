@@ -9,6 +9,11 @@
 (global-unset-key (kbd "M-l"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-_"))
+(global-unset-key (kbd "<prior>"))
+(global-unset-key (kbd "<next>"))
+(global-unset-key (kbd "<C-up>"))
+(global-unset-key (kbd "<C-down>"))
+
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -146,8 +151,8 @@
  ;; movement
  ("M-p"       . backward-paragraph)
  ("M-n"       . forward-paragraph)
-;; ("<M-up>"    . backward-paragraph)
-;; ("<M-down>"  . forward-paragraph)
+ ("<M-up>"    . backward-paragraph)
+ ("<M-down>"  . forward-paragraph)
  ;; mark
  ("C-x C-h"   . mark-whole-buffer)
  ;; misc
