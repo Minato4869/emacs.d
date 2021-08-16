@@ -50,6 +50,8 @@
   (load-theme 'naysayer t)
   (setq custom-themes-index 1))
  ((or (daemonp) (not (display-graphic-p)))
+  (load-theme 'gl-dark t))
+ (t
   (load-theme 'gl-dark t)))
 
 ;; themes
