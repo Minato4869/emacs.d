@@ -9,8 +9,6 @@
 (global-unset-key (kbd "M-l"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-_"))
-(global-unset-key (kbd "<prior>"))
-(global-unset-key (kbd "<next>"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
 

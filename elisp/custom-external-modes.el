@@ -50,7 +50,7 @@
    ("M-s M-s"     . elscreen-toggle)
    ("M-s s"       . elscreen-toggle)
    ("M-s k"       . elscreen-kill)
-   ("M-s x"       . elscreen-kill-buffer-and-screen)
+   ("M-s x"       . elscreen-kill)
    ("M-s M-k"     . elscreen-kill-buffer-and-screen)
    ("M-s g"       . elscreen-goto)))
 (elscreen-start))
