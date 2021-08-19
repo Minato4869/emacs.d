@@ -52,7 +52,7 @@
  ((or (daemonp) (not (display-graphic-p)))
   (load-theme 'gl-dark t))
  (t
-  (load-theme 'naysayer-grey t)))
+  (load-theme 'xcode-dark t)))
 
 ;; themes
 (defalias 'ct            'custom-cycle-theme)
