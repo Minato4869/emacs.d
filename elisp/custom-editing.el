@@ -175,6 +175,7 @@
 (setq auto-mode-alist
       (append auto-mode-alist
               '(("neomutt"       . mail-mode)
+                ("mutt"          . mail-mode)
                 ("\\.epub\\'"    . nov-mode)
                 (".shrc"         . shell-script-mode)
                 (".shenv"        . shell-script-mode)
