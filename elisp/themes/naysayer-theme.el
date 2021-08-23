@@ -2,8 +2,8 @@
   "naysayer theme")
 
 (let ((class '((class color) (min-colors 89)))
-      (BG                           "#072626")
-      (FG                           "#D3B58D")
+      (BG (when (theme/display-colors) "#072626"))
+      (FG (when (theme/display-colors) "#D3B58D"))
       (cursor                       "#8FEE90")
       (border                       "#0000FF")
       (fringe                       "#050404")

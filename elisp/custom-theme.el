@@ -1,5 +1,6 @@
 (defun theme/display-colors ()
-  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
+  (and (display-graphic-p) (daemonp)))
+;;  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
 
 (setq custom-themes-index 0
       custom-themes '(gl-dark nord naysayer warm-night srcery
@@ -54,6 +55,16 @@
  (t
   (load-theme 'xcode-dark t)))
 
+(when (daemonp)
+  (defun my/frame-configuration (frame)
+    "fix background/foreground colors for emacsclient within terminals
+  emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
+  (with-selected-frame frame
+    (unless (display-graphic-p)
+      (set-background-color "unspecified-bg")
+      (set-foreground-color "unspecified-fg"))))
+
+(add-hook 'after-make-frame-functions 'my/frame-configuration))
 ;; themes
 (defalias 'ct            'custom-cycle-theme)
 (defalias 'cycle-theme   'custom-cycle-theme)
