@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: fframe
-# key: fframe
-# --
-\begin{frame}[fragile] %\hypertarget{}{}
-\frametitle{}
-$0
-\end{frame}
