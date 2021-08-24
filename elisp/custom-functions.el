@@ -20,7 +20,8 @@
 ;; compile
 ;; Don’t ask to save files before compilation, just save them.
 (setq compilation-ask-about-save nil
-      compilation-always-kill t)
+      compilation-always-kill t
+      compilation-scroll-output 'first-error)
 ;; Don’t ask to kill currently running compilation, just kill it.
 (defun ccompile/colorize ()
   (toggle-read-only)
@@ -48,9 +49,9 @@
    (ccompile/colorize)))
 
 (bind-keys
- ("<f6>"     . ccompile/recompile)
- ("C-c <f6>" . compile-parent)
- ("C-<f6>"   . compile))
+ ("<f5>"     . ccompile/recompile)
+ ("<f6>"     . compile-parent)
+ ("C-<f5>"   . compile))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc

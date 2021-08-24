@@ -131,7 +131,7 @@
         font-latex-fontify-script nil
         LaTeX-item-indent -2
         LaTeX-indent-level 4) ;; indents special environments
-  (setq TeX-engine 'xelatex) ;; switch to xelatex
+  (setq TeX-engine 'default) ;; switch to xelatex
 ;;  (setq-default
 ;;   TeX-command-list
 ;;   (quote

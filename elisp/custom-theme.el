@@ -1,5 +1,6 @@
 (defun theme/display-colors ()
-  (and (display-graphic-p) (daemonp)))
+  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
+;;  (and (display-graphic-p) (daemonp)))
 ;;  (or (= (display-color-cells) 16777216) (display-graphic-p) (daemonp)))
 
 (setq custom-themes-index 0
@@ -54,6 +55,7 @@
   (load-theme 'gl-dark t))
  (t
   (load-theme 'xcode-dark t)))
+
 
 (when (daemonp)
   (defun my/frame-configuration (frame)

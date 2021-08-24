@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: verbatim
+# key: verbatim
+# --
+\begin{verbatim}
+$0
+\end{verbatim}
