@@ -116,12 +116,12 @@
   (text-scale-set 0))
 
 (bind-keys*
-  ("C-z"       . undo)
-  ("M-u"       . universal-argument)
-  ("C-x C-SPC" . rectangle-mark-mode)
-  ("C-c SPC"   . cua-rectangle-mark-mode)
-  ("C-x C-@"   . rectangle-mark-mode)
-  ("M-o"       . other-window))
+ ("C-z"       . undo)
+ ("M-u"       . universal-argument)
+ ("C-x C-SPC" . rectangle-mark-mode)
+ ("C-c SPC"   . cua-rectangle-mark-mode)
+ ("C-x C-@"   . rectangle-mark-mode)
+ ("M-o"       . other-window))
 ;; custom keys
 (bind-keys
  ("C-h"       . backward-delete-char-untabify)
@@ -170,7 +170,7 @@
  ("C-x k"     . kill-current-buffer)
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
-  ;; windows
+ ;; windows
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
@@ -182,36 +182,39 @@
 
 (bind-keys :map emacs-lisp-mode-map
            ("C-c C-c" . my-eval-buffer))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
-;; custom functions
+  ;; custom functions
 
 ;;; copy and paste
-(defun yank-primary ()
-  "Yank primary selection."
-  (interactive)
-  (insert (gui-get-primary-selection)))
+  (defun yank-primary ()
+    "Yank primary selection."
+    (interactive)
+    (insert (gui-get-primary-selection)))
 
-(bind-keys
- ("C-M-v"           . yank-primary)
- ("<insert>"        . yank-primary)
- ("s-5"             . query-replace-regexp)
- ;; windows
- ("s-2"             . split-window-below)
- ("s-3"             . split-window-right)
- ("s-4"             . make-frame-command)
- ("C-x 4"           . make-frame-command)
- ("C-x M-o"         . other-frame)
- ;; buffers
- ("s-r"             . revert-buffer)
- ;; text scale
- ("C-0"             . text-scale-reset)
- ("C--"             . text-scale-decrease)
- ("C-="             . text-scale-increase)
- ;; custom functions
- ("C-c o"           . other-frame)
- ;; window transposing
- ("s-o"             . transpose-windows)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (bind-keys
+   ("C-M-v"           . yank-primary)
+   ("<insert>"        . yank-primary)
+   ("s-5"             . query-replace-regexp)
+   ;; windows
+   ("s-2"             . split-window-below)
+   ("s-3"             . split-window-right)
+   ("s-4"             . make-frame-command)
+   ("C-x 4"           . make-frame-command)
+   ("C-x M-o"         . other-frame)
+   ;; buffers
+   ("s-r"             . revert-buffer)
+   ;; text scale
+   ("C-0"             . text-scale-reset)
+   ("C--"             . text-scale-decrease)
+   ("C-="             . text-scale-increase)
+   ;; custom functions
+   ("C-c o"           . other-frame)
+   ;; window transposing
+   ("s-o"             . transpose-windows)))
+
+(when (getenv "TMUX")
+  (let ((map (copy-keymap xterm-function-map)))
+    (set-keymap-parent map (keymap-parent input-decode-map))
+    (set-keymap-parent input-decode-map map)))

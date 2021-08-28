@@ -206,7 +206,7 @@
                                           (kill-buffer buffer)))))
 (defun custom-bury-buffer ()
   (if (not (or (equal (buffer-name) "*scratch*")
-               (string-match "^\\(reminder\\|plan\\).org.gpg" (buffer-name))
+               ;; (string-match "^\\(reminder\\|plan\\).org.gpg" (buffer-name))
                ;;(string-match (concat (system-name) ".org.gpg") (buffer-name))
                ))
       t

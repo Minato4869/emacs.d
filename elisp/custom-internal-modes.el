@@ -212,13 +212,11 @@
 (use-package man
   :ensure nil
   :defer t
+  :config
+  (setenv "MANWIDTH" "70")
   :bind
   (:map Man-mode-map
-        ("C-q"    . kill-buffer-and-window)
-        ("k"      . scroll-line-up)
-        ("C-f"    . scroll-line-down)
-        ("C-b"    . beginning-of-buffer)
-        ("G"      . end-of-buffer)))
+        ("C-q"    . kill-buffer-and-window)))
 
 ;; == view
 (use-package view
