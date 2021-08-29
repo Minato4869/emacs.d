@@ -101,12 +101,12 @@
 (defun resize-frame-100x57 ()
   (interactive)
   (cf/resize-frame 100 57))
-(defun resize-frame-160x57 ()
+(defun resize-frame-120x57 ()
   (interactive)
-  (cf/resize-frame 160 57))
+  (cf/resize-frame 120 57))
 
 (bind-keys
  ("C-1"     . resize-frame-80x25)
  ("C-2"     . resize-frame-80x57)
  ("C-3"     . resize-frame-100x57)
- ("C-6"     . resize-frame-160x57))
+ ("C-4"     . resize-frame-120x57))

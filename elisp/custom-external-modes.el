@@ -36,6 +36,10 @@
   (custom-set-variables
    '(elscreen-display-screen-number nil)
    '(elscreen-tab-display-kill-screen nil))
+  (defun elscreen-kill-confirm ()
+    (interactive)
+    (when (y-or-n-p "Kill current screen? ")
+      (elscreen-kill)))
   (defun elscreen-kill-buffer-and-screen ()
     (interactive)
     (when (y-or-n-p "Kill current buffer and close screen? ")
@@ -49,7 +53,7 @@
    ("M-s M-s"     . elscreen-toggle)
    ("M-s s"       . elscreen-toggle)
    ("M-s k"       . elscreen-kill)
-   ("M-s x"       . elscreen-kill)
+   ("M-s x"       . elscreen-kill-confirm)
    ("M-s M-k"     . elscreen-kill-buffer-and-screen)
    ("M-s g"       . elscreen-goto)))
 (when (or (daemonp) (display-graphic-p))
@@ -116,6 +120,7 @@
   )
 
 ;; == packages without config
+(use-package ag                   :ensure t :defer t)
 (use-package auctex               :ensure t :defer t)
 (use-package dumb-jump            :ensure t :defer t)
 (use-package keychain-environment :ensure t :defer t)

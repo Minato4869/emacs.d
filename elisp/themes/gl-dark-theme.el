@@ -44,6 +44,7 @@
       (org-done                            "#98fb98")
 
       (sh-quoted-exec                      "#FA8072")
+      (completions-common-part             "#ADD8E6")
       )
   (custom-theme-set-faces
    'gl-dark
@@ -87,5 +88,6 @@
    `(org-done                            ((,class (:foreground ,org-done :bold t))))
 
    `(sh-quoted-exec                      ((,class (:foreground ,sh-quoted-exec))))
+   `(completions-common-part             ((,class (:foreground ,completions-common-part :bold t))))
    ))
 (provide-theme 'gl-dark)

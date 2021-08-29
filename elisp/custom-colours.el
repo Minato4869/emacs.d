@@ -47,22 +47,17 @@
       ("\\<\\(WONT\ FIX\\)" . 'ccol/wontfix-face)
       ("\\<\\(NOTE\\)"      .  'ccol/note-face))))
  '(org-mode orgalist-mode))
-(setq dired-directory         "brightblue"
-      dired-symlink           "magenta"
-      eshell-ls-executable    "red"
-      trailing-whitespace     "maroon"
-      Man-overstrike          "brightred"
-      Man-underline           "brightgreen"
-      whitespace-space        "color-238")
-(when (or (display-graphic-p) (daemonp))
-    (setq dired-directory      "#4286F4"
-          dired-symlink        "#75507B"
-          eshell-ls-executable "#cc0000"
-          trailing-whitespace  "#FFB6B0"
-          Man-overstrike       "#FF0000" ;; was "#EF2929"
-          Man-underline        "#00FF00" ;; was "#8AE234"
-          whitespace-space     "#444444"))
-(custom-set-faces
+(defun gui-theme()
+  (or (display-graphic-p) (daemonp)))
+(let ((dired-directory       (if (gui-theme) "#4286F4" "brightblue"))
+       (dired-symlink        (if (gui-theme) "#75507B" "magenta"))
+       (eshell-ls-executable (if (gui-theme) "#cc0000" "red"))
+       (trailing-whitespace  (if (gui-theme) "#FFB6B0" "maroon"))
+       (Man-overstrike       (if (gui-theme) "#FF0000" "brightred"))   ;; was "#EF2929"
+       (Man-underline        (if (gui-theme) "#00FF00" "brightgreen")) ;; was "#8AE234"
+       (whitespace-space     (if (gui-theme) "#444444" "color-238"))
+       )
+  (custom-set-faces
  `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"
                                                :box  (:line-width -1 :style released-button)))))
  `(Man-overstrike               ((t (:foreground ,Man-overstrike :bold t))))
@@ -109,4 +104,4 @@
  `(scroll-bar                   ((t (:stipple nil :inherit default))))
  `(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
  `(org-date                     ((t (:inherit org-date :underline nil))))
- )
+ ))
