@@ -23,7 +23,6 @@
 
 
 ;; == elscreen
-(when (or (daemonp) (display-graphic-p))
 (use-package elscreen
   :ensure t
   :defer  t
@@ -53,7 +52,8 @@
    ("M-s x"       . elscreen-kill)
    ("M-s M-k"     . elscreen-kill-buffer-and-screen)
    ("M-s g"       . elscreen-goto)))
-(elscreen-start))
+(when (or (daemonp) (display-graphic-p))
+  (elscreen-start))
 
 
 ;; == yas
