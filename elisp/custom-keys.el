@@ -201,7 +201,7 @@
    ("s-2"             . split-window-below)
    ("s-3"             . split-window-right)
    ("s-4"             . make-frame-command)
-   ("C-x 4"           . make-frame-command)
+;;   ("C-x 4"           . make-frame-command)
    ("C-x M-o"         . other-frame)
    ;; buffers
    ("s-r"             . revert-buffer)
@@ -214,7 +214,10 @@
    ;; window transposing
    ("s-o"             . transpose-windows)))
 
-(when (getenv "TMUX")
+(defun set-tmux-keys ()
+  (interactive)
   (let ((map (copy-keymap xterm-function-map)))
     (set-keymap-parent map (keymap-parent input-decode-map))
     (set-keymap-parent input-decode-map map)))
+(when (getenv "TMUX")
+  (set-tmux-keys))
