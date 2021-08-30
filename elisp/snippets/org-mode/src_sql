@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sql
+# key: Sql
+# --
+#+BEGIN_SRC sql
+$0
+#+END_SRC
