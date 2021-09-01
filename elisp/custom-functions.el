@@ -1,9 +1,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; date
-(defun ymd ()
+(defun date ()
   (interactive)
   (insert (format-time-string "<%Y-%m-%d %a>")))
-(defalias 'date 'ymd)
+(defalias 'ymd 'date)
+
+(defun date-time ()
+  (interactive)
+  (insert (format-time-string "<%Y-%m-%d %a>")))
+
 (defun ldate ()
   (interactive)
   (insert (format-time-string "<%a %e %b (%Y-%m-%d)>")))
@@ -11,10 +16,9 @@
   (interactive)
   (insert (format-time-string "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")))
 
-(defun time ()
-  (interactive)
-  (insert (format-time-string "<%H:%M>")))
-
+(bind-keys
+ ("C-c ." . date)
+ ("C-c C-." . date-time))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
