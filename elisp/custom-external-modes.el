@@ -132,7 +132,12 @@
 (use-package puppet-mode          :ensure t :defer t)
 (use-package wgrep                :ensure t :defer t)
 (use-package so-long              :ensure t :defer t)
-
+;; == ranger
+(use-package ranger
+  :ensure t
+  :defer t
+  :bind
+  ("s-d" . ranger))
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t

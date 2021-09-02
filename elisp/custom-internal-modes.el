@@ -109,8 +109,7 @@
         (dired-view-file-other-window))))
 
   :bind*
-  (("s-d"     . dired-jump)
-   ("C-x C-d" . dired-jump))
+  (("C-x C-d" . dired-jump))
   (:map dired-mode-map
         ("C-<return>" . dired-find-file-other-window)
         ("C-<right>"  . dired-find-file-other-window)
