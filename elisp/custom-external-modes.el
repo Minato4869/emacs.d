@@ -52,6 +52,7 @@
    ("M-s <right>" . elscreen-next)
    ("M-s M-s"     . elscreen-toggle)
    ("M-s s"       . elscreen-toggle)
+   ("M-s S"       . elscreen-swap)
    ("M-s k"       . elscreen-kill)
    ("M-s x"       . elscreen-kill-confirm)
    ("M-s M-k"     . elscreen-kill-buffer-and-screen)
