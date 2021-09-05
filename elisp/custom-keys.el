@@ -216,8 +216,9 @@
 
 (defun set-tmux-keys ()
   (interactive)
-  (let ((map (copy-keymap xterm-function-map)))
-    (set-keymap-parent map (keymap-parent input-decode-map))
-    (set-keymap-parent input-decode-map map)))
+  (unless (display-graphic-p)
+    (let ((map (copy-keymap xterm-function-map)))
+      (set-keymap-parent map (keymap-parent input-decode-map))
+      (set-keymap-parent input-decode-map map))))
 (when (getenv "TMUX")
   (set-tmux-keys))
