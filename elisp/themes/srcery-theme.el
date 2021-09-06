@@ -1841,9 +1841,12 @@
       ((,srcery-class (:foreground ,srcery-yellow))
        (,srcery-256-class (:foreground ,srcery-256-yellow))))
 
+;;   `(org-table
+;;     ((,srcery-class (:foreground ,srcery-bright-white :background ,srcery-gray-1))
+;;      (,srcery-256-class (:foreground ,srcery-256-bright-white :background ,srcery-256-gray-1))))
    `(org-table
-     ((,srcery-class (:foreground ,srcery-bright-white :background ,srcery-gray-1))
-      (,srcery-256-class (:foreground ,srcery-256-bright-white :background ,srcery-256-gray-1))))
+     ((,srcery-class (:foreground ,srcery-bright-white))
+      (,srcery-256-class (:foreground ,srcery-256-bright-white))))
 
    `(org-time-grid
      ((,srcery-class (:foreground ,srcery-bright-green))

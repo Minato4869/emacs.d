@@ -35,16 +35,20 @@
       (font-lock-variable-name-face        "#C4A000")
       (font-lock-warning-face              "#FF0000")
 
+      (sh-quoted-exec                      "#FA8072")
+      (sh-heredoc                          "#FFFF00")
+      (completions-common-part             "#ADD8E6")
+
+      (org-level-1                         "#75507B")
       (org-level-2                         "#C4A000")
       (org-level-3                         "#729FCF")
       (org-level-4                         "#CC0000")
       (org-level-5                         "#4E9A06")
       (org-date                            "#2C78BF") ;; was cyan
-      (org-todo                            "#ffc0cb")
-      (org-done                            "#98fb98")
-
-      (sh-quoted-exec                      "#FA8072")
-      (completions-common-part             "#ADD8E6")
+      (org-todo                            "#FFC0CB")
+      (org-done                            "#98FB98")
+      (org-headline-done                   "#FFA07A")
+      (org-meta-line                       "#CC0000")
       )
   (custom-theme-set-faces
    'gl-dark
@@ -75,10 +79,14 @@
    `(font-lock-variable-name-face        ((,class (:foreground ,font-lock-variable-name-face))))
    `(font-lock-warning-face              ((,class (:foreground ,font-lock-warning-face :bold t))))
 
-
    `(ido-subdir                          ((,class (:foreground ,ido-subdir))))
    `(ido-only-match                      ((,class (:foreground ,ido-only-match))))
 
+   `(sh-quoted-exec                      ((,class (:foreground ,sh-quoted-exec))))
+   `(sh-heredoc                          ((,class (:foreground ,sh-heredoc :bold t))))
+   `(completions-common-part             ((,class (:foreground ,completions-common-part :bold t))))
+
+   `(org-level-1                         ((,class (:foreground ,org-level-1))))
    `(org-level-2                         ((,class (:foreground ,org-level-2))))
    `(org-level-3                         ((,class (:foreground ,org-level-3))))
    `(org-level-4                         ((,class (:foreground ,org-level-4))))
@@ -86,8 +94,9 @@
    `(org-date                            ((,class (:foreground ,org-date))))
    `(org-todo                            ((,class (:foreground ,org-todo :bold t))))
    `(org-done                            ((,class (:foreground ,org-done :bold t))))
-
-   `(sh-quoted-exec                      ((,class (:foreground ,sh-quoted-exec))))
-   `(completions-common-part             ((,class (:foreground ,completions-common-part :bold t))))
+   `(org-headline-done                   ((,class (:foreground ,org-headline-done))))
+   `(org-meta-line                       ((,class (:foreground ,org-meta-line))))
+   `(org-block-begin-line                ((,class (:inherit org-meta-line))))
+   `(org-block-end-line                  ((,class (:inherit org-meta-line))))
    ))
 (provide-theme 'gl-dark)

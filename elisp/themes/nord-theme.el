@@ -197,7 +197,8 @@
     ;; +--- UI ---+
     `(border ((,class (:foreground ,nord4))))
     `(buffer-menu-buffer ((,class (:foreground ,nord4 :weight bold))))
-    `(button ((,class (:background ,nord0 :foreground ,nord8 :box (:line-width 2 :color ,nord4 :style sunken-button)))))
+    ;;    `(button ((,class (:background ,nord0 :foreground ,nord8 :box (:line-width 2 :color ,nord4 :style sunken-button)))))
+    `(button ((,class (:background ,nord0 :foreground ,nord8))))
     `(completions-annotations ((,class (:foreground ,nord9))))
     `(completions-common-part ((,class (:foreground ,nord8 :weight bold))))
     `(completions-first-difference ((,class (:foreground ,nord11))))

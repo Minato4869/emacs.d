@@ -156,7 +156,9 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
+
 ;; == org
+
 (use-package org
   :ensure nil
   :defer nil

@@ -103,5 +103,8 @@
  `(menu                         ((t (:background "#292929" :foreground "#bebebe"))))
  `(scroll-bar                   ((t (:stipple nil :inherit default))))
  `(match                        ((t (:background "#CDCD00" :foreground "#000000")))) ;; def: bg=RoyalBlue3
+;;; org mode
  `(org-date                     ((t (:inherit org-date :underline nil))))
+ `(org-latex-and-related        ((t (:foreground "#DEB887"))))
+ `(org-table                    ((t (:foreground "#87CEFA"))))
  ))
