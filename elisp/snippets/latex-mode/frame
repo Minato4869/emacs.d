@@ -3,6 +3,6 @@
 # key: frame
 # --
 \begin{frame}[fragile] %\hypertarget{}{}
-\frametitle{}
+\frametitle{${frametitle}}
 $0
 \end{frame}
