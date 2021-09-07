@@ -1,6 +1,5 @@
 ;; fixme mode
-(defgroup fixme nil
-  "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours") ;; were underlined
+(defgroup fixme nil    "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours") ;; were underlined
 (defface ccol/fixme-face
   '((t (:foreground "#FFC0CB" :bold t))) ;; was red
   "Font lock face for TODO comments"
