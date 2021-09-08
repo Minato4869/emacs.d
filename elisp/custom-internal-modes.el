@@ -80,8 +80,7 @@
   :bind
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
-        ("C-d"        . dired-hide-details-mode))
-  )
+        ("C-d"        . dired-hide-details-mode)))
 
 (use-package dired
   :ensure nil
@@ -107,9 +106,7 @@
       (if (file-directory-p file)
           (find-file file)
         (dired-view-file-other-window))))
-
-  :bind*
-  (("C-x C-d" . dired-jump))
+  :bind
   (:map dired-mode-map
         ("C-<return>" . dired-find-file-other-window)
         ("C-<right>"  . dired-find-file-other-window)

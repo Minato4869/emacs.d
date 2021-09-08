@@ -137,8 +137,8 @@
 (use-package ranger
   :ensure t
   :defer t
-  :bind
-  ("s-d" . ranger))
+  :bind*
+  ("C-x C-d" . ranger))
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t
