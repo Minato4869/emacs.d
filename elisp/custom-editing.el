@@ -13,7 +13,6 @@
 (set-default 'truncate-lines t) ;; dont break lines at window edge
 (defvaralias 'c-basic-offset 'tab-width)
 (setq-default default-input-method "rfc1345"
-              frame-title-format '("" "emacs@" system-name " - %b")
               require-final-newline t
               ;; fill column
               auto-fill-function 'do-auto-fill
@@ -31,6 +30,12 @@
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry)
+(if (daemonp)
+    (setq frame-title-format '("" "emc@" system-name " - %b"))
+  (setq frame-title-format '("" "emacs@" system-name " - %b")))
+
+
+
 ;; region
 (transient-mark-mode 1)
 (delete-selection-mode t)

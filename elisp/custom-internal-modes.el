@@ -121,6 +121,7 @@
 (use-package tex
   :ensure nil
   :defer t
+  :init   (add-hook 'latex-mode-hook (lambda () (electric-indent-local-mode -1)))
   :config
   (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
         font-latex-fontify-sectioning 'color
