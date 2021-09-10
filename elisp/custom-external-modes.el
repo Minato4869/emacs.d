@@ -137,6 +137,8 @@
 (use-package ranger
   :ensure t
   :defer t
+  :config
+  (defalias 'z 'ranger)
   :bind*
   ("C-x C-d" . ranger))
 ;; == diminish
