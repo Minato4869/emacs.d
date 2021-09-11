@@ -28,10 +28,7 @@
  '(menu-bar-mode nil)
  '(tooltip-mode nil)
  '(use-dialog-box nil))
-(add-hook 'before-make-frame-hook
-          (lambda ()
-            (setq default-frame-alist `((width  . 80) (height . 57)))))
-                                        ; 81x56 with titlebar
+
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
@@ -78,6 +75,14 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-internal-modes")
 
 (when (or (daemonp) (display-graphic-p))
+  (setq w/width 100
+        w/height 57)
+  (when (< (display-pixel-height) 900)
+    (setq w/width 80
+          w/height 57))
+  (add-hook 'before-make-frame-hook
+            (lambda ()
+              (setq default-frame-alist `((width  . w/width) (height . w/height)))))
   (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
@@ -91,18 +96,8 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-theme")
 
 (when (daemonp)
-  (display-time-mode t)
-  (display-battery-mode t)
-  (keychain-refresh-environment)
-  (load-library-wrap-error "custom-desktop-save")
-  (defun ask-before-closing ()
-    (interactive)
-    (if (y-or-n-p (format "Really exit Emacs?"))
-        (save-buffers-kill-terminal)
-      (message "Quit")))
-  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
-(when (daemonp)
   (load-library-wrap-error "custom-emacsclient"))
+
 (let ((ln "~/.emacs.local.el")
       (pl "~/.emacs.personal.el"))
   (when (file-regular-p ln) (load-file ln))

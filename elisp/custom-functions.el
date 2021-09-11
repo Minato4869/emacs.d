@@ -87,35 +87,3 @@
         `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))
 (defalias 'reset-emacs 'reset_emacs)
-
-;;; resize window
-
-(defun cf/resize-frame (&optional width height)
-  (set-frame-width (selected-frame) width)
-  (set-frame-height (selected-frame) height))
-
-(defun resize-frame-80x25 ()
-  (interactive)
-  (cf/resize-frame 80 25))
-
-(defun resize-frame-80x57 ()
-  (interactive)
-  (cf/resize-frame 80 57))
-
-(defun resize-frame-100x57 ()
-  (interactive)
-  (cf/resize-frame 100 57))
-(defun resize-frame-120x57 ()
-  (interactive)
-  (cf/resize-frame 120 57))
-
-(defun resize-frame-180x57 ()
-  (interactive)
-  (cf/resize-frame 180 57))
-
-(bind-keys
- ("C-1"     . resize-frame-80x25)
- ("C-2"     . resize-frame-80x57)
- ("C-3"     . resize-frame-100x57)
- ("C-4"     . resize-frame-120x57)
- ("C-6"     . resize-frame-180x57))

@@ -193,6 +193,10 @@
     (interactive)
     (insert (gui-get-primary-selection)))
 
+  (defun cf/resize-frame (&optional width height)
+    (set-frame-width (selected-frame) width)
+    (set-frame-height (selected-frame) height))
+
   (bind-keys
    ("C-M-v"           . yank-primary)
    ("<insert>"        . yank-primary)
@@ -201,7 +205,7 @@
    ("s-2"             . split-window-below)
    ("s-3"             . split-window-right)
    ("s-4"             . make-frame-command)
-;;   ("C-x 4"           . make-frame-command)
+   ("C-x 4"           . make-frame-command)
    ("C-x M-o"         . other-frame)
    ;; buffers
    ("s-r"             . revert-buffer)
@@ -212,7 +216,14 @@
    ;; custom functions
    ("C-c o"           . other-frame)
    ;; window transposing
-   ("s-o"             . transpose-windows)))
+   ("s-o"             . transpose-windows)
+   ;; window resizing
+   ("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
+   ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  w/height)))
+   ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 w/height)))
+   ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
+   ("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
+  )
 
 (defun set-tmux-keys ()
   (interactive)
