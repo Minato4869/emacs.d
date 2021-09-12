@@ -153,3 +153,41 @@
   (diminish 'yas-minor-mode)
   (diminish 'eldoc-mode)
   (diminish 'auto-fill-function))
+
+
+;; == mu4e
+
+(use-package mu4e
+  :ensure nil
+  :defer nil
+  :init
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+  (load-library "mu4e")
+  :config
+  (setq mail-user-agent 'mu4e-user-agent
+        mu4e-sent-folder   "/Sent"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-trash-folder  "/Trash"
+        message-send-mail-function   nil
+        smtpmail-default-smtp-server nil
+        smtpmail-smtp-server         nil
+        smtpmail-local-domain        nil)
+  (custom-set-faces
+   '(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
+   '(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
+   '(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
+   '(mu4e-header-face                 ((t (:foreground "#585858" :bold nil))))
+   '(mu4e-header-key-face             ((t (:foreground "#585858" :bold nil))))
+   )
+
+  (defun my-mu4e ()
+    (interactive)
+    (if (or (daemonp) (display-graphic-p))
+            (progn
+              (elscreen-create)
+              (mu4e))
+            (mu4e))))
+  (defalias 'mu   'my-mu4e)
+  (defalias 'mail 'my-mu4e)
+  :bind
+  (("C-x m" . my-mu4e)))
