@@ -14,6 +14,8 @@
 (defun ask-before-closing ()
   (interactive)
   (if (y-or-n-p (format "Really exit Emacs?"))
-        (save-buffers-kill-terminal)
+      (progn
+        (save-some-buffers)
+        (delete-frame))
     (message "Quit")))
 (global-set-key (kbd "C-x C-c") 'ask-before-closing)
