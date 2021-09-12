@@ -12,15 +12,6 @@
   (("C-x o" . ace-window)))
 
 
-;; == notmuch
-(use-package notmuch
-  :ensure t
-  :defer  t
-  :config
-  (xterm-mouse-mode -1)
-  (setq notmuch-search-oldest-first nil
-        notmuch-multipart/alternative-discouraged '()))
-
 
 ;; == elscreen
 (use-package elscreen
