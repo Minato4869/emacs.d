@@ -1,9 +1,8 @@
 (deftheme xcode-dark
   "xcode-dark theme")
 
-(let ((class '((class color) (min-colors 89)))
-      (BG  (when (theme/display-colors) "#000000"))
-      (FG  (when (theme/display-colors) "#BEBEBE")) ;; was #ffffff; then e5e5e5; then d8d8d8
+(let ((BG                               "#000000"))
+      (FG                               "#BEBEBE")) ;; was #ffffff; then e5e5e5; then d8d8d8
       (cursor                           "#DB0600")
       (border                           "#0000FF")
       (fringe                           "#121212")
@@ -21,7 +20,8 @@
   (custom-theme-set-faces
    'xcode-dark
 
-   `(default                      ((,class (:background ,BG :foreground ,FG))))
+   `(default                      ((((type tty)) (:background "unspecified-bg" :foreground "unspecified-fg"))
+                                   (t            (:background ,BG :foreground ,FG))))
    `(cursor                       ((,class (:background ,cursor))))
    `(border                       ((,class (:foreground ,border))))
    `(fringe                       ((,class (:background ,fringe))))

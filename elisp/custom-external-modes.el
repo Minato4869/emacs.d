@@ -61,7 +61,8 @@
         ("<right>" . elscreen-next)
         ("M-s"     . elscreen-toggle)
         ("s"       . elscreen-toggle)
-        ("S"       . elscreen-swap)
+        ("S"       . elscreen-split)
+        ("C-s"     . elscreen-swap)
         ("k"       . elscreen-kill)
         ("x"       . elscreen-kill-window-or-screen)
         ("M-k"     . elscreen-kill-buffer-and-screen)
@@ -149,10 +150,9 @@
 (use-package ranger
   :ensure t
   :defer t
-  :config
-  (defalias 'z 'ranger)
   :bind*
   ("C-x C-d" . ranger))
+(defalias 'z 'ranger)
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t

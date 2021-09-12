@@ -1,9 +1,8 @@
 (deftheme gl-grey
   "gl-grey theme")
 
-(let ((class '((class color) (min-colors 89)))
-      (BG  (when (theme/display-colors) "#333333"))
-      (FG  (when (theme/display-colors) "#E5E5E5"))
+(let ((BG                               "#333333")
+      (FG                               "#E5E5E5")
       (cursor                           "#00FF00")
       (fringe                           "#1A1A1A")
       (mode-line-fg                     "#000000")
@@ -36,31 +35,32 @@
   (custom-theme-set-faces
    'gl-grey
 
-   `(default                      ((,class (:background ,BG :foreground ,FG))))
-   `(cursor                       ((,class (:background ,cursor))))
-   `(fringe                       ((,class (:background ,fringe))))
-   `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
-   `(mode-line                    ((,class (:background ,mode-line-bg :foreground ,mode-line-fg
+   `(default                      ((((type tty)) (:background "unspecified-bg" :foreground "unspecified-fg"))
+                                   (t            (:background ,BG :foreground ,FG))))
+   `(cursor                       ((t (:background ,cursor))))
+   `(fringe                       ((t (:background ,fringe))))
+   `(minibuffer-prompt            ((t (:inherit foreground :bold t))))
+   `(mode-line                    ((t (:background ,mode-line-bg :foreground ,mode-line-fg
                                                         :box (:line-width -1 :style released-button)))))
-   `(mode-line-inactive           ((,class (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
+   `(mode-line-inactive           ((t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
                                                         :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
-   `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
+   `(region                       ((t (:background ,region-bg :foreground ,region-fg))))
 
-   `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
-   `(font-lock-comment-face       ((,class (:foreground ,font-lock-comment-face))))
-   `(font-lock-constant-face      ((,class (:foreground ,font-lock-constant-face))))
-   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-name-face))))
-   `(font-lock-keyword-face       ((,class (:foreground ,font-lock-keyword-face))))
-   `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
-   `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
-   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
+   `(font-lock-builtin-face       ((t (:foreground ,font-lock-builtin-face))))
+   `(font-lock-comment-face       ((t (:foreground ,font-lock-comment-face))))
+   `(font-lock-constant-face      ((t (:foreground ,font-lock-constant-face))))
+   `(font-lock-function-name-face ((t (:foreground ,font-lock-function-name-face))))
+   `(font-lock-keyword-face       ((t (:foreground ,font-lock-keyword-face))))
+   `(font-lock-string-face        ((t (:foreground ,font-lock-string-face))))
+   `(font-lock-type-face          ((t (:foreground ,font-lock-type-face))))
+   `(font-lock-variable-name-face ((t (:foreground ,font-lock-variable-name-face))))
 
-   `(org-level-1                  ((,class (:foreground ,org-level-1 :weight extra-bold))))
-   `(org-level-2                  ((,class (:foreground ,org-level-2 :weight bold))))
-   `(org-level-3                  ((,class (:foreground ,org-level-3))))
-   `(org-level-4                  ((,class (:foreground ,org-level-4))))
-   `(org-level-5                  ((,class (:foreground ,org-level-5))))
-   `(org-date                     ((,class (:foreground ,org-date :underline nil))))
-   `(sh-quoted-exec               ((,class (:foreground ,sh-quoted-exec))))
+   `(org-level-1                  ((t (:foreground ,org-level-1 :weight extra-bold))))
+   `(org-level-2                  ((t (:foreground ,org-level-2 :weight bold))))
+   `(org-level-3                  ((t (:foreground ,org-level-3))))
+   `(org-level-4                  ((t (:foreground ,org-level-4))))
+   `(org-level-5                  ((t (:foreground ,org-level-5))))
+   `(org-date                     ((t (:foreground ,org-date :underline nil))))
+   `(sh-quoted-exec               ((t (:foreground ,sh-quoted-exec))))
    ))
 (provide-theme 'gl-grey)

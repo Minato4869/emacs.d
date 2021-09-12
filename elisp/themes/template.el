@@ -1,9 +1,8 @@
 (deftheme <themename>
   "<themename> theme")
 
-(let ((class '((class color) (min-colors 89)))
-      (BG  (when (theme/display-colors) ""))
-      (FG  (when (theme/display-colors) ""))
+(let ((BG                               "")
+      (FG                               "")
       (cursor                           "")
       (border                           "")
       (fringe                           "")
@@ -28,23 +27,25 @@
   (custom-theme-set-faces
    '<themename>
 
-   `(default                      ((,class (:background ,BG :foreground ,FG))))
-   `(cursor                       ((,class (:background ,cursor))))
-   `(border                       ((,class (:foreground ,border))))
-   `(fringe                       ((,class (:background ,fringe))))
-   `(minibuffer-prompt            ((,class (:inherit foreground :bold t))))
-   `(mode-line                    ((,class (:background ,mode-line-bg :inherit foreground))))
-   `(mode-line-inactive           ((,class (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
-                                                        :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
-   `(region                       ((,class (:background ,region-bg :foreground ,region-fg))))
+   `(default                      ((((type tty)) (:background "unspecified-bg" :foreground "unspecified-fg"))
+                                   (t            (:background ,BG :foreground ,FG))))
 
-   `(font-lock-builtin-face       ((,class (:foreground ,font-lock-builtin-face))))
-   `(font-lock-comment-face       ((,class (:foreground ,font-lock-comment-face))))
-   `(font-lock-constant-face      ((,class (:foreground ,font-lock-constant-face))))
-   `(font-lock-function-name-face ((,class (:foreground ,font-lock-function-name-face))))
-   `(font-lock-keyword-face       ((,class (:foreground ,font-lock-keyword-face))))
-   `(font-lock-string-face        ((,class (:foreground ,font-lock-string-face))))
-   `(font-lock-type-face          ((,class (:foreground ,font-lock-type-face))))
-   `(font-lock-variable-name-face ((,class (:foreground ,font-lock-variable-name-face))))
+   `(cursor                       ((t (:background ,cursor))))
+   `(border                       ((t (:foreground ,border))))
+   `(fringe                       ((t (:background ,fringe))))
+   `(minibuffer-prompt            ((t (:inherit foreground :bold t))))
+   `(mode-line                    ((t (:background ,mode-line-bg :inherit foreground))))
+   `(mode-line-inactive           ((t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
+                                                        :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
+   `(region                       ((t (:background ,region-bg :foreground ,region-fg))))
+
+   `(font-lock-builtin-face       ((t (:foreground ,font-lock-builtin-face))))
+   `(font-lock-comment-face       ((t (:foreground ,font-lock-comment-face))))
+   `(font-lock-constant-face      ((t (:foreground ,font-lock-constant-face))))
+   `(font-lock-function-name-face ((t (:foreground ,font-lock-function-name-face))))
+   `(font-lock-keyword-face       ((t (:foreground ,font-lock-keyword-face))))
+   `(font-lock-string-face        ((t (:foreground ,font-lock-string-face))))
+   `(font-lock-type-face          ((t (:foreground ,font-lock-type-face))))
+   `(font-lock-variable-name-face ((t (:foreground ,font-lock-variable-name-face))))
    ))
 (provide-theme '<themename>)
