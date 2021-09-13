@@ -154,7 +154,6 @@
   (diminish 'eldoc-mode)
   (diminish 'auto-fill-function))
 
-
 ;; == mu4e
 
 (use-package mu4e
@@ -186,7 +185,7 @@
             (progn
               (elscreen-create)
               (mu4e))
-            (mu4e))))
+            (mu4e)))
   (defalias 'mu   'my-mu4e)
   (defalias 'mail 'my-mu4e)
   :bind
