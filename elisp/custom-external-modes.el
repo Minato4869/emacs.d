@@ -41,7 +41,8 @@
     (interactive)
     (if (one-window-p)
         (elscreen-kill-confirm)
-      (delete-window)))
+      (when (y-or-n-p "Kill window? ")
+        (delete-window))))
   :bind*
   (("M-<left>"    . elscreen-previous)
    ("M-<right>"   . elscreen-next)

@@ -100,5 +100,5 @@ Errors will be logged to the buffer *Init Errors*"
 
 (let ((ln "~/.emacs.local.el")
       (pl "~/.emacs.personal.el"))
-  (when (file-regular-p ln) (load-file ln))
-  (when (file-regular-p pl) (load-file pl)))
+  (when (file-regular-p pl) (load-file pl))
+  (when (file-regular-p ln) (load-file ln)))
