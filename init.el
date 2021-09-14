@@ -76,13 +76,14 @@ Errors will be logged to the buffer *Init Errors*"
 
 (when (or (daemonp) (display-graphic-p))
   (setq w/width 100
-        w/height 57)
+        w/height 67)
   (when (< (display-pixel-height) 900)
     (setq w/width 80
           w/height 57))
   (add-hook 'before-make-frame-hook
             (lambda ()
-              (setq default-frame-alist `((width  . ,w/width) (height . ,w/height)))))
+              (setq default-frame-alist `((width  . ,w/width) (height . ,w/height))
+                    initial-frame-alist `((width  . ,w/width) (height . ,w/height)))))
   (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
     (scroll-bar-mode -1)
     (tool-bar-mode -1))

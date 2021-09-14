@@ -11,8 +11,6 @@
   :bind
   (("C-x o" . ace-window)))
 
-
-
 ;; == elscreen
 (use-package elscreen
   :ensure t
@@ -126,7 +124,6 @@
   )
 
 ;; == packages without config
-(use-package ag                   :ensure t :defer t)
 (use-package auctex               :ensure t :defer t)
 (use-package dumb-jump            :ensure t :defer t)
 (use-package keychain-environment :ensure t :defer t)

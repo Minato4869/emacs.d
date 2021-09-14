@@ -21,7 +21,7 @@
               show-trailing-whitespace nil
               ;; gpg
               epg-gpg-home-directory "~/.gnupg"
-              ispell-dictionary "de_AT"
+              ispell-dictionary "en_GB"
               ;; tab width
               indent-tabs-mode t
               c-basic-offset 8
@@ -31,8 +31,8 @@
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry)
 (if (daemonp)
-    (setq frame-title-format '("" "emc@" system-name " - %b"))
-  (setq frame-title-format '("" "emacs@" system-name " - %b")))
+    (setq frame-title-format '("" "emacsclient@" system-name " - %f"))
+  (setq frame-title-format '("" "emacs@" system-name " - %f"))) ;; was %b
 
 
 
@@ -88,7 +88,8 @@
           (lambda () (cedit/sh-indent)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'mail-mode-hook       (lambda ()
-                                  (setq standard-indent 2)
+                                  (setq standard-indent 2
+                                        ispell-dictionary "en_GB")
                                   (xterm-mouse-mode nil)
                                   (cedit/indent-conf 4 t nil 70)))
 (add-hook 'text-mode-hook       (lambda ()

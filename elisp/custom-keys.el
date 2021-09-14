@@ -19,7 +19,6 @@
          (define-key m (kbd "C-w")        'kill-region)
          (define-key m (kbd "C-M-/")      'indent-region)
          (define-key m (kbd "M-|")        'shell-command-on-region)
-         (define-key m (kbd "M-:")        'eval-region)
          m))))
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 
@@ -175,13 +174,19 @@
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
 ;; mode specific
-(defun my-eval-buffer ()
+(defun my-eval-region-or-buffer ()
   (interactive)
-  (eval-buffer)
-  (message "Evaluated current buffer"))
+  (if (region-active-p)
+      (progn
+        (eval-region (region-beginning) (region-end))
+        (message "Evaluated current buffer"))
+    (progn
+      (eval-buffer)
+      (message "Evaluated current buffer"))))
+
 
 (bind-keys :map emacs-lisp-mode-map
-           ("C-c C-c" . my-eval-buffer))
+           ("C-c C-c" . my-eval-region-or-buffer))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
