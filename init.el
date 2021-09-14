@@ -76,7 +76,7 @@ Errors will be logged to the buffer *Init Errors*"
 
 (when (or (daemonp) (display-graphic-p))
   (setq w/width 100
-        w/height 67)
+        w/height 66)
   (when (< (display-pixel-height) 900)
     (setq w/width 80
           w/height 57))
