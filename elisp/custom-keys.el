@@ -184,9 +184,10 @@
       (eval-buffer)
       (message "Evaluated current buffer"))))
 
+(dolist (m (list lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
+  (bind-keys :map m
+           ("C-c C-c" . my-eval-region-or-buffer)))
 
-(bind-keys :map emacs-lisp-mode-map
-           ("C-c C-c" . my-eval-region-or-buffer))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
 (when (or (daemonp) (display-graphic-p))
