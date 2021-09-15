@@ -1,6 +1,4 @@
-;;; interesting packages:
-;; narrowed-page-navigation
-;; so-long mode
+;;; external packages
 
 ;; == ace-window
 (use-package ace-window
@@ -188,3 +186,7 @@
     (defalias 'mail 'my-mu4e)
     :bind
     (("C-x m" . my-mu4e))))
+
+
+;;; interesting packages:
+;; narrowed-page-navigation
