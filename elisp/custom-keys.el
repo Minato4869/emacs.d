@@ -224,11 +224,11 @@
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; window resizing
-   ("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
-   ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  w/height)))
-   ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 w/height)))
-   ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
-   ("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
+   ;;("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
+   ;;("C-2"     . (lambda () (interactive) (cf/resize-frame 80  w/height)))
+   ;;("C-3"     . (lambda () (interactive) (cf/resize-frame 100 w/height)))
+   ;;("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
+   ;;("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
   )
 
 (defun set-tmux-keys ()

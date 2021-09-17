@@ -21,7 +21,6 @@
               show-trailing-whitespace nil
               ;; gpg
               epg-gpg-home-directory "~/.gnupg"
-              ispell-dictionary "en_GB"
               ;; tab width
               indent-tabs-mode t
               c-basic-offset 8
@@ -30,6 +29,7 @@
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry)
+(setq         ispell-dictionary "en_GB")
 (if (daemonp)
     (setq frame-title-format '("" "emacsclient@" system-name " - %f"))
   (setq frame-title-format '("" "emacs@" system-name " - %f"))) ;; was %b
