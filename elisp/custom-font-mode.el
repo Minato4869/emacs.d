@@ -2,14 +2,14 @@
 (setq  cfont/size   "14"
        cfont/ttf    "Meslo LG S:antialias=true:regular:pixelsize="
        cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
-       cfont/9x16 "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
+       cfont/9x16   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
        cfont/default cfont/9x16
        cfont/small   cfont/6x13)
 
 (unless (file-directory-p "~/.fonts/Meslo-Font")
   (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
 
-(if (< (display-pixel-height) 1440)
+(if (< (display-pixel-height) 1080)
     (setq cfont/default cfont/6x13
           cfont/default       cfont/6x13
           cfont/size          "12"))

@@ -229,7 +229,7 @@
    ;;("C-3"     . (lambda () (interactive) (cf/resize-frame 100 w/height)))
    ;;("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
    ;;("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
-  )
+  ))
 
 (defun set-tmux-keys ()
   (interactive)
