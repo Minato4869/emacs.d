@@ -78,6 +78,8 @@
     (dired-hide-details-mode 1))
   (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
   :bind
+  (("C-x C-d" . dired-jump)
+   ("s-d" . dired-jump))
   (:map dired-mode-map
         ("C-h"        . dired-omit-mode)
         ("C-d"        . dired-hide-details-mode)))
@@ -128,7 +130,7 @@
         font-latex-fontify-script nil
         LaTeX-item-indent -2
         LaTeX-indent-level 4) ;; indents special environments
-  (setq TeX-engine 'default) ;; switch to xelatex
+  (setq TeX-engine 'default) ;; xetex to switch to xelatex
 ;;  (setq-default
 ;;   TeX-command-list
 ;;   (quote
