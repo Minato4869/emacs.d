@@ -2,16 +2,17 @@
 # name: doc
 # key: doc
 # --
-% - * packages -----------------------------------------------------------------
-\input tikz
-% \input eplain
+%% packages
+%\input tikz
+%\input eplain
 %\parindent=0pt
-% - * fonts --------------------------------------------------------------------
+
+%% fonts
 \font\bigbf=cmbx12 at 12pt
 \font\bigrm=cmr12 at 14pt
 \font\bigcmr=cmr10 at 10pt
 
-% - * title --------------------------------------------------------------------
+%% header
 \pageno=1
 \centerline{\bigrm ${title} }
 \bigskip
@@ -20,7 +21,7 @@
 \centerline{ ${date} }
 \bigskip
 
-% - * main ---------------------------------------------------------------------
+%% main
 
 
 \bye
