@@ -31,6 +31,10 @@
         ((looking-at "\\s)") (forward-char) (backward-sexp arg))
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
 
+(defun delete-and-balance-window ()
+  (interactive)
+  (delete-window)
+  (balance-windows))
 (defun kill-buffer-and-window ()
   "If a buffer is within its own window, kill both"
   (interactive)
