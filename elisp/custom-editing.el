@@ -74,8 +74,8 @@
 ;; hooks
 (add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook       'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil nil)))
-(add-hook 'TeX-mode-hook        (lambda () (cedit/indent-conf 2 nil nil)))
+(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil 80)))
+(add-hook 'plain-TeX-mode-hook  (lambda () (cedit/indent-conf 4 nil 80)))
 (add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-xdefaults-mode-hook
