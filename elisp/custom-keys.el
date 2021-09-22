@@ -6,7 +6,6 @@
 ;;(global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
-(global-unset-key (kbd "M-l"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-_"))
 (global-unset-key (kbd "<C-up>"))
