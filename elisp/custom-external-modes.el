@@ -19,7 +19,7 @@
    '(elscreen-tab-control-face        ((t (:background "#292929" :foreground "#bebebe"))))
    '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
    '(elscreen-tab-other-screen-face   ((t (:background "#292929" :foreground "#bebebe")))))
-  (setq-default elscreen-prefix-key "\M-s")
+    (setq-default elscreen-prefix-key "\M-s")
   (custom-set-variables
    '(elscreen-display-screen-number nil)
    '(elscreen-tab-display-kill-screen nil))
@@ -144,7 +144,7 @@
   (diminish 'auto-fill-function))
 
 ;; == mu4e
-(when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
+(when (and (daemonp) (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
   (use-package mu4e
     :ensure nil
     :defer nil

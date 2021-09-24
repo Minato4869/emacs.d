@@ -3,7 +3,9 @@
   emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
   (with-selected-frame frame
     (unless (display-graphic-p)
-      (set-tmux-keys))))
+      (set-tmux-keys))
+    (when (getenv "TMUX")
+      (setq-default elscreen-prefix-key "\C-t"))))
 
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 
