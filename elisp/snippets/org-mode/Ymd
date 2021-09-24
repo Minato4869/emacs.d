@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Ymd
+# key: Ymd
+# --
+* `(format-time-string "<%Y-%m-%d %a>")` $0
