@@ -1,5 +1,5 @@
 (setq custom-themes-index 0
-      custom-themes '(gl-dark warm-night))
+      custom-themes '(gl-dark gl-light))
 
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
