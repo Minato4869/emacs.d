@@ -2,10 +2,11 @@
   "fix background/foreground colors for emacsclient within terminals
   emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
   (with-selected-frame frame
-    (unless (display-graphic-p)
-      (set-tmux-keys))
-    (when (getenv "TMUX")
-      (setq-default elscreen-prefix-key "\C-t"))))
+    (if (display-graphic-p)
+        (setq-default elscreen-prefix-key "\M-s")
+      (progn
+        (set-tmux-keys)
+        (setq-default elscreen-prefix-key "\C-t")))))
 
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 

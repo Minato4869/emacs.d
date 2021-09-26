@@ -182,7 +182,7 @@
   (if (region-active-p)
       (progn
         (eval-region (region-beginning) (region-end))
-        (message "Evaluated current buffer"))
+        (message "Evaluated current region"))
     (progn
       (eval-buffer)
       (message "Evaluated current buffer"))))
