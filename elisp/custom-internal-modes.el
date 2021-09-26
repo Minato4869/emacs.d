@@ -180,7 +180,8 @@
           '((sequence "TODO" "|" "DONE" "INPROGRESS" "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")
             (sequence "VALID"  "|" "INVALID")
-            (sequence "BUG"    "|" "FIXED" "WONT FIX"))
+            (sequence "BUG"    "|" "FIXED" "WONT FIX")
+            (sequence "DELETED" "UNKNOWN"))
           org-todo-keyword-faces
           '(("INVIABLE"   . "pink")
             ("VIABLE"     . "palegreen")
@@ -190,6 +191,8 @@
             ("VALID"      . "palegreen")
             ("BUG"        . "pink")
             ("WONT FIX"   . "red")
+            ("DELETED"    . "red")
+            ("UNKNOWN"    . "goldenrod1")
             ("FIXED"      . "palegreen")))
     (setq org-capture-templates
           '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")

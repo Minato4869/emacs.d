@@ -15,7 +15,7 @@
        (region-bg                           "#114488")
        (region-fg                           "#FFFFFF")
 
-       (ido-subdir                          "#A1C659")
+       (ido-subdir                          "#4E9A06")
        (ido-only-match                      "#FFCC33")
 
        (font-lock-builtin-face              "#75507B")

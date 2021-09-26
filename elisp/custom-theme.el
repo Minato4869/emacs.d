@@ -1,19 +1,14 @@
-(setq custom-themes-index 0
-      custom-themes '(gl-dark gl-light))
-
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
   (mapc #'disable-theme custom-enabled-themes))
+
+(setq custom-themes-index 0
+      custom-themes '(gl-dark warm-night))
 
 (defun custom-cycle-theme ()
   (interactive)
   (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
   (load-theme (nth custom-themes-index custom-themes) :no-confirm))
-
-(defun reset-theme ()
-  (interactive)
-  (load-file "~/.emacs.d/elisp/custom-theme.el")
-  (message "resetting themes"))
 
 (defun disable-all-themes ()
   "Disable all themes."
@@ -55,5 +50,4 @@
 (defalias 'dft           'custom-default-theme)
 (defalias 'da            'disable-all-themes)
 (defalias 'lt            'load-theme)
-(defalias 'res           'reset-themes)
 (defalias 'light         'default-light-theme)
