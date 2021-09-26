@@ -1,13 +1,10 @@
 (defun my/frame-configuration (frame)
-  "fix background/foreground colors for emacsclient within terminals
-  emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
   (with-selected-frame frame
-    (if (display-graphic-p)
-        (setq-default elscreen-prefix-key "\M-s")
-      (progn
-        (set-tmux-keys)
-        (setq-default elscreen-prefix-key "\C-t")))))
+    (set-elscreen-prefix)
+    (unless (display-graphic-p)
+        (set-tmux-keys))))
 
+(remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 
 (display-time-mode t)
@@ -16,9 +13,14 @@
 (load-library-wrap-error "custom-desktop-save")
 (defun ask-before-closing ()
   (interactive)
-  (if (y-or-n-p (format "Really exit Emacs?"))
-      (progn
-        (save-some-buffers)
-        (delete-frame))
-    (message "Quit")))
+  (if (display-graphic-p)
+       (if (y-or-n-p (format "Really exit Emacs?"))
+           (progn
+             (save-some-buffers)
+             (delete-frame))
+         (message "Quit"))
+    (delete-frame)))
 (global-set-key (kbd "C-x C-c") 'ask-before-closing)
+
+;;  "fix background/foreground colors for emacsclient within terminals
+;;  emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
