@@ -1,6 +1,5 @@
 (defun my/frame-configuration (frame)
   (with-selected-frame frame
-    (set-elscreen-prefix)
     (unless (display-graphic-p)
         (set-tmux-keys))))
 
