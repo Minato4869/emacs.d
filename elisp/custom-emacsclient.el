@@ -7,6 +7,8 @@
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 
+(add-hook 'before-make-frame-hook (lambda () (set-elscreen-prefix)))
+
 (display-time-mode t)
 (display-battery-mode t)
 (keychain-refresh-environment)

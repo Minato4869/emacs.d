@@ -24,6 +24,7 @@
     (if (display-graphic-p)
         (setq elscreen-prefix-key "\M-s")
       (setq elscreen-prefix-key "\C-t")))
+  (set-elscreen-prefix)
   (custom-set-variables
    '(elscreen-display-screen-number nil)
    '(elscreen-tab-display-kill-screen nil))
