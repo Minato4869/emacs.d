@@ -1,6 +1,7 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-(setq  cfont/size   "14"
-       cfont/ttf    "Meslo LG S:antialias=true:regular:pixelsize="
+(setq  cfont/size   "6.5"
+       ;;       cfont/ttf    "Meslo LG S:antialias=true:regular:pixelsize="
+       cfont/ttf    "Meslo LG S:antialias=true:regular:size="
        cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
        cfont/9x16   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
        cfont/default cfont/9x16
