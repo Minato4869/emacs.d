@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: DL
+# key: DL
+# --
+DEADLINE: ymd$0
