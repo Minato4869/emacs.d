@@ -211,9 +211,9 @@
    ("<insert>"        . yank-primary)
    ("s-5"             . query-replace-regexp)
    ;; windows
-   ("s-2"             . split-window-below)
-   ("s-3"             . split-window-right)
-   ("s-4"             . make-frame-command)
+   ("M-2"             . split-window-below)
+   ("M-3"             . split-window-right)
+   ("M-4"             . make-frame-command)
    ("C-x 4"           . make-frame-command)
    ("C-x M-o"         . other-frame)
    ;; buffers
