@@ -33,8 +33,8 @@
    `(cursor                       ((t (:background ,cursor))))
    `(border                       ((t (:foreground ,border))))
    `(fringe                       ((t (:background ,fringe))))
-   `(minibuffer-prompt            ((t (:inherit foreground :bold t))))
-   `(mode-line                    ((t (:background ,mode-line-bg :inherit foreground))))
+   `(minibuffer-prompt            ((t (:inherit default :bold t))))
+   `(mode-line                    ((t (:background ,mode-line-bg :inherit default))))
    `(mode-line-inactive           ((t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
                                                         :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
    `(region                       ((t (:background ,region-bg :foreground ,region-fg))))

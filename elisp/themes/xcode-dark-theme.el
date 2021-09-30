@@ -20,13 +20,13 @@
   (custom-theme-set-faces
    'xcode-dark
 
-   `(default                      ((((type tty)) (:background "black" :foreground "boldwhite"))
+   `(default                      ((((type tty)) (:background "black" :foreground "boldwhite")) ;; bg was color 16
                                    (t            (:background ,BG :foreground ,FG))))
    `(cursor                       ((t (:background ,cursor))))
    `(border                       ((t (:foreground ,border))))
    `(fringe                       ((t (:background ,fringe))))
-   `(minibuffer-prompt            ((t (:inherit foreground :bold t))))
-   `(mode-line                    ((t (:background ,modeline :inherit foreground))))
+   `(minibuffer-prompt            ((t (:inherit default :bold t))))
+   `(mode-line                    ((t (:background ,modeline :inherit default))))
    `(region                       ((t (:background ,region))))
 
    `(font-lock-builtin-face       ((t (:foreground ,font-lock-builtin-face))))

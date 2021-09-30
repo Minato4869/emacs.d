@@ -31,7 +31,7 @@
    `(fringe                        ((t (:background ,fringe))))
    `(minibuffer-prompt             ((t (:foreground ,minibuffer-prompt))))
    `(mode-line                     ((t (:inverse-video t))))
-   `(region                        ((t (:background ,region-bg :inherit foreground))))
+   `(region                        ((t (:background ,region-bg :inherit default))))
 
    `(font-lock-builtin-face        ((t (:foreground ,font-lock-builtin-face))))
    `(font-lock-comment-face        ((t (:foreground ,font-lock-comment-face))))

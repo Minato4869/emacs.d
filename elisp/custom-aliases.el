@@ -16,7 +16,7 @@
 (defalias 'zsh           'shell-script-mode)
 (defalias 'ksh           'shell-script-mode)
 (defalias 'bash          'shell-script-mode)
-(defalias 'bash          'shell-script-mode)
+(defalias 'li            'lisp-interaction-mode)
 (defalias 'el            'emacs-lisp-mode)
 (defalias 'sw            'subword-mode)
 (defalias 'org           'org-mode)
