@@ -19,12 +19,7 @@
    '(elscreen-tab-control-face        ((t (:background "#292929" :foreground "#bebebe"))))
    '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
    '(elscreen-tab-other-screen-face   ((t (:background "#292929" :foreground "#bebebe")))))
-  (defun set-elscreen-prefix ()
-    (interactive)
-    (if (display-graphic-p)
-        (setq elscreen-prefix-key "\M-s")
-      (setq elscreen-prefix-key "\C-t")))
-  (set-elscreen-prefix
+  (setq elscreen-prefix-key "\M-s")
   (custom-set-variables
    '(elscreen-display-screen-number nil)
    '(elscreen-tab-display-kill-screen nil))
