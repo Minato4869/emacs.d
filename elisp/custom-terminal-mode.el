@@ -32,17 +32,14 @@
   (interactive)  (cterm/open-term "~/bin/rxvt"))
 (defun run-local-term ()
   (interactive)  (cterm/open-local-term "~/bin/rxvt"))
-(defun run-sterm ()
-  (interactive)  (cterm/open-local-term "~/bin/sterm"))
 (defun run-beamer-term ()
   (interactive)  (cterm/open-term "~/bin/beamer"))
 
 (bind-keys*
  ("<s-return>"     . run-term)
  ("C-c <return>"   . run-term)
- ("C-c C-<return>" . run-sterm)
- ("C-x C-<return>" . run-local-term)
- ("<s-S-return>"   . run-beamer-term))
+ ("C-c C-<return>" . run-beamer-term)
+ ("C-x C-<return>" . run-local-term))
 
 (defalias 'bt     'beamer-term)
 (defalias 'bterm  'beamer-term)
