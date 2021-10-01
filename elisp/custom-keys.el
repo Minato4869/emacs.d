@@ -134,7 +134,6 @@
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-x 5"     . query-replace-regexp)
- ("C-x C-5"   . query-replace-regexp)
  ("C-c 5"     . query-replace)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
