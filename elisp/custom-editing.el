@@ -43,7 +43,7 @@
 
 ;; mouse
 (setq mouse-autoselect-window t)
-;;(xterm-mouse-mode 1)
+(xterm-mouse-mode 1)
 
 (defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
@@ -89,7 +89,7 @@
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'mail-mode-hook       (lambda ()
                                   (setq standard-indent 2
-                                        ispell-dictionary "en_GB")
+                                        ispell-dictionary "de_AT")
                                   (xterm-mouse-mode nil)
                                   (cedit/indent-conf 4 t nil 70)))
 (add-hook 'text-mode-hook       (lambda ()
@@ -183,6 +183,7 @@
       (append auto-mode-alist
               '(("neomutt"       . mail-mode)
                 ("mutt"          . mail-mode)
+                ("muttrc."       . conf-mode)
                 ("\\.epub\\'"    . nov-mode)
                 (".shrc"         . shell-script-mode)
                 (".shenv"        . shell-script-mode)

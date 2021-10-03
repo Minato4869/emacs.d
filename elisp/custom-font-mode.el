@@ -34,10 +34,20 @@
 (defun ttf ()
   (interactive)
   (cond
-   ((< (display-pixel-height) 1080)
+   ((= (display-pixel-height) 768)
     (custom-set-faces
      '(default ((t (:inherit default :height 79 :width normal
-                             :foundry "PfEd" :family "Meslo LG S")))))))) ;; x230
+                             :foundry "PfEd" :family "Meslo LG S"))))));; x230
+   ((= (display-pixel-height) 1080)
+    (custom-set-faces
+     '(default ((t (:inherit default :height 73 :width normal
+                             :foundry "PfEd" :family "Meslo LG S")))))) ;; l14
+   ((= (display-pixel-height) 1440)
+    (custom-set-faces
+     '(default ((t (:inherit default :height 93 :width normal
+                             :foundry "PfEd" :family "Meslo LG S")))))) ;; l14
+
+   ))
 
 (defun medium-font () (interactive) (cfont/set-font cfont/9x16))
 (defun presentation-font ()
@@ -63,6 +73,6 @@
 (defalias 'medium 'medium-font)
 
 
-'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "PfEd" :family "Meslo LG S")))) ;; x230
-'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width semi-condensed :foundry "Misc" :family "Fixed"))))
-'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 106 :width normal :foundry "UW" :family "Ttyp0"))))
+;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "PfEd" :family "Meslo LG S")))) ;; x230
+;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width semi-condensed :foundry "Misc" :family "Fixed"))))
+;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 106 :width normal :foundry "UW" :family "Ttyp0"))))
