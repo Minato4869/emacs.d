@@ -28,3 +28,7 @@ local
 .emacs.desktop
 
 bookmarks
+
+*.gpg
+*.org
+emacs-desktop
