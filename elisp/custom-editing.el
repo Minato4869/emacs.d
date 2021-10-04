@@ -1,10 +1,16 @@
 ;; disable modes
+(put 'compose-mail    'disabled t)
 ;; enable modes
 (put 'upcase-region   'disabled nil)
-(put 'downcase-region 'disabled nil)
 (put 'scroll-left     'disabled nil)
+(put 'downcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
-(put 'compose-mail    'disabled t)
+(put 'narrow-to-page 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'eval-expression 'disabled nil)
+(put 'set-goal-column 'disabled nil)
+(put 'scroll-left 'disabled nil)
+
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
