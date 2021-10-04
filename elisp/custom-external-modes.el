@@ -21,7 +21,7 @@
    '(elscreen-tab-other-screen-face   ((t (:background "#292929" :foreground "#bebebe")))))
   (setq elscreen-prefix-key "\M-s")
   (custom-set-variables
-   '(elscreen-display-screen-number nil)
+   '(elscreen-display-screen-number t)
    '(elscreen-tab-display-kill-screen nil))
   (defun elscreen-kill-confirm ()
     (interactive)
@@ -55,6 +55,7 @@
         ("x"       . elscreen-kill-window-or-screen)
         ("M-k"     . elscreen-kill-buffer-and-screen)
         ("g"       . elscreen-goto)
+        ("t"       . elscreen-toggle-display-tab)
         ("h"       . split-window-horizontally)
         ("v"       . split-window-veritcally)
         ))
