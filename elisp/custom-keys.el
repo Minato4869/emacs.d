@@ -172,6 +172,10 @@
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ;; windows
+ ("M-2"             . split-window-below)
+ ("M-3"             . split-window-right)
+ ("M-4"             . make-frame-command)
+ ("C-x 4"           . make-frame-command)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines))
@@ -209,11 +213,6 @@
    ("C-M-v"           . yank-primary)
    ("<insert>"        . yank-primary)
    ("s-5"             . query-replace-regexp)
-   ;; windows
-   ("M-2"             . split-window-below)
-   ("M-3"             . split-window-right)
-   ("M-4"             . make-frame-command)
-   ("C-x 4"           . make-frame-command)
    ("C-x M-o"         . other-frame)
    ;; buffers
    ("s-r"             . revert-buffer)
