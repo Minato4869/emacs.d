@@ -183,5 +183,12 @@
 (defalias 'mu   'my-mu4e)
 (defalias 'mail 'my-mu4e)
 
+;; ==ripgrep
+(use-package rg
+  :ensure t
+  :defer t)
+(defalias 'ag 'rg)
+
+
 ;;; interesting packages:
 ;; narrowed-page-navigation

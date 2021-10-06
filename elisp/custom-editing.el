@@ -37,8 +37,8 @@
               backward-delete-char-untabify-method 'hungry)
 (setq         ispell-dictionary "en_GB")
 (if (daemonp)
-    (setq frame-title-format '("" "emacsclient@" system-name " - %f"))
-  (setq frame-title-format '("" "emacs@" system-name " - %f"))) ;; was %b
+    (setq frame-title-format '("" "emacsclient@" system-name " - %b"))
+  (setq frame-title-format '("" "emacs@" system-name " - %b"))) ;; was %b
 
 
 
