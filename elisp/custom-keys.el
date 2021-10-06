@@ -172,9 +172,16 @@
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ;; windows
+ ("M-2"             . split-window-below)
+ ("M-3"             . split-window-right)
+ ("M-4"             . make-frame-command)
+ ("C-x 4"           . make-frame-command)
+ ("C-x M-o"         . other-frame)
  ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
- ("C-x t"     . transpose-lines))
+ ("C-x t"     . transpose-lines)
+ ;; custom functions
+ ("C-c o"           . other-frame))
 ;; mode specific
 (defun my-eval-region-or-buffer ()
   (interactive)
@@ -201,28 +208,17 @@
     (interactive)
     (insert (gui-get-primary-selection)))
 
-  (defun cf/resize-frame (&optional width height)
-    (set-frame-width (selected-frame) width)
-    (set-frame-height (selected-frame) height))
+  ;;(defun cf/resize-frame (&optional width height)
+  ;;  (set-frame-width (selected-frame) width)
+  ;;  (set-frame-height (selected-frame) height))
 
   (bind-keys
    ("C-M-v"           . yank-primary)
    ("<insert>"        . yank-primary)
-   ("s-5"             . query-replace-regexp)
-   ;; windows
-   ("M-2"             . split-window-below)
-   ("M-3"             . split-window-right)
-   ("M-4"             . make-frame-command)
-   ("C-x 4"           . make-frame-command)
-   ("C-x M-o"         . other-frame)
-   ;; buffers
-   ("s-r"             . revert-buffer)
    ;; text scale
    ("C-0"             . text-scale-reset)
    ("C--"             . text-scale-decrease)
    ("C-="             . text-scale-increase)
-   ;; custom functions
-   ("C-c o"           . other-frame)
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; window resizing
