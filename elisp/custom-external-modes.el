@@ -39,7 +39,7 @@
         (elscreen-kill-confirm)
       (when (y-or-n-p "Kill window? ")
         (delete-window))))
-  :bind*
+  :bind
   (("M-<left>"    . elscreen-previous)
    ("M-<right>"   . elscreen-next)
    ("ESC <left>"    . elscreen-previous)
