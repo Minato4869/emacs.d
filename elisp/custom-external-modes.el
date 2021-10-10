@@ -39,7 +39,7 @@
         (elscreen-kill-confirm)
       (when (y-or-n-p "Kill window? ")
         (delete-window))))
-  :bind*
+  :bind
   (("M-<left>"    . elscreen-previous)
    ("M-<right>"   . elscreen-next)
    ("ESC <left>"    . elscreen-previous)
@@ -182,6 +182,13 @@
     (mu4e)))
 (defalias 'mu   'my-mu4e)
 (defalias 'mail 'my-mu4e)
+
+;; ==ripgrep
+(use-package rg
+  :ensure t
+  :defer t)
+(defalias 'ag 'rg)
+
 
 ;;; interesting packages:
 ;; narrowed-page-navigation

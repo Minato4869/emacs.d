@@ -50,6 +50,3 @@
 (defalias 'b             'balance-windows)
 ;;
 (defalias 'conf          'conf-mode)
-;;
-(defalias 'ag            'occur)
-(defalias 'agf           'rgrep)
