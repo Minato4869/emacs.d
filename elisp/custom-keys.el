@@ -172,12 +172,12 @@
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ;; windows
- ("M-2"             . split-window-below)
- ("M-3"             . split-window-right)
- ("M-4"             . make-frame-command)
- ("C-x 4"           . make-frame-command)
- ("C-x M-o"         . other-frame)
-"C-x C-o"   . transpose-windows)
+ ("M-2"       . split-window-below)
+ ("M-3"       . split-window-right)
+ ("M-4"       . make-frame-command)
+ ("C-x 4"     . make-frame-command)
+ ("C-x M-o"   . other-frame)
+ ("C-x C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
  ;; custom functions
