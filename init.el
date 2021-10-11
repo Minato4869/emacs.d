@@ -87,7 +87,7 @@ Errors will be logged to the buffer *Init Errors*"
   (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
-  (load-library-wrap-error "custom-terminal-mode")
+;;  (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-font-mode")
   (setq confirm-kill-emacs 'yes-or-no-p))
 
