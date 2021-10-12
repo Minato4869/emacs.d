@@ -50,6 +50,7 @@
       (str     "#71a19f")
       (type    "#8b8fc6")
       (var     "#c27d7b")
+      (sh-exec "#FA8072")
       (warning "#e81050"))
   (custom-theme-set-faces
    'warm-night
@@ -241,7 +242,8 @@
    `(ace-jump-face-foreground ((,class (:foreground ,func  :bold t))))
    `(jabber-chat-prompt-foreign ((t (:foreground ,func))))
    `(jabber-chat-prompt-local ((t (:foreground ,builtin))))
-   `(jabber-roster-user-online ((t (:foreground ,builtin))))))
+   `(jabber-roster-user-online ((t (:foreground ,builtin))))
+   `(sh-quoted-exec ((t (:foreground ,sh-exec))))))
 
 ;;;###autoload
 (when load-file-name
