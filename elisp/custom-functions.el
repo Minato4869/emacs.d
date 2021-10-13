@@ -53,10 +53,10 @@
    (ccompile/colorize)))
 
 (bind-keys
- ("<f5>"     . ccompile/recompile)
- ("<f6>"     . compile-parent)
+ ("<f5>"     . compile-parent)
+ ("<f6>"     . ccompile/recompile)
  ("C-<f5>"   . compile))
-
+(defalias 'Make 'compile-parent)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc
 (defun arrayify (start end quote)
