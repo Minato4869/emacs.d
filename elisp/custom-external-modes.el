@@ -10,6 +10,7 @@
   (("C-x o" . ace-window)))
 
 ;; == elscreen
+(when (or (daemonp) (display-graphic-p))
 (use-package elscreen
   :ensure t
   :defer  t
@@ -61,7 +62,6 @@
         ("h"       . split-window-horizontally)
         ("v"       . split-window-veritcally)
         ))
-(when (or (daemonp) (display-graphic-p))
   (elscreen-start))
 
 
