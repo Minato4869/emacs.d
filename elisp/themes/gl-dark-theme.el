@@ -17,6 +17,7 @@
 
        (ido-subdir                          "#A1C659")
        (ido-only-match                      "#FFCC33")
+       (ido-first-match                     "#BEBEBE")
 
        (font-lock-builtin-face              "#75507B")
        (font-lock-comment-delimiter-face    "#CC0000")
@@ -81,6 +82,7 @@
 
    `(ido-subdir                          ((t (:foreground ,ido-subdir))))
    `(ido-only-match                      ((t (:foreground ,ido-only-match))))
+   `(ido-first-match                     ((t (:foreground ,ido-first-match :bold t :underline t))))
 
    `(sh-quoted-exec                      ((t (:foreground ,sh-quoted-exec))))
    `(sh-heredoc                          ((t (:foreground ,sh-heredoc :bold t))))

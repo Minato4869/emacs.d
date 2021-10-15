@@ -40,7 +40,7 @@
  ((string-equal system-type "windows-nt")
   (load-theme 'naysayer t)
   (setq custom-themes-index 1))
- (t
+ ((or (not (display-graphic-p)) (daemonp))
   (load-theme 'gl-dark t)))
 
 ;; themes
