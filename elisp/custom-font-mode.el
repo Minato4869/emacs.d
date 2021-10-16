@@ -39,7 +39,7 @@
                              :foundry "PfEd" :family "Meslo LG S"))))));; x230
    ((= (display-pixel-height) 1080)
     (custom-set-faces
-     '(default ((t (:inherit default :height 73 :width normal
+     '(default ((t (:inherit default :height 64 :width normal
                              :foundry "PfEd" :family "Meslo LG S")))))) ;; l14
    ((= (display-pixel-height) 1440)
     (custom-set-faces
@@ -73,6 +73,6 @@
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)
 
-(if (file-regular-p "~/.ttf")
-    (ttf)
-  (default-font))
+;;(if (file-regular-p "~/.ttf")
+;;    (ttf)
+;;  (default-font))
