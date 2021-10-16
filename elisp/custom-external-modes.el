@@ -82,19 +82,6 @@
     (yas-reload-all))
   (defalias 'yas 'yas-force-update))
 
-;; == orgalist
-(use-package orgalist
-  :ensure t
-  :defer  t
-  :bind
-  (:map orgalist-mode-map
-        ("M-<left>"  . nil)
-        ("M-<right>" . nil)
-        ("S-<up>"    . orgalist--maybe-move-up)
-        ("S-<down>"  . orgalist--maybe-move-down)
-        ("S-<left>"  . orgalist--maybe-outdent-tree)
-        ("S-<right>" . orgalist--maybe-indent-tree)))
-
 ;; == browse-kill-ring
 (use-package browse-kill-ring
   :ensure t
