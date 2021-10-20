@@ -16,7 +16,8 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-default 'truncate-lines t) ;; dont break lines at window edge
+(defvar uniquify-buffer-name-style) ;; unique buffer names
+(set-default 'truncate-lines t)     ;; dont break lines at window edge
 (defvaralias 'c-basic-offset 'tab-width)
 (setq-default default-input-method "rfc1345"
               require-final-newline t
