@@ -2,13 +2,25 @@
   "Disable theme before loading new one."
   (mapc #'disable-theme custom-enabled-themes))
 
-(setq custom-themes-index 0
-      custom-themes '(gl-dark warm-night))
+(setq custom-main-theme-index 0
+      custom-main-themes '(gl-dark warm-night)
+      custom-theme-index 0
+      custom-themes '(gl-dark warm-night naysayer naysayer-grey nord srcery xcode-dark ;;gl-light
+                              ))
 
-(defun custom-cycle-theme ()
+(defun custom-cycle-theme (theme-list index)
+  (load-theme (nth index theme-list) :no-confirm))
+
+(defun cycle-main-themes ()
   (interactive)
-  (setq custom-themes-index (% (1+ custom-themes-index) (length custom-themes)))
-  (load-theme (nth custom-themes-index custom-themes) :no-confirm))
+  (setq custom-main-theme-index (% (1+ custom-main-theme-index) (length custom-main-themes)))
+  (custom-cycle-theme custom-main-themes custom-main-theme-index))
+
+(defun cycle-themes ()
+  (interactive)
+  (setq custom-theme-index (% (1+ custom-theme-index) (length custom-themes)))
+  (custom-cycle-theme custom-themes custom-theme-index))
+
 
 (defun disable-all-themes ()
   "Disable all themes."
@@ -30,9 +42,11 @@
   (message "Enabled presentation mode"))
 
 (bind-keys
- ("<f2>"   . custom-cycle-theme)
- ("S-<f2>" . disable-all-themes)
- ("C-<f2>" . custom-default-theme))
+ ("<f2>"     . cycle-main-themes)
+ ("S-<f2>"   . cycle-themes)
+ ("M-<f2>"   . disable-all-themes)
+ ("ESC <f2>" . disable-all-themes)
+ ("C-<f2>"   . custom-default-theme))
 
 (cond
  ((getenv "SSH_CONNECTION")
@@ -44,8 +58,7 @@
   (load-theme 'gl-dark t)))
 
 ;; themes
-(defalias 'ct            'custom-cycle-theme)
-(defalias 'cycle-theme   'custom-cycle-theme)
+(defalias 'ct            'cycle-themes)
 (defalias 'default-theme 'custom-default-theme)
 (defalias 'dft           'custom-default-theme)
 (defalias 'da            'disable-all-themes)
