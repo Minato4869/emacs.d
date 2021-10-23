@@ -1,7 +1,7 @@
 (defun my/frame-configuration (frame)
   (with-selected-frame frame
-    (unless (and (display-graphic-p) (getenv "TMUX"))
-        (set-tmux-keys))))
+    (when (getenv "TMUX")
+      (set-tmux-keys))))
 
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
