@@ -123,6 +123,7 @@
 (use-package puppet-mode          :ensure t :defer t)
 (use-package wgrep                :ensure t :defer t)
 (use-package so-long              :ensure t :defer t)
+
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t

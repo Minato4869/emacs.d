@@ -1,6 +1,6 @@
 (defun my/frame-configuration (frame)
   (with-selected-frame frame
-    (unless (display-graphic-p)
+    (unless (and (display-graphic-p) (getenv "TMUX"))
         (set-tmux-keys))))
 
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
@@ -23,3 +23,18 @@
 
 ;;  "fix background/foreground colors for emacsclient within terminals
 ;;  emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
+
+(defun my-update-env (fn)
+  "https://emacs.stackexchange.com/a/6107"
+  (let ((str
+         (with-temp-buffer
+           (insert-file-contents fn)
+           (buffer-string))) lst)
+    (setq lst (split-string str "\000"))
+    (while lst
+      (setq cur (car lst))
+      (when (string-match "^\\(.*?\\)=\\(.*\\)" cur)
+        (setq var (match-string 1 cur))
+        (setq value (match-string 2 cur))
+        (setenv var value))
+            (setq lst (cdr lst)))))
