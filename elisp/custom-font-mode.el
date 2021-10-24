@@ -37,6 +37,10 @@
     (custom-set-faces
      '(default ((t (:inherit default :height 69 :width normal
                              :foundry "PfEd" :family "Meslo LG S"))))));; x230
+   ((= (display-pixel-height) 900)
+    (custom-set-faces
+     '(default ((t (:inherit default :height 75 :width normal
+                             :foundry "PfEd" :family "Meslo LG S")))))) ;; l14; was 73
    ((= (display-pixel-height) 1080)
     (custom-set-faces
      '(default ((t (:inherit default :height 73 :width normal

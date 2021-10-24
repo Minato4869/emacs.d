@@ -2,7 +2,7 @@
   "gl-dark theme")
 
 (let  ((BG                                  "#000000")
-       (FG                                  "#FFFFFF")
+       (FG                                  "#BEBEBE")
        (cursor                              "#DB0600") ;; was ff0000
        (border                              "#0000FF")
        (fringe                              "#121212")

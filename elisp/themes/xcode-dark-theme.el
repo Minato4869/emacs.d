@@ -2,7 +2,7 @@
   "xcode-dark theme")
 
 (let ((BG                               "#000000")
-      (FG                               "#ffffff") ;; was #ffffff; then e5e5e5; then d8d8d8
+      (FG                               "#FFFFFF") ;; was #ffffff; then e5e5e5; then d8d8d8
       (cursor                           "#DB0600")
       (border                           "#0000FF")
       (fringe                           "#121212")
