@@ -179,6 +179,11 @@
   :defer t)
 (defalias 'ag 'rg)
 
+(use-package yaml-mode
+  :ensure nil
+  :defer nil)
+(defalias 'yml 'yaml-mode)
 
+(require 'yaml-mode)
 ;;; interesting packages:
 ;; narrowed-page-navigation

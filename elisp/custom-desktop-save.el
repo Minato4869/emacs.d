@@ -1,5 +1,5 @@
-(setq desktop-path '("~/.local/")
-      desktop-dirname "~/.local/"
+(setq desktop-path '("~/.cache/")
+      desktop-dirname "~/.cache/"
       desktop-base-file-name "emacs-desktop")
 (desktop-save-mode 1)
 (add-hook 'desktop-after-read-hook

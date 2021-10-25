@@ -32,24 +32,16 @@
 ;;(defun ttf-font ()    (interactive) (cfont/set-font (concat cfont/ttf cfont/size)))
 (defun ttf ()
   (interactive)
-  (cond
-   ((= (display-pixel-height) 768)
+  (let ((ttfh (cond ((= (display-pixel-height) 768)  69)    ;; dpi = 125
+                    ((= (display-pixel-height) 900)  75)    ;; dpi = 131
+                    ((= (display-pixel-height) 1080) 73)    ;; dpi = 155
+                    ((= (display-pixel-height) 1440) 93)))
+        (family       "Meslo LG S")
+        ) ;; dpi = 109
     (custom-set-faces
-     '(default ((t (:inherit default :height 69 :width normal
-                             :foundry "PfEd" :family "Meslo LG S"))))));; x230
-   ((= (display-pixel-height) 900)
-    (custom-set-faces
-     '(default ((t (:inherit default :height 75 :width normal
-                             :foundry "PfEd" :family "Meslo LG S")))))) ;; l14; was 73
-   ((= (display-pixel-height) 1080)
-    (custom-set-faces
-     '(default ((t (:inherit default :height 73 :width normal
-                             :foundry "PfEd" :family "Meslo LG S")))))) ;; l14; was 73
-   ((= (display-pixel-height) 1440)
-    (custom-set-faces
-     '(default ((t (:inherit default :height 93 :width normal
-                             :foundry "PfEd" :family "Meslo LG S")))))) ;; 1440p
-   ))
+     `(default ((t (:inherit default :height ,ttfh :width normal
+                             :foundry "PfEd" :family ,family)))))))
+
 ;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "PfEd" :family "Meslo LG S")))) ;; x230
 ;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width semi-condensed :foundry "Misc" :family "Fixed"))))
 ;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 106 :width normal :foundry "UW" :family "Ttyp0"))))

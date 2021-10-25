@@ -51,6 +51,7 @@
 ;; paths
 (let ((basedir "~/.emacs.d/elisp/"))
   (add-to-list 'load-path basedir)
+  (add-to-list 'load-path (concat basedir "external"))
   (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
 ;; custom files
