@@ -219,7 +219,7 @@
   :ensure nil
   :defer t
   :config
-  (setenv "MANWIDTH" "70")
+  (setq Man-width 70)
   :bind
   (:map Man-mode-map
         ("C-q"    . kill-buffer-and-window)))

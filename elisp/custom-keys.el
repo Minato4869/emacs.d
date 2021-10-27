@@ -177,7 +177,7 @@
  ("M-4"       . make-frame-command)
  ("C-x 4"     . make-frame-command)
  ("C-x M-o"   . other-frame)
- ("C-x C-o"   . transpose-windows)
+ ("C-c C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
  ;; custom functions
