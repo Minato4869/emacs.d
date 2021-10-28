@@ -34,13 +34,6 @@
   (disable-all-themes)
   (load-theme 'gl-dark t))
 
-(defun beamer ()
-  (interactive)
-  (disable-all-themes)
-  (cfont/set-font (concat cfont/ttf "30"))
-  (load-theme 'default-light t)
-  (message "Enabled presentation mode"))
-
 (bind-keys
  ("<f2>"     . cycle-main-themes)
  ("S-<f2>"   . cycle-themes)
