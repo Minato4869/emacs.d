@@ -12,7 +12,7 @@
 
 (if (< (display-pixel-height) 1080)
     (setq cfont/default cfont/6x13
-          cfont/default       cfont/6x13
+          cfont/default  cfont/6x13
           cfont/size          "12"))
 
 (defun cfont/set-font (&optional myfont)
@@ -41,10 +41,6 @@
     (custom-set-faces
      `(default ((t (:inherit default :height ,ttfh :width normal
                              :foundry "PfEd" :family ,family)))))))
-
-;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 79 :width normal :foundry "PfEd" :family "Meslo LG S")))) ;; x230
-;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width semi-condensed :foundry "Misc" :family "Fixed"))))
-;;'(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#BEBEBE" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 106 :width normal :foundry "UW" :family "Ttyp0"))))
 
 (defun medium-font () (interactive) (cfont/set-font cfont/9x16))
 (defun presentation-font ()

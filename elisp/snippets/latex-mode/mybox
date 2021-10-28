@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: box
+# key: box
+# --
+\mybox{$1}$0

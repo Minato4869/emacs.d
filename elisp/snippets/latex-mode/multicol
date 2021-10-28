@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: multicol
+# key: multicol
+# --
+\begin{multicols}{3}
+\end{multicols}
