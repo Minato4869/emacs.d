@@ -1,8 +1,5 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-(setq  cfont/size   "6.5"
-       ;;       cfont/ttf    "Meslo LG S:antialias=true:regular:pixelsize="
-       cfont/ttf    "Meslo LG S:antialias=true:regular:size="
-       cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+(setq  cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
        cfont/9x16   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
        cfont/default cfont/9x16
        cfont/small   cfont/6x13)
@@ -16,13 +13,25 @@
           cfont/size          "12"))
 
 (defun cfont/set-font (&optional myfont)
-    (set-face-attribute 'default t :font myfont)
-    (setq default-frame-alist `((font . ,myfont)))
-    (set-frame-font myfont nil t))
+  (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
+  (unless myfont
+    (cond
+     ((> dpi 130)
+      (setq myfont "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"))
+     ((eq (dpi 125))
+      (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
+     ((eq (dpi 109))
+      (setq myfont   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))))
+  (set-face-attribute 'default t :font myfont)
+  (setq default-frame-alist `((font . ,myfont)))
+  (set-frame-font myfont nil t))
 
 (defun default-font ()
   (interactive)
-  (cfont/set-font cfont/default))
+  (if (file-regular-p "~/.ttf")
+      (ttf)
+    (cfont/set-font)))
+
 (defun small-font ()
   (interactive)
   (cfont/set-font cfont/small))
@@ -65,6 +74,5 @@
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)
 
-;;(if (file-regular-p "~/.ttf")
-;;    (ttf)
-;;  (default-font))
+(when (daemonp)
+  (default-font))

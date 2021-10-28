@@ -133,8 +133,7 @@
  ("C-c h"     . help)
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
- ("C-x 5"     . query-replace-regexp)
- ("C-c 5"     . query-replace)
+ ("C-c 5"     . query-replace-regexp)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
@@ -172,9 +171,11 @@
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ;; windows
+ ("M-1"       . delete-other-windows)
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
  ("M-4"       . make-frame-command)
+ ("M-0"       . delete-window)
  ("C-x 4"     . make-frame-command)
  ("C-x M-o"   . other-frame)
  ("C-c C-o"   . transpose-windows)
