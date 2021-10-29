@@ -10,6 +10,8 @@
 (global-unset-key (kbd "C-_"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
+(global-unset-key (kbd "<C-mouse-5>"))
+(global-unset-key (kbd "<C-mouse-4>"))
 
 ;; custom region
 (defconst custom-region-alist
@@ -181,8 +183,7 @@
  ("C-c C-o"   . transpose-windows)
  ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
- ;; custom functions
- ("C-c o"           . other-frame))
+ ("C-c o"     . other-frame))
 ;; mode specific
 (defun my-eval-region-or-buffer ()
   (interactive)

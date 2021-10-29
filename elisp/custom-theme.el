@@ -37,6 +37,7 @@
 (bind-keys
  ("<f2>"     . cycle-main-themes)
  ("S-<f2>"   . cycle-themes)
+ ("C-c <f2>" . cycle-themes)
  ("M-<f2>"   . disable-all-themes)
  ("ESC <f2>" . disable-all-themes)
  ("C-<f2>"   . custom-default-theme))

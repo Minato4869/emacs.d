@@ -1,5 +1,6 @@
 ;; disable modes
-(put 'compose-mail    'disabled t)
+(put 'compose-mail           'disabled t)
+(put 'mouse-wheel-text-scale 'disabled t)
 ;; enable modes
 (put 'upcase-region   'disabled nil)
 (put 'scroll-left     'disabled nil)
