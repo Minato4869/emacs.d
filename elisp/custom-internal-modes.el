@@ -245,3 +245,12 @@
         ("C-b"    . scroll-line-down)
         ("g"      . beginning-of-buffer)
         ("G"      . end-of-buffer)))
+(use-package eww
+  :ensure nil
+  :defer t
+  :config
+  (setq
+   shr-use-fonts  nil                          ; No special fonts
+   shr-use-colors nil                          ; No colours
+   shr-indentation 2                           ; Left-side margin
+   shr-width 75))                              ; Fold text to 70 columns
