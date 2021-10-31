@@ -42,14 +42,15 @@
  ("ESC <f2>" . disable-all-themes)
  ("C-<f2>"   . custom-default-theme))
 
-(cond
- ((getenv "SSH_CONNECTION")
-  (load-theme 'warm-night t))
- ((string-equal system-type "windows-nt")
-  (load-theme 'naysayer t)
-  (setq custom-themes-index 1))
- ((or (not (display-graphic-p)) (daemonp))
-  (load-theme 'gl-dark t)))
+(if (daemonp)
+    (load-theme 'gl-dark t)
+  (cond
+   ((getenv "SSH_CONNECTION")
+    (load-theme 'warm-night t))
+   ((string-equal system-type "windows-nt")
+    (load-theme 'naysayer t))
+   ((not (display-graphic-p))
+       (load-theme 'gl-dark t))))
 
 ;; themes
 (defalias 'ct            'cycle-themes)

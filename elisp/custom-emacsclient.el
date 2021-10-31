@@ -1,7 +1,13 @@
 (defun my/frame-configuration (frame)
   (with-selected-frame frame
     (when (getenv "TMUX")
-      (set-tmux-keys))))
+      (set-tmux-keys))
+    (if (not (display-graphic-p))
+        (setq elscreen-display-tab nil
+              elscreen-display-screen-number t)
+      (progn
+        (setq elscreen-display-tab nil
+              elscreen-display-screen-number t)))))
 
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
