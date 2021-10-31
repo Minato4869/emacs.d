@@ -6,7 +6,7 @@
         (setq elscreen-display-tab nil
               elscreen-display-screen-number t)
       (progn
-        (setq elscreen-display-tab nil
+        (setq elscreen-display-tab t
               elscreen-display-screen-number t)))))
 
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
