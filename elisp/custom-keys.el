@@ -133,6 +133,7 @@
  ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)
  ("C-c h"     . help)
+ ("<c-f1>"    . help)
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-c 5"     . query-replace-regexp)

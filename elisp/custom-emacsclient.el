@@ -2,15 +2,18 @@
   (with-selected-frame frame
     (when (getenv "TMUX")
       (set-tmux-keys))
-    (if (not (display-graphic-p))
-        (setq elscreen-display-tab nil
-              elscreen-display-screen-number t)
-      (progn
-        (setq elscreen-display-tab nil
-              elscreen-display-screen-number t)))))
+    (if (display-graphic-p)
+        (setq elscreen-display-tab t)
+      (setq elscreen-display-tab nil))))
+
+(defun my/delete-frame-configuration (frame)
+  (setq elscreen-display-tab t))
 
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
+
+(remove-hook 'delete-frame-functions 'my/delete-frame-configuration t)
+(add-hook 'delete-frame-functions 'my/delete-frame-configuration)
 
 (display-time-mode t)
 (display-battery-mode t)

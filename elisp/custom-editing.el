@@ -89,6 +89,7 @@
 (add-hook 'conf-xdefaults-mode-hook
           (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'java-mode-hook       (lambda () (cedit/indent-conf 4 t t 100)))
+(add-hook 'make-mode-hook       (lambda () (cedit/indent-conf 4 t t 80)))
 (add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
 (add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
 (add-hook 'sh-mode-hook         (lambda () (cedit/sh-indent)))

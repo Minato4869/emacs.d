@@ -51,6 +51,8 @@
        (org-meta-line                       "#CC0000")
        (org-agenda-structure                "#87CEFA")
        (org-time-grid                       "#EEDD82")
+
+       (font-latex-sedate-face              "LightGray") ;; alternative tui colour: 6C6C6C
        )
   (custom-theme-set-faces
    'gl-dark
@@ -109,5 +111,7 @@
    `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
    `(org-time-grid                       ((t (:foreground ,org-time-grid))))
+   ;; == LaTeX
+   `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
    ))
 (provide-theme 'gl-dark)

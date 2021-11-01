@@ -36,10 +36,8 @@
 
 (bind-keys
  ("<f2>"     . cycle-main-themes)
- ("S-<f2>"   . cycle-themes)
- ("C-c <f2>" . cycle-themes)
- ("M-<f2>"   . disable-all-themes)
- ("ESC <f2>" . disable-all-themes)
+ ("M-<f2>"   . cycle-themes)
+ ("ESC <f2>" . cycle-themes)
  ("C-<f2>"   . custom-default-theme))
 
 (if (daemonp)
@@ -53,9 +51,11 @@
        (load-theme 'gl-dark t))))
 
 ;; themes
-(defalias 'ct            'cycle-themes)
-(defalias 'default-theme 'custom-default-theme)
-(defalias 'dft           'custom-default-theme)
-(defalias 'da            'disable-all-themes)
-(defalias 'lt            'load-theme)
-(defalias 'light         'default-light-theme)
+(defalias 'ct             'cycle-themes)
+(defalias 'default-theme  'custom-default-theme)
+(defalias 'reset-theme    'custom-default-theme)
+(defalias 'dft            'custom-default-theme)
+(defalias 'dat            'disable-all-themes)
+(defalias 'disable-themes 'disable-all-themes)
+(defalias 'lt             'load-theme)
+(defalias 'light          'default-light-theme)

@@ -20,7 +20,7 @@
   (custom-theme-set-faces
    'xcode-dark
 
-   `(default                      ((((type tty)) (:background "black" :foreground "boldwhite")) ;; bg was color 16
+   `(default                      ((((type tty)) (:background "color16" :foreground "boldwhite")) ;; bg was black
                                    (t            (:background ,BG :foreground ,FG))))
    `(cursor                       ((t (:background ,cursor))))
    `(border                       ((t (:foreground ,border))))
