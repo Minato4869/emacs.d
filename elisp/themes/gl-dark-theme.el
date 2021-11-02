@@ -52,7 +52,9 @@
        (org-agenda-structure                "#87CEFA")
        (org-time-grid                       "#EEDD82")
 
-       (font-latex-sedate-face              "LightGray") ;; alternative tui colour: 6C6C6C
+       (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
+       (font-latex-verbatim-face            "#DEB887") ;; == burlywood
+       (font-latex-math-face                "#DEB887")
        )
   (custom-theme-set-faces
    'gl-dark
@@ -113,5 +115,7 @@
    `(org-time-grid                       ((t (:foreground ,org-time-grid))))
    ;; == LaTeX
    `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
+   `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
+   `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
    ))
 (provide-theme 'gl-dark)

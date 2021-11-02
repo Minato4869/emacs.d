@@ -48,8 +48,8 @@
   (interactive)
   (cfont/set-font cfont/small))
 
-(defun 6x13 ()        (interactive) (cfont/set-font cfont/6x13))
-(defun 9x16 ()        (interactive) (cfont/set-font cfont/9x16))
+(defun 6x13 ()        (interactive) (pcf cfont/6x13))
+(defun 9x16 ()        (interactive) (pcf cfont/9x16))
 ;;(defun ttf-font ()    (interactive) (cfont/set-font (concat cfont/ttf cfont/size)))
 
 (defun medium-font () (interactive) (cfont/set-font cfont/9x16))
