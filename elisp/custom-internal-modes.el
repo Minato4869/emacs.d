@@ -250,7 +250,7 @@
   :defer t
   :config
   (setq
-   shr-use-fonts  nil                          ; No special fonts
-   shr-use-colors nil                          ; No colours
-   shr-indentation 2                           ; Left-side margin
-   shr-width 75))                              ; Fold text to 70 columns
+   shr-use-fonts nil ;; No special fonts
+   shr-use-colors t   ;; enable colours
+   shr-indentation 2  ;; Left-side margin
+   shr-width 90))     ;; Fold text to 75 columns

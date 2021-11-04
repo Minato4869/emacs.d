@@ -30,10 +30,11 @@
     (cond
      ((> dpi 130)
       (setq myfont "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"))
-;;     ((eq dpi 125)
-;;      (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
-     (t ;;(eq dpi 109)
-      (setq myfont   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))))
+     ((file-regular-p "~/.lf")
+      (setq myfont   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))
+     (t
+      (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
+))
   (set-face-attribute 'default t :font myfont)
   (setq default-frame-alist `((font . ,myfont)))
   (set-frame-font myfont nil t))
@@ -50,7 +51,6 @@
 
 (defun 6x13 ()        (interactive) (pcf cfont/6x13))
 (defun 9x16 ()        (interactive) (pcf cfont/9x16))
-;;(defun ttf-font ()    (interactive) (cfont/set-font (concat cfont/ttf cfont/size)))
 
 (defun medium-font () (interactive) (cfont/set-font cfont/9x16))
 
