@@ -49,8 +49,9 @@
        (org-done                            "#98FB98")
        (org-headline-done                   "#FFA07A")
        (org-meta-line                       "#CC0000")
-       (org-agenda-structure                "#87CEFA")
        (org-time-grid                       "#EEDD82")
+       (org-agenda-structure                "#87CEFA")
+       (org-agenda-clocking                 "#4A708B")
 
        (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
        (font-latex-verbatim-face            "#DEB887") ;; == burlywood
@@ -107,12 +108,13 @@
    `(org-meta-line                       ((t (:foreground ,org-meta-line))))
    `(org-block-begin-line                ((t (:inherit org-meta-line))))
    `(org-block-end-line                  ((t (:inherit org-meta-line))))
-   `(org-agenda-structure                ((t (:foreground ,org-agenda-structure))))
+   `(org-time-grid                       ((t (:foreground ,org-time-grid))))
+   `(org-agenda-clocking                 ((t (:inherit default :background ,org-agenda-clocking :extend t))))
    `(org-agenda-structure                ((t (:foreground ,org-agenda-structure))))
    `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
    `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
-   `(org-time-grid                       ((t (:foreground ,org-time-grid))))
+
    ;; == LaTeX
    `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
    `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))

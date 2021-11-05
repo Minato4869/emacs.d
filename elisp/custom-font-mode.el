@@ -1,5 +1,5 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-(setq  cfont/6x13   "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"
+(setq  cfont/6x13   "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"
        cfont/9x16   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"
        dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
 
@@ -31,10 +31,9 @@
      ((> dpi 130)
       (setq myfont "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"))
      ((file-regular-p "~/.lf")
-      (setq myfont   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))
+      (setq myfont "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))
      (t
-      (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
-))
+      (setq myfont "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"))))
   (set-face-attribute 'default t :font myfont)
   (setq default-frame-alist `((font . ,myfont)))
   (set-frame-font myfont nil t))

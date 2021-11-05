@@ -161,7 +161,7 @@
 
 (use-package org
   :ensure nil
-  :defer nil
+  :defer t
   :init
   (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
   :config
