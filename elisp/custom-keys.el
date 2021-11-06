@@ -7,7 +7,6 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-_"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
 (global-unset-key (kbd "<C-mouse-5>"))
@@ -120,7 +119,7 @@
   (text-scale-set 0))
 
 (bind-keys*
- ("C-z"       . undo)
+;; ("C-z"       . undo)
  ("M-u"       . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)

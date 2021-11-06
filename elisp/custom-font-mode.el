@@ -12,9 +12,9 @@
 
 (defun ttf ()
   (interactive)
-  (let ((ttfh (cond ((= dpi 125)  69)
-                    ((= dpi 131)  75)
-                    ((= dpi 157) 73)
+  (let ((ttfh (cond ((= dpi 125) 69)
+                    ((= dpi 131) 75)
+                    ((= dpi 157) 63) ;; was 73
                     ((= dpi 109) 93)))
         (family     "Meslo LG S")
         )
@@ -28,11 +28,11 @@
     (cond
      ((> dpi 130)
       (setq myfont "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"))
-     ((file-regular-p "~/.lf")
+     ((or (file-regular-p "~/.lf") (string= myfont "9x16"))
       (setq myfont "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))
-     ((file-regular-p "~/.fixed")
+     ((or (file-regular-p "~/.fixed") (string= myfont "6x13"))
       (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
-     (t
+     ((or t (string= myfont "small"))
       (setq myfont "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1"))))
   (set-face-attribute 'default t :font myfont)
   (setq default-frame-alist `((font . ,myfont)))
@@ -48,8 +48,8 @@
   (interactive)
   (cfont/set-font cfont/small))
 
-(defun 6x13 ()        (interactive) (pcf cfont/6x13))
-(defun 9x16 ()        (interactive) (pcf cfont/9x16))
+(defun 6x13 ()        (interactive) (pcf "small"))
+(defun 9x16 ()        (interactive) (pcf "9x16"))
 
 (defun medium-font () (interactive) (cfont/set-font cfont/9x16))
 
