@@ -1,22 +1,3 @@
-(defun my/frame-configuration (frame)
-  (with-selected-frame frame
-    (when (getenv "TMUX")
-      (set-tmux-keys))
-    (if (display-graphic-p)
-        (setq elscreen-display-tab t)
-      (setq elscreen-display-tab nil))))
-
-(defun my/delete-frame-configuration (frame)
-  (setq elscreen-display-tab t))
-
-(remove-hook 'after-make-frame-functions 'my/frame-configuration t)
-(add-hook 'after-make-frame-functions 'my/frame-configuration)
-
-(remove-hook 'delete-frame-functions 'my/delete-frame-configuration t)
-(add-hook 'delete-frame-functions 'my/delete-frame-configuration)
-
-(display-time-mode t)
-(display-battery-mode t)
 (keychain-refresh-environment)
 (load-library-wrap-error "custom-desktop-save")
 (defun ask-before-closing ()

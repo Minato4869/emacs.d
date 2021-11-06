@@ -105,7 +105,6 @@
 (defun backward-other-window ()
   (interactive)
   (other-window -1))
-
 (defun my-goto-line ()
   (interactive)
   (unwind-protect
@@ -120,7 +119,7 @@
 
 (bind-keys*
 ;; ("C-z"       . undo)
- ("M-u"       . universal-argument)
+ ("C-c u"     . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)
  ("C-x C-@"   . rectangle-mark-mode)
@@ -132,14 +131,13 @@
  ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)
  ("C-c h"     . help)
- ("<c-f1>"    . help)
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-c 5"     . query-replace-regexp)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
- ("M-U"       . upcase-dwim)
+ ("M-u"       . upcase-dwim)
  ("M-L"       . downcase-dwim)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
@@ -215,12 +213,13 @@
   ;;  (set-frame-height (selected-frame) height))
 
   (bind-keys
+   ("C-M-v"           . yank-primary)
    ("C-M-y"           . yank-primary)
    ("<insert>"        . yank-primary)
    ;; text scale
-   ("C-0"             . text-scale-reset)
-   ("C--"             . text-scale-decrease)
-   ("C-="             . text-scale-increase)
+   ;;("C-0"             . text-scale-reset)
+   ;;("C--"             . text-scale-decrease)
+   ;;("C-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; window resizing
@@ -230,12 +229,3 @@
    ;;("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
    ;;("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
   ))
-
-(defun set-tmux-keys ()
-  (interactive)
-  (unless (display-graphic-p)
-    (let ((map (copy-keymap xterm-function-map)))
-      (set-keymap-parent map (keymap-parent input-decode-map))
-      (set-keymap-parent input-decode-map map))))
-(when (getenv "TMUX")
-  (set-tmux-keys))
