@@ -101,7 +101,7 @@
    `(org-verse ((,class (:inherit org-block :slant italic))))
 ;;   `(org-todo ((,class (:foreground ,keyword :bold t)))) ;; default
    ;;   `(org-done ((,class (:bold t :foreground ,bg4)))) ;; default
-   `(org-todo ((,class (:foreground "#D70000" :bold t)))) ;; is red1
+   `(org-todo ((,class (:foreground "#FB0120" :bold t)))) ;; was red1 (org default)
    `(org-done ((,class (:foreground "#228b22" :bold t)))) ;; is forestgreen
    `(org-warning ((,class (:underline t :foreground ,warning))))
    `(org-agenda-structure ((,class (:weight bold :foreground ,fg3  :background ,bg3))))
