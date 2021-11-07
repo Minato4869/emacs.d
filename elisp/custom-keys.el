@@ -95,16 +95,6 @@
         (other-window -1)
         (message "Transposing windows")))))
 
-(defun scroll-line-down ()
-  (interactive)
-  (scroll-up 1))
-(defun scroll-line-up ()
-  (interactive)
-  (scroll-down 1))
-
-(defun backward-other-window ()
-  (interactive)
-  (other-window -1))
 (defun my-goto-line ()
   (interactive)
   (unwind-protect
@@ -118,10 +108,11 @@
   (text-scale-set 0))
 
 (bind-keys*
-;; ("C-z"       . undo)
- ("C-c u"     . universal-argument)
+ ;; ("C-z"       . universal-argument)
+ ("M-U"       . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)
+ ("C-c C-SPC" . cua-rectangle-mark-mode)
  ("C-x C-@"   . rectangle-mark-mode)
  ("M-o"       . other-window))
 ;; custom keys

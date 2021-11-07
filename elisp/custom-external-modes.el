@@ -45,9 +45,6 @@
    ("M-<right>"   . elscreen-next)
    ("ESC <left>"    . elscreen-previous)
    ("ESC <right>"   . elscreen-next))
-  :bind
-     (("M-["    . elscreen-previous)
-      ("M-]"    . elscreen-next))
   (:map elscreen-map
         ("<left>"  . elscreen-previous)
         ("<right>" . elscreen-next)

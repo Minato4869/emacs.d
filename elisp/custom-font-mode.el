@@ -1,14 +1,8 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
 (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
 
-
 (unless (file-directory-p "~/.fonts/Meslo-Font")
   (setq cfont/ttf    "DejaVu Sans Mono:regular:pixelsize="))
-
-(if (< (display-pixel-height) 1080)
-    (setq cfont/default cfont/6x13
-          cfont/default  cfont/6x13
-          cfont/size          "12"))
 
 (defun ttf ()
   (interactive)
