@@ -108,8 +108,7 @@
   (text-scale-set 0))
 
 (bind-keys*
- ;; ("C-z"       . universal-argument)
- ("M-U"       . universal-argument)
+ ("C-z"       . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)
  ("C-c C-SPC" . cua-rectangle-mark-mode)
@@ -129,6 +128,7 @@
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
  ("M-u"       . upcase-dwim)
+ ("M-U"       . upcase-dwim)
  ("M-L"       . downcase-dwim)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
