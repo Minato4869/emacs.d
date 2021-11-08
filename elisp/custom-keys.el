@@ -204,7 +204,6 @@
   ;;  (set-frame-height (selected-frame) height))
 
   (bind-keys
-   ("C-M-v"           . yank-primary)
    ("C-M-y"           . yank-primary)
    ("<insert>"        . yank-primary)
    ;; text scale
