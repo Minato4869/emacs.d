@@ -7,6 +7,7 @@
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
 (global-unset-key (kbd "<C-mouse-5>"))
@@ -124,7 +125,7 @@
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-M-5"     . query-replace-regexp)
- ("M-k"       . kill-whole-line)
+ ("M-K"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
  ("M-u"       . upcase-dwim)
