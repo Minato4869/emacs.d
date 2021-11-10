@@ -26,7 +26,7 @@
    ((string= arg "6x13")
     (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
    ((or (string= arg "small") t)
-    (setq myfont "-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1")))
+    (setq myfont "-uw-ttyp0-medium-r-normal--14-130-75-75-c-70-iso10646-1")))
   (set-face-attribute 'default t :font myfont)
   (setq default-frame-alist `((font . ,myfont)))
   (set-frame-font myfont nil t))

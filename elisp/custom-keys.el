@@ -123,8 +123,7 @@
  ("C-c h"     . help)
  ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
- ("M-%"       . query-replace-regexp)
- ("C-c 5"     . query-replace)
+ ("C-M-5"     . query-replace-regexp)
  ("M-k"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
