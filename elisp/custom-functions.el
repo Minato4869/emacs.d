@@ -20,7 +20,7 @@
   (shell-command-to-string "~/bin/week"))
 (defun calendar-week ()
     (interactive)
-    (insert (_calendar-week))
+    (insert (_calendar-week)))
 
 (bind-keys
  ("C-c ." . date)
