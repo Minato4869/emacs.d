@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: calendar week
+# key: kw
+# --
+* `(_calendar-week)` $0

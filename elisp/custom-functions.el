@@ -16,10 +16,17 @@
   (interactive)
   (insert (format-time-string "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")))
 
+(defun _calendar-week ()
+  (shell-command-to-string "~/bin/week"))
+(defun calendar-week ()
+    (interactive)
+    (insert (_calendar-week))
+
 (bind-keys
  ("C-c ." . date)
- ("C-c C-." . date-time))
-
+ ("C-c C-." . date-time)
+ ("C-c >" . date-time))
+(defalias 'kw 'calendar-week)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
 ;; Don’t ask to save files before compilation, just save them.
