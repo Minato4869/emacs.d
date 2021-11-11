@@ -12,7 +12,6 @@
 (global-unset-key (kbd "<C-down>"))
 (global-unset-key (kbd "<C-mouse-5>"))
 (global-unset-key (kbd "<C-mouse-4>"))
-
 ;; custom region
 (defconst custom-region-alist
   `((mark-active

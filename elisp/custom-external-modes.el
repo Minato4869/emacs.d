@@ -111,19 +111,6 @@
    '(magit-diff-added-highlight          ((t (:inherit diff-added)))))
   )
 
-;; == packages without config
-(use-package auctex               :ensure t :defer t)
-(use-package dumb-jump            :ensure t :defer t)
-(use-package keychain-environment :ensure t :defer t)
-(use-package goto-chg             :ensure t :defer t)
-(use-package go-mode              :ensure t :defer t)
-(use-package lua-mode             :ensure t :defer t)
-(use-package projectile           :ensure t :defer t)
-(use-package iflipb               :ensure t :defer t)
-(use-package puppet-mode          :ensure t :defer t)
-(use-package wgrep                :ensure t :defer t)
-(use-package so-long              :ensure t :defer t)
-
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t
@@ -185,5 +172,25 @@
 (defalias 'yml 'yaml-mode)
 
 (require 'yaml-mode)
-;;; interesting packages:
+
+(use-package org-alert
+  :ensure t
+  :defer t
+  :config
+  (setq alert-default-style 'libnotify))
+
+;; == interesting packages:
 ;; narrowed-page-navigation
+
+;; == packages without config
+(use-package auctex               :ensure t :defer t)
+(use-package dumb-jump            :ensure t :defer t)
+(use-package keychain-environment :ensure t :defer t)
+(use-package goto-chg             :ensure t :defer t)
+(use-package go-mode              :ensure t :defer t)
+(use-package lua-mode             :ensure t :defer t)
+(use-package projectile           :ensure t :defer t)
+(use-package iflipb               :ensure t :defer t)
+(use-package puppet-mode          :ensure t :defer t)
+(use-package wgrep                :ensure t :defer t)
+(use-package so-long              :ensure t :defer t)

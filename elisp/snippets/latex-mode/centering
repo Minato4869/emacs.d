@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: centering
+# key: centering
+# --
+{\par \centering $1 \par}
