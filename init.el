@@ -71,6 +71,7 @@ Errors will be logged to the buffer *Init Errors*"
            (print (car err))
            (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
 (load-library-wrap-error "custom-editing")
+(load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-keys")
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-internal-modes")
@@ -95,7 +96,6 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-aliases")
 (load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-theme")
-(load-library-wrap-error "custom-frame")
 (when (daemonp)
   (load-library-wrap-error "custom-emacsclient"))
 

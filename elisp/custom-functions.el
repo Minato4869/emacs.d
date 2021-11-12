@@ -27,6 +27,7 @@
  ("C-c C-." . date-time)
  ("C-c >" . date-time))
 (defalias 'kw 'calendar-week)
+(defalias 'cw 'calendar-week)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
 ;; Don’t ask to save files before compilation, just save them.

@@ -2,4 +2,4 @@
 # name: calendar week
 # key: kw
 # --
-* `(_calendar-week)` $0
+`(_calendar-week)` $0

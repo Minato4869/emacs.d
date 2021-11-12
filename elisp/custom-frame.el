@@ -8,6 +8,8 @@
       (when (getenv "TMUX")
         (set-tmux-keys))))
 
+(when (and (getenv "TMUX") (not (display-graphic-p)))
+  (set-tmux-keys))
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 
