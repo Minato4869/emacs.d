@@ -21,9 +21,11 @@
 (defun calendar-week ()
   (interactive)
   (if (use-region-p)
-      (let ((region (buffer-substring-no-properties (region-beginning) (region-end))))
+      (let ((beg (region-beginning))
+            (end (region-end)))
         (insert
-         (shell-command (concat "week" " " (shell-quote-argument region)))))
+         (shell-command-to-string
+          (concat "week" " " (shell-quote-argument (buffer-substring-no-properties beg end))))))
     (insert (_calendar-week))))
 
 (bind-keys
