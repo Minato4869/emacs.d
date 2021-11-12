@@ -101,7 +101,8 @@
                                   (setq standard-indent 2
                                         ispell-dictionary "de_AT")
                                   (xterm-mouse-mode nil)
-                                  (cedit/indent-conf 4 t nil 70)))
+                                  (cedit/indent-conf 4 t nil 70)
+                                  (mail-text)))
 (add-hook 'text-mode-hook       (lambda ()
                                   (setq standard-indent 2)
                                   (cedit/indent-conf 2 t nil 80)))
