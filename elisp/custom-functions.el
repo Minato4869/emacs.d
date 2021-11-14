@@ -21,12 +21,18 @@
 (defun calendar-week ()
   (interactive)
   (if (use-region-p)
-      (let ((beg (region-beginning))
-            (end (region-end)))
+      (let* ((beg (region-beginning))
+             (end (region-end))
+             (wn  (buffer-substring-no-properties beg end)))
+        (kill-region beg end)
         (insert
-         (shell-command-to-string
-          (concat "week" " " (shell-quote-argument (buffer-substring-no-properties beg end))))))
-    (insert (_calendar-week))))
+         (concat "* "
+                 (shell-command-to-string
+                  (format "week %s" (shell-quote-argument wn))))))
+    (let ((wn (shell-quote-argument (read-string "Enter week number or date: "))))
+      (insert
+       (concat "* "
+               (shell-command-to-string (format "week %s" wn)))))))
 
 (bind-keys
  ("C-c ." . date)
@@ -101,3 +107,19 @@
         `((width  . 80) (height . 48)))
   (load "~/.emacs.d/init.el"))
 (defalias 'reset-emacs 'reset_emacs)
+
+(defun new-scratch ()
+  "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
+  (interactive)
+  (let ((n 0)
+        bufname)
+    (while (progn
+             (setq bufname (concat "*scratch"
+                                   (if (= n 0) "" (int-to-string n))
+                                   "*"))
+             (setq n (1+ n))
+             (get-buffer bufname)))
+  (switch-to-buffer (get-buffer-create bufname))
+  (if (= n 1) initial-major-mode)))
+
+(defalias 'ns 'new-scratch)

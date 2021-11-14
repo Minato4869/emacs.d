@@ -2,5 +2,5 @@
 # name: added
 # key: added
 # --
-* Added `(format-time-string "<%Y-%m-%d %a>")`
+** Added `(format-time-string "<%Y-%m-%d %a>")`
 $0

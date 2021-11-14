@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cverbatim
+# key: cverbatim
+# --
+{\par \centering
+\begin{BVerbatim}
+	$0
+\end{BVerbatim}
+\par}

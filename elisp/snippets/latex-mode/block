@@ -2,6 +2,6 @@
 # name: block
 # key: block
 # --
-\begin{block}{${blockname}}
-$0
-\end{block}
+    \begin{block}{${blockname}}
+    $0
+    \end{block}
