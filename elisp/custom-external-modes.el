@@ -173,17 +173,11 @@
 
 (require 'yaml-mode)
 
-(use-package org-alert
-  :ensure t
-  :defer t
-  :config
-  (setq alert-default-style 'libnotify))
-
 ;; == interesting packages:
 ;; narrowed-page-navigation
 
 ;; == packages without config
-(use-package auctex               :ensure t :defer t)
+;;(use-package auctex               :ensure t :defer t)
 (use-package dumb-jump            :ensure t :defer t)
 (use-package keychain-environment :ensure t :defer t)
 (use-package goto-chg             :ensure t :defer t)

@@ -37,7 +37,9 @@
 
        (sh-quoted-exec                      "#FA8072")
        (sh-heredoc                          "#FFFF00")
+
        (completions-common-part             "#ADD8E6")
+
 
        (org-level-1                         "#75507B")
        (org-level-2                         "#C4A000")
@@ -55,6 +57,8 @@
 
        (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
        (font-latex-verbatim-face            "#DEB887") ;; == burlywood
+       (tex-verbatim                        "#DEB887")
+       (tex-math                            "#DEB887")
        (font-latex-math-face                "#DEB887")
        )
   (custom-theme-set-faces
@@ -93,6 +97,9 @@
 
    `(sh-quoted-exec                      ((t (:foreground ,sh-quoted-exec))))
    `(sh-heredoc                          ((t (:foreground ,sh-heredoc :bold t))))
+
+   `(italic                              ((t (:inherit italic :underline nil))))
+
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
    `(org-level-1                         ((t (:foreground ,org-level-1))))
@@ -116,8 +123,12 @@
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
 
    ;; == LaTeX
-   `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
-   `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
-   `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
+   ;; `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
+   ;; `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
+   ;; `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
+
+   `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
+   `(tex-math                            ((t (:foreground ,tex-math))))
+
    ))
 (provide-theme 'gl-dark)
