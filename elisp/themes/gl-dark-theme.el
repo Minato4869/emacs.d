@@ -123,9 +123,9 @@
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
 
    ;; == LaTeX
-   ;; `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
-   ;; `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
-   ;; `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
+   `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
+   `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
+   `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
 
    `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
    `(tex-math                            ((t (:foreground ,tex-math))))
