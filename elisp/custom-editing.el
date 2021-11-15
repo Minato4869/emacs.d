@@ -79,11 +79,14 @@
   (auto-fill-mode -1)
   (cedit/indent-conf offset nil nil))
 
+(defun cedit/latex ()
+       (cedit/indent-conf 4 nil 80)
+       (electric-indent-local-mode -1))
 ;; hooks
 (add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook       'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook      (lambda () (cedit/indent-conf 2 nil 80)))
-(add-hook 'latex-mode-hook      (lambda () (cedit/indent-conf 2 nil 80)))
+(add-hook 'LaTeX-mode-hook      (lambda () cedit/latex))
+(add-hook 'latex-mode-hook      (lambda () cedit/latex))
 (add-hook 'plain-TeX-mode-hook  (lambda () (cedit/indent-conf 4 nil 80)))
 (add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
 (add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
