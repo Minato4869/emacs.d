@@ -13,12 +13,13 @@
 (remove-hook 'after-make-frame-functions 'my/frame-configuration t)
 (add-hook 'after-make-frame-functions 'my/frame-configuration)
 
-(setq w/width 100
-      w/height 65)
-(add-hook 'before-make-frame-hook
-          (lambda ()
-            (setq default-frame-alist `((width  . ,w/width) (height . ,w/height))
-                  initial-frame-alist `((width  . ,w/width) (height . ,w/height)))))
+(let ((w 97)
+      (h 56))
+  (remove-hook 'after-make-frame-functions  t)
+  (add-hook 'before-make-frame-hook
+            (lambda ()
+              (setq default-frame-alist `((width  . ,w) (height . ,h))
+                   initial-frame-alist `((width  . ,w) (height . ,h))))))
 (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
   (scroll-bar-mode -1)
   (tool-bar-mode -1))
