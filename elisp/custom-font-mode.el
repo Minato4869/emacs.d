@@ -18,18 +18,18 @@
 
 (defun pcf (&optional arg)
   (interactive)
-  (cond
-   ((string= arg "large")
-    (setq myfont "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1"))
-   ((or (string= arg "9x16") (string= arg "medium"))
-    (setq myfont "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1"))
-   ((string= arg "6x13")
-    (setq myfont "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))
-   ((or (string= arg "small") t)
-    (setq myfont "-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1")))
-  (set-face-attribute 'default t :font myfont)
-  (setq default-frame-alist `((font . ,myfont)))
-  (set-frame-font myfont nil t))
+  (let ((myfont (cond
+                 ((string= arg "large")
+                  "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
+                 ((or (string= arg "9x16") (string= arg "medium"))
+                  "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
+                 ((string= arg "6x13")
+                  "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1")
+                 ((or (string= arg "small") t)
+                  "-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1"))))
+    (set-face-attribute 'default t :font myfont)
+    (setq default-frame-alist `((font . ,myfont)))
+    (set-frame-font myfont nil t)))
 
 
 (defun default-font ()
