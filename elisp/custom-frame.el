@@ -1,7 +1,7 @@
 (defun set-tmux-keys ()
 	(let ((map (copy-keymap xterm-function-map)))
-		set-keymap-parent map (keymap-parent input-decode-map))
-	(set-keymap-parent input-decode-map map))
+		(set-keymap-parent map (keymap-parent input-decode-map))
+		(set-keymap-parent input-decode-map map)))
 
 (defun my/after-make-frame (frame)
 	(with-selected-frame frame
