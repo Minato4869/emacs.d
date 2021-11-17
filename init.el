@@ -28,7 +28,10 @@
  '(menu-bar-mode nil)
  '(tooltip-mode nil)
  '(use-dialog-box nil))
-
+(defun my_daemonp()
+  (if (or (daemonp) (display-graphic-p))
+      t
+    nil))
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
@@ -76,7 +79,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-internal-modes")
 
-(when (or (daemonp) (display-graphic-p))
+(when (my_daemonp)
   (load-library-wrap-error "custom-font-mode")
   (setq confirm-kill-emacs 'yes-or-no-p))
 

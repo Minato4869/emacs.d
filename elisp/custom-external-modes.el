@@ -10,8 +10,8 @@
   (("C-x o" . ace-window)))
 
 ;; == elscreen
-(when (or (daemonp) (display-graphic-p))
 (use-package elscreen
+  :if (my_daemonp)
   :ensure t
   :defer  t
   :config
@@ -41,10 +41,10 @@
       (when (y-or-n-p "Kill window? ")
         (delete-window))))
   :bind*
-  (("M-<left>"    . elscreen-previous)
-   ("M-<right>"   . elscreen-next)
-   ("ESC <left>"    . elscreen-previous)
-   ("ESC <right>"   . elscreen-next))
+  (("M-<left>"     . elscreen-previous)
+   ("M-<right>"    . elscreen-next)
+   ("ESC <left>"   . elscreen-previous)
+   ("ESC <right>"  . elscreen-next))
   (:map elscreen-map
         ("<left>"  . elscreen-previous)
         ("<right>" . elscreen-next)
@@ -62,9 +62,8 @@
         ("h"       . split-window-horizontally)
         ("v"       . split-window-veritcally)
         ))
+(when (my_daemonp)
   (elscreen-start))
-
-
 ;; == yas
 (use-package yasnippet
   :ensure t
