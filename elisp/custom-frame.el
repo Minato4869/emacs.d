@@ -12,10 +12,10 @@
 (add-hook    'after-make-frame-functions 'my/after-make-frame)
 
 ;;(remove-hook 'before-make-frame-hook 'my/before-make-frame t)
-(add-hook    'before-make-frame-hook
-						 (lambda ()
-							 (setq default-frame-alist '((width  . 97) (height . 56))
-										 initial-frame-alist '((width  . 97) (height . 56)))))
+(add-hook  'before-make-frame-hook
+					 (lambda ()
+						 (setq default-frame-alist '((width  . 97) (height . 56))
+									 initial-frame-alist '((width  . 97) (height . 56)))))
 
 
 (defun my/after-delete-frame (frame)
