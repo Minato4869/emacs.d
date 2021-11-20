@@ -42,8 +42,8 @@
    ((file-regular-p "~/.lf")
     (pcf "9x16"))
    (t
-    (if (> dpi 130)
-        (pcf "large"))
+    ;;(if (> dpi 130)
+    ;;    (pcf "large"))
     (pcf "small"))))
 
 (defun small-font ()  (interactive) (pcf "small"))
