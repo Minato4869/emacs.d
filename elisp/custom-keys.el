@@ -207,9 +207,9 @@
    ("C-M-y"           . yank-primary)
    ("<insert>"        . yank-primary)
    ;; text scale
-   ;;("C-0"             . text-scale-reset)
-   ;;("C--"             . text-scale-decrease)
-   ;;("C-="             . text-scale-increase)
+   ("C-0"             . text-scale-reset)
+   ("C--"             . text-scale-decrease)
+   ("C-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; window resizing
