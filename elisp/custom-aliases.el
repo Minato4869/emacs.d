@@ -12,6 +12,7 @@
 (defalias 'ws            'whitespace-mode)
 (defalias 'mb            'menu-bar-mode)
 (defalias 'sh            'shell-script-mode)
+(defalias 'zsh           'shell-script-mode)
 (defalias 'li            'lisp-interaction-mode)
 (defalias 'el            'emacs-lisp-mode)
 (defalias 'org           'org-mode)
