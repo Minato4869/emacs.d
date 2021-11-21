@@ -10,12 +10,13 @@
 
 (remove-hook 'after-make-frame-functions 'my/after-make-frame t)
 (add-hook    'after-make-frame-functions 'my/after-make-frame)
-
-;;(remove-hook 'before-make-frame-hook 'my/before-make-frame t)
-(add-hook  'before-make-frame-hook
-					 (lambda ()
-						 (setq default-frame-alist '((width  . 97) (height . 56))
-									 initial-frame-alist '((width  . 97) (height . 56)))))
+(defun my/frame-geom ()
+	(let ((frame/w 80)
+				(frame/h 48))
+		(add-to-list default-frame-alist `((width  . frame/w) (height . frame/h)))
+		(add-to-list initial-frame-alist `((width  . frame/w) (height . frame/h)))))
+(setq before-make-frame-hook nil)
+(add-hook  'before-make-frame-hook 'my/frame-geom)
 
 
 (defun my/after-delete-frame (frame)
