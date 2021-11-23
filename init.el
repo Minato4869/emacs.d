@@ -80,7 +80,8 @@ Errors will be logged to the buffer *Init Errors*"
 
 (when (my_daemonp)
   (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
-  (load-library-wrap-error "custom-font-mode")
+  (when (display-graphic-p)
+    (load-library-wrap-error "custom-font-mode"))
   (setq confirm-kill-emacs 'yes-or-no-p))
 
 (load-library-wrap-error "custom-frame")
