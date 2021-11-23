@@ -23,7 +23,7 @@
                  ((or (string= arg "9x16") (string= arg "medium"))
                   "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
                  ((string= arg "6x13")
-                  "-misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1")
+                  "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1")
                  ((or (string= arg "small") t)
                   "-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1"))))
     (set-face-attribute 'default t :font myfont)

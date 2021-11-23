@@ -123,3 +123,15 @@
   (if (= n 1) initial-major-mode)))
 
 (defalias 'ns 'new-scratch)
+
+
+;; == Window Resize
+(defun resize-frame (&optional width height)
+  (interactive)
+  (if (or width height)
+      (progn
+        (set-frame-width (selected-frame) width)
+        (set-frame-height (selected-frame) height))
+    (progn
+      (set-frame-width (selected-frame) 80)
+      (set-frame-height (selected-frame) 48))))
