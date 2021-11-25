@@ -34,16 +34,14 @@
 (defun default-font ()
   (interactive)
   (cond
+   ((or (file-regular-p "~/.hf") (> dpi 130))
+    (pcf "9x16"))
    ((file-regular-p "~/.ttf")
     (ttf))
-   ((or (file-regular-p "~/.fixed") (= dpi 125))
-     (pcf "6x13"))
    ((file-regular-p "~/.lf")
-    (pcf "9x16"))
+    (pcf "small"))
    (t
-    ;;(if (> dpi 130)
-    ;;    (pcf "large"))
-    (pcf "small"))))
+    (pcf "6x13"))))
 
 (defun small-font ()  (interactive) (pcf "small"))
 (defun medium-font () (interactive) (pcf "medium"))
