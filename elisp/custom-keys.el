@@ -134,7 +134,7 @@
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
- ("C-5"       . match-paren)
+ ("M-5"       . match-paren)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
  ("C-x C-z"   . repeat)
