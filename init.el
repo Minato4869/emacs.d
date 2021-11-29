@@ -75,18 +75,17 @@ Errors will be logged to the buffer *Init Errors*"
            (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")
+
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-internal-modes")
-
 (when (my_daemonp)
-  (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
+  (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi"))
+        confirm-kill-emacs 'yes-or-no-p)
   (when (display-graphic-p)
-    (load-library-wrap-error "custom-font-mode"))
-  (setq confirm-kill-emacs 'yes-or-no-p))
+    (load-library-wrap-error "custom-font-mode")))
 
 (load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-terminal-mode")
-
 (load-library-wrap-error "custom-external-modes")
 (load-library-wrap-error "custom-aliases")
 (load-library-wrap-error "custom-colours")

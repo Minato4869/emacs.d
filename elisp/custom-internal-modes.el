@@ -176,7 +176,7 @@
           org-src-content-indentation 0
           org-startup-folded t)
     (setq org-todo-keywords
-          '((sequence "TODO" "|" "DONE" "INPROGRESS" "CANCELLED")
+          '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")
             (sequence "VALID"  "|" "INVALID")
             (sequence "BUG"    "|" "FIXED" "WONT FIX")

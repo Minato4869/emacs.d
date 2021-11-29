@@ -95,6 +95,9 @@
         (other-window -1)
         (message "Transposing windows")))))
 
+(defalias 'tw            'transpose-windows)
+
+
 (defun my-goto-line ()
   (interactive)
   (unwind-protect
@@ -102,7 +105,7 @@
         (display-line-numbers-mode 1)
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
-
+(defalias 'gl            'my-goto-line)
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
