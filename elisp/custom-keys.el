@@ -169,7 +169,7 @@
  ("M-1"       . delete-other-windows)
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
- ("M-4"       . make-frame-command)
+;; ("M-4"       . make-frame-command)
  ("M-0"       . delete-window)
  ("C-x 4"     . make-frame-command)
  ("C-x M-o"   . other-frame)
