@@ -1,6 +1,8 @@
 ;; disable modes
 (put 'compose-mail           'disabled t)
 (put 'mouse-wheel-text-scale 'disabled t)
+(put 'mouse-appearance-menu  'disabled t)
+(put 'kmacro-end-call-mouse  'disabled t)
 ;; enable modes
 (put 'upcase-region   'disabled nil)
 (put 'scroll-left     'disabled nil)
@@ -11,6 +13,7 @@
 (put 'eval-expression 'disabled nil)
 (put 'set-goal-column 'disabled nil)
 (put 'scroll-left 'disabled nil)
+
 
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)

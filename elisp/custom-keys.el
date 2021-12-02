@@ -10,6 +10,8 @@
 (global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
+(global-unset-key (kbd "<C-mouse-1>"))
+(global-unset-key (kbd "<C-mouse-3>"))
 (global-unset-key (kbd "<C-mouse-5>"))
 (global-unset-key (kbd "<C-mouse-4>"))
 ;; custom region
