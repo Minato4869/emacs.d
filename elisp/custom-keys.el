@@ -116,8 +116,8 @@
  ("C-z"       . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)
- ("C-c C-SPC" . cua-rectangle-mark-mode)
  ("C-x C-@"   . rectangle-mark-mode)
+ ("C-x m"     . pop-to-mark-command)
  ("M-o"       . other-window))
 ;; custom keys
 (bind-keys

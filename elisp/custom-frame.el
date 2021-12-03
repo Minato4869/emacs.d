@@ -7,14 +7,14 @@
 	(with-selected-frame frame
 		(when (getenv "TMUX")
 			(set-tmux-keys))))
-
 (remove-hook 'after-make-frame-functions 'my/after-make-frame t)
 (add-hook    'after-make-frame-functions 'my/after-make-frame)
-;;(defun my/frame-geom ()
-;;	(let ((frame/w 80)
-;;				(frame/h 48))
-;;		(add-to-list default-frame-alist `((width  . frame/w) (height . frame/h)))
-;;		(add-to-list initial-frame-alist `((width  . frame/w) (height . frame/h)))))
+
+(when (my_daemonp)
+	(setq frame/w 80
+				frame/h 48
+				default-frame-alist `((width  . ,frame/w) (height . ,frame/h))
+				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h))))
 ;;(setq before-make-frame-hook nil)
 ;;(add-hook  'before-make-frame-hook 'my/frame-geom)
 

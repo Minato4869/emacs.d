@@ -145,9 +145,7 @@
      '(mu4e-header-face                 ((t (:foreground "#585858" :bold nil))))
      '(mu4e-header-key-face             ((t (:foreground "#585858" :bold nil))))
      )
-
-    :bind
-    (("C-x m" . my-mu4e))))
+))
 (defun my-mu4e ()
   (interactive)
   (load-library "mu4e")
