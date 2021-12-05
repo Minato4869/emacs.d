@@ -40,15 +40,13 @@
  ("ESC <f2>" . cycle-themes)
  ("C-<f2>"   . custom-default-theme))
 
-(if (daemonp)
-    (load-theme 'gl-dark t)
-  (cond
-   ((getenv "SSH_CONNECTION")
-    (load-theme 'warm-night t))
-   ((string-equal system-type "windows-nt")
-    (load-theme 'naysayer t))
-   ((not (display-graphic-p))
-       (load-theme 'gl-dark t))))
+(cond
+ ((getenv "SSH_CONNECTION")
+  (load-theme 'warm-night t))
+ ((string-equal system-type "windows-nt")
+  (load-theme 'naysayer t))
+ (t
+  (load-theme 'gl-dark t)))
 
 ;; themes
 (defalias 'ct             'cycle-themes)
