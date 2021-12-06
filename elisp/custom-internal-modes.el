@@ -213,6 +213,7 @@
 
   :bind
   (:map org-mode-map
+        ("C-c e" . org-latex-export-to-pdf)
         ("C-c <right>" . org-metaright)
         ("C-c <left>"  . org-metaleft)
         ("C-c C-."     . org-time-stamp)))

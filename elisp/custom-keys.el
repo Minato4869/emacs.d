@@ -8,6 +8,9 @@
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "M-k"))
+(global-unset-key (kbd "M-1"))
+(global-unset-key (kbd "M-4"))
+(global-unset-key (kbd "M-0"))
 (global-unset-key (kbd "<C-up>"))
 (global-unset-key (kbd "<C-down>"))
 (global-unset-key (kbd "<C-mouse-1>"))
@@ -168,7 +171,7 @@
  ("C-x C-k"   . kill-buffer)
  ("C-c r"     . revert-buffer)
  ;; windows
- ("M-1"       . delete-other-windows)
+;; ("M-1"       . delete-other-windows)
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
 ;; ("M-4"       . make-frame-command)
