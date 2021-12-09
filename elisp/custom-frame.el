@@ -11,8 +11,8 @@
 (add-hook    'after-make-frame-functions 'my/after-make-frame)
 
 (when (my_daemonp)
-	(setq frame/w 100
-				frame/h 57
+	(setq frame/w (if (< (x-display-pixel-height) 768) 100 80)
+				frame/h (if (< (x-display-pixel-height) 768)  57 48)
 				default-frame-alist `((width  . ,frame/w) (height . ,frame/h))
 				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h))))
 ;;(setq before-make-frame-hook nil)

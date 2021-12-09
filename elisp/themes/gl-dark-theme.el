@@ -40,12 +40,18 @@
 
        (completions-common-part             "#ADD8E6")
 
+       (isearch-fail                        "#8B0000")
+
+       (shadow                              "#aaaaaa")
 
        (org-level-1                         "#75507B")
        (org-level-2                         "#C4A000")
        (org-level-3                         "#729FCF")
        (org-level-4                         "#CC0000")
        (org-level-5                         "#4E9A06")
+       (org-level-6                         "#75507B")
+       (org-level-7                         "#C4A000")
+       (org-level-8                         "#729FCF")
        (org-date                            "#2C78BF") ;; was cyan
        (org-todo                            "#FFC0CB")
        (org-done                            "#98FB98")
@@ -102,11 +108,18 @@
 
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
+   `(isearch-fail                        ((t (:background ,isearch-fail))))
+
+   `(shadow                              ((t (:foreground ,shadow))))
+
    `(org-level-1                         ((t (:foreground ,org-level-1))))
    `(org-level-2                         ((t (:foreground ,org-level-2))))
    `(org-level-3                         ((t (:foreground ,org-level-3))))
    `(org-level-4                         ((t (:foreground ,org-level-4))))
    `(org-level-5                         ((t (:foreground ,org-level-5))))
+   `(org-level-6                         ((t (:foreground ,org-level-6 :bold t))))
+   `(org-level-7                         ((t (:foreground ,org-level-7 :bold t))))
+   `(org-level-8                         ((t (:foreground ,org-level-8 :bold t))))
    `(org-date                            ((t (:foreground ,org-date))))
    `(org-todo                            ((((type tty)) (:foreground "brightmagenta" :bold t))
                                           (t            (:foreground ,org-todo :bold t))))

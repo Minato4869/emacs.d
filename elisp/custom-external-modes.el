@@ -11,7 +11,7 @@
 
 ;; == elscreen
 (use-package elscreen
-  :if (my_daemonp)
+;;  :if (my_daemonp)
   :ensure t
   :defer  t
   :config
