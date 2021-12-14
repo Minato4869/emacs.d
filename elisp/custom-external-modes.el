@@ -10,60 +10,61 @@
   (("C-x o" . ace-window)))
 
 ;; == elscreen
-(use-package elscreen
-  :if (my_daemonp)
-  :ensure t
-  :defer  t
-  :config
-  (custom-set-faces
-   '(elscreen-tab-background-face     ((t (:background "#292929" :foreground "#bebebe"))))
-   '(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
-   '(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5")))))
-  (setq elscreen-prefix-key "\M-s")
-  (custom-set-variables
-   '(elscreen-display-screen-number t)
-   '(elscreen-tab-display-kill-screen nil))
-  (defun elscreen-kill-confirm ()
-    (interactive)
-    (when (y-or-n-p "Kill current screen? ")
-      (elscreen-kill)))
-  (defun elscreen-kill-buffer-and-screen ()
-    (interactive)
-    (when (y-or-n-p "Kill current buffer and close screen? ")
-      (kill-current-buffer)
-      (elscreen-kill)))
-
-  (defun elscreen-kill-window-or-screen ()
-    (interactive)
-    (if (one-window-p)
-        (elscreen-kill-confirm)
-      (when (y-or-n-p "Kill window? ")
-        (delete-window))))
-  :bind*
-  (("M-<left>"     . elscreen-previous)
-   ("M-<right>"    . elscreen-next)
-   ("ESC <left>"   . elscreen-previous)
-   ("ESC <right>"  . elscreen-next))
-  (:map elscreen-map
-        ("<left>"  . elscreen-previous)
-        ("<right>" . elscreen-next)
-        ("M-s"     . elscreen-toggle)
-        ("s"       . elscreen-toggle)
-        ("C-s"     . elscreen-split)
-        ("4"       . elscreen-screen-nickname)
-        ("r"       . elscreen-screen-nickname)
-        ("S"       . elscreen-swap)
-        ("k"       . elscreen-kill)
-        ("x"       . elscreen-kill-window-or-screen)
-        ("M-k"     . elscreen-kill-buffer-and-screen)
-        ("g"       . elscreen-goto)
-        ("t"       . elscreen-toggle-display-tab)
-        ("h"       . split-window-horizontally)
-        ("v"       . split-window-veritcally)
-        ))
-;;(when (my_daemonp)
+;;(use-package elscreen
+;;  :if (my_daemonp)
+;;  :ensure t
+;;  :defer  t
+;;  :config
+;;  (custom-set-faces
+;;   '(elscreen-tab-background-face     ((t (:background "#292929" :foreground "#bebebe"))))
+;;   '(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+;;   '(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+;;   '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5")))))
+;;  (setq elscreen-prefix-key "\M-s")
+;;  (custom-set-variables
+;;   '(elscreen-display-screen-number t)
+;;   '(elscreen-tab-display-kill-screen nil))
+;;  (defun elscreen-kill-confirm ()
+;;    (interactive)
+;;    (when (y-or-n-p "Kill current screen? ")
+;;      (elscreen-kill)))
+;;  (defun elscreen-kill-buffer-and-screen ()
+;;    (interactive)
+;;    (when (y-or-n-p "Kill current buffer and close screen? ")
+;;      (kill-current-buffer)
+;;      (elscreen-kill)))
+;;
+;;  (defun elscreen-kill-window-or-screen ()
+;;    (interactive)
+;;    (if (one-window-p)
+;;        (elscreen-kill-confirm)
+;;      (when (y-or-n-p "Kill window? ")
+;;        (delete-window))))
+;;  :bind*
+;;  (("M-<left>"     . elscreen-previous)
+;;   ("M-<right>"    . elscreen-next)
+;;   ("ESC <left>"   . elscreen-previous)
+;;   ("ESC <right>"  . elscreen-next))
+;;  (:map elscreen-map
+;;        ("<left>"  . elscreen-previous)
+;;        ("<right>" . elscreen-next)
+;;        ("M-s"     . elscreen-toggle)
+;;        ("s"       . elscreen-toggle)
+;;        ("C-s"     . elscreen-split)
+;;        ("4"       . elscreen-screen-nickname)
+;;        ("r"       . elscreen-screen-nickname)
+;;        ("S"       . elscreen-swap)
+;;        ("k"       . elscreen-kill)
+;;        ("x"       . elscreen-kill-window-or-screen)
+;;        ("M-k"     . elscreen-kill-buffer-and-screen)
+;;        ("g"       . elscreen-goto)
+;;        ("t"       . elscreen-toggle-display-tab)
+;;        ("h"       . split-window-horizontally)
+;;        ("v"       . split-window-veritcally)
+;;        ))
+;;(when (daemonp)
 ;;  (elscreen-start))
+
 ;; == yas
 (use-package yasnippet
   :ensure t
