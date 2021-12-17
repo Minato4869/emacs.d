@@ -203,18 +203,14 @@
   ;; custom functions
 
 ;;; copy and paste
-  (defun yank-primary ()
-    "Yank primary selection."
-    (interactive)
-    (insert (gui-get-primary-selection)))
-
   ;;(defun cf/resize-frame (&optional width height)
   ;;  (set-frame-width (selected-frame) width)
   ;;  (set-frame-height (selected-frame) height))
 
   (bind-keys
-   ("C-M-y"           . yank-primary)
-   ("<insert>"        . yank-primary)
+   ("C-M-y"           . clipboard-yank)
+   ("C-M-w"           . clipboard-kill-ring-save)
+   ("<insert>"        . clipboard-yank)
    ;; text scale
    ("C-0"             . text-scale-reset)
    ("C--"             . text-scale-decrease)
