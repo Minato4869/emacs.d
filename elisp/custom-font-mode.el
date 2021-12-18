@@ -60,6 +60,7 @@
  ("M-<f8>"   . ttf-font))
 
 (defalias 'df     'default-font)
+(defalias 'reset-fonts 'default-font)
 (defalias 'dfs    'default-small-font)
 ;;(defalias 'ttf    'ttf-font)
 (defalias 'menlo  'ttf)
