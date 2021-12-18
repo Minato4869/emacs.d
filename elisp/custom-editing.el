@@ -3,16 +3,19 @@
 (put 'mouse-wheel-text-scale 'disabled t)
 (put 'mouse-appearance-menu  'disabled t)
 (put 'kmacro-end-call-mouse  'disabled t)
+(put 'pop-global-mark        'disabled t)
+(put 'overwrite-mode         'disabled t)
+
 ;; enable modes
-(put 'upcase-region   'disabled nil)
-(put 'scroll-left     'disabled nil)
-(put 'downcase-region 'disabled nil)
+(put 'upcase-region             'disabled nil)
+(put 'scroll-left               'disabled nil)
+(put 'downcase-region           'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
-(put 'narrow-to-page 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'eval-expression 'disabled nil)
-(put 'set-goal-column 'disabled nil)
-(put 'scroll-left 'disabled nil)
+(put 'narrow-to-page            'disabled nil)
+(put 'narrow-to-region          'disabled nil)
+(put 'eval-expression           'disabled nil)
+(put 'set-goal-column           'disabled nil)
+(put 'scroll-left               'disabled nil)
 
 
 (prefer-coding-system       'utf-8)

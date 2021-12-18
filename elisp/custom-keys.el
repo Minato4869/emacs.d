@@ -22,8 +22,6 @@
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
          (define-key m (kbd "C-w")        'kill-region)
-         (define-key m (kbd "C-M-/")      'indent-region)
-         (define-key m (kbd "M-|")        'shell-command-on-region)
          m))))
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 
@@ -139,6 +137,7 @@
  ("M-u"       . upcase-dwim)
  ("M-U"       . upcase-dwim)
  ("M-L"       . downcase-dwim)
+ ("M-SPC"     . cycle-spacing)
  ;; custom function binds
  ("C-x C-0"   . delete-and-balance-window)
  ("C-c 0"     . balance-windows)
@@ -160,8 +159,6 @@
  ("<f11>"     . whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
  ("C-<f12>"   . display-line-numbers-mode)
- ("C-c 1"     . shell-command)
- ("C-c 7"     . async-shell-command)
  ;; buffer
  ("<C-prior>" . previous-buffer)
  ("<C-next>"  . next-buffer)
@@ -175,14 +172,13 @@
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
 ;; ("M-4"       . make-frame-command)
-;; ("M-0"       . delete-window)
+ ("M-0"       . delete-window)
  ("C-x 4"     . make-frame-command)
- ("C-x M-o"   . other-frame)
  ("C-c C-o"   . transpose-windows)
- ("C-c t"     . transpose-windows)
  ("C-x t"     . transpose-lines)
- ("C-c o"     . other-frame))
-;; mode specific
+ ("C-c t"     . transpose-windows))
+
+ ;; mode specific
 (defun my-eval-region-or-buffer ()
   (interactive)
   (if (region-active-p)
@@ -202,25 +198,25 @@
 (when (or (daemonp) (display-graphic-p))
   ;; custom functions
 
-;;; copy and paste
-  ;;(defun cf/resize-frame (&optional width height)
-  ;;  (set-frame-width (selected-frame) width)
-  ;;  (set-frame-height (selected-frame) height))
-
+ (defun yank-primary ()
+   "Yank primary selection."
+   (interactive)
+   (insert (gui-get-primary-selection)))
+(defun kill-ring-save-primary ()
+  (interactive)
+  (deactivate-mark)
+  (gui-set-selection
+   'PRIMARY
+   (replace-regexp-in-string "[\s\n]" "" (buffer-substring
+                                          (region-beginning) (region-end)))))
   (bind-keys
-   ("C-M-y"           . clipboard-yank)
-   ("C-M-w"           . clipboard-kill-ring-save)
-   ("<insert>"        . clipboard-yank)
+   ("C-M-y"           . yank-primary)
+   ("C-M-w"           . kill-ring-save-primary)
+   ("<insert>"        . yank-primary)
    ;; text scale
    ("C-0"             . text-scale-reset)
    ("C--"             . text-scale-decrease)
    ("C-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
-   ;; window resizing
-   ;;("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
-   ;;("C-2"     . (lambda () (interactive) (cf/resize-frame 80  w/height)))
-   ;;("C-3"     . (lambda () (interactive) (cf/resize-frame 100 w/height)))
-   ;;("C-4"     . (lambda () (interactive) (cf/resize-frame 120 w/height)))
-   ;;("C-6"     . (lambda () (interactive) (cf/resize-frame 180 w/height))))
   ))

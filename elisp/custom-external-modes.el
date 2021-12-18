@@ -7,7 +7,7 @@
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind
-  (("C-x o" . ace-window)))
+  (("C-c o" . ace-window)))
 
 ;; == elscreen
 (use-package elscreen

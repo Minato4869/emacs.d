@@ -14,18 +14,14 @@
 	(setq frame/w 80
 				frame/h (if (< (x-display-pixel-height) 768)  57 48)
 				default-frame-alist `((width  . ,frame/w) (height . ,frame/h))
-				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h))))
-;;(setq before-make-frame-hook nil)
-;;(add-hook  'before-make-frame-hook 'my/frame-geom)
+				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h)))
+	(defun my/after-delete-frame (frame)
+		(with-selected-frame frame
+			(when (getenv "SSH_CONNECTION")
+				(setenv "SSH_CONNECTION" ""))))
 
-
-(defun my/after-delete-frame (frame)
-	(with-selected-frame frame
-		(when (getenv "SSH_CONNECTION")
-			(setenv "SSH_CONNECTION" ""))))
-
-(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
-(add-hook    'after-delete-frame-functions 'my/after-delete-frame)
+	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
+	(add-hook    'after-delete-frame-functions 'my/after-delete-frame))
 
 (unless (file-regular-p "~/git/dotfiles/x11/Xresources")
 	(scroll-bar-mode -1)
