@@ -3,7 +3,8 @@
   (mapc #'disable-theme custom-enabled-themes))
 
 (setq custom-main-theme-index 0
-      custom-main-themes '(gl-dark warm-night)
+      ;;      custom-main-themes '(gl-dark warm-night gl-grey)
+      custom-main-themes '(gl-dark gl-grey)
       custom-theme-index 0
       custom-themes '(gl-dark warm-night naysayer naysayer-grey nord srcery xcode-dark ;;gl-light
                               ))
