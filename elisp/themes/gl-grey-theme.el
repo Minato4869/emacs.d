@@ -31,9 +31,8 @@
 
        (shadow                              "#aaaaaa")
 
-       (org-level-1                         "#75507B")
-       (org-level-2                         "#C4A000")
-       (org-level-3                         "#729FCF")
+       (org-level-1                         "#E5E5E5")
+       (org-level-3                         "#888888")
        (org-level-4                         "#CC0000")
        (org-level-5                         "#4E9A06")
        (org-level-6                         "#75507B")
@@ -99,9 +98,9 @@
 
    `(shadow                              ((t (:foreground ,shadow))))
 
-   `(org-level-1                         ((t (:foreground ,org-level-1))))
-   `(org-level-2                         ((t (:foreground ,org-level-2))))
-   `(org-level-3                         ((t (:foreground ,org-level-3))))
+   `(org-level-1                         ((t (:foreground ,org-level-1 :bold t))))
+   `(org-level-2                         ((t (:inherit default :bold t))))
+   `(org-level-3                         ((t (:foreground ,org-level-3 :bold t))))
    `(org-level-4                         ((t (:foreground ,org-level-4))))
    `(org-level-5                         ((t (:foreground ,org-level-5))))
    `(org-level-6                         ((t (:foreground ,org-level-6 :bold t))))
