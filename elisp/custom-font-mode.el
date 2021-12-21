@@ -62,7 +62,6 @@
 (defalias 'df     'default-font)
 (defalias 'reset-fonts 'default-font)
 (defalias 'dfs    'default-small-font)
-;;(defalias 'ttf    'ttf-font)
 (defalias 'menlo  'ttf)
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)

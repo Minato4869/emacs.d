@@ -31,17 +31,19 @@
 
        (shadow                              "#aaaaaa")
 
-       (org-level-1                         "#E5E5E5")
-       (org-level-3                         "#888888")
-       (org-level-4                         "#CC0000")
-       (org-level-5                         "#4E9A06")
-       (org-level-6                         "#75507B")
-       (org-level-7                         "#C4A000")
-       (org-level-8                         "#729FCF")
+       (org-level-1                         "#bebebe")
+       (org-level-2                         "#A1A1A1")
+       (org-level-3                         "#929292")
+       (org-level-4                         "#838383")
+       (org-level-5                         "#838383")
+       (org-level-6                         "#838383")
+       (org-level-7                         "#929292")
+       (org-level-8                         "#bebebe")
+
        (org-date                            "#2C78BF") ;; was cyan
        (org-todo                            "#FFC0CB")
        (org-done                            "#98FB98")
-       (org-headline-done                   "#FFA07A")
+       (org-headline-done                   "#aaaaaa")
        (org-meta-line                       "#CC0000")
        (org-time-grid                       "#EEDD82")
        (org-agenda-structure                "#87CEFA")
@@ -87,8 +89,8 @@
    `(ido-only-match                      ((t (:foreground ,ido-only-match))))
    `(ido-first-match                     ((t (:foreground ,ido-first-match :bold t :underline t))))
 
-   `(sh-quoted-exec                      ((t (:foreground ,sh-quoted-exec))))
-   `(sh-heredoc                          ((t (:foreground ,sh-heredoc :bold t))))
+   `(sh-quoted-exec                      ((t (:inherit default))))
+   `(sh-heredoc                          ((t (:inherit default :bold t))))
 
    `(italic                              ((t (:inherit italic :underline nil))))
 
@@ -99,13 +101,13 @@
    `(shadow                              ((t (:foreground ,shadow))))
 
    `(org-level-1                         ((t (:foreground ,org-level-1 :bold t))))
-   `(org-level-2                         ((t (:inherit default :bold t))))
+   `(org-level-2                         ((t (:foreground ,org-level-2 :bold t))))
    `(org-level-3                         ((t (:foreground ,org-level-3 :bold t))))
-   `(org-level-4                         ((t (:foreground ,org-level-4))))
+   `(org-level-4                         ((t (:foreground ,org-level-4 :bold t))))
    `(org-level-5                         ((t (:foreground ,org-level-5))))
-   `(org-level-6                         ((t (:foreground ,org-level-6 :bold t))))
-   `(org-level-7                         ((t (:foreground ,org-level-7 :bold t))))
-   `(org-level-8                         ((t (:foreground ,org-level-8 :bold t))))
+   `(org-level-6                         ((t (:foreground ,org-level-6))))
+   `(org-level-7                         ((t (:foreground ,org-level-7))))
+   `(org-level-8                         ((t (:foreground ,org-level-8))))
    `(org-date                            ((t (:foreground ,org-date))))
    `(org-todo                            ((((type tty)) (:foreground "brightmagenta" :bold t))
                                           (t            (:foreground ,org-todo :bold t))))
