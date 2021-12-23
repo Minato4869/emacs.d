@@ -5,8 +5,10 @@
        (FG                                  "#BEBEBE") ;; was e5e5e5
        (cursor                              "#00FF00")
        (border                              "#0000FF")
-       (fringe                              "#121212")
+       (fringe                              "#1a1a1a")
        (mode-line-bg                        "#292929")
+       ;; (mode-line-bg                        "#bfbfbf")
+       ;; (mode-line-fg                        "#000000")
 
        (mode-line-inactive-fg               "#CCCCCC")
        (mode-line-inactive-bg               "#4D4D4D")
@@ -22,6 +24,9 @@
        (font-lock-regexp-grouping-backslash "#BEBEBE")
        (font-lock-regexp-grouping-construct "#BEBEBE")
 
+       (font-lock-comment-face              "#777777")
+       (font-lock-comment-delimiter-face    "#777777")
+
        (sh-quoted-exec                      "#FA8072")
        (sh-heredoc                          "#FFFF00")
 
@@ -29,7 +34,7 @@
 
        (isearch-fail                        "#8B0000")
 
-       (shadow                              "#aaaaaa")
+       (shadow                              "#777777")
 
        (org-level-1                         "#bebebe")
        (org-level-2                         "#A1A1A1")
@@ -64,24 +69,26 @@
    `(border                              ((t (:foreground ,border))))
    `(fringe                              ((t (:background ,fringe))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((t (:background ,mode-line-bg :inherit default))))
+   `(mode-line                           ((t (:background ,mode-line-bg :foreground))))
+;;   `(mode-line                           ((t (:background ,mode-line-bg :foreground ,mode-line-fg
+;;                                                          :box (:line-width -1 :style released-button)))))
    `(mode-line-inactive                  ((t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
                                                           :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
    `(region                              ((t (:background ,region-bg :foreground ,region-fg))))
 
    `(font-lock-builtin-face              ((t (:inherit default))))
-   `(font-lock-comment-delimiter-face    ((t (:inherit default))))
-   `(font-lock-comment-face              ((t (:inherit default))))
+   `(font-lock-comment-delimiter-face    ((t (:foreground ,font-lock-comment-delimiter-face))))
+   `(font-lock-comment-face              ((t (:foreground ,font-lock-comment-face))))
    `(font-lock-constant-face             ((t (:inherit default))))
-   `(font-lock-doc-face                  ((t (:inherit default))))
+   `(font-lock-doc-face                  ((t (:inherit default :underline t))))
    `(font-lock-function-name-face        ((t (:inherit default))))
-   `(font-lock-keyword-face              ((t (:inherit default))))
+   `(font-lock-keyword-face              ((t (:inherit default :bold t))))
    `(font-lock-negation-char-face        ((t (:inherit default))))
    `(font-lock-preprocessor-face         ((t (:inherit default))))
    `(font-lock-regexp-grouping-backslash ((t (:foreground ,font-lock-regexp-grouping-backslash :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:foreground ,font-lock-regexp-grouping-construct :bold t))))
-   `(font-lock-string-face               ((t (:inherit default))))
-   `(font-lock-type-face                 ((t (:inherit default))))
+   `(font-lock-string-face               ((t (:inherit default :underline t))))
+   `(font-lock-type-face                 ((t (:inherit default :bold t))))
    `(font-lock-variable-name-face        ((t (:inherit default))))
    `(font-lock-warning-face              ((t (:inherit default))))
 
