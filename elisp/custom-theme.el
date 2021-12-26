@@ -1,45 +1,17 @@
-(defadvice load-theme (before theme-dont-propagate activate)
-  "Disable theme before loading new one."
-  (mapc #'disable-theme custom-enabled-themes))
-
-(setq custom-main-theme-index 0
-      ;;      custom-main-themes '(gl-dark warm-night gl-grey)
-      custom-main-themes '(gl-dark gl-grey)
-      custom-theme-index 0
-      custom-themes '(gl-dark warm-night naysayer naysayer-grey nord srcery xcode-dark ;;gl-light
-                              ))
-
-(defun custom-cycle-theme (theme-list index)
-  (load-theme (nth index theme-list) :no-confirm))
-
-(defun cycle-main-themes ()
-  (interactive)
-  (setq custom-main-theme-index (% (1+ custom-main-theme-index) (length custom-main-themes)))
-  (custom-cycle-theme custom-main-themes custom-main-theme-index))
+(defvar gl/is-dark t
+  "Variable used to toggle gl-dark theme between standard and mono grey")
 
 (defun cycle-themes ()
   (interactive)
-  (setq custom-theme-index (% (1+ custom-theme-index) (length custom-themes)))
-  (custom-cycle-theme custom-themes custom-theme-index))
+  (load-theme 'gl-dark t)
+  (if gl/is-dark
+      (progn
+        (setq gl/is-dark nil)
+        (global-font-lock-mode t))
+    (progn
+      (setq gl/is-dark t)
+      (global-font-lock-mode 0))))
 
-
-(defun disable-all-themes ()
-  "Disable all themes."
-  (interactive)
-  (dolist (i custom-enabled-themes)
-    (disable-theme i)))
-
-(defun custom-default-theme ()
-  "Load default theme"
-  (interactive)
-  (disable-all-themes)
-  (load-theme 'gl-dark t))
-
-(bind-keys
- ("<f2>"     . cycle-main-themes)
- ("M-<f2>"   . cycle-themes)
- ("ESC <f2>" . cycle-themes)
- ("C-<f2>"   . custom-default-theme))
 
 (cond
  ((getenv "SSH_CONNECTION")
@@ -49,12 +21,5 @@
  (t
   (load-theme 'gl-dark t)))
 
-;; themes
-(defalias 'ct             'cycle-themes)
-(defalias 'default-theme  'custom-default-theme)
-(defalias 'reset-theme    'custom-default-theme)
-(defalias 'dft            'custom-default-theme)
-(defalias 'dat            'disable-all-themes)
-(defalias 'disable-themes 'disable-all-themes)
-(defalias 'lt             'load-theme)
-(defalias 'light          'default-light-theme)
+(bind-keys
+ ("<f2>"     . cycle-themes))

@@ -57,8 +57,7 @@
        (whitespace-space     (if (gui-theme) "#444444" "color-238"))
        )
   (custom-set-faces
- `(header-line                  ((t (:background "grey40" :foreground "#BEBEBE"
-                                               :box  (:line-width -1 :style released-button)))))
+ `(header-line                  ((t (:box  (:line-width -1 :style released-button)))))
  `(Man-overstrike               ((t (:foreground ,Man-overstrike :bold t))))
  `(Man-underline                ((t (:foreground ,Man-underline :underline nil :bold t))))
  `(diff-added                   ((t (:foreground "green"))))

@@ -1,23 +1,25 @@
 (deftheme gl-dark
   "gl-dark theme")
 
-(let  ((BG                                  "#000000")
-       (FG                                  "#BEBEBE")
-       (cursor                              "#DB0600") ;; was ff0000
+(let* ((BG                                  (if gl/is-dark "#000000" "#333333"))
+       (FG                                  (if gl/is-dark "#BEBEBE" "#E5E5E5"))
+       (cursor                              (if gl/is-dark "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
        (border                              "#0000FF")
-       (fringe                              "#121212")
+       (fringe                              (if gl/is-dark "#121212" "#1A1A1A"))
        (mode-line-bg                        "#292929")
+       (mode-line-fg                        FG)
+
 
        (mode-line-inactive-fg               "#CCCCCC")
        (mode-line-inactive-bg               "#4D4D4D")
        (mode-line-inactive-box              "#666666")
 
        (region-bg                           "#114488")
-       (region-fg                           "#BEBEBE")
+       (region-fg                           FG)
 
        (ido-subdir                          "#A1C659")
        (ido-only-match                      "#FFCC33")
-       (ido-first-match                     "#BEBEBE")
+       (ido-first-match                     FG)
 
        (font-lock-builtin-face              "#75507B")
        (font-lock-comment-delimiter-face    "#CC0000")
@@ -25,11 +27,11 @@
        (font-lock-constant-face             "#4E9A06")
        (font-lock-doc-face                  "#4E9A06")
        (font-lock-function-name-face        "#75507B")
-       (font-lock-keyword-face              "#729FCF")
-       (font-lock-negation-char-face        "#BEBEBE")
+       (font-lock-keyword-face              (if gl/is-dark "#729FCF" "#1E90FF"))
+       (font-lock-negation-char-face        FG)
        (font-lock-preprocessor-face         "#75507B")
-       (font-lock-regexp-grouping-backslash "#BEBEBE")
-       (font-lock-regexp-grouping-construct "#BEBEBE")
+       (font-lock-regexp-grouping-backslash FG)
+       (font-lock-regexp-grouping-construct FG)
        (font-lock-string-face               "#4E9A06")
        (font-lock-type-face                 "#4E9A06")
        (font-lock-variable-name-face        "#C4A000")
@@ -42,16 +44,20 @@
 
        (isearch-fail                        "#8B0000")
 
+       (isearch-bg                          (if gl/is-dark "#EE799F" BG))
+       (isearch-fg                          (if gl/is-dark "#8B2323" "#1E90FF"))
+       (isearch-bold                        (if gl/is-dark nil t))
+
        (shadow                              "#aaaaaa")
 
-       (org-level-1                         "#75507B")
-       (org-level-2                         "#C4A000")
-       (org-level-3                         "#729FCF")
-       (org-level-4                         "#CC0000")
-       (org-level-5                         "#4E9A06")
-       (org-level-6                         "#75507B")
-       (org-level-7                         "#C4A000")
-       (org-level-8                         "#729FCF")
+       (org-level-1                         (if gl/is-dark "#75507B" FG))
+       (org-level-2                         (if gl/is-dark "#C4A000" "#A1A1A1"))
+       (org-level-3                         (if gl/is-dark "#729FCF" "#929292"))
+       (org-level-4                         (if gl/is-dark "#CC0000" "#838383"))
+       (org-level-5                         (if gl/is-dark "#4E9A06" "#838383"))
+       (org-level-6                         (if gl/is-dark "#75507B" "#838383"))
+       (org-level-7                         (if gl/is-dark "#C4A000" "#929292"))
+       (org-level-8                         (if gl/is-dark "#729FCF" FG))
        (org-date                            "#2C78BF") ;; was cyan
        (org-todo                            "#FFC0CB")
        (org-done                            "#98FB98")
@@ -66,6 +72,11 @@
        (tex-verbatim                        "#DEB887")
        (tex-math                            "#DEB887")
        (font-latex-math-face                "#DEB887")
+
+       (header-line-bg                       (if gl/is-dark "#292929" "#333333"))
+       (header-line-fg                       FG)
+       (elscreen-tab-current-screen-face-bg  "#666666")
+       (elscreen-tab-current-screen-face-fg  "#E5E5E5")
        )
   (custom-theme-set-faces
    'gl-dark
@@ -109,6 +120,8 @@
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
    `(isearch-fail                        ((t (:background ,isearch-fail))))
+   `(isearch                             ((t (:background ,isearch-bg :foreground ,isearch-fg
+                                                          :bold ,isearch-bold))))
 
    `(shadow                              ((t (:foreground ,shadow))))
 
@@ -143,5 +156,12 @@
    `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
    `(tex-math                            ((t (:foreground ,tex-math))))
 
+
+   `(header-line                         ((t (:background ,header-line-bg :foreground ,header-line-fg
+                                               :box  (:line-width -1 :style released-button)))))
+   `(elscreen-tab-background-face     ((t (:inherit header-line))))
+   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
    ))
 (provide-theme 'gl-dark)

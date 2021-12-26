@@ -87,6 +87,10 @@
 (use-package dired
   :ensure nil
   :defer nil
+  :init
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (font-lock-mode t)))
   :config
   (defun dired-jump-previous-dir ()
     (interactive)
@@ -162,7 +166,10 @@
   :ensure nil
   :defer t
   :init
-  (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (electric-indent-local-mode -1)
+              (font-lock-mode t)))
   :config
   (progn
     (cedit/indent-conf 2 nil nil)

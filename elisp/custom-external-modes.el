@@ -15,11 +15,6 @@
   :ensure t
   :defer  t
   :config
-  (custom-set-faces
-   '(elscreen-tab-background-face     ((t (:background "#292929" :foreground "#bebebe"))))
-   '(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
-   '(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   '(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5")))))
   (setq elscreen-prefix-key "\M-s")
   (custom-set-variables
    '(elscreen-display-screen-number t)

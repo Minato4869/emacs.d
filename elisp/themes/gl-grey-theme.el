@@ -36,14 +36,14 @@
 
        (shadow                              "#777777")
 
-       (org-level-1                         "#bebebe")
-       (org-level-2                         "#A1A1A1")
-       (org-level-3                         "#929292")
-       (org-level-4                         "#838383")
-       (org-level-5                         "#838383")
-       (org-level-6                         "#838383")
-       (org-level-7                         "#929292")
-       (org-level-8                         "#bebebe")
+       (org-level-1
+       (org-level-2
+       (org-level-3
+       (org-level-4
+       (org-level-5
+       (org-level-6
+       (org-level-7
+       (org-level-8
 
        (org-date                            "#2C78BF") ;; was cyan
        (org-todo                            "#FFC0CB")
@@ -138,5 +138,6 @@
    `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
    `(tex-math                            ((t (:foreground ,tex-math))))
 
+   `(header-line                  ((t (:inherit header-line :background "grey40" :foreground "#BEBEBE"))))
    ))
 (provide-theme 'gl-grey)
