@@ -7,7 +7,7 @@
        (border                              "#0000FF")
        (fringe                              (if gl/is-dark "#121212" "#1A1A1A"))
        (mode-line-bg                        "#292929")
-       (mode-line-fg                        FG)
+       (mode-line-fg                        FG       )
 
 
        (mode-line-inactive-fg               "#CCCCCC")
@@ -21,24 +21,27 @@
        (ido-only-match                      "#FFCC33")
        (ido-first-match                     FG)
 
-       (font-lock-builtin-face              "#75507B")
-       (font-lock-comment-delimiter-face    "#CC0000")
-       (font-lock-comment-face              "#CC0000")
-       (font-lock-constant-face             "#4E9A06")
-       (font-lock-doc-face                  "#4E9A06")
-       (font-lock-function-name-face        "#75507B")
-       (font-lock-keyword-face              (if gl/is-dark "#729FCF" "#1E90FF"))
+       (font-lock-builtin-face              (if gl/is-dark "#75507B" FG))
+       (font-lock-comment-delimiter-face    (if gl/is-dark "#CC0000" FG))
+       (font-lock-comment-face              (if gl/is-dark "#CC0000" FG))
+       (font-lock-constant-face             (if gl/is-dark "#4E9A06" FG))
+       (font-lock-doc-face                  (if gl/is-dark "#4E9A06" FG))
+       (font-lock-function-name-face        (if gl/is-dark "#75507B" FG))
+       (font-lock-keyword-face              (if gl/is-dark "#729FCF" FG))
        (font-lock-negation-char-face        FG)
-       (font-lock-preprocessor-face         "#75507B")
+       (font-lock-preprocessor-face         (if gl/is-dark "#75507B" FG))
        (font-lock-regexp-grouping-backslash FG)
        (font-lock-regexp-grouping-construct FG)
-       (font-lock-string-face               "#4E9A06")
-       (font-lock-type-face                 "#4E9A06")
-       (font-lock-variable-name-face        "#C4A000")
-       (font-lock-warning-face              "#FF0000")
+       (font-lock-string-face               (if gl/is-dark "#4E9A06" FG))
+       (font-lock-type-face                 (if gl/is-dark "#4E9A06" FG))
 
-       (sh-quoted-exec                      "#FA8072")
-       (sh-heredoc                          "#FFFF00")
+       (font-lock-variable-name-face        (if gl/is-dark "#C4A000" FG))
+       (font-lock-warning-face              (if gl/is-dark "#FF0000" FG))
+
+       (font-lock-bold-or-underlined-face   (if gl/is-dark nil       t))
+
+       (sh-quoted-exec                      (if gl/is-dark "#FA8072" FG))
+       (sh-heredoc                          (if gl/is-dark "#FFFF00" FG))
 
        (completions-common-part             "#ADD8E6")
 
@@ -96,15 +99,19 @@
    `(font-lock-comment-delimiter-face    ((t (:foreground ,font-lock-comment-delimiter-face))))
    `(font-lock-comment-face              ((t (:foreground ,font-lock-comment-face))))
    `(font-lock-constant-face             ((t (:foreground ,font-lock-constant-face))))
-   `(font-lock-doc-face                  ((t (:foreground ,font-lock-doc-face))))
+   `(font-lock-doc-face                  ((t (:foreground ,font-lock-doc-face
+                                                          :underline  ,font-lock-bold-or-underlined-face))))
    `(font-lock-function-name-face        ((t (:foreground ,font-lock-function-name-face))))
-   `(font-lock-keyword-face              ((t (:foreground ,font-lock-keyword-face))))
+   `(font-lock-keyword-face              ((t (:foreground ,font-lock-keyword-face
+                                                          :bold  ,font-lock-bold-or-underlined-face))))
    `(font-lock-negation-char-face        ((t (:foreground ,font-lock-negation-char-face))))
    `(font-lock-preprocessor-face         ((t (:foreground ,font-lock-preprocessor-face))))
    `(font-lock-regexp-grouping-backslash ((t (:foreground ,font-lock-regexp-grouping-backslash :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:foreground ,font-lock-regexp-grouping-construct :bold t))))
-   `(font-lock-string-face               ((t (:foreground ,font-lock-string-face))))
-   `(font-lock-type-face                 ((t (:foreground ,font-lock-type-face))))
+   `(font-lock-string-face               ((t (:foreground ,font-lock-string-face
+                                                          :underline ,font-lock-bold-or-underlined-face))))
+   `(font-lock-type-face                 ((t (:foreground ,font-lock-type-face
+                                                          :bold  ,font-lock-bold-or-underlined-face))))
    `(font-lock-variable-name-face        ((t (:foreground ,font-lock-variable-name-face))))
    `(font-lock-warning-face              ((t (:foreground ,font-lock-warning-face :bold t))))
 

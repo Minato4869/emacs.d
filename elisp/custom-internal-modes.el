@@ -88,9 +88,6 @@
   :ensure nil
   :defer nil
   :init
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (font-lock-mode t)))
   :config
   (defun dired-jump-previous-dir ()
     (interactive)
@@ -229,6 +226,10 @@
 (use-package man
   :ensure nil
   :defer t
+  :init
+  (add-hook 'man-mode-hook
+            (lambda ()
+              (font-lock-mode t)))
   :config
   (setq Man-width 70)
   :bind
