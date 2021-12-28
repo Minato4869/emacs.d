@@ -61,7 +61,7 @@
        (org-level-6                         (if gl/is-dark "#75507B" "#838383"))
        (org-level-7                         (if gl/is-dark "#C4A000" "#929292"))
        (org-level-8                         (if gl/is-dark "#729FCF" FG))
-       (org-date                            "#2C78BF") ;; was cyan
+       (org-date                            (if gl/is-dark "#2C78BF" "#00FFFF"))
        (org-todo                            "#FFC0CB")
        (org-done                            "#98FB98")
        (org-headline-done                   "#FFA07A")
