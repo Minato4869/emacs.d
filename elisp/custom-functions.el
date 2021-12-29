@@ -123,6 +123,7 @@
   (if (= n 1) initial-major-mode)))
 
 (defalias 'ns 'new-scratch)
+(defalias 'mkscratch 'new-scratch)
 
 
 ;; == Window Resize

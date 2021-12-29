@@ -218,7 +218,7 @@
 ;; disable paren/$ jumping
 (setq-default blink-matching-paren nil
               show-paren-mode t
-              show-paren-delay 0)
+              show-paren-delay 0) ;; immediately show parens
 
 (setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
 

@@ -57,7 +57,7 @@
         ("h"       . split-window-horizontally)
         ("v"       . split-window-veritcally)
         ))
-(when (daemonp)
+(when (my_daemonp)
   (elscreen-start))
 
 ;; == yas

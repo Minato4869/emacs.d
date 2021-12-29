@@ -23,13 +23,11 @@
 	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
 	(add-hook    'after-delete-frame-functions 'my/after-delete-frame))
 
-(unless (file-regular-p "~/git/dotfiles/x11/Xresources")
-	(scroll-bar-mode -1)
-	(tool-bar-mode -1))
-
+(if (display-graphic-p)
+		(unless (file-regular-p "~/git/dotfiles/x11/Xresources")
+			(scroll-bar-mode -1)
+			(tool-bar-mode -1))
+	(when (getenv "TMUX")
+		(set-tmux-keys)))
 (display-time-mode t)
 ;;(display-battery-mode t)
-
-
-(when (and (getenv "TMUX") (not (display-graphic-p)))
-	(set-tmux-keys))
