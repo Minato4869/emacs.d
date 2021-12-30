@@ -210,8 +210,8 @@
    (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                           (region-beginning) (region-end)))))
   (bind-keys
-   ("C-M-y"           . yank-primary)
-   ("C-M-w"           . kill-ring-save-primary)
+   ("C-M-y"           . clipboard-yank) ;; yank-primary)
+   ("C-M-w"           . clipboard-kill-ring-save) ;; kill-ring-save-primary)
    ("<insert>"        . yank-primary)
    ;; text scale
    ("C-0"             . text-scale-reset)
