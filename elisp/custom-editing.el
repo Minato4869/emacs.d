@@ -42,11 +42,7 @@
               tab-width 8
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
-              backward-delete-char-untabify-method 'hungry
-              ;; clipboard
-              select-enable-clipboard nil
-              select-enable-primary t
-              )
+              backward-delete-char-untabify-method 'hungry)
 (setq         ispell-dictionary "en_GB")
 (if (daemonp)
     (setq frame-title-format '("" "emacsclient@" system-name " - %b"))
