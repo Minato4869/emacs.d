@@ -40,26 +40,6 @@
    ("C-x b"   . cido/lazy-ido-switch-buffer)
    ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
 
-;; == ibuffer
-(use-package ibuffer
-  :ensure nil
-  :defer nil
-  :config
-  (setq ibuffer-formats
-        '((mark modified read-only ;; " "(name 25 25 :left :elide)
-                " " (name 30 30 :left :elide)
-                " " (size 10 -1 :right)
-                " " (mode 15 20 :left :elide)
-                " " filename-and-process)
-          (mark " " (name 16 -1) " " filename)))
-  (defalias 'ib 'ibuffer)
-  :bind
-  (("C-x C-b"   . ibuffer)
-   ("C-c b"     . ibuffer-other-window)
-   ("s-b"       . ibuffer))
-  (:map ibuffer-mode-map
-        ("r"   . ibuffer-redisplay)))
-
 ;; == dired
 (use-package dired-x
   :ensure nil
@@ -109,10 +89,17 @@
       (if (file-directory-p file)
           (find-file file)
         (dired-view-file-other-window))))
+
+  (defun dired-quit-and-kill-window ()
+    (if (one-window-p)
+        (quit-window)
+      (progn
+        (quit-window)
+        (delete-window))))
   :bind
   (:map dired-mode-map
-        ("C-<return>" . dired-find-file-other-window)
-        ("C-<right>"  . dired-find-file-other-window)
+        ("v"          . dired-find-file-other-window)
+        ("q"          . dired-quit-and-kill-window)
         ("C-h"        . dired-omit-mode)
         ("<right>"    . dired-find-or-view)
         ("<left>"     . dired-jump-previous-dir)
@@ -131,24 +118,6 @@
         LaTeX-item-indent -2
         LaTeX-indent-level 4) ;; indents special environments
   (setq TeX-engine 'default) ;; xetex to switch to xelatex
-;;  (setq-default
-;;   TeX-command-list
-;;   (quote
-;;    (("TeX" "%(PDF)%(tex) %(file-line-error) %`%(extraopts) %S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
-;;      (plain-tex-mode ams-tex-mode texinfo-mode)
-;;      :help "Run plain TeX")
-;;     ("LaTeX" "%`%l%(mode)%' %T" TeX-run-TeX nil
-;;      (latex-mode doctex-mode)
-;;      :help "Run LaTeX")
-;;     ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
-;;     ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
-;;
-;;     ("Spell" "(TeX-ispell-document \"\")"
-;;      TeX-run-function nil t :help "Spell-check the
-;;                document")
-;;     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
-;;     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-;;     ("Other" "" TeX-run-command t t :help "Run an arbitrary command")))
   (setq TeX-view-program-selection
         (quote
     (((output-dvi has-no-display-manager) "dvi2tty")
@@ -158,7 +127,6 @@
      (output-html "xdg-open")))))
 
 ;; == org
-
 (use-package org
   :ensure nil
   :defer t
@@ -190,8 +158,7 @@
             ("VIABLE"     . "palegreen")
             ("INVALID"    . "pink")
             ("CANCELLED"  . "#565252") ;;"grey50")
-            ;;            ("INPROGRESS" . "goldenrod1")
-            ("INPROGRESS" . "#FFAF00")
+            ("INPROGRESS" . "#FFAF00") ;; was "goldenrod1")
             ("NEXT"       . "#FFAF00")
             ("VALID"      . "palegreen")
             ("BUG"        . "pink")
@@ -213,8 +180,6 @@
   (defun agenda()
     (interactive)
     (org-agenda "n"))
-
-
   :bind
   (:map org-mode-map
         ("C-c e" . org-latex-export-to-pdf)
@@ -227,9 +192,7 @@
   :ensure nil
   :defer t
   :init
-  (add-hook 'man-mode-hook
-            (lambda ()
-              (font-lock-mode t)))
+  (add-hook 'man-mode-hook (lambda () (font-lock-mode t)))
   :config
   (setq Man-width 70)
   :bind
@@ -247,12 +210,12 @@
     (delete-window))
   :bind
   (:map view-mode-map
-        ("q"      . View-quit-and-kill)
         ("C-q"    . View-quit)
         ("C-f"    . scroll-line-up)
         ("C-b"    . scroll-line-down)
         ("g"      . beginning-of-buffer)
         ("G"      . end-of-buffer)))
+
 (use-package eww
   :ensure nil
   :defer t

@@ -136,3 +136,14 @@
     (progn
       (set-frame-width (selected-frame) 80)
       (set-frame-height (selected-frame) 48))))
+
+;; <2021-12-31 Fri> @leahneukirchen
+(defun toggle-case ()
+  (interactive)
+  (let ((char (following-char)))
+    (if (eq char (upcase char))
+        (insert-char (downcase char) 1 t)
+      (insert-char (upcase char) 1 t)))
+  (delete-char 1 nil)
+  (backward-char))
+(bind-key "M-#" 'toggle-case)

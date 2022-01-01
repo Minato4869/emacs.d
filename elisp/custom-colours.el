@@ -48,14 +48,12 @@
  '(org-mode orgalist-mode))
 (defun gui-theme()
   (or (display-graphic-p) (daemonp)))
-(let ((dired-directory       (if (gui-theme) "#4286F4" "brightblue"))
-       (dired-symlink        (if (gui-theme) "#75507B" "magenta"))
-       (eshell-ls-executable (if (gui-theme) "#cc0000" "red"))
-       (trailing-whitespace  (if (gui-theme) "#FFB6B0" "maroon"))
-       (Man-overstrike       (if (gui-theme) "#FF0000" "brightred"))   ;; was "#EF2929"
-       (Man-underline        (if (gui-theme) "#00FF00" "brightgreen")) ;; was "#8AE234"
-       (whitespace-space     (if (gui-theme) "#444444" "color-238"))
-       )
+(let ((eshell-ls-executable (if (gui-theme) "#cc0000" "red"))
+      (trailing-whitespace  (if (gui-theme) "#FFB6B0" "maroon"))
+      (Man-overstrike       (if (gui-theme) "#FF0000" "brightred"))   ;; was "#EF2929"
+      (Man-underline        (if (gui-theme) "#00FF00" "brightgreen")) ;; was "#8AE234"
+      (whitespace-space     (if (gui-theme) "#444444" "color-238"))
+      )
   (custom-set-faces
  `(header-line                  ((t (:box  (:line-width -1 :style released-button)))))
  `(Man-overstrike               ((t (:foreground ,Man-overstrike :bold t))))
@@ -66,8 +64,6 @@
  `(diff-context                 ((t (nil))))
  `(diff-removed                 ((t (:foreground "red"))))
  `(diff-refine-removed          ((t (:foreground "red" :underline t))))
- `(dired-directory              ((t (:foreground ,dired-directory ))))
- `(dired-symlink                ((t (:foreground ,dired-symlink))))
 ;; `(error                        ((t (:foreground "red" :bold t))))
  `(eshell-ls-archive            ((t (:inherit default))))
  `(eshell-ls-backup             ((t (:inherit default))))

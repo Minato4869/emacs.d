@@ -1,14 +1,4 @@
 ;;; external packages
-
-;; == ace-window
-(use-package ace-window
-  :ensure t
-  :defer  t
-  :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind
-  (("C-c o" . ace-window)))
-
 ;; == elscreen
 (use-package elscreen
   :if (my_daemonp)
@@ -82,9 +72,7 @@
   :ensure t
   :defer t
   :init
-  (defalias 'bkr 'browse-kill-ring)
-  (defalias 'kr  'browse-kill-ring))
-
+  (defalias 'bkr 'browse-kill-ring))
 
 ;; == haskell-mode
 (use-package haskell-mode
@@ -103,8 +91,7 @@
    '(magit-diff-context-highlight        ((t (:inherit diff-context))))
    '(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
    '(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
-   '(magit-diff-added-highlight          ((t (:inherit diff-added)))))
-  )
+   '(magit-diff-added-highlight          ((t (:inherit diff-added))))))
 
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes

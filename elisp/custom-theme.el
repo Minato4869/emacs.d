@@ -5,12 +5,8 @@
   (interactive)
   (load-theme 'gl-dark t)
   (if gl/is-dark
-      (progn
-        (setq gl/is-dark nil)
-        (global-font-lock-mode t))
-    (progn
-      (setq gl/is-dark t)
-      (global-font-lock-mode 0))))
+      (setq gl/is-dark nil)
+    (setq gl/is-dark t)))
 
 (cond
  ((getenv "SSH_CONNECTION")

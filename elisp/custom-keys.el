@@ -217,4 +217,6 @@
    ("C-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
+   ;; buffers
+   ("s-b"   . buffer-menu)
   ))

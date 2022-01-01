@@ -34,11 +34,9 @@
        (font-lock-regexp-grouping-construct FG)
        (font-lock-string-face               (if gl/is-dark "#4E9A06" FG))
        (font-lock-type-face                 (if gl/is-dark "#4E9A06" FG))
-
        (font-lock-variable-name-face        (if gl/is-dark "#C4A000" FG))
        (font-lock-warning-face              (if gl/is-dark "#FF0000" FG))
-
-       (font-lock-bold-or-underlined-face   (if gl/is-dark nil       t))
+       ;; (font-lock-bold-or-underlined-face   (if gl/is-dark nil       t))
 
        (sh-quoted-exec                      (if gl/is-dark "#FA8072" FG))
        (sh-heredoc                          (if gl/is-dark "#FFFF00" FG))
@@ -80,6 +78,10 @@
        (header-line-fg                       FG)
        (elscreen-tab-current-screen-face-bg  "#666666")
        (elscreen-tab-current-screen-face-fg  "#E5E5E5")
+
+       (dired-header                         (if gl/is-dark "#4E9A06" "#98fb98"))
+       (dired-directory                      (if gl/is-dark "#4286F4" "#87CEFA"))
+       (dired-symlink                        (if gl/is-dark "#75507B" "#1E90FF"))
        )
   (custom-theme-set-faces
    'gl-dark
@@ -99,19 +101,16 @@
    `(font-lock-comment-delimiter-face    ((t (:foreground ,font-lock-comment-delimiter-face))))
    `(font-lock-comment-face              ((t (:foreground ,font-lock-comment-face))))
    `(font-lock-constant-face             ((t (:foreground ,font-lock-constant-face))))
-   `(font-lock-doc-face                  ((t (:foreground ,font-lock-doc-face
-                                                          :underline  ,font-lock-bold-or-underlined-face))))
+   `(font-lock-doc-face                  ((t (:foreground ,font-lock-doc-face)))) ;; :underline  ,font-lock-bold-or-underlined-face))))
    `(font-lock-function-name-face        ((t (:foreground ,font-lock-function-name-face))))
-   `(font-lock-keyword-face              ((t (:foreground ,font-lock-keyword-face
-                                                          :bold  ,font-lock-bold-or-underlined-face))))
+   `(font-lock-keyword-face              ((t (:foreground ,font-lock-keyword-face))))
+                                                          ;; :bold  ,font-lock-bold-or-underlined-face))))
    `(font-lock-negation-char-face        ((t (:foreground ,font-lock-negation-char-face))))
    `(font-lock-preprocessor-face         ((t (:foreground ,font-lock-preprocessor-face))))
    `(font-lock-regexp-grouping-backslash ((t (:foreground ,font-lock-regexp-grouping-backslash :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:foreground ,font-lock-regexp-grouping-construct :bold t))))
-   `(font-lock-string-face               ((t (:foreground ,font-lock-string-face
-                                                          :underline ,font-lock-bold-or-underlined-face))))
-   `(font-lock-type-face                 ((t (:foreground ,font-lock-type-face
-                                                          :bold  ,font-lock-bold-or-underlined-face))))
+   `(font-lock-string-face               ((t (:foreground ,font-lock-string-face)))) ;; :underline ,font-lock-bold-or-underlined-face))))
+   `(font-lock-type-face                 ((t (:foreground ,font-lock-type-face)))) ;;:bold  ,font-lock-bold-or-underlined-face))))
    `(font-lock-variable-name-face        ((t (:foreground ,font-lock-variable-name-face))))
    `(font-lock-warning-face              ((t (:foreground ,font-lock-warning-face :bold t))))
 
@@ -170,5 +169,9 @@
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
+
+   `(dired-header                     ((t (:foreground ,dired-header))))
+   `(dired-directory                  ((t (:foreground ,dired-directory ))))
+   `(dired-symlink                    ((t (:foreground ,dired-symlink))))
    ))
 (provide-theme 'gl-dark)
