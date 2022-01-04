@@ -8,7 +8,8 @@
   (let ((ttfh (cond ((= dpi 125) 69)
                     ((= dpi 131) 75)
                     ((= dpi 157) 63) ;; was 73
-                    ((= dpi 109) 93)))
+                    ((= dpi 109) 93)
+                    (t 70)))
         (family     "Meslo LG S")
         )
     (custom-set-faces
@@ -63,6 +64,7 @@
 (defalias 'reset-fonts 'default-font)
 (defalias 'dfs    'default-small-font)
 (defalias 'menlo  'ttf)
+(defalias 'meslo  'ttf)
 (defalias 'small  'small-font)
 (defalias 'medium 'medium-font)
 (defalias 'large  'large-font)

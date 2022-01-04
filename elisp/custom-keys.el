@@ -203,10 +203,19 @@
    'PRIMARY
    (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                           (region-beginning) (region-end)))))
-  (bind-keys
+ (defun cf/resize-frame (&optional width height)
+   (set-frame-width (selected-frame) width)
+   (set-frame-height (selected-frame) height))
+
+(bind-keys
    ("C-M-y"           . yank-primary)
    ("C-M-w"           . kill-ring-save-primary)
    ("<insert>"        . yank-primary)
+   ;; window resizing
+   ("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
+   ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  57)))
+   ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 57)))
+   ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 64)))
    ;; text scale
    ("C-0"             . text-scale-reset)
    ("C--"             . text-scale-decrease)

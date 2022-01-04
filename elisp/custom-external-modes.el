@@ -35,6 +35,7 @@
         ("<right>" . elscreen-next)
         ("M-s"     . elscreen-toggle)
         ("s"       . elscreen-toggle)
+        ("S"       . elscreen-toggle)
         ("C-s"     . elscreen-split)
         ("4"       . elscreen-screen-nickname)
         ("r"       . elscreen-screen-nickname)

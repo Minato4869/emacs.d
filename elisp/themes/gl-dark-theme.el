@@ -1,11 +1,11 @@
 (deftheme gl-dark
   "gl-dark theme")
 
-(let* ((BG                                  (if (gl/black-theme) "#000000" "#333333"))
-       (FG                                  (if (gl/black-theme) "#BEBEBE" "#E5E5E5"))
-       (cursor                              (if (gl/black-theme) "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
+(let* ((BG                                  (if gl/colours "#000000" "#333333"))
+       (FG                                  (if gl/colours "#BEBEBE" "#E5E5E5"))
+       (cursor                              (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
        (border                              "#0000FF")
-       (fringe                              (if (gl/black-theme) "#121212" "#1A1A1A"))
+       (fringe                              (if gl/colours "#121212" "#1A1A1A"))
        (mode-line-bg                        "#292929")
        (mode-line-fg                        FG       )
 
@@ -67,6 +67,7 @@
        (org-time-grid                       "#EEDD82")
        (org-agenda-structure                "#87CEFA")
        (org-agenda-clocking                 "#4A708B")
+       (org-block-delim                     (if gl/colours "#CC0000" FG))
 
        (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
        (font-latex-verbatim-face            "#DEB887") ;; == burlywood
@@ -153,6 +154,8 @@
    `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
    `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
+   `(org-block-begin-line                ((t (:fokreground ,org-block-delim))))
+   `(org-block-end-line                  ((t (:foreground ,org-block-delim))))
 
    ;; == LaTeX
    `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
