@@ -81,15 +81,19 @@ Errors will be logged to the buffer *Init Errors*"
 (when (my_daemonp)
   (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi"))
         confirm-kill-emacs 'yes-or-no-p)
-  (when (display-graphic-p)
-    (load-library-wrap-error "custom-font-mode")))
+  (load-library-wrap-error "custom-font-mode")
+  (load-library-wrap-error "custom-frame")
+  (load-library-wrap-error "custom-terminal-mode")
+  (load-library-wrap-error "custom-external-modes")
+  (load-library-wrap-error "custom-colours")
 
-(load-library-wrap-error "custom-frame")
-(load-library-wrap-error "custom-terminal-mode")
-(load-library-wrap-error "custom-external-modes")
-(load-library-wrap-error "custom-aliases")
-(load-library-wrap-error "custom-colours")
+)
 (load-library-wrap-error "custom-theme")
+(load-library-wrap-error "custom-aliases")
+
+(unless (display-graphic-p)
+     (global-font-lock-mode 0))
+
 (when (daemonp)
   (load-library-wrap-error "custom-emacsclient"))
 

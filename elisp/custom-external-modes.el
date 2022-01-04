@@ -38,7 +38,7 @@
         ("C-s"     . elscreen-split)
         ("4"       . elscreen-screen-nickname)
         ("r"       . elscreen-screen-nickname)
-        ("S"       . elscreen-swap)
+        ("s"       . elscreen-swap)
         ("k"       . elscreen-kill)
         ("x"       . elscreen-kill-window-or-screen)
         ("M-k"     . elscreen-kill-buffer-and-screen)
@@ -106,6 +106,7 @@
 ;; == mu4e
 (when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
   (use-package mu4e
+    :if (daemonp)
     :ensure nil
     :defer nil
     :init

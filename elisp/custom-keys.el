@@ -19,6 +19,8 @@
 (global-unset-key (kbd "<C-mouse-3>"))
 (global-unset-key (kbd "<C-mouse-5>"))
 (global-unset-key (kbd "<C-mouse-4>"))
+(global-unset-key (kbd "C-x C-z"))
+
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
@@ -99,9 +101,7 @@
         (setq arg (if (cl-plusp arg) (1- arg) (1+ arg)))
         (other-window -1)
         (message "Transposing windows")))))
-
 (defalias 'tw            'transpose-windows)
-
 
 (defun my-goto-line ()
   (interactive)
@@ -118,7 +118,7 @@
 (bind-keys*
  ("C-z"       . universal-argument)
  ("C-x C-SPC" . rectangle-mark-mode)
- ("C-c SPC"   . cua-rectangle-mark-mode)
+ ("C-c C-SPC" . cua-rectangle-mark-mode)
  ("C-x C-@"   . rectangle-mark-mode)
  ("C-x m"     . pop-to-mark-command)
  ("M-o"       . other-window))
@@ -136,16 +136,12 @@
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
  ("M-u"       . upcase-dwim)
- ("M-U"       . upcase-dwim)
- ("M-L"       . downcase-dwim)
+ ("M-l"       . downcase-dwim)
  ("M-SPC"     . cycle-spacing)
  ;; custom function binds
- ("C-x C-0"   . delete-and-balance-window)
- ("C-c 0"     . balance-windows)
- ("M-5"       . match-paren)
+ ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
  ("C-x z"     . custom-suspend-frame)
- ("C-x C-z"   . repeat)
  ;; movement
  ("M-p"       . backward-paragraph)
  ("M-n"       . forward-paragraph)

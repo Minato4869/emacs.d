@@ -12,7 +12,8 @@
 
 (when (my_daemonp)
 	(setq frame/w 80
-				frame/h (if (< (x-display-pixel-height) 768)  57 48)
+				;; frame/h (if (< (x-display-pixel-height) 768)  57 48)
+				frame/h 57
 				default-frame-alist `((width  . ,frame/w) (height . ,frame/h))
 				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h)))
 	(defun my/after-delete-frame (frame)

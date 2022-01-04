@@ -2,6 +2,7 @@
 ;; date
 (defun date ()
   (interactive)
+  (equal major-mode 'org-mode)
   (insert (format-time-string "<%Y-%m-%d %a>")))
 (defalias 'ymd 'date)
 

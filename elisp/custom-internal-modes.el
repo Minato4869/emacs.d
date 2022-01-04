@@ -46,10 +46,11 @@
   :defer nil
   :config
   (setq-default dired-omit-files "^\\...+$")
-  (when (or (string-equal system-type "gnu/linux")
-            (file-regular-p "/usr/local/share/gls"))
-    (setq dired-listing-switches
-          "-laH --group-directories-first"))
+  (if (or (string-equal system-type "gnu/linux")
+          (file-regular-p "/usr/local/share/gls"))
+      (setq dired-listing-switches
+            "-laFH --group-directories-first")
+    (setq dired-listing-switches "-laFH"))
   (setq dired-omit-verbose nil
         dired-omit-mode t)
 
