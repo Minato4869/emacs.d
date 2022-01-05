@@ -6,9 +6,13 @@
   :defer  t
   :config
   (setq elscreen-prefix-key "\M-s")
-  (custom-set-variables
-   '(elscreen-display-screen-number t)
-   '(elscreen-tab-display-kill-screen nil))
+  (if (getenv "SSH_CONNECTION")
+      (custom-set-variables
+       '(elscreen-display-tab nil)
+       '(elscreen-display-screen-number t))
+    (custom-set-variables
+     '(elscreen-display-screen-number nil)
+     '(elscreen-tab-display-kill-screen nil)))
   (defun elscreen-kill-confirm ()
     (interactive)
     (when (y-or-n-p "Kill current screen? ")
@@ -170,3 +174,4 @@
 (use-package puppet-mode          :ensure t :defer t)
 (use-package wgrep                :ensure t :defer t)
 (use-package so-long              :ensure t :defer t)
+(use-package rainbow-delimiters   :ensure t :defer t)

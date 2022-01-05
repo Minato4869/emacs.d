@@ -66,3 +66,15 @@
      (output-dvi "xdvi")
      (output-pdf "xpdf")
      (output-html "xdg-open")))))
+
+;; <2022-01-05 Wed>
+ (defun cf/resize-frame (&optional width height)
+   (set-frame-width (selected-frame) width)
+   (set-frame-height (selected-frame) height))
+
+(bind-keys
+   ;; window resizing
+   ("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
+   ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  57)))
+   ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 57)))
+   ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 64))))

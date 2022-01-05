@@ -117,8 +117,8 @@
 
 (bind-keys*
  ("C-z"       . universal-argument)
- ("C-x C-SPC" . rectangle-mark-mode)
- ("C-c C-SPC" . cua-rectangle-mark-mode)
+ ("C-x SPC"   . rectangle-mark-mode)
+ ("C-c SPC"   . cua-rectangle-mark-mode)
  ("C-x C-@"   . rectangle-mark-mode)
  ("C-x m"     . pop-to-mark-command)
  ("M-o"       . other-window))
@@ -138,6 +138,7 @@
  ("M-u"       . upcase-dwim)
  ("M-l"       . downcase-dwim)
  ("M-SPC"     . cycle-spacing)
+ ("C-x C-SPC" . delete-horizontal-space)
  ;; custom function binds
  ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
@@ -203,19 +204,10 @@
    'PRIMARY
    (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                           (region-beginning) (region-end)))))
- (defun cf/resize-frame (&optional width height)
-   (set-frame-width (selected-frame) width)
-   (set-frame-height (selected-frame) height))
-
 (bind-keys
    ("C-M-y"           . yank-primary)
    ("C-M-w"           . kill-ring-save-primary)
    ("<insert>"        . yank-primary)
-   ;; window resizing
-   ("C-1"     . (lambda () (interactive) (cf/resize-frame 80  25)))
-   ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  57)))
-   ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 57)))
-   ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 64)))
    ;; text scale
    ("C-0"             . text-scale-reset)
    ("C--"             . text-scale-decrease)

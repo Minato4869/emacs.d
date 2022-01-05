@@ -50,21 +50,15 @@
   (or (display-graphic-p) (daemonp)))
 (let ((eshell-ls-executable (if (gui-theme) "#cc0000" "red"))
       (trailing-whitespace  (if (gui-theme) "#FFB6B0" "maroon"))
-      (Man-overstrike       (if (gui-theme) "#FF0000" "brightred"))   ;; was "#EF2929"
-      (Man-underline        (if (gui-theme) "#00FF00" "brightgreen")) ;; was "#8AE234"
-      (whitespace-space     (if (gui-theme) "#444444" "color-238"))
-      )
+      (whitespace-space     (if (gui-theme) "#444444" "color-238")))
   (custom-set-faces
  `(header-line                  ((t (:box  (:line-width -1 :style released-button)))))
- `(Man-overstrike               ((t (:foreground ,Man-overstrike :bold t))))
- `(Man-underline                ((t (:foreground ,Man-underline :underline nil :bold t))))
  `(diff-added                   ((t (:foreground "green"))))
  `(diff-refine-added            ((t (:foreground "green" :underline t))))
  `(diff-header                  ((t (nil))))
  `(diff-context                 ((t (nil))))
  `(diff-removed                 ((t (:foreground "red"))))
  `(diff-refine-removed          ((t (:foreground "red" :underline t))))
-;; `(error                        ((t (:foreground "red" :bold t))))
  `(eshell-ls-archive            ((t (:inherit default))))
  `(eshell-ls-backup             ((t (:inherit default))))
  `(eshell-ls-clutter            ((t (:inherit default))))
