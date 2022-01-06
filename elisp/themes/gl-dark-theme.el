@@ -91,6 +91,10 @@
 
        (error                                (if gl/colours "#ff0000" FG))
        (error-bold                           (if gl/colours t nil))
+
+       (show-paren-match-bg                  "#4f94cd")
+       (show-paren-mismatch-bg               "#a020f0")
+       (show-paren-mismatch-fg               "#ffffff")
        )
   (custom-theme-set-faces
    'gl-dark
@@ -108,8 +112,8 @@
                                                           :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
    `(mode-line-buffer-id                 ((t (:inherit mode-lines :foreground, mode-line-buffer-id :bold t))))
 
-   `(region                              ((((type tty)) (:inherit default :background "blue"))
-                                          (t (:inherit default :background ,region-bg))))
+   `(region                              ((((type tty)) (:inherit default :background "blue" :extend t))
+                                          (t (:inherit default :background ,region-bg :extend t))))
 
    `(font-lock-builtin-face              ((t (:inherit default :foreground ,font-lock-builtin-face))))
    `(font-lock-comment-delimiter-face    ((t (:inherit default :foreground ,font-lock-comment-delimiter-face))))
@@ -192,9 +196,14 @@
    `(buffer-menu-buffer               ((t (:inherit default))))
 
    `(Man-overstrike                   ((t (:foreground ,Man-overstrike :bold t))))
-   `(Man-underline                    ((t (:foreground ,Man-underline :underline nil :bold ,Man-underline-bold))))
+   `(Man-underline                    ((t (:foreground ,Man-underline :underline nil
+                                                       :bold ,Man-underline-bold))))
 
    `(error                            ((t (:foreground ,error :bold ,error-bold))))
+
+   `(show-paren-match                 ((t (:inherit default :background ,show-paren-match-bg))))
+   `(show-paren-mismatch              ((t (:foreground ,show-paren-mismatch-fg
+                                                       :background ,show-paren-mismatch-bg))))
 
    ))
 (provide-theme 'gl-dark)

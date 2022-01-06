@@ -1,5 +1,6 @@
 (keychain-refresh-environment)
-(load-library-wrap-error "custom-desktop-save")
+;;(load-library-wrap-error "custom-desktop-save")
+
 (defun ask-before-closing ()
   (interactive)
   (if (display-graphic-p)

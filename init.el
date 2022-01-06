@@ -79,14 +79,13 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-internal-modes")
 (when (my_daemonp)
-  (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi"))
-        confirm-kill-emacs 'yes-or-no-p)
+  (setq confirm-kill-emacs 'yes-or-no-p)
   (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-frame")
   (load-library-wrap-error "custom-terminal-mode")
-  (load-library-wrap-error "custom-external-modes")
-  (load-library-wrap-error "custom-colours"))
+  (load-library-wrap-error "custom-external-modes"))
 
+(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-aliases")
 
