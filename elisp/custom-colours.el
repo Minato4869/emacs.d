@@ -74,6 +74,7 @@
  `(font-latex-verbatim-face     ((t (:foreground "burlywood"))))
  `(font-lock-warning-face       ((t (:foreground "red" :bold t ))))
  `(hl-line                      ((t (:inherit region :extend t))))
+ `(region                       ((t (:inherit region :extend t))))
  `(ido-first-match              ((t (:inherit default :bold t :underline t))))
  `(ido-incomplete-regexp        ((t (:inherit default))))
  `(ido-indicator                ((t (:inherit default))))
