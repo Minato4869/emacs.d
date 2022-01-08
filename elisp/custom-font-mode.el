@@ -19,7 +19,7 @@
 
 (defun default-font ()
   (interactive)
-  (if ((or (file-regular-p "~/.hf")) (> dpi 160))
+  (if (file-regular-p "~/.hf")
       (pcf "9x16")
     (pcf "6x13")))
 

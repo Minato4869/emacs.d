@@ -45,7 +45,8 @@
   :ensure nil
   :defer nil
   :config
-  (setq-default dired-omit-files "^\\...+$")
+  (setq-default dired-omit-files "^\\...+$"
+                dired-isearch-filenames t)
   (if (or (string-equal system-type "gnu/linux")
           (file-regular-p "/usr/local/share/gls"))
       (setq dired-listing-switches

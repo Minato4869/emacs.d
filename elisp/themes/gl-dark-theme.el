@@ -42,6 +42,7 @@
 
        (sh-quoted-exec                      (if gl/colours "#FA8072" nil))
        (sh-heredoc                          (if gl/colours "#FFFF00" nil))
+       (sh-heredoc-bold                     (if gl/colours t         nil))
 
        (completions-common-part             "#ADD8E6")
 
@@ -85,7 +86,7 @@
        (dired-header                         (if gl/colours "#4E9A06" "#98fb98"))
        (dired-directory                      (if gl/colours "#4286F4" "#87CEFA"))
        (dired-symlink                        (if gl/colours "#75507B" "#1E90FF"))
-       (Man-overstrike                       (if gl/colours "#FF0000" "#FFFFFF"))
+       (Man-overstrike                       (if gl/colours "#FF0000" FG))
        (Man-underline                        (if gl/colours "#00FF00" "#4286F4"))
        (Man-underline-bold                   (if gl/colours t nil))
 
@@ -136,7 +137,8 @@
    `(ido-first-match                     ((t (:foreground ,ido-first-match :bold t :underline t))))
 
    `(sh-quoted-exec                      ((t (:inherit default :foreground ,sh-quoted-exec))))
-   `(sh-heredoc                          ((t (:inherit default :foreground ,sh-heredoc :bold t))))
+   `(sh-heredoc                          ((t (:inherit default :foreground ,sh-heredoc
+                                                       :bold ,sh-heredoc-bold))))
 
    `(italic                              ((t (:inherit italic :underline nil))))
 
