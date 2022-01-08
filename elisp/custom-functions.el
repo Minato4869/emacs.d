@@ -1,22 +1,38 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; date
-(defun date ()
+(defun date (&optional ftype)
   (interactive)
-  (equal major-mode 'org-mode)
-  (insert (format-time-string "<%Y-%m-%d %a>")))
-(defalias 'ymd 'date)
+  (setq format "%Y-%m-%d %a"
+        downcase nil)
+  (cond
+   ((string= ftype "time")
+    (setq format (concat format " %H:%M")))
+   ((string= ftype "long")
+    (setq format "%a, %d%b%Y %H:%M (%Y-%m-%d)"
+          downcase t)))
+  (cond
+   ((equal major-mode 'org-mode)
+    (setq format (concat "<" format ">")))
+   ((equal major-mode 'sh-mode)
+    (setq format (concat "## " format)))
+   ((equal major-mode 'c-mode)
+    (setq format (concat "/* " format " */")))
+   ((equal major-mode 'haskell-mode)
+    (setq format (concat "-- " format)))
+   ((or (equal major-mode 'emacs-lisp-mode)
+        (equal major-mode 'lisp-interaction-mode))
+    (setq format (concat ";; " format))))
+  (setq format (format-time-string format))
+  (when (eq downcase t)
+      (setq format (downcase format)))
+  (insert format))
 
-(defun date-time ()
-  (interactive)
-  (insert (format-time-string "<%Y-%m-%d %a>")))
 
-(defun ldate ()
-  (interactive)
-  (insert (format-time-string "<%a %e %b (%Y-%m-%d)>")))
-(defun ldate.1 ()
-  (interactive)
-  (insert (format-time-string "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")))
 
+(defun tdate () (interactive) (date "time"))
+(defun ldate () (interactive) (date "long"))
+(defalias 'ymd   'date)
+(defalias 'datet 'tdate)
 (defun _calendar-week ()
   (shell-command-to-string "~/bin/week"))
 (defun calendar-week ()
@@ -36,9 +52,9 @@
                (shell-command-to-string (format "week %s" wn)))))))
 
 (bind-keys
- ("C-c ." . date)
- ("C-c C-." . date-time)
- ("C-c >" . date-time))
+ ("C-c ."   . date)
+ ("C-c C-." . tdate)
+ ("C-c >"   . ldate))
 (defalias 'kw 'calendar-week)
 (defalias 'cw 'calendar-week)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

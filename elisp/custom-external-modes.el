@@ -23,12 +23,7 @@
       (kill-current-buffer)
       (elscreen-kill)))
 
-  (defun elscreen-kill-window-or-screen ()
-    (interactive)
-    (if (one-window-p)
-        (elscreen-kill-confirm)
-      (when (y-or-n-p "Kill window? ")
-        (delete-window))))
+
   :bind*
   (("M-<left>"     . elscreen-previous)
    ("M-<right>"    . elscreen-next)
@@ -45,7 +40,7 @@
         ("r"       . elscreen-screen-nickname)
         ("s"       . elscreen-swap)
         ("k"       . elscreen-kill)
-        ("x"       . elscreen-kill-window-or-screen)
+        ("x"       . elscreen-kill)
         ("M-k"     . elscreen-kill-buffer-and-screen)
         ("g"       . elscreen-goto)
         ("t"       . elscreen-toggle-display-tab)
