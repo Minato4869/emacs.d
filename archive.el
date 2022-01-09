@@ -78,3 +78,11 @@
    ("C-2"     . (lambda () (interactive) (cf/resize-frame 80  57)))
    ("C-3"     . (lambda () (interactive) (cf/resize-frame 100 57)))
    ("C-4"     . (lambda () (interactive) (cf/resize-frame 120 64))))
+
+;; 2022-01-08 Sat
+(defun ldate ()
+  (interactive)
+  (insert (format-time-string "<%a %e %b (%Y-%m-%d)>")))
+(defun ldate.1 ()
+  (interactive)
+  (insert (format-time-string "<%a %b %e %H:%M  %Y (%Y-%m-%d)>")))
