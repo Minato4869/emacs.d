@@ -1,22 +1,23 @@
 (deftheme gl-dark
   "gl-dark theme")
+(defun is_ssh ()
+  (if (and (getenv "SSH_CONNECTION") (not (daemonp))) t  nil))
 
-(let* ((ssh                                 (if (getenv "SSH_CONNECTION") t nil))
-       (BG-term                             (if ssh "color-235" "unspecified-bg"))
-       (FG-term                             (if ssh "color-249" "unspecified-fg"))
+(let* ((BG-term                             (if (is_ssh) "color-235" "unspecified-bg"))
+       (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
        (BG                                  (if gl/colours "#000000" "#333333"))
        (FG                                  (if gl/colours "#BEBEBE" "#E5E5E5"))
        (cursor                              (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
        (border                              "#0000FF")
        (fringe                              (if gl/colours "#121212" "#1A1A1A"))
 
-       (mode-line-bg                        (if ssh "#373333" "#292929"))
-       (mode-line-fg                        (if ssh "#838383" nil))
-       (mode-line-bold                      (if ssh t         nil))
-       (mode-line-inactive-fg               (if ssh "#847f54" "#CCCCCC"))
-       (mode-line-inactive-bg               (if ssh "#292424" "#4D4D4D"))
-       (mode-line-inactive-box              "#666666")
-       (mode-line-buffer-id                 (if ssh "#B680B1" nil))
+       (mode-line-bg                        (if (is_ssh) "#373333" "#292929"))
+       (mode-line-fg                        (if (is_ssh) "#838383" nil))
+       (mode-line-bold                      (if (is_ssh) t         nil))
+       (mode-line-inactive-fg               (if (is_ssh) "#847f54" "#CCCCCC"))
+       (mode-line-inactive-bg               (if (is_ssh) "#292424" "#4D4D4D"))
+       (mode-line-inactive-box              (if (is_ssh) mode-line-inactive-bg "#666666"))
+       (mode-line-buffer-id                 (if (is_ssh) "#B680B1" nil))
 
        (region-bg                           "#114488")
 
@@ -71,6 +72,9 @@
        (org-agenda-structure                "#87CEFA")
        (org-agenda-clocking                 "#4A708B")
        (org-block-delim                     (if gl/colours "#CC0000" FG))
+       (org-latex-and-related               "#DEB887")
+       (org-table                           "#87CEFA")
+
 
        (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
        (font-latex-verbatim-face            "#DEB887") ;; == burlywood
@@ -164,16 +168,18 @@
    `(org-done                            ((t (:foreground ,org-done :bold t))))
    `(org-headline-done                   ((t (:foreground ,org-headline-done))))
    `(org-meta-line                       ((t (:foreground ,org-meta-line))))
-   `(org-block-begin-line                ((t (:inhert org-meta-line))))
-   `(org-block-end-line                  ((t (:inherit org-meta-line))))
    `(org-time-grid                       ((t (:foreground ,org-time-grid))))
    `(org-agenda-clocking                 ((t (:inherit default :background ,org-agenda-clocking :extend t))))
    `(org-agenda-structure                ((t (:foreground ,org-agenda-structure))))
    `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
    `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
    `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
-   `(org-block-begin-line                ((t (:fokreground ,org-block-delim))))
+   `(org-block-begin-line                ((t (:fokreground ,org-block-delim))));; was inherit org-meta-line
    `(org-block-end-line                  ((t (:foreground ,org-block-delim))))
+   `(org-block                           ((t (:inherit default :extend t))))
+   `(org-latex-and-related               ((t (:foreground ,org-latex-and-related))))
+   `(org-table                           ((t (:foreground ,org-table            ))))
+
 
    ;; == LaTeX
    `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))

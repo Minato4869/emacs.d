@@ -24,7 +24,6 @@
 (set-keyboard-coding-system 'utf-8)
 
 (defvar uniquify-buffer-name-style) ;; unique buffer names
-(set-default 'truncate-lines t)     ;; dont break lines at window edge
 (defvaralias 'c-basic-offset 'tab-width)
 (setq-default default-input-method "rfc1345"
               require-final-newline t
@@ -42,12 +41,12 @@
               tab-width 8
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
-              backward-delete-char-untabify-method 'hungry)
-(setq         ispell-dictionary "en_GB")
-(if (daemonp)
-    (setq frame-title-format '("" "emacsclient@" system-name " - %b"))
-  (setq frame-title-format '("" "emacs@" system-name " - %b"))) ;; was %b
-
+              backward-delete-char-untabify-method 'hungry
+              truncate-lines t     ;; dont break lines at window edge
+              ispell-dictionary "en_GB"
+              frame-title-format (if (daemonp)
+                                     '("" "emacsclient@" system-name " - %b")
+                                   '("" "emacs@" system-name " - %b")))
 
 
 ;; region
@@ -89,34 +88,32 @@
        (cedit/indent-conf 4 nil 80)
        (electric-indent-local-mode -1))
 ;; hooks
-(add-hook 'emacs-lisp-mode-hook 'cedit/lisp-indent)
-(add-hook 'lisp-mode-hook       'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook      (lambda () cedit/latex))
-(add-hook 'latex-mode-hook      (lambda () cedit/latex))
-(add-hook 'plain-TeX-mode-hook  (lambda () (cedit/indent-conf 4 nil 80)))
-(add-hook 'conf-space-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'conf-mode-hook       (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'conf-xdefaults-mode-hook
-          (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'java-mode-hook       (lambda () (cedit/indent-conf 4 t t 100)))
-(add-hook 'make-mode-hook       (lambda () (cedit/indent-conf 4 t t 80)))
-(add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
-(add-hook 'html-mode-hook       (lambda () (setq auto-fill-mode nil)))
-(add-hook 'sh-mode-hook         (lambda () (cedit/sh-indent)))
-(add-hook 'shell-script-mode-hook
-          (lambda () (cedit/sh-indent)))
-(add-hook 'sql-mode-hook        (lambda () (setq auto-fill-mode nil)))
-(add-hook 'mail-mode-hook       (lambda ()
-                                  (setq standard-indent 2
-                                        ispell-dictionary "de_AT")
-                                  (xterm-mouse-mode nil)
-                                  (cedit/indent-conf 4 t nil 70)
-                                  (mail-text)))
-(add-hook 'text-mode-hook       (lambda ()
-                                  (setq standard-indent 2)
-                                  (cedit/indent-conf 2 t nil 80)))
+(add-hook 'minibuffer-setup-hook    (lambda () (setq truncate-lines nil)))
+(add-hook 'emacs-lisp-mode-hook     'cedit/lisp-indent)
+(add-hook 'lisp-mode-hook           'cedit/lisp-indent)
+(add-hook 'LaTeX-mode-hook          (lambda () cedit/latex))
+(add-hook 'latex-mode-hook          (lambda () cedit/latex))
+(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/indent-conf 4 nil 80)))
+(add-hook 'conf-space-mode-hook     (lambda () (cedit/indent-conf 4 nil nil)))
+(add-hook 'conf-mode-hook           (lambda () (cedit/indent-conf 4 nil nil)))
+(add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
+(add-hook 'java-mode-hook           (lambda () (cedit/indent-conf 4 t t 100)))
+(add-hook 'make-mode-hook           (lambda () (cedit/indent-conf 4 t t 80)))
+(add-hook 'sql-mode-hook            (lambda () (setq auto-fill-mode nil)))
+(add-hook 'html-mode-hook           (lambda () (setq auto-fill-mode nil)))
+(add-hook 'sh-mode-hook             (lambda () (cedit/sh-indent)))
+(add-hook 'shell-script-mode-hook   (lambda () (cedit/sh-indent)))
+(add-hook 'sql-mode-hook            (lambda () (setq auto-fill-mode nil)))
+(add-hook 'mail-mode-hook           (lambda () (setq standard-indent 2
+                                                     ispell-dictionary "de_AT")
+                                      (xterm-mouse-mode nil)
+                                      (cedit/indent-conf 4 t nil 70)
+                                      (mail-text)))
+(add-hook 'text-mode-hook           (lambda () (setq standard-indent 2)
+                                      (cedit/indent-conf 2 t nil 80)))
 (add-hook 'makefile-mode-hook       (lambda () (cedit/indent-conf 4 t t 80)))
-(add-hook 'makefile-gmake-mode-hook       (lambda () (cedit/indent-conf 4 t t 80)))
+(add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-conf 4 t t 80)))
+
 (defun guess-tab-settings ()
   (save-excursion
     (goto-char (point-min))
@@ -175,7 +172,7 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (cedit/indent-conf  4 t t 120)
+            (cedit/indent-conf  4 t t 100)
             (c-set-style "stroustrup")
             (setq c++-tab-always-indent t
                   c-indent-level 4
