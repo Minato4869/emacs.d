@@ -20,6 +20,7 @@
        (mode-line-buffer-id                 (if (is_ssh) "#B680B1" nil))
 
        (region-bg                           "#114488")
+       (region-fg                           FG)
 
        (ido-subdir                          "#A1C659")
        (ido-only-match                      "#FFCC33")
@@ -118,7 +119,7 @@
    `(mode-line-buffer-id                 ((t (:inherit mode-lines :foreground, mode-line-buffer-id :bold t))))
 
    `(region                              ((((type tty)) (:inherit default :background "blue" :extend t))
-                                          (t (:inherit default :background ,region-bg :extend t))))
+                                          (t (:background ,region-bg :foreground ,region-fg :extend t))))
 
    `(font-lock-builtin-face              ((t (:inherit default :foreground ,font-lock-builtin-face))))
    `(font-lock-comment-delimiter-face    ((t (:inherit default :foreground ,font-lock-comment-delimiter-face))))
