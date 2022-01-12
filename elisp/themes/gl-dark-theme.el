@@ -9,7 +9,7 @@
        (FG                                  (if gl/colours "#BEBEBE" "#E5E5E5"))
        (cursor                              (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
        (border                              "#0000FF")
-       (fringe                              (if gl/colours "#121212" "#1A1A1A"))
+       (fringe                              "#1A1A1A") ;; was 121212 for colours and 1a... for grey
 
        (mode-line-bg                        (if (is_ssh) "#373333" "#292929"))
        (mode-line-fg                        (if (is_ssh) "#838383" nil))
