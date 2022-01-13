@@ -193,8 +193,6 @@
 (use-package man
   :ensure nil
   :defer t
-  :init
-  (add-hook 'man-mode-hook (lambda () (font-lock-mode t)))
   :config
   (setq Man-width 70)
   :bind
