@@ -1,7 +1,6 @@
 (defvar gl/colours nil
   "Variable used to toggle gl-dark theme between standard and mono grey")
-(defun toggle-font-lock-mode ()
-  (interactive)
+(defun my-disable-font-lock-mode ()
   (if  (or (equal major-mode 'org-mode)
            (equal major-mode 'dired-mode)
            (equal major-mode 'diff-mode)
@@ -13,6 +12,7 @@
 (add-hook 'dired-mode-hook 'turn-on-font-lock)
 (add-hook 'magit-mode-hook 'turn-on-font-lock)
 (add-hook 'org-mode-hook   'turn-on-font-lock)
+(add-hook 'mail-mode-hook  'turn-on-font-lock)
 (defun cycle-themes ()
   (interactive)
   (load-theme 'gl-dark t)
@@ -22,12 +22,12 @@
         (font-lock-mode t))
     (progn
       (setq gl/colours t)
-      (toggle-font-lock-mode))))
+      (my-disable-font-lock-mode))))
 
 (load-theme 'gl-dark t)
 (unless gl/colours
   (global-font-lock-mode 0))
 
 (bind-keys
- ("<f2>"   . cycle-themes)
- ("S-<f2>" . cycle-bg))
+ ("S-<f2>"   . cycle-themes)
+ ("<f2>" . font-lock-mode))

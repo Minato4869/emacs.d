@@ -20,6 +20,9 @@
 (global-unset-key (kbd "<C-mouse-5>"))
 (global-unset-key (kbd "<C-mouse-4>"))
 (global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "C-x C--"))
+(global-unset-key (kbd "C-x C-="))
+(global-unset-key (kbd "C-x C-0"))
 
 ;; custom region
 (defconst custom-region-alist
