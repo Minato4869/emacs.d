@@ -23,12 +23,14 @@
 (global-unset-key (kbd "C-x C--"))
 (global-unset-key (kbd "C-x C-="))
 (global-unset-key (kbd "C-x C-0"))
+(global-unset-key (kbd "C-x C-@"))  ;; == C-x C-SPC in terminal
 
 ;; custom region
 (defconst custom-region-alist
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
          (define-key m (kbd "C-w")        'kill-region)
+         (define-key m (kbd "C-k")        'kill-region)
          m))))
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 
@@ -45,16 +47,6 @@
   (interactive)
   (delete-window)
   (balance-windows))
-(defun kill-buffer-and-window ()
-  "If a buffer is within its own window, kill both"
-  (interactive)
-  (if (one-window-p)
-      (progn
-        (kill-current-buffer)
-        (tab-bar-close-tab))
-    (progn
-      (kill-current-buffer)
-      (delete-and-balance-window))))
 
 (defun backward-kill-line (arg)
   "Kill ARG lines backward."
@@ -120,9 +112,7 @@
 
 (bind-keys*
  ("C-z"       . universal-argument)
- ("C-x SPC"   . rectangle-mark-mode)
  ("C-c SPC"   . cua-rectangle-mark-mode)
- ("C-x C-@"   . rectangle-mark-mode)
  ("C-x m"     . pop-to-mark-command)
  ("M-o"       . other-window))
 ;; custom keys
@@ -132,7 +122,6 @@
  ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)
  ("C-c h"     . help)
- ("C-c C-k"   . kill-buffer-and-window)
  ;; editing
  ("C-c 5"     . query-replace-regexp)
  ("M-K"       . kill-whole-line)
@@ -155,7 +144,7 @@
  ("C-x C-h"   . mark-whole-buffer)
  ;; misc
  ("<f9>"      . font-lock-mode)
- ("<f10>"   . menu-bar-mode)
+ ("<f10>"     . menu-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
  ;; buffer
@@ -166,13 +155,17 @@
  ("C-c r"     . revert-buffer)
  ("C-x C-b"   . buffer-menu)
  ;; windows
- ;; ("M-1"       . delete-other-windows)
+ ("M-1"       . delete-other-windows)
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
- ;; ("M-4"       . make-frame-command)
- ("M-0"       . delete-window)
+ ("M-4"       . make-frame-command)
  ("C-x 4"     . make-frame-command)
- ("C-c C-o"   . transpose-windows)
+ ("C-c 0"     . balance-windows)
+ ("C-0"       . shrink-window-if-larger-than-buffer)
+ ("C--"       . shrink-window)
+ ("C-="       . enlarge-window)
+ ("C-x C--"   . negative-argument)
+ ("C-c o"     . transpose-windows)
  ("C-x t"     . transpose-lines)
  ("C-c t"     . transpose-windows))
 
@@ -212,9 +205,9 @@
    ("C-M-w"           . kill-ring-save-primary)
    ("<insert>"        . yank-primary)
    ;; text scale
-   ("C-0"             . text-scale-reset)
-   ("C--"             . text-scale-decrease)
-   ("C-="             . text-scale-increase)
+   ("s-0"             . text-scale-reset)
+   ("s--"             . text-scale-decrease)
+   ("s-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; buffers

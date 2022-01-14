@@ -164,3 +164,15 @@
   (delete-char 1 nil)
   (backward-char))
 (bind-key "M-#" 'toggle-case)
+
+;;;;
+(defun kill-buffer-and-window ()
+  "If a buffer is within its own window, kill both"
+  (interactive)
+  (if (one-window-p)
+      (progn
+        (kill-current-buffer)
+        (tab-bar-close-tab))
+    (progn
+      (kill-current-buffer)
+      (delete-and-balance-window))))
