@@ -28,9 +28,10 @@
       (setq gl/colours t))))
 
 (load-theme 'gl-dark t)
+(when (and (display-graphic-p) (not (daemonp)))
+           (set-background-color "#000000")
+           (set-foreground-color "#bebebe"))
 ;;(unless gl/colours
 ;;  (global-font-lock-mode 0))
 
-(bind-keys
- ("<f2>"   . cycle-themes)
- ("M-<f2>" . font-lock-mode))
+(bind-key "<f2>" 'cycle-theme)
