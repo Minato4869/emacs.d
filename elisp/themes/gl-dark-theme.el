@@ -11,14 +11,21 @@
        (border                              "#0000FF")
        (fringe                              "#1A1A1A") ;; was 121212 for colours and 1a... for grey
 
-       (mode-line-bg                        (if (is_ssh) "#373333" "#292929"))
-       (mode-line-fg                        (if (is_ssh) "#838383" nil))
-       (mode-line-bold                      (if (is_ssh) t         nil))
-       (mode-line-inactive-fg               (if (is_ssh) "#847f54" "#CCCCCC"))
-       (mode-line-inactive-bg               (if (is_ssh) "#292424" "#4D4D4D"))
-       (mode-line-inactive-box              (if (is_ssh) mode-line-inactive-bg "#666666"))
-       (mode-line-buffer-id                 (if (is_ssh) "#B680B1" nil))
+       (mode-line-bg                         "#292929")
+       (mode-line-fg                         FG)
+       (mode-line-inactive-fg                "#CCCCCC")
+       (mode-line-inactive-bg                "#4D4D4D")
+       (mode-line-inactive-box               "#666666")
+       (mode-line-buffer-id                   nil)
 
+       (mode-line-bg-term                        (if (is_ssh) "#373333" "color-235"))
+       (mode-line-fg-term                        (if (is_ssh) "#838383" "color-250"))
+       (mode-line-bold-term                      (if (is_ssh) t         nil))
+       (mode-line-inactive-fg-term               (if (is_ssh) "#847f54" "color-252"))
+       (mode-line-inactive-bg-term               (if (is_ssh) "#292424" "color-239"))
+       (mode-line-buffer-id-term                 (if (is_ssh) "#B680B1" nil))
+
+       (hl-line-bg                          fringe)
        (region-bg                           "#114488")
        (region-fg                           FG)
 
@@ -116,20 +123,26 @@
    'gl-dark
 
    `(default                             ((((type tty)) (:background ,BG-term :foreground ,FG-term))
-                                          (t (:background ,BG :foreground ,FG))))
+                                          (t            (:background ,BG :foreground ,FG))))
    `(cursor                              ((t (:background ,cursor))))
    `(border                              ((t (:foreground ,border))))
    `(fringe                              ((t (:background ,fringe))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((t (:inherit default
-                                                       :background ,mode-line-bg :foreground ,mode-line-fg
-                                                       :bold ,mode-line-bold))))
-   `(mode-line-inactive                  ((t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
+
+   `(mode-line                           ((((type tty)) (:background ,mode-line-bg-term :foreground ,mode-line-fg-term
+                                                                     :bold ,mode-line-bold-term))
+                                          (t            (:background ,mode-line-bg :foreground ,mode-line-fg))))
+   `(mode-line-inactive                  ((((type tty)) (:background ,mode-line-inactive-bg-term
+                                                                     :foreground ,mode-line-inactive-fg-term))
+                                          (t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
                                                           :box (:line-width -1 :color ,mode-line-inactive-box :style nil)))))
-   `(mode-line-buffer-id                 ((t (:inherit mode-lines :foreground, mode-line-buffer-id :bold t))))
+   `(mode-line-buffer-id                 ((((type tty)) (:inherit mode-lines :foreground, mode-line-buffer-id-term :bold t))
+                                          (t (:inherit mode-lines :foreground, mode-line-buffer-id :bold t))))
 
    `(region                              ((((type tty)) (:foreground ,FG-term :background "blue" :extend t))
                                           (t (:background ,region-bg :foreground ,region-fg :extend t))))
+
+   `(hl-line                             ((t (:inherit foreground :background ,hl-line-bg :extend t))))
 
    `(font-lock-builtin-face              ((t (:inherit default :foreground ,font-lock-builtin-face))))
    `(font-lock-comment-delimiter-face    ((t (:inherit default :foreground ,font-lock-comment-delimiter-face))))
@@ -149,8 +162,10 @@
 
    `(ido-subdir                          ((t (:foreground ,ido-subdir))))
    `(ido-only-match                      ((t (:foreground ,ido-only-match))))
-   `(ido-first-match                     ((t (:foreground ,ido-first-match :bold t :underline t))))
-
+   `(ido-fist-match                      ((((type tty)) ( :foreground ,FG-term :bold t :underline t))
+                                         (t (:foreground ,ido-first-match :bold t :underline t))))
+   `(ido-incomplete-regexp               ((t (:inherit default))))
+   `(ido-indicator                       ((t (:inherit default))))
    `(sh-quoted-exec                      ((t (:inherit default :foreground ,sh-quoted-exec))))
    `(sh-heredoc                          ((t (:inherit default :foreground ,sh-heredoc
                                                        :bold ,sh-heredoc-bold))))
