@@ -29,7 +29,7 @@
 (defun reset-fonts ()
   (interactive)
   (load-file "~/.emacs.d/elisp/custom-font-mode.el")
-  (mesage "resetting fonts"))
+  (message "resetting fonts"))
 
 (defalias 'df     'default-font)
 (defalias 'menlo  'ttf)

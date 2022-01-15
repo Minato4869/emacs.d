@@ -211,8 +211,8 @@
   :bind
   (:map view-mode-map
         ("C-q"    . View-quit)
-        ("C-f"    . scroll-line-up)
-        ("C-b"    . scroll-line-down)
+        ("C-f"    . View-scroll-line-forward)
+        ("C-b"    . View-scroll-line-backward)
         ("g"      . beginning-of-buffer)
         ("G"      . end-of-buffer)))
 
@@ -223,5 +223,11 @@
   (setq
    shr-use-fonts nil ;; No special fonts
    shr-use-colors t   ;; enable colours
+   shr-color-visible-luminance-min 70
    shr-indentation 2  ;; Left-side margin
-   shr-width 90))     ;; Fold text to 75 columns
+   shr-width 80)     ;; Fold text to 80 columns
+  :bind
+  (:map eww-mode-map
+        ("C-j"    . View-scroll-line-forward)
+        ("C-k"    . View-scroll-line-backward)
+        ))

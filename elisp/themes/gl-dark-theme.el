@@ -48,11 +48,10 @@
 
        (completions-common-part             "#ADD8E6")
 
-       (isearch-fail                        "#8B0000")
-
-       (isearch-bg                          (if gl/colours "#EE799F" BG))
-       (isearch-fg                          (if gl/colours "#8B2323" "#1E90FF"))
-       (isearch-bold                        (if gl/colours nil t))
+       (isearch-fail                        "#8B0000")   ;; v-- old conf
+       (isearch-bg                          "#333333")   ;; (if gl/colours "#EE799F" BG))
+       (isearch-fg                          "#1E90FF")   ;; (if gl/colours "#8B2323" "#1E90FF"))
+       (isearch-bold                        t)           ;; (if gl/colours nil t))
 
        (shadow                              "#aaaaaa")
 

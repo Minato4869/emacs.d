@@ -43,3 +43,5 @@
 (defalias 'b             'balance-windows)
 ;;
 (defalias 'conf          'conf-mode)
+(defalias 'ro            'read-only-mode)
+(defalias 'er            'read-only-mode)
