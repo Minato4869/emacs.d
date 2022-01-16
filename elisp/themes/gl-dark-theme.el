@@ -7,7 +7,8 @@
        (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
        (BG                                  (if gl/colours "#000000" "#333333"))
        (FG                                  (if gl/colours "#BEBEBE" "#E5E5E5"))
-       (cursor                              (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
+       (cursor-bg                           (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
+       (cursor-fg                           "#000000") ;; was ff0000 for dark theme
        (border                              "#0000FF")
        (fringe                              "#1A1A1A") ;; was 121212 for colours and 1a... for grey
 
@@ -124,7 +125,7 @@
 
    `(default                             ((((type tty)) (:background ,BG-term :foreground ,FG-term))
                                           (t            (:background ,BG :foreground ,FG))))
-   `(cursor                              ((t (:background ,cursor))))
+   `(cursor                              ((t (:background ,cursor-bg :foreground ,cursor-fg ))))
    `(border                              ((t (:foreground ,border))))
    `(fringe                              ((t (:background ,fringe))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
