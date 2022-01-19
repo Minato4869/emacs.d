@@ -1,5 +1,8 @@
 (defvar gl/colours nil
   "Variable used to toggle gl-dark theme between standard and mono grey")
+
+(defvar gl/light nil
+  "Variable used to toggle between dark (grey or black) and light theme")
 ;;(defun my-disable-font-lock-mode ()
 ;;  (if  (or (equal major-mode 'org-mode)
 ;;           (equal major-mode 'dired-mode)
@@ -19,14 +22,21 @@
 
 (defun cycle-theme ()
   (interactive)
+  (setq gl/light nil)
   (load-theme 'gl-dark t)
   (if gl/colours
       (progn
-        ;; (font-lock-mode t)
         (setq gl/colours nil))
     (progn
-      ;;(my-disable-font-lock-mode)
       (setq gl/colours t))))
+
+(defun cycle-light-theme ()
+  (interactive)
+  (setq gl/colours nil)
+  (if gl/light
+      (setq gl/light nil)
+    (setq gl/light t))
+  (load-theme 'gl-dark t))
 
 (load-theme 'gl-dark t)
 (when (and (display-graphic-p) (not (daemonp)))
@@ -35,4 +45,6 @@
 ;;(unless gl/colours
 ;;  (global-font-lock-mode 0))
 
-(bind-key "<f2>" 'cycle-theme)
+(bind-keys
+ ("<f2>"   . cycle-theme)
+ ("M-<f2>" . cycle-light-theme))

@@ -5,32 +5,38 @@
 
 (let* ((BG-term                             (if (is_ssh) "color-235" "unspecified-bg"))
        (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
-       (BG                                  (if gl/colours "#000000" "#333333"))
-       (FG                                  (if gl/colours "#BEBEBE" "#E5E5E5"))
-       (cursor-bg                           (if gl/colours "#DB0600" "#00FF00")) ;; was ff0000 for dark theme
-       (cursor-fg                           "#000000") ;; was ff0000 for dark theme
+       (BG                                  (cond (gl/light   "#D9D5BA")
+                                                  (gl/colours "#000000")
+                                                  (t          "#333333")))
+       (FG                                  (cond (gl/light   "#444444")
+                                                  (gl/colours "#BEBEBE")
+                                                  (t          "#E5E5E5")))
+       (cursor-bg                           (cond (gl/light   "#4286F4")
+                                                  (gl/colours "#DB0600") ;; was ff0000
+                                                  (t          "#00FF00")))
+       (cursor-fg                           (if gl/light BG  "#000000"))
        (border                              "#0000FF")
-       (fringe                              "#1A1A1A") ;; was 121212 for colours and 1a... for grey
+       (fringe                              (if gl/light "#d9d5c6" "#1A1A1A")) ;; was 121212 for colours and 1a... for grey
 
-       (mode-line-bg                         "#292929")
-       (mode-line-fg                         FG)
-       (mode-line-inactive-fg                "#CCCCCC")
-       (mode-line-inactive-bg                "#4D4D4D")
+       (mode-line-bg                         (if gl/light "#D3B58D" "#292929"))
+       (mode-line-fg                         (if gl/light "#072626" FG))
+       (mode-line-inactive-fg                (if gl/light "#4D4D4D" "#CCCCCC"))
+       (mode-line-inactive-bg                (if gl/light "#CCCCCC" "#4D4D4D"))
        (mode-line-inactive-box               "#666666")
        (mode-line-buffer-id                   nil)
 
-       (mode-line-bg-term                        (if (is_ssh) "#373333" "color-235"))
-       (mode-line-fg-term                        (if (is_ssh) "#838383" "color-250"))
-       (mode-line-bold-term                      (if (is_ssh) t         nil))
-       (mode-line-inactive-fg-term               (if (is_ssh) "#847f54" "color-252"))
-       (mode-line-inactive-bg-term               (if (is_ssh) "#292424" "color-239"))
-       (mode-line-buffer-id-term                 (if (is_ssh) "#B680B1" nil))
+       (mode-line-bg-term                   (if (is_ssh) "#373333" "color-235"))
+       (mode-line-fg-term                   (if (is_ssh) "#838383" "color-250"))
+       (mode-line-bold-term                 (if (is_ssh) t         nil))
+       (mode-line-inactive-fg-term          (if (is_ssh) "#847f54" "color-252"))
+       (mode-line-inactive-bg-term          (if (is_ssh) "#292424" "color-239"))
+       (mode-line-buffer-id-term            (if (is_ssh) "#B680B1" nil))
 
        (hl-line-bg                          fringe)
        (region-bg                           "#114488")
-       (region-fg                           FG)
+       (region-fg                           (if gl/light BG FG))
 
-       (ido-subdir                          "#A1C659")
+       (ido-subdir                          (if gl/light "#4E9A06" "#A1C659"))
        (ido-only-match                      "#FFCC33")
        (ido-first-match                     FG)
 
@@ -72,19 +78,21 @@
        (org-level-7-col                     "#C4A000")
        (org-level-8-col                     "#729FCF")
        (org-date-col                        "#2C78BF")
-       (org-level-1                         (if gl/colours org-level-1-col FG))
-       (org-level-2                         (if gl/colours org-level-2-col "#A1A1A1"))
-       (org-level-3                         (if gl/colours org-level-3-col "#929292"))
-       (org-level-4                         (if gl/colours org-level-4-col "#838383"))
-       (org-level-5                         (if gl/colours org-level-5-col "#838383"))
-       (org-level-6                         (if gl/colours org-level-6-col "#838383"))
-       (org-level-7                         (if gl/colours org-level-7-col "#929292"))
-       (org-level-8                         (if gl/colours org-level-8-col FG))
-       (org-date                            (if gl/colours org-date-col "#00FFFF"))
+       (org-level-1                         (if (or (is_ssh) gl/colours) org-level-1-col FG))
+       (org-level-2                         (if (or (is_ssh) gl/colours) org-level-2-col "#A1A1A1"))
+       (org-level-3                         (if (or (is_ssh) gl/colours) org-level-3-col "#929292"))
+       (org-level-4                         (if (or (is_ssh) gl/colours) org-level-4-col "#838383"))
+       (org-level-5                         (if (or (is_ssh) gl/colours) org-level-5-col "#838383"))
+       (org-level-6                         (if (or (is_ssh) gl/colours) org-level-6-col "#838383"))
+       (org-level-7                         (if (or (is_ssh) gl/colours) org-level-7-col "#929292"))
+       (org-level-8                         (if (or (is_ssh) gl/colours) org-level-8-col FG))
+       (org-date                            (cond (gl/light   org-date-col)
+                                                  (gl/colours org-date-col)
+                                                  (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
-       (org-todo                            "#FFC0CB")
-       (org-done                            "#98FB98")
+       (org-todo                            (if (or (is_ssh) gl/light) "#228b22" "#FFC0CB"))
+       (org-done                            (if (or (is_ssh) gl/light) "#ff0000" "#98FB98"))
        (org-headline-done                   "#FFA07A")
        (org-meta-line                       "#CC0000")
        (org-time-grid                       "#EEDD82")
@@ -94,7 +102,6 @@
        (org-latex-and-related               "#DEB887")
        (org-table                           "#87CEFA")
 
-
        (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
        (font-latex-verbatim-face            "#DEB887") ;; == burlywood
        (tex-verbatim                        "#DEB887")
@@ -102,7 +109,7 @@
        (font-latex-math-face                "#DEB887")
 
        (header-line-bg                       (if gl/colours "#292929" "#333333"))
-       (header-line-fg                       FG)
+       (header-line-fg                       (if gl/light "#E5E5E5" FG))
        (elscreen-tab-current-screen-face-bg  "#666666")
        (elscreen-tab-current-screen-face-fg  "#E5E5E5")
 
