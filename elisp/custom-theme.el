@@ -38,10 +38,11 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
-(load-theme 'gl-dark t)
 (when (and (display-graphic-p) (not (daemonp)))
-           (set-background-color "#000000")
-           (set-foreground-color "#bebebe"))
+  (setq gl/colors nil)
+  (setq gl/light  t))
+(load-theme 'gl-dark t)
+
 ;;(unless gl/colours
 ;;  (global-font-lock-mode 0))
 

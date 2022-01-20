@@ -1,7 +1,9 @@
 (deftheme gl-dark
   "gl-dark theme")
+
 (defun is_ssh ()
-  (if (string= (getenv "SSH_CONNECTION") "") nil  t))
+  (if (= (length (getenv "SSH_CONNECTION")) 0)
+         nil  t))
 
 (let* ((BG-term                             (if (is_ssh) "color-235" "unspecified-bg"))
        (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
@@ -62,7 +64,8 @@
 
        (completions-common-part             "#ADD8E6")
 
-       (isearch-fail                        "#8B0000")   ;; v-- old conf
+       (isearch-fail-bg                     "#8B0000")   ;; v-- old conf
+       (isearch-fail-fg                     (if gl/light BG FG))   ;; v-- old conf
        (isearch-bg                          "#333333")   ;; (if gl/colours "#EE799F" BG))
        (isearch-fg                          "#1E90FF")   ;; (if gl/colours "#8B2323" "#1E90FF"))
        (isearch-bold                        t)           ;; (if gl/colours nil t))
@@ -91,9 +94,11 @@
                                                   (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
-       (org-todo-term                       (if (or (is_ssh) gl/light) "firebrick3" "brightmagenta"))
-       (org-todo                            (if (or (is_ssh) gl/light) "#ff0000" "#FFC0CB"))
+       (org-todo-term                       (if (is_ssh) "#8B0000" "brightmagenta"))
+       (org-done-term                       (if (is_ssh) "ForestGreen" "PaleGreen"))
+       (org-todo                            (if (or (is_ssh) gl/light) "#8B0000" "#FFC0CB"))
        (org-done                            (if (or (is_ssh) gl/light) "#228b22" "#98FB98"))
+       (org-headline-done-term              "#FFA07A")
        (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
        (org-meta-line                       "#CC0000")
        (org-time-grid                       "#EEDD82")
@@ -185,7 +190,7 @@
 
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
-   `(isearch-fail                        ((t (:background ,isearch-fail))))
+   `(isearch-fail                        ((t (:background ,isearch-fail-bg :foreground ,isearch-fail-fg))))
    `(isearch                             ((t (:background ,isearch-bg :foreground ,isearch-fg
                                                           :bold ,isearch-bold))))
 
@@ -211,10 +216,12 @@
                                           (t (:foreground ,org-date))))
    `(org-todo                            ((((type tty)) (:foreground ,org-todo-term :bold t))
                                           (t            (:foreground ,org-todo :bold t))))
-   `(org-done                            ((t (:foreground ,org-done :bold t))))
+   `(org-done                            ((((type tty)) (:foreground ,org-done-term :bold t))
+                                          (t (:foreground ,org-done :bold t))))
    `(org-special-keyword                 ((t (:foreground ,org-special-keyword))))
    `(org-priority                        ((t (:foreground ,org-priority))))
-   `(org-headline-done                   ((t (:foreground ,org-headline-done))))
+   `(org-headline-done                   ((((type tty)) (:foreground ,org-headline-done-term))
+                                          (t (:foreground ,org-headline-done))))
    `(org-meta-line                       ((t (:foreground ,org-meta-line))))
    `(org-time-grid                       ((t (:foreground ,org-time-grid))))
    `(org-agenda-clocking                 ((t (:inherit default :background ,org-agenda-clocking :extend t))))
