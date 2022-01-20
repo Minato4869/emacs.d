@@ -56,7 +56,7 @@
 
 ;; mouse
 (setq mouse-autoselect-window t)
-;;(xterm-mouse-mode 1)
+(xterm-mouse-mode 0)
 
 (defun cedit/indent-conf (offset autofill tabs &optional fill)
   (setq c-basic-offset offset
