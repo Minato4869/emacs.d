@@ -37,7 +37,7 @@
        (region-fg                           (if gl/light BG FG))
 
        (ido-subdir                          (if gl/light "#4E9A06" "#A1C659"))
-       (ido-only-match                      "#FFCC33")
+       (ido-only-match                      (if gl/light "#8b8b00" "#FFCC33"))
        (ido-first-match                     FG)
 
        (font-lock-builtin-face              (if gl/colours "#75507B" nil)) ;; "#71a46c"))
@@ -91,9 +91,9 @@
                                                   (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
-       (org-todo                            (if (or (is_ssh) gl/light) "#228b22" "#FFC0CB"))
-       (org-done                            (if (or (is_ssh) gl/light) "#ff0000" "#98FB98"))
-       (org-headline-done                   "#FFA07A")
+       (org-todo                            (if (or (is_ssh) gl/light) "#ff0000" "#FFC0CB"))
+       (org-done                            (if (or (is_ssh) gl/light) "#228b22" "#98FB98"))
+       (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
        (org-meta-line                       "#CC0000")
        (org-time-grid                       "#EEDD82")
        (org-agenda-structure                "#87CEFA")
@@ -108,10 +108,12 @@
        (tex-math                            "#DEB887")
        (font-latex-math-face                "#DEB887")
 
-       (header-line-bg                       (if gl/colours "#292929" "#333333"))
-       (header-line-fg                       (if gl/light "#E5E5E5" FG))
-       (elscreen-tab-current-screen-face-bg  "#666666")
-       (elscreen-tab-current-screen-face-fg  "#E5E5E5")
+       (header-line-bg                       (cond (gl/light mode-line-bg)
+                                                   (gl/colours mode-line-bg)
+                                                   (t          "#333333")))
+       (header-line-fg                       (if gl/light mode-line-fg FG))
+       (elscreen-tab-current-screen-face-bg  (if gl/light mode-line-fg "#666666"))
+       (elscreen-tab-current-screen-face-fg  (if gl/light mode-line-bg "#E5E5E5"))
 
        (dired-header                         (if gl/colours "#4E9A06" "#98fb98"))
        (dired-directory                      (if gl/colours "#4286F4" "#87CEFA"))
@@ -240,7 +242,8 @@
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-current-screen-face ((t (:background "#666666" :foreground "#e5e5e5"))))
+   `(elscreen-tab-current-screen-face ((t (:background ,elscreen-tab-current-screen-face-bg
+                                                       :foreground ,elscreen-tab-current-screen-face-fg))))
 
    `(dired-header                     ((t (:foreground ,dired-header))))
    `(dired-directory                  ((t (:foreground ,dired-directory ))))
