@@ -1,7 +1,7 @@
 (deftheme gl-dark
   "gl-dark theme")
 (defun is_ssh ()
-  (if (and (getenv "SSH_CONNECTION") (not (daemonp))) t  nil))
+  (if (string= (getenv "SSH_CONNECTION") "") nil  t))
 
 (let* ((BG-term                             (if (is_ssh) "color-235" "unspecified-bg"))
        (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
@@ -91,6 +91,7 @@
                                                   (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
+       (org-todo-term                       (if (or (is_ssh) gl/light) "firebrick3" "brightmagenta"))
        (org-todo                            (if (or (is_ssh) gl/light) "#ff0000" "#FFC0CB"))
        (org-done                            (if (or (is_ssh) gl/light) "#228b22" "#98FB98"))
        (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
@@ -208,7 +209,7 @@
                                           (t (:foreground ,org-level-8 :bold t))))
    `(org-date                            ((((type tty)) (:foreground ,org-date-col))
                                           (t (:foreground ,org-date))))
-   `(org-todo                            ((((type tty)) (:foreground "brightmagenta" :bold t))
+   `(org-todo                            ((((type tty)) (:foreground ,org-todo-term :bold t))
                                           (t            (:foreground ,org-todo :bold t))))
    `(org-done                            ((t (:foreground ,org-done :bold t))))
    `(org-special-keyword                 ((t (:foreground ,org-special-keyword))))
@@ -237,12 +238,14 @@
    `(tex-math                            ((t (:foreground ,tex-math))))
 
 
-   `(header-line                         ((t (:background ,header-line-bg :foreground ,header-line-fg
-                                               :box  (:line-width -1 :style released-button)))))
+   `(header-line                         ((((type tty)) (:inherit mode-line))
+                                          (t (:background ,header-line-bg :foreground ,header-line-fg
+                                                          :box  (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-current-screen-face ((t (:background ,elscreen-tab-current-screen-face-bg
+   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                       (t (:background ,elscreen-tab-current-screen-face-bg
                                                        :foreground ,elscreen-tab-current-screen-face-fg))))
 
    `(dired-header                     ((t (:foreground ,dired-header))))
