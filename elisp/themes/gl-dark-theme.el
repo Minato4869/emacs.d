@@ -94,7 +94,7 @@
                                                   (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
-       (org-todo-term                       (if (is_ssh) "#8B0000" "brightmagenta"))
+       (org-todo-term                       (if (is_ssh) "#d70000" "brightmagenta"))
        (org-done-term                       (if (is_ssh) "ForestGreen" "PaleGreen"))
        (org-todo                            (if (or (is_ssh) gl/light) "#8B0000" "#FFC0CB"))
        (org-done                            (if (or (is_ssh) gl/light) "#228b22" "#98FB98"))
