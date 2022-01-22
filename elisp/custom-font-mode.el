@@ -2,9 +2,16 @@
 
 (defun ttf ()
   (interactive)
-  (custom-set-faces
-   `(default ((t (:inherit default :height 75 :width normal
-                           :foundry "PfEd" :family "Meslo LG S"))))))
+  (let* ((dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
+         (ttfh (cond ((= dpi 125) 69)
+                   ((= dpi 131) 75)
+                   ((= dpi 157) 73) ;; was 73
+                   ((= dpi 109) 93)
+                   (t 70)))
+       (family     "Meslo LG S"))
+   (custom-set-faces
+    `(default ((t (:inherit default :height ,ttfh :width normal
+                            :foundry "PfEd" :family ,family)))))))
 
 (defun pcf (&optional arg)
   (interactive)
@@ -19,9 +26,10 @@
 
 (defun default-font ()
   (interactive)
-  (if (file-regular-p "~/.hf")
-      (pcf "9x16")
-    (pcf "6x13")))
+  (cond
+   ((file-regular-p "~/.hf" ) (pcf "9x16"))
+   ((file-regular-p "~/.ttf") (ttf))
+   (t                         (pcf "6x13"))))
 
 (defun 6x13 () (interactive) (pcf "6x13"))
 (defun 9x16 () (interactive) (pcf "9x16"))
