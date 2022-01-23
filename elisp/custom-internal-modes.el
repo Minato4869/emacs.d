@@ -115,18 +115,20 @@
   :defer t
   :config
   (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
+        tex-dvi-view-command "pdf.viewer"
         font-latex-fontify-sectioning 'color
         font-latex-fontify-script nil
         LaTeX-item-indent -2
-        LaTeX-indent-level 4) ;; indents special environments
-  (setq TeX-engine 'default) ;; xetex to switch to xelatex
-  (setq TeX-view-program-selection
-        (quote
-    (((output-dvi has-no-display-manager) "dvi2tty")
-     ((output-dvi style-pstricks) "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "xpdf")
-     (output-html "xdg-open")))))
+        LaTeX-indent-level 4 ;; indents special environments
+        TeX-engine 'default) ;; xetex to switch to xelatex
+  )
+;;  (setq TeX-view-program-selection
+;;        (quote
+;;    (((output-dvi has-no-display-manager) "dvi2tty")
+;;     ((output-dvi style-pstricks) "dvips and gv")
+;;     (output-dvi "xdvi")
+;;     (output-pdf "xpdf")
+;;     (output-html "xdg-open")))))
 
 ;; == org
 (use-package org
@@ -213,6 +215,8 @@
         ("C-q"    . View-quit)
         ("C-f"    . View-scroll-line-forward)
         ("C-b"    . View-scroll-line-backward)
+        ("s"      . View-scroll-line-forward)
+        ("w"      . View-scroll-line-backward)
         ("g"      . beginning-of-buffer)
         ("G"      . end-of-buffer)))
 

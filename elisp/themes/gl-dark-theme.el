@@ -1,17 +1,13 @@
 (deftheme gl-dark
   "gl-dark theme")
 
-(defun is_ssh ()
-  (if (= (length (getenv "SSH_CONNECTION")) 0)
-         nil  t))
-
 (let* ((BG-term                             (if (is_ssh) "color-234" "unspecified-bg"))
        (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
        (BG                                  (cond (gl/light   "#D9D5BA")
                                                   (gl/colours "#000000")
                                                   (t          "#333333")))
        (FG                                  (cond (gl/light   "#444444")
-                                                  ;;(gl/colours "#BEBEBE")
+                                                  (gl/colours "#BEBEBE")
                                                   (t          "#E5E5E5")))
        (cursor-bg                           (cond (gl/light   "#4286F4")
                                                   (gl/colours "#DB0600") ;; was ff0000

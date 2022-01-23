@@ -32,6 +32,11 @@
   (if (or (daemonp) (display-graphic-p))
       t
     nil))
+
+(defun is_ssh ()
+  (if (= (length (getenv "SSH_CONNECTION")) 0)
+         nil  t))
+
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
@@ -81,9 +86,9 @@ Errors will be logged to the buffer *Init Errors*"
 (when (my_daemonp)
   (setq confirm-kill-emacs 'yes-or-no-p)
 ;;  (load-library-wrap-error "custom-font-mode")
-  (load-library-wrap-error "custom-terminal-mode")
   (load-library-wrap-error "custom-external-modes"))
 
+(load-library-wrap-error "custom-terminal-mode")
 (load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-colours")

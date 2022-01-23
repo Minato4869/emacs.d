@@ -41,6 +41,7 @@
 (when (and (display-graphic-p) (not (daemonp)))
   (setq gl/colors nil)
   (setq gl/light  t))
+
 (load-theme 'gl-dark t)
 
 ;;(unless gl/colours

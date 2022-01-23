@@ -6,13 +6,13 @@
   :defer  t
   :config
   (setq elscreen-prefix-key "\M-s")
-  (if (getenv "SSH_CONNECTION")
+  (if (= (length (getenv "SSH_CONNECTION")) 0)
+      (custom-set-variables
+       '(elscreen-display-screen-number nil)
+       '(elscreen-tab-display-kill-screen nil))
       (custom-set-variables
        '(elscreen-display-tab nil)
-       '(elscreen-display-screen-number t))
-    (custom-set-variables
-     '(elscreen-display-screen-number nil)
-     '(elscreen-tab-display-kill-screen nil)))
+       '(elscreen-display-screen-number t)))
   (defun elscreen-kill-confirm ()
     (interactive)
     (when (y-or-n-p "Kill current screen? ")

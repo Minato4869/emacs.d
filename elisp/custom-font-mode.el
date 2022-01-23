@@ -4,14 +4,21 @@
   (interactive)
   (let* ((dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
          (ttfh (cond ((= dpi 125) 69)
-                   ((= dpi 131) 75)
-                   ((= dpi 157) 73) ;; was 73
-                   ((= dpi 109) 93)
-                   (t 70)))
-       (family     "Meslo LG S"))
+                     ((= dpi 131) 75)
+                     ((= dpi 157) 73) ;; was 74
+                     (t 70)))
+         (xfth (cond ((= dpi 125) 6.9)
+                     ((= dpi 131) 7.5)
+                     ((= dpi 157) 7.4)
+                     (t "70")))
+         (family     "Meslo LG S")
+         (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal
-                            :foundry "PfEd" :family ,family)))))))
+                            :foundry "PfEd" :family ,family)))))
+   (setq default-frame-alist `((font . ,myfont)))
+   (set-frame-font myfont nil t)
+   ))
 
 (defun pcf (&optional arg)
   (interactive)

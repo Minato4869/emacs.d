@@ -31,6 +31,7 @@
      ,@(let ((m (make-sparse-keymap)))
          (define-key m (kbd "C-w")        'kill-region)
          (define-key m (kbd "C-k")        'kill-region)
+         (define-key m (kbd "C-;")        'comment-region)
          m))))
 (add-to-list 'emulation-mode-map-alists 'custom-region-alist)
 

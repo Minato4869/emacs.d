@@ -176,3 +176,11 @@
     (progn
       (kill-current-buffer)
       (delete-and-balance-window))))
+
+;; 2022-01-23 Sun @leahneukirchen
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(bind-key "C-;" 'toggle-comment-on-line)

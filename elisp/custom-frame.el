@@ -18,7 +18,7 @@
 				initial-frame-alist `((width  . ,frame/w) (height . ,frame/h)))
 	(defun my/after-delete-frame (frame)
 		(with-selected-frame frame
-			(when (getenv "SSH_CONNECTION")
+			(when (is_ssh)
 				(setenv "SSH_CONNECTION" ""))))
 
 	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
