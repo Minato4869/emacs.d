@@ -104,11 +104,12 @@
        (org-latex-and-related               "#DEB887")
        (org-table                           "#87CEFA")
 
-       (font-latex-sedate-face              "#D3D3D3") ;; == lightgray; alt tui colour: 6C6C6C
-       (font-latex-verbatim-face            "#DEB887") ;; == burlywood
-       (tex-verbatim                        "#DEB887")
-       (tex-math                            "#DEB887")
-       (font-latex-math-face                "#DEB887")
+       ;; v-- auctex
+       ;; (font-latex-sedate-face              (if gl/colors "#D3D3D3" FG)) ;; == lightgray; alt tui colour: 6C6C6C
+       ;; (font-latex-verbatim-face            "#DEB887") ;; == burlywood
+       ;; (font-latex-math-face                "#DEB887")
+       (tex-verbatim                           (if gl/light "#a0522d" "#DEB887"))
+       (tex-math                               (if gl/light "#a0522d" "#DEB887"))
 
        (header-line-bg                       (cond (gl/light mode-line-bg)
                                                    (gl/colours mode-line-bg)
@@ -232,10 +233,10 @@
    `(org-table                           ((t (:foreground ,org-table            ))))
 
 
-   ;; == LaTeX
-   `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
-   `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
-   `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
+   ;; == AUCTEX
+   ;; `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
+   ;; `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
+   ;; `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
 
    `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
    `(tex-math                            ((t (:foreground ,tex-math))))
