@@ -51,10 +51,6 @@
        (concat "* "
                (shell-command-to-string (format "week %s" wn)))))))
 
-(bind-keys
- ("C-c ."   . date)
- ("C-c C-." . tdate)
- ("C-c >"   . ldate))
 (defalias 'kw 'calendar-week)
 (defalias 'cw 'calendar-week)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -163,7 +159,6 @@
       (insert-char (upcase char) 1 t)))
   (delete-char 1 nil)
   (backward-char))
-(bind-key "M-#" 'toggle-case)
 
 ;;;;
 (defun kill-buffer-and-window ()
@@ -183,4 +178,10 @@
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-(bind-key "C-;" 'toggle-comment-on-line)
+;; == keybinds =================================================================
+(bind-keys
+ ("C-c ."   . date)
+ ("C-c C-." . tdate)
+ ("C-c >"   . ldate)
+ ("C-;"     . toggle-comment-on-line)
+ ("M-#"     . toggle-case))

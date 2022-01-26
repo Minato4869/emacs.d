@@ -22,8 +22,6 @@
     (when (y-or-n-p "Kill current buffer and close screen? ")
       (kill-current-buffer)
       (elscreen-kill)))
-
-
   :bind*
   (("M-<left>"     . elscreen-previous)
    ("M-<right>"    . elscreen-next)

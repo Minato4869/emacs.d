@@ -4,26 +4,23 @@
 ;; disabled keybinds
 ;;(global-unset-key (kbd "<f1>"))
 ;;(global-unset-key (kbd "<f2>"))
+(global-unset-key (kbd "<f11>"))
 (global-unset-key (kbd "<insert>"))
 (global-unset-key (kbd "<insertchar>"))
 (global-unset-key (kbd "C-z"))
+(dolist (key '("C-9" "C-8" "C-7" "C-6" "C-5" "C-4" "C-3" "C-2" "C-1" "C-0"
+               "C-M-9" "C-M-8" "C-M-7" "C-M-6" "C-M-5" "C-M-4" "C-M-3" "C-M-2"
+               "C-M-1" "C-M-0" "M-9" "M-8" "M-7" "M-6" "M-5" "M-4" "M-3" "M-2" "M-1" "M-0"))
+  (global-unset-key (kbd key))) ;; unbind digit arguments
 (global-unset-key (kbd "M-k"))
-(global-unset-key (kbd "M-1"))
-(global-unset-key (kbd "M-2"))
-(global-unset-key (kbd "M-3"))
-(global-unset-key (kbd "M-4"))
-(global-unset-key (kbd "M-0"))
-(global-unset-key (kbd "<C-up>"))
-(global-unset-key (kbd "<C-down>"))
 (global-unset-key (kbd "<C-mouse-1>"))
 (global-unset-key (kbd "<C-mouse-3>"))
 (global-unset-key (kbd "<C-mouse-5>"))
 (global-unset-key (kbd "<C-mouse-4>"))
+(global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
-(global-unset-key (kbd "C-x C--"))
-(global-unset-key (kbd "C-x C-="))
-(global-unset-key (kbd "C-x C-0"))
-(global-unset-key (kbd "C-x C-@"))  ;; == C-x C-SPC in terminal
+(global-unset-key (kbd "C-x m"))
+(global-unset-key (kbd "C--"))
 
 ;; custom region
 (defconst custom-region-alist
@@ -111,13 +108,13 @@
   (interactive)
   (text-scale-set 0))
 
-(bind-keys*
- ("C-z"       . universal-argument)
- ("C-c SPC"   . cua-rectangle-mark-mode)
- ("C-x m"     . pop-to-mark-command)
- ("M-o"       . other-window))
 ;; custom keys
 (bind-keys
+ ("C-z"      . universal-argument)
+ ("C-c SPC"   . cua-rectangle-mark-mode)
+ ("C-x m"     . pop-to-mark-command)
+ ("C-x C-m"   . pop-to-mark-command)
+ ("M-o"       . other-window)
  ("C-h"       . backward-delete-char-untabify)
  ("C-a"       . beginning-or-prev-line)
  ("C-e"       . end-or-next-line)
@@ -125,13 +122,14 @@
  ("C-c h"     . help)
  ;; editing
  ("C-c 5"     . query-replace-regexp)
+ ("C-M-5"     . query-replace-regexp)
  ("M-K"       . kill-whole-line)
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
  ("M-u"       . upcase-dwim)
  ("M-l"       . downcase-dwim)
  ("M-SPC"     . cycle-spacing)
- ("C-x C-SPC" . delete-horizontal-space)
+ ("C-c C-SPC" . delete-horizontal-space)
  ;; custom function binds
  ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
@@ -161,8 +159,7 @@
  ("M-3"       . split-window-right)
  ("M-4"       . make-frame-command)
  ("C-x 4"     . make-frame-command)
- ("C-c 0"     . balance-windows)
- ("C-0"       . shrink-window-if-larger-than-buffer)
+ ("C-0"       . balance-windows)
  ("C--"       . shrink-window)
  ("C-="       . enlarge-window)
  ("C-x C--"   . negative-argument)
@@ -170,7 +167,7 @@
  ("C-x t"     . transpose-lines)
  ("C-c t"     . transpose-windows))
 
- ;; mode specific
+;; mode specific
 (defun my-eval-region-or-buffer ()
   (interactive)
   (if (region-active-p)
@@ -181,8 +178,8 @@
       (eval-buffer)
       (message "Evaluated current buffer"))))
 
-(dolist (m (list lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
-  (bind-keys :map m
+(dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
+  (bind-keys :map mode
            ("C-c C-c" . my-eval-region-or-buffer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -205,10 +202,6 @@
    ("C-M-y"           . yank-primary)
    ("C-M-w"           . kill-ring-save-primary)
    ("<insert>"        . yank-primary)
-   ;; text scale
-   ("s-0"             . text-scale-reset)
-   ("s--"             . text-scale-decrease)
-   ("s-="             . text-scale-increase)
    ;; window transposing
    ("s-o"             . transpose-windows)
    ;; buffers
