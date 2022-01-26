@@ -230,7 +230,6 @@
 (defun custom-bury-buffer ()
   (if (not (or (string-match (buffer-name) "*scratch*")
                (string-match "reminder.org.gpg" (buffer-name))
-               ;;(string-match (concat (system-name) ".org.gpg") (buffer-name))
                ))
       t
     (message "Not allowed to kill %s, burying instead" (buffer-name))
