@@ -85,7 +85,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-internal-modes")
 (when (my_daemonp)
   (setq confirm-kill-emacs 'yes-or-no-p)
-;;  (load-library-wrap-error "custom-font-mode")
+  (load-library-wrap-error "custom-font-mode")
   (load-library-wrap-error "custom-external-modes"))
 
 (load-library-wrap-error "custom-terminal-mode")
