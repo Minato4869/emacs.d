@@ -235,3 +235,12 @@
         ("C-j"    . View-scroll-line-forward)
         ("C-k"    . View-scroll-line-backward)
         ))
+
+
+;;; == buffer-menu
+(use-package buffer-menu
+  :ensure nil
+  :defer nil
+  :bind
+  (:map ibuffer-mode-map
+        ("r"   . ibuffer-redisplay)))

@@ -45,3 +45,4 @@
 (defalias 'conf          'conf-mode)
 (defalias 'ro            'read-only-mode)
 (defalias 'er            'read-only-mode)
+(defalias 'rw            'read-only-mode)

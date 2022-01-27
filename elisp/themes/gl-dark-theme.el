@@ -93,10 +93,11 @@
                                                   (t          "#00FFFF")))
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
-       (org-todo-term                       (if (is_ssh) "#d70000" "brightmagenta"))
-       (org-done-term                       (if (is_ssh) "ForestGreen" "PaleGreen"))
-       (org-todo                            (if gl/light "#DB0600" "#FFC0CB"))
-       (org-done                            (if gl/light "#228b22" "#98FB98"))
+       (org-todo-term                       (if gl/colours "brightmagenta" "#d70000")) ;; had (is_ssh) constraint
+       (org-done-term                       (if gl/colours "PaleGreen"     "ForestGreen"))     ;; had (is_ssh) constraint
+       (org-todo                            (if gl/colours "#FFC0CB" "#d70000"))
+       ;; ^-- had gl/light constraint, colours switched; was "#DB0600" for darkred
+       (org-done                            (if gl/colours "#98FB98" "#228b22")) ;; had gl/light constraint, colours switched
        (org-headline-done-term              "#FFA07A")
        (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
        (org-meta-line                       "#CC0000")
