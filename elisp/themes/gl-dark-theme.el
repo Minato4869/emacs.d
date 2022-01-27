@@ -3,9 +3,12 @@
 
 (let* ((BG-term                             (cond
                                              ((is_ssh)    "color-233");; was 234
-                                             ((daemonp)   "color-235")
-                                             (t "unspecified-bg")))
-       (FG-term                             (if (is_ssh) "color-249" "unspecified-fg"))
+                                             ((daemonp)   "color-236")
+                                             (t           "unspecified-bg")))
+       (FG-term                             (cond
+                                             ((is_ssh)    "color-249");; was 234
+                                             ((daemonp)   "color-254")
+                                             (t           "unspecified-fg")))
        (BG                                  (cond (gl/light   "#D9D5BA")
                                                   (gl/colours "#000000")
                                                   (t          "#333333")))
