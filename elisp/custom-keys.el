@@ -108,14 +108,16 @@
   (interactive)
   (text-scale-set 0))
 
-;; custom keys
-(bind-keys
- ("C-z"      . universal-argument)
+(bind-keys*
+ ("C-z"       . universal-argument)
  ("C-c SPC"   . cua-rectangle-mark-mode)
  ("C-x m"     . pop-to-mark-command)
  ("C-x C-m"   . pop-to-mark-command)
  ("M-o"       . other-window)
- ("C-h"       . backward-delete-char-untabify)
+ ("C-h"       . backward-delete-char-untabify))
+
+;; custom keys
+(bind-keys
  ("C-a"       . beginning-or-prev-line)
  ("C-e"       . end-or-next-line)
  ("M-g"       . my-goto-line)

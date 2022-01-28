@@ -35,7 +35,8 @@
 
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0)
-         nil  t))
+      nil
+    t))
 
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")

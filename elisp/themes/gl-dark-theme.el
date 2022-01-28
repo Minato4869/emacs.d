@@ -2,13 +2,13 @@
   "gl-dark theme")
 
 (let* ((BG-term                             (cond
-                                             ((is_ssh)    "color-233");; was 234
-                                             ((daemonp)   "color-236")
-                                             (t           "unspecified-bg")))
+                                             ;; ((daemonp)   "color-236")
+                                             (gl/colours  "color-16")
+                                             (t           "color-234")));; was 234
        (FG-term                             (cond
-                                             ((is_ssh)    "color-249");; was 234
                                              ((daemonp)   "color-254")
-                                             (t           "unspecified-fg")))
+                                             (gl/colours  "color-250") ; was t
+                                             (t           "color-249")));; was 234
        (BG                                  (cond (gl/light   "#D9D5BA")
                                                   (gl/colours "#000000")
                                                   (t          "#333333")))
