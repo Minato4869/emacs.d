@@ -208,6 +208,9 @@
    ("s-o"             . transpose-windows)
    ;; buffers
    ("s-b"   . buffer-menu)
+   ("s--"   . text-scale-decrease)
+   ("s-="   . text-scale-increase)
+   ("s-0"   . text-scale-reset)
   ))
 
 ;; == mode maps

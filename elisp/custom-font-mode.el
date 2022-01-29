@@ -1,9 +1,8 @@
 (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-
+(setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
 (defun ttf ()
   (interactive)
-  (let* ((dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
-         (ttfh (cond ((= dpi 109) 66)
+  (let* ((ttfh (cond ((= dpi 109) 66)
                      ((= dpi 125) 69)
                      ((= dpi 131) 75)
                      ((= dpi 157) 73) ;; was 74
@@ -36,7 +35,9 @@
 (defun default-font ()
   (interactive)
   (cond
-   ((file-regular-p "~/.hf" ) (pcf "9x16"))
+   ((or (file-regular-p "~/.hf")
+        (>= dpi 157))
+        (pcf "9x16"))
    ((file-regular-p "~/.ttf") (ttf))
    (t                         (pcf "6x13"))))
 
