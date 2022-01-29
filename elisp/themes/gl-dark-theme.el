@@ -2,9 +2,9 @@
   "gl-dark theme")
 
 (let* ((BG-term                             (cond
-                                             ;; ((daemonp)   "color-236")
+                                             ((daemonp)   "color-236")
                                              (gl/colours  "color-16")
-                                             (t           "color-234")));; was 234
+                                             (t           "color-233")));; was 234
        (FG-term                             (cond
                                              ((daemonp)   "color-254")
                                              (gl/colours  "color-250") ; was t
