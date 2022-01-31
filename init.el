@@ -96,6 +96,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-aliases")
 
 (when (daemonp)
+  (load-library-wrap-error "custom-desktop-save")
   (load-library-wrap-error "custom-emacsclient"))
 
 (let ((ln "~/.emacs.local.el")

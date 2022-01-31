@@ -220,21 +220,21 @@
         ("g"      . beginning-of-buffer)
         ("G"      . end-of-buffer)))
 
-(use-package eww
-  :ensure nil
-  :defer t
-  :config
-  (setq
-   shr-use-fonts nil ;; No special fonts
-   shr-use-colors t   ;; enable colours
-   shr-color-visible-luminance-min 70
-   shr-indentation 2  ;; Left-side margin
-   shr-width 80)     ;; Fold text to 80 columns
-  :bind
-  (:map eww-mode-map
-        ("C-j"    . View-scroll-line-forward)
-        ("C-k"    . View-scroll-line-backward)
-        ))
+;;(use-package eww
+;;  :ensure nil
+;;  :defer t
+;;  :config
+;;  (setq
+;;   shr-use-fonts nil ;; No special fonts
+;;   shr-use-colors t   ;; enable colours
+;;   shr-color-visible-luminance-min 70
+;;   shr-indentation 2  ;; Left-side margin
+;;   shr-width 80)     ;; Fold text to 80 columns
+;;  :bind
+;;  (:map eww-mode-map
+;;        ("C-j"    . View-scroll-line-forward)
+;;        ("C-k"    . View-scroll-line-backward)
+;;        ))
 
 
 ;;; == buffer-menu

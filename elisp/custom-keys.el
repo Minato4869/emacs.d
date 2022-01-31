@@ -21,6 +21,7 @@
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-x m"))
 (global-unset-key (kbd "C--"))
+(global-unset-key (kbd "C-x DEL111111111"))
 
 ;; custom region
 (defconst custom-region-alist
@@ -166,8 +167,7 @@
  ("C-="       . enlarge-window)
  ("C-x C--"   . negative-argument)
  ("C-c o"     . transpose-windows)
- ("C-x t"     . transpose-lines)
- ("C-c t"     . transpose-windows))
+ ("C-x t"     . transpose-lines))
 
 ;; mode specific
 (defun my-eval-region-or-buffer ()
