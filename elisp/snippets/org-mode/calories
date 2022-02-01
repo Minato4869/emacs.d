@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: calories
+# key: calories
+# --
+
+*** Calories
+| Item      | Calories | Description            |
+|-----------+----------+------------------------|
+| Breakfast |          |                        |
+| Lunch     |          |                        |
+| Dinner    |          |                        |
+| Snacks    |          |                        |
+|-----------+----------+------------------------|
+| Sum       |          |                        |
+#+TBLFM: @>$\2=vsum(@I..@II)
