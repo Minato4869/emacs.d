@@ -29,14 +29,10 @@
  '(tooltip-mode nil)
  '(use-dialog-box nil))
 (defun my_daemonp()
-  (if (or (daemonp) (display-graphic-p))
-      t
-    nil))
+  (if (or (daemonp) (display-graphic-p)) t nil))
 
 (defun is_ssh ()
-  (if (= (length (getenv "SSH_CONNECTION")) 0)
-      nil
-    t))
+  (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 
 (savehist-mode 1)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
@@ -79,6 +75,7 @@ Errors will be logged to the buffer *Init Errors*"
            (print "**")
            (print (car err))
            (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
+
 (load-library-wrap-error "custom-editing")
 (load-library-wrap-error "custom-keys")
 

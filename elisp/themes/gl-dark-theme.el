@@ -103,7 +103,8 @@
        (org-done                            (if gl/colours "#98FB98" "#228b22")) ;; had gl/light constraint, colours switched
        (org-headline-done-term              "#FFA07A")
        (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
-       (org-meta-line                       "#CC0000")
+       (org-meta-line                       (if gl/colours "#CC0000" FG))
+       (org-meta-line-bold                  (if gl/colours nil       t))
        (org-time-grid                       "#EEDD82")
        (org-agenda-structure                "#87CEFA")
        (org-agenda-clocking                 "#4A708B")
@@ -218,7 +219,7 @@
    `(org-priority                        ((t (:foreground ,org-priority))))
    `(org-headline-done                   ((((type tty)) (:foreground ,org-headline-done-term))
                                           (t (:foreground ,org-headline-done))))
-   `(org-meta-line                       ((t (:foreground ,org-meta-line))))
+   `(org-meta-line                       ((t (:foreground ,org-meta-line :bold ,org-meta-line-bold))))
    `(org-time-grid                       ((t (:foreground ,org-time-grid))))
    `(org-agenda-clocking                 ((t (:inherit default :background ,org-agenda-clocking :extend t))))
    `(org-agenda-structure                ((t (:foreground ,org-agenda-structure))))
