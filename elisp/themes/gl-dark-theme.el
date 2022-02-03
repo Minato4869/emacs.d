@@ -78,7 +78,7 @@
        (org-level-1                         (cond (gl/light "#000000") (gl/colours "#75507B") (t "#A1A1A1"))) ;; was FG
        (org-level-2                         (cond (gl/light "#333333") (gl/colours "#C4A000") (t "#929292")))
        (org-level-3                         (cond (gl/light "#696969") (gl/colours "#729FCF") (t "#838383")))
-       (org-level-4                         (cond (gl/light "#565252") (gl/colours "#CC0000") (t "#565252")))
+       (org-level-4                         (cond (gl/light "#565252") (gl/colours "#CC0000") (t "#757575"))) ;;(t "#565252")))
        (org-level-5                         (cond (gl/light "#0000ff") (gl/colours "#4E9A06") (t "#8b8fc6")))
        (org-level-6                         (cond (gl/light "#a0522d") (gl/colours "#75507B") (t "#bd845f")))
        (org-level-7                         (cond (gl/light "#a020f0") (gl/colours "#C4A000") (t "#71a46c")))
