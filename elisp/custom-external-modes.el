@@ -10,9 +10,9 @@
       (custom-set-variables
        '(elscreen-display-screen-number nil)
        '(elscreen-tab-display-kill-screen nil))
-      (custom-set-variables
-       '(elscreen-display-tab nil)
-       '(elscreen-display-screen-number t)))
+    (custom-set-variables
+     '(elscreen-display-tab nil)
+     '(elscreen-display-screen-number t)))
   (defun elscreen-kill-confirm ()
     (interactive)
     (when (y-or-n-p "Kill current screen? ")
@@ -56,9 +56,9 @@
   (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
   (yas-global-mode 1)
   :config
- (setq yas-prompt-functions '(yas-ido-prompt
-                              yas-completing-prompt
-                              yas-no-prompt))
+  (setq yas-prompt-functions '(yas-ido-prompt
+                               yas-completing-prompt
+                               yas-no-prompt))
   (defun yas-force-update ()
     (interactive)
     (yas-recompile-all)
@@ -100,22 +100,23 @@
   (diminish 'yas-minor-mode)
   (diminish 'eldoc-mode)
   (diminish 'auto-fill-function))
-
 ;; == mu4e
-(when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
+(let ((mupath (if (string= system-type "berkeley-unix")
+                  "/usr/local/share/emacs/site-lisp/mu4e"
+                "/usr/eshare/emacs/site-lisp/mu4e"
+                )))
   (use-package mu4e
-    :if (daemonp)
+    :if (file-directory-p mupath)
     :ensure nil
     :defer nil
     :init
-    (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-    (when(or (daemonp) (display-graphic-p))
-        (load-library "mu4e"))
+    (add-to-list 'load-path mupath)
+    (load-library "mu4e")
     :config
     (setq mail-user-agent 'mu4e-user-agent
           mu4e-sent-folder   "/Sent"
           mu4e-drafts-folder "/Drafts"
-          mu4e-trash-folder  "/Trash"
+          mu4e-trash-folder  "/Archive/trash"
           message-send-mail-function   nil
           smtpmail-default-smtp-server nil
           smtpmail-smtp-server         nil
@@ -127,17 +128,9 @@
      '(mu4e-header-face                 ((t (:foreground "#585858" :bold nil))))
      '(mu4e-header-key-face             ((t (:foreground "#585858" :bold nil))))
      )
-))
-(defun my-mu4e ()
-  (interactive)
-  (load-library "mu4e")
-  (if (or (daemonp) (display-graphic-p))
-      (progn
-        (elscreen-create)
-        (mu4e))
-    (mu4e)))
-(defalias 'mu   'my-mu4e)
-(defalias 'mail 'my-mu4e)
+    )
+  (defalias 'mail 'mu4e)
+  (defalias 'mu   'mu4e))
 
 ;; ==ripgrep
 (use-package rg
