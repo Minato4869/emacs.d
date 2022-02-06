@@ -1,3 +1,4 @@
+
 (deftheme gl-dark
   "gl-dark theme")
 
@@ -6,9 +7,9 @@
                                              (gl/colours  "color-16")
                                              (t           "color-236")));; was 234
        (FG-term                             (cond
-                                             ((daemonp)   "color-254")
+                                             ((is_ssh)   "color-249")
                                              (gl/colours  "color-250") ; was t
-                                             (t           "color-249")));; was 234
+                                             (t           "color-254")));; was 234
        (BG                                  (cond (gl/light   "#D9D5BA")
                                                   (gl/colours "#000000")
                                                   (t          "#333333")))

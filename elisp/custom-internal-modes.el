@@ -42,6 +42,7 @@
 
 ;; == dired
 (use-package dired-x
+  :if (my_daemonp)
   :ensure nil
   :defer nil
   :config

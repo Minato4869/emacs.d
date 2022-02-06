@@ -81,6 +81,7 @@
             (lambda () (cedit/indent-conf 2 nil nil 80))))
 
 (use-package magit
+  :if (my_daemonp)
   :ensure t
   :defer t
   :config
@@ -103,8 +104,7 @@
 ;; == mu4e
 (let ((mupath (if (string= system-type "berkeley-unix")
                   "/usr/local/share/emacs/site-lisp/mu4e"
-                "/usr/eshare/emacs/site-lisp/mu4e"
-                )))
+                "/usr/eshare/emacs/site-lisp/mu4e")))
   (use-package mu4e
     :if (file-directory-p mupath)
     :ensure nil
