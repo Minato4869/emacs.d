@@ -27,9 +27,12 @@
               require-final-newline t
               ;; fill column
               auto-fill-function 'do-auto-fill
+              auto-fill-mode -1
               fill-column 80
               ;; whitespace
               show-trailing-whitespace nil
+              ;;
+              line-move-visual nil
               ;; gpg
               epg-gpg-home-directory "~/.gnupg"
               ;; tab width
@@ -40,12 +43,31 @@
               c-default-style '((awk-mode  . "awk")
                                 (other     . "linux"))
               backward-delete-char-untabify-method 'hungry
-              truncate-lines t     ;; dont break lines at window edge
+              ;; dont break lines at window edge; deactivated 2022-02-07 Mon due to issues with minibuffer
+              ;; truncate-lines nil
               ispell-dictionary "en_GB"
               frame-title-format (if (daemonp)
                                      '("" "emacsclient@" system-name " - %b")
                                    '("" "emacs@" system-name " - %b")))
 
+;; misc
+(global-subword-mode 1)               ; iterate through CamelCase words
+(setq visible-bell nil
+      ring-bell-function 'ignore ;; disable audible bell on windows
+      vc-follow-symlinks t
+      visible-cursor nil
+      frame-inhibit-implied-resize t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+;; disable paren/$ jumping
+(setq-default blink-matching-paren nil
+              show-paren-mode t
+              show-paren-delay 0) ;; immediately show parens
+
+(setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
+
+(setq winner-dont-bind-my-keys t) ;; dont rebind keys
+(winner-mode 1)
 
 ;; region
 (transient-mark-mode t)
@@ -56,62 +78,60 @@
 (setq mouse-autoselect-window t)
 (xterm-mouse-mode 0)
 
-(defun cedit/indent-conf (offset autofill tabs &optional fill)
+
+(defun cedit/indent-code (offset tabs fc &optional nofill stdi)
   (setq c-basic-offset offset
         tab-width offset
         standard-indent offset
-        auto-fill-mode autofill
-        indent-tabs-mode tabs)
-  (when (equal autofill nil)
-    (auto-fill-mode -1))
-  (unless (equal fill nil)
-    (setq fill-column fill)))
+        indent-tabs-mode tabs
+        fill-column fc)
+  (unless nofill
+    (turn-on-auto-fill))
+  (when stdi
+    (setq standard-indent stdi)))
+
+(defun cedit/indent-text ()
+  (cedit/indent-code 4 nil 120 t))
 
 (defun cedit/sh-indent ()
-  (setq-default sh-basic-offset 8
-                c-basic-offset 8
-                standard-intent 8
-                tab-width 8
-                fill-column 80
-                indent-tabs-mode nil
-                auto-fill-mode t))
+  (setq sh-basic-offset 8)
+  (cedit/indent-code 8 nil 80))
 
 (defun cedit/lisp-indent ()
-  (setq-default offset 2
-                lisp-body-indent offset)
-  (auto-fill-mode -1)
-  (cedit/indent-conf offset nil nil))
+  (setq lisp-body-indent 2)
+  (cedit/indent-code 2 nil 80 t))
 
 (defun cedit/latex ()
-       (cedit/indent-conf 4 nil 80)
+       (cedit/indent-code 4 nil 80 t)
        (electric-indent-local-mode -1))
+
 ;; hooks
 (add-hook 'minibuffer-setup-hook    (lambda () (setq truncate-lines nil)))
 (add-hook 'emacs-lisp-mode-hook     'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook           'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook          (lambda () cedit/latex))
-(add-hook 'latex-mode-hook          (lambda () cedit/latex))
-(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/indent-conf 4 nil 80)))
-(add-hook 'conf-space-mode-hook     (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'conf-mode-hook           (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent-conf 4 nil nil)))
-(add-hook 'java-mode-hook           (lambda () (cedit/indent-conf 4 t t 100)))
-(add-hook 'make-mode-hook           (lambda () (cedit/indent-conf 4 t t 80)))
-(add-hook 'sql-mode-hook            (lambda () (setq auto-fill-mode nil)))
-(add-hook 'html-mode-hook           (lambda () (setq auto-fill-mode nil)))
+(add-hook 'LaTeX-mode-hook          (lambda () (cedit/indent-latex)))
+(add-hook 'latex-mode-hook          (lambda () (cedit/indent-latex)))
+(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/indent-latex)))
+
+(add-hook 'java-mode-hook           (lambda () (cedit/indent-code 4 t   100)))
+(add-hook 'make-mode-hook           (lambda () (cedit/indent-code 4 t    80)))
+(add-hook 'sql-mode-hook            (lambda () (cedit/indent-code 4 nil 120 t)))
+(add-hook 'html-mode-hook           (lambda () (cedit/indent-code 4 nil 120 t)))
+(add-hook 'python-mode-hook         (lambda () (cedit/indent-code 4 nil  80)
+                                      (setq python-indent 4)))
+(add-hook 'conf-space-mode-hook     (lambda () (cedit/indent-code 4 nil  80)))
+(add-hook 'conf-mode-hook           (lambda () (cedit/indent-code 4 nil  80)))
+(add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent-code 4 nil  80)))
+
 (add-hook 'sh-mode-hook             (lambda () (cedit/sh-indent)))
 (add-hook 'shell-script-mode-hook   (lambda () (cedit/sh-indent)))
-(add-hook 'sql-mode-hook            (lambda () (setq auto-fill-mode nil)))
-(add-hook 'mail-mode-hook           (lambda () (setq standard-indent 2
-                                                     ispell-dictionary "de_AT")
-                                      (xterm-mouse-mode nil)
-                                      (cedit/indent-conf 4 t nil 70)
-                                      (mail-text)))
-(add-hook 'text-mode-hook           (lambda () (setq standard-indent 2)
-                                      (cedit/indent-conf 2 t nil 80)))
-(add-hook 'makefile-mode-hook       (lambda () (cedit/indent-conf 4 t t 80)))
-(add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-conf 4 t t 80)))
 
+(add-hook 'makefile-mode-hook       (lambda () (cedit/indent-code 4 t 80)))
+(add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80)))
+(add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 70 nil 2)
+                                      (setq ispell-dictionary "de_AT")
+                                      (mail-text)))
+(add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil 80 nil 2)))
 (defun guess-tab-settings ()
   (save-excursion
     (goto-char (point-min))
@@ -124,10 +144,6 @@
         (message "File uses spaces for indentation")))))
 (add-hook 'find-file-hook 'guess-tab-settings)
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (cedit/indent-conf 4 nil nil)
-            (setq python-indent 4)))
 
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
@@ -140,7 +156,7 @@
 
 (add-hook 'c-mode-hook
           (lambda ()
-            (cedit/indent-conf  8 t t 80)
+            (cedit/indent-code  8 t 80)
             (c-set-style "linux")
             (setq c-label-minimum-indentation 0)
             '(c-offsets-alist
@@ -149,6 +165,7 @@
                                            c-lineup-arglist-tabs-only))
                  (arglist-intro         . +)
                  (brace-list-intro      . +)
+                 (c-ignore-auto-fill    . '(string))
                  (c                     . c-lineup-C-comments)
                  (case-lbael            . 0)
                  (comment-intro         . c-lineup-comment)
@@ -170,7 +187,7 @@
 
 (add-hook 'c++-mode-hook
           (lambda ()
-            (cedit/indent-conf  4 t t 100)
+            (cedit/indent-code  4 t 100)
             (c-set-style "stroustrup")
             (setq c++-tab-always-indent t
                   c-indent-level 4
@@ -184,15 +201,6 @@
             (c-set-offset 'case-label '*)
             (c-set-offset 'access-label '/)))
 
-;; misc
-(global-subword-mode 1)               ; iterate through CamelCase words
-(setq visible-bell nil
-      ring-bell-function 'ignore ;; disable audible bell on windows
-      vc-follow-symlinks t
-      visible-cursor nil
-      frame-inhibit-implied-resize t)
-
-(fset 'yes-or-no-p 'y-or-n-p)
 
 (setq auto-mode-alist
       (append auto-mode-alist
@@ -210,15 +218,7 @@
                 ("\\conkyrc\\'"  . lua-mode)
                 ("Makefile"      . makefile-gmake-mode))))
 
-;; disable paren/$ jumping
-(setq-default blink-matching-paren nil
-              show-paren-mode t
-              show-paren-delay 0) ;; immediately show parens
 
-(setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
-
-(setq winner-dont-bind-my-keys t) ;; dont rebind keys
-(winner-mode 1)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; buffer hooks
 (add-hook 'minibuffer-exit-hook '(lambda ()
