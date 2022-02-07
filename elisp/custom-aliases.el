@@ -46,3 +46,4 @@
 (defalias 'ro            'read-only-mode)
 (defalias 'er            'read-only-mode)
 (defalias 'rw            'read-only-mode)
+(defalias 'vi            'visual-line-mode)

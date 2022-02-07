@@ -126,7 +126,7 @@
  ;; editing
  ("C-c 5"     . query-replace-regexp)
  ("C-M-5"     . query-replace-regexp)
- ("M-K"       . kill-whole-line)
+ ("M-k"       . kill-whole-line) ;; was M-K
  ("C-w"       . backward-kill-word)
  ("M-W"       . backward-kill-sexp)
  ("M-u"       . upcase-dwim)

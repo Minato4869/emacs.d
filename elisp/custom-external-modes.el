@@ -99,8 +99,8 @@
   :config
   (diminish 'subword-mode) ;; iterate over camelCase
   (diminish 'yas-minor-mode)
-  (diminish 'eldoc-mode)
-  (diminish 'auto-fill-function))
+;;  (diminish 'auto-fill-function)
+  (diminish 'eldoc-mode))
 ;; == mu4e
 (let ((mupath (if (string= system-type "berkeley-unix")
                   "/usr/local/share/emacs/site-lisp/mu4e"
