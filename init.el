@@ -27,14 +27,57 @@
  '(show-paren-mode t)
  '(menu-bar-mode nil)
  '(tooltip-mode nil)
- '(use-dialog-box nil))
+ '(use-dialog-box nil)
+ '(default-input-method "rfc1345")
+ '(require-final-newline t)
+ '(auto-fill-function 'do-auto-fill)
+ '(auto-fill-mode -1)
+ '(fill-column 80)
+ '(show-trailing-whitespace nil)
+ '(line-move-visual nil)
+ '(epg-gpg-home-directory "~/.gnupg")
+ '(indent-tabs-mode t)
+ '(c-basic-offset 8)
+ '(sh-basic-offset 8)
+ '(tab-width 8)
+ '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
+ '(backward-delete-char-untabify-method 'hungry)
+ '(ispell-dictionary "en_GB")
+ '(frame-title-format (if (daemonp)
+                          '("" "emacsclient@" system-name " - %b")
+                        '("" "emacs@" system-name " - %b")))
+ '(visible-bell nil)
+ '(ring-bell-function 'ignore) ;; disable audible bell on windows
+ '(vc-follow-symlinks t)
+ '(visible-cursor nil)
+ '(frame-inhibit-implied-resize t)
+ '(tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
+ '(blink-matching-paren nil) ;; disable paren/$ jumping
+ '(show-paren-mode t)
+ '(show-paren-delay 0) ;; immediately show parens
+ '(mouse-autoselect-window t)
+ '(xterm-mouse-mode 0)
+ '(mouse-yank-at-point t)
+ '(savehist-mode 1)
+ '(transient-mark-mode t)
+ '(delete-selection-mode t)
+ '(global-subword-mode 1)               ; iterate through CamelCase words
+ '(winner-mode 1)
+ '(winner-dont-bind-my-keys t) ;; dont rebind keys
+ '(ps-paper-type 'a4)
+ '(ps-print-color-p 'black-white)
+ '(shift-select-mode nil)
+ '(custom-file "~/.emacs.d/.custom.el")
+ '(line-move-visual t)
+ )
+
 (defun my_daemonp()
   (if (or (daemonp) (display-graphic-p)) t nil))
 
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 
-(savehist-mode 1)
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
@@ -60,7 +103,6 @@
   (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
 ;; custom files
-(setq custom-file "~/.emacs.d/.custom.el")
 (defun load-library-wrap-error (lib)
   "Load library lib and catch any errors that it might throw.
 Errors will be logged to the buffer *Init Errors*"
@@ -100,3 +142,16 @@ Errors will be logged to the buffer *Init Errors*"
       (pl "~/.emacs.personal.el"))
   (when (file-regular-p pl) (load-file pl))
   (when (file-regular-p ln) (load-file ln)))
+
+(setq backup-by-copying t   ; don't clobber symlinks
+      version-control t     ; use versioned backups
+      delete-old-versions t
+      kept-new-versions 12
+      kept-old-versions 6)
+
+(let ((backupdir "~/.emacs.d/backup/")
+      (autosavedir "~/.emacs.d/autosave/"))
+  (mkdir backupdir t)
+  (mkdir autosavedir t)
+  (setq backup-directory-alist `(("." . ,backupdir))
+        auto-save-file-name-transforms `((".*" ,autosavedir t))))

@@ -15,7 +15,6 @@
 (put 'eval-expression           'disabled nil)
 (put 'set-goal-column           'disabled nil)
 
-
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -23,60 +22,11 @@
 
 (defvar uniquify-buffer-name-style) ;; unique buffer names
 (defvaralias 'c-basic-offset 'tab-width)
-(setq-default default-input-method "rfc1345"
-              require-final-newline t
-              ;; fill column
-              auto-fill-function 'do-auto-fill
-              auto-fill-mode -1
-              fill-column 80
-              ;; whitespace
-              show-trailing-whitespace nil
-              ;;
-              line-move-visual nil
-              ;; gpg
-              epg-gpg-home-directory "~/.gnupg"
-              ;; tab width
-              indent-tabs-mode t
-              c-basic-offset 8
-              sh-basic-offset 8
-              tab-width 8
-              c-default-style '((awk-mode  . "awk")
-                                (other     . "linux"))
-              backward-delete-char-untabify-method 'hungry
-              ;; dont break lines at window edge; deactivated 2022-02-07 Mon due to issues with minibuffer
-              ;; truncate-lines nil
-              ispell-dictionary "en_GB"
-              frame-title-format (if (daemonp)
-                                     '("" "emacsclient@" system-name " - %b")
-                                   '("" "emacs@" system-name " - %b")))
-
-;; misc
-(global-subword-mode 1)               ; iterate through CamelCase words
-(setq visible-bell nil
-      ring-bell-function 'ignore ;; disable audible bell on windows
-      vc-follow-symlinks t
-      visible-cursor nil
-      frame-inhibit-implied-resize t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-;; disable paren/$ jumping
-(setq-default blink-matching-paren nil
-              show-paren-mode t
-              show-paren-delay 0) ;; immediately show parens
-
-(setq tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
-
-(setq winner-dont-bind-my-keys t) ;; dont rebind keys
-(winner-mode 1)
 
 ;; region
-(transient-mark-mode t)
-(delete-selection-mode t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; mouse
-(setq mouse-autoselect-window t)
-(xterm-mouse-mode 0)
 
 
 (defun cedit/indent-code (offset tabs fc &optional nofill stdi)
@@ -85,10 +35,8 @@
         standard-indent offset
         indent-tabs-mode tabs
         fill-column fc)
-  (unless nofill
-    (turn-on-auto-fill))
-  (when stdi
-    (setq standard-indent stdi)))
+  (unless nofill  (turn-on-auto-fill))
+  (when stdi      (setq standard-indent stdi)))
 
 (defun cedit/indent-text ()
   (cedit/indent-code 4 nil 120 t))
@@ -218,7 +166,6 @@
                 ("\\conkyrc\\'"  . lua-mode)
                 ("Makefile"      . makefile-gmake-mode))))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; buffer hooks
 (add-hook 'minibuffer-exit-hook '(lambda ()
@@ -226,28 +173,14 @@
                                      (and (get-buffer buffer)
                                           (kill-buffer buffer)))))
 (defun custom-bury-buffer ()
-  (if (not (or (string-match (buffer-name) "*scratch*")
-               (string-match "reminder.org.gpg" (buffer-name))
-               ))
-      t
+  (when (or (string-match (buffer-name) "*scratch*")
+            (string-match "reminder.org.gpg" (buffer-name)))
     (message "Not allowed to kill %s, burying instead" (buffer-name))
     (bury-buffer) nil))
+
 (add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
 
 ;; reuse compilation window even if it is in anoter frame
 (add-to-list 'display-buffer-alist
              '("\\*compilaition\\*"
                . (nil (reusable-frames . visible))))
-
-(setq backup-by-copying t   ; don't clobber symlinks
-      version-control t     ; use versioned backups
-      delete-old-versions t
-      kept-new-versions 12
-      kept-old-versions 6)
-
-(let ((backupdir "~/.emacs.d/backup/")
-      (autosavedir "~/.emacs.d/autosave/"))
-  (mkdir backupdir t)
-  (setq backup-directory-alist `(("." . ,backupdir)))
-  (mkdir autosavedir t)
-  (setq auto-save-file-name-transforms `((".*" ,autosavedir t))))

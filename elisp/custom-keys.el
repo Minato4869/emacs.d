@@ -105,6 +105,7 @@
         (goto-line (read-number "Goto line: ")))
     (display-line-numbers-mode -1)))
 (defalias 'gl            'my-goto-line)
+
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
