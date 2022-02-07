@@ -1,3 +1,4 @@
+
 (defun cterm/parse-tramp-path (path)
   (with-temp-buffer
     (insert path)

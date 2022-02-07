@@ -69,6 +69,8 @@
  '(shift-select-mode nil)
  '(custom-file "~/.emacs.d/.custom.el")
  '(line-move-visual t)
+ '(default-frame-alist '((width . 80) (height . 57)))
+ '(initial-frame-alist '((width . 80) (height . 57)))
  )
 
 (defun my_daemonp()
