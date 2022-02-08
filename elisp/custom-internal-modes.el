@@ -142,7 +142,7 @@
               (font-lock-mode t)))
   :config
   (progn
-    (cedit/indent-conf 2 nil nil)
+    (cedit/indent-code 2 nil 120 t 2)
     (setq org-highlight-latex-and-related '(latex script entities)
           indent-rigidly t
           org-src-fontify-natively t

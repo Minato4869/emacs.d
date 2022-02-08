@@ -32,4 +32,4 @@ bookmarks
 *.gpg
 *.org
 emacs-desktop
-recentf.txt
+recentf.txt*
