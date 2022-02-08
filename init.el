@@ -48,7 +48,7 @@
                         '("" "emacs@" system-name " - %b")))
  '(visible-bell nil)
  '(ring-bell-function 'ignore) ;; disable audible bell on windows
- '(vc-follow-symlinks t)
+ '(vc-follow-symlinks nil)
  '(visible-cursor nil)
  '(frame-inhibit-implied-resize t)
  '(tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
@@ -131,7 +131,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-external-modes")
 
 (load-library-wrap-error "custom-terminal-mode")
-(load-library-wrap-error "custom-frame")
+;;(load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-aliases")

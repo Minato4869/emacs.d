@@ -65,8 +65,6 @@
        (sh-heredoc                          (if gl/colours "#FFFF00" nil))
        (sh-heredoc-bold                     (if gl/colours t         nil))
 
-       (completions-common-part             "#ADD8E6")
-
        (isearch-fail-bg                     "#8B0000")   ;; v-- old conf
        (isearch-fail-fg                     (if gl/light BG FG))   ;; v-- old conf
        (isearch-bg                          "#333333")   ;; (if gl/colours "#EE799F" BG))
@@ -112,6 +110,11 @@
        (org-block-delim                     (if gl/colours "#CC0000" FG))
        (org-latex-and-related               "#DEB887")
        (org-table                           "#87CEFA")
+
+       (completions-common-part             (cond
+                                             (gl/light   "#121212")
+                                             (gl/colours "#1e90ff")
+                                             (t          "#ADD8E6")))
 
        ;; v-- auctex
        ;; (font-latex-sedate-face              (if gl/colors "#D3D3D3" FG)) ;; == lightgray; alt tui colour: 6C6C6C

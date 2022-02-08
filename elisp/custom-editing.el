@@ -173,12 +173,14 @@
                                      (and (get-buffer buffer)
                                           (kill-buffer buffer)))))
 (defun custom-bury-buffer ()
-  (when (or (string-match (buffer-name) "*scratch*")
-            (string-match "reminder.org.gpg" (buffer-name)))
-    (message "Not allowed to kill %s, burying instead" (buffer-name))
-    (bury-buffer) nil))
+  (if (or (string-match (buffer-name) "*scratch*")
+          (string-match (buffer-name) "reminder.org.gpg"))
+      (progn  (message "Not allowed to kill %s, burying instead" (buffer-name))
+              (bury-buffer))
+    t))
 
 (add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
+;; (remove-hook 'kill-buffer-query-functions 'custom-bury-buffer)
 
 ;; reuse compilation window even if it is in anoter frame
 (add-to-list 'display-buffer-alist
