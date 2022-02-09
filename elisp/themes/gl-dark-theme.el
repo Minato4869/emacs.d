@@ -73,7 +73,6 @@
 
        (shadow                              "#aaaaaa")
 
-       (org-date-col                        "#2C78BF")
        (org-level-1                         (cond (gl/light "#000000") (gl/colours "#75507B") (t "#A1A1A1"))) ;; was FG
        (org-level-2                         (cond (gl/light "#333333") (gl/colours "#C4A000") (t "#929292")))
        (org-level-3                         (cond (gl/light "#696969") (gl/colours "#729FCF") (t "#838383")))
@@ -90,9 +89,7 @@
 
 
 
-       (org-date                            (cond (gl/light   org-date-col)
-                                                  (gl/colours org-date-col)
-                                                  (t          "#00FFFF")))
+       (org-date                            "#2C78BF") ;; was cyan for grey
        (org-special-keyword                 "#729FCF")
        (org-priority                        "#729FCF")
        (org-todo-term                       (if gl/colours "brightmagenta" "#d70000")) ;; had (is_ssh) constraint
@@ -213,8 +210,7 @@
    `(org-level-6                         ((t (:foreground ,org-level-6 :bold ,org-level-6-bold))))
    `(org-level-7                         ((t (:foreground ,org-level-7 :bold ,org-level-7-bold))))
    `(org-level-8                         ((t (:foreground ,org-level-8 :bold ,org-level-8-bold))))
-   `(org-date                            ((((type tty)) (:foreground ,org-date-col))
-                                          (t (:foreground ,org-date))))
+   `(org-date                            ((t (:foreground ,org-date))))
    `(org-todo                            ((((type tty)) (:foreground ,org-todo-term :bold t))
                                           (t            (:foreground ,org-todo :bold t))))
    `(org-done                            ((((type tty)) (:foreground ,org-done-term :bold t))

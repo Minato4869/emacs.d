@@ -1,9 +1,10 @@
 ;;; external packages
 ;; == elscreen
 (use-package elscreen
-  :if (my_daemonp)
+  :if (daemonp)
   :ensure t
   :defer  t
+  :init (elscreen-start)
   :config
   (setq elscreen-prefix-key "\M-s")
   (if (= (length (getenv "SSH_CONNECTION")) 0)
@@ -45,8 +46,6 @@
         ("h"       . split-window-horizontally)
         ("v"       . split-window-veritcally)
         ))
-(when (my_daemonp)
-  (elscreen-start))
 
 ;; == yas
 (use-package yasnippet

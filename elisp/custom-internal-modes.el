@@ -54,7 +54,8 @@
             "-laFH --group-directories-first")
     (setq dired-listing-switches "-laFH"))
   (setq dired-omit-verbose nil
-        dired-omit-mode t)
+        dired-omit-mode t
+        dired-auto-revert-buffer t)
 
   (defun cdired/x-mode-setup ()
     (font-lock-mode t)

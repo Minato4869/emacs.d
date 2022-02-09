@@ -56,6 +56,7 @@
  '(show-paren-mode t)
  '(show-paren-delay 0) ;; immediately show parens
  '(mouse-autoselect-window t)
+ '(electric-indent-mode t)
  '(xterm-mouse-mode 0)
  '(mouse-yank-at-point t)
  '(savehist-mode 1)
@@ -70,7 +71,7 @@
  '(custom-file "~/.emacs.d/.custom.el")
  '(line-move-visual t)
  '(default-frame-alist '((width . 80) (height . 57)))
- '(initial-frame-alist '((width . 80) (height . 57)))
+ '(initial-frame-alist default-frame-alist)
  )
 
 (defun my_daemonp()
@@ -131,7 +132,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-external-modes")
 
 (load-library-wrap-error "custom-terminal-mode")
-;;(load-library-wrap-error "custom-frame")
+(load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-theme")
 (load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-aliases")

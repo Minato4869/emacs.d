@@ -8,10 +8,14 @@
 
 (defun my/after-make-frame (frame)
 	(with-selected-frame frame
-		(when (is_tmux)
-			(set-tmux-keys))))
+		(when (daemonp)
+			(elscreen-start)
+	    (elscreen-create)
+			(Journal)
+			(elscreen-create)
+			)))
 (remove-hook 'after-make-frame-functions 'my/after-make-frame t)
-(add-hook    'after-make-frame-functions 'my/after-make-frame)
+;;(add-hook    'after-make-frame-functions 'my/after-make-frame)
 
 (when (my_daemonp)
 	(defun my/after-delete-frame (frame)
@@ -30,12 +34,11 @@
 (display-time-mode t)
 ;;(display-battery-mode t)
 
-(when (is_tmux)
-	(defadvice terminal-init-screen
-			;; The advice is named `tmux', and is run before `terminal-init-screen' runs.
-			(before tmux activate)
-		;; Docstring.  This describes the advice and is made available inside emacs;
-		;; for example when doing C-h f terminal-init-screen RET
-		"Apply xterm keymap, allowing use of keys passed through tmux."
-		;; This is the elisp code that is run before `terminal-init-screen'.
-		(set-tmux-keys)))
+(defadvice terminal-init-screen
+		;; The advice is named `tmux', and is run before `terminal-init-screen' runs.
+		(before tmux activate)
+	;; Docstring.  This describes the advice and is made available inside emacs;
+	;; for example when doing C-h f terminal-init-screen RET
+	"Apply xterm keymap, allowing use of keys passed through tmux."
+	;; This is the elisp code that is run before `terminal-init-screen'.
+	(set-tmux-keys))

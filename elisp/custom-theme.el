@@ -3,13 +3,6 @@
 
 (defvar gl/light nil
   "Variable used to toggle between dark (grey or black) and light theme")
-;;(defun my-disable-font-lock-mode ()
-;;  (if  (or (equal major-mode 'org-mode)
-;;           (equal major-mode 'dired-mode)
-;;           (equal major-mode 'diff-mode)
-;;           (equal major-mode 'org-mode))
-;;      (font-lock-mode t)
-;;    (font-lock-mode -1)))
 
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
@@ -38,14 +31,13 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
-(when (and (display-graphic-p) (not (daemonp)))
-  (setq gl/colors nil)
-  (setq gl/light  t))
+;;(when (and (display-graphic-p) (not (daemonp)))
+;;  (setq gl/colors nil
+;;        gl/light  t))
 
 (load-theme 'gl-dark t)
 
-;;(unless gl/colours
-;;  (global-font-lock-mode 0))
+;;(unless gl/colours (global-font-lock-mode 0))
 
 (bind-keys
  ("<f2>"   . cycle-theme)
