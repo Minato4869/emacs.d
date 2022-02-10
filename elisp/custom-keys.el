@@ -4,24 +4,16 @@
 ;; disabled keybinds
 ;;(global-unset-key (kbd "<f1>"))
 ;;(global-unset-key (kbd "<f2>"))
-(global-unset-key (kbd "<f11>"))
-(global-unset-key (kbd "<insert>"))
-(global-unset-key (kbd "<insertchar>"))
-(global-unset-key (kbd "C-z"))
 (dolist (key '("C-9" "C-8" "C-7" "C-6" "C-5" "C-4" "C-3" "C-2" "C-1" "C-0"
                "C-M-9" "C-M-8" "C-M-7" "C-M-6" "C-M-5" "C-M-4" "C-M-3" "C-M-2"
-               "C-M-1" "C-M-0" "M-9" "M-8" "M-7" "M-6" "M-5" "M-4" "M-3" "M-2" "M-1" "M-0"))
+               "C-M-1" "C-M-0"
+               "M-9" "M-8" "M-7" "M-6" "M-5" "M-4" "M-3" "M-2" "M-1" "M-0" ;; digit arguments
+               "M-k" "<C-mouse-1>" "<C-mouse-3>" "<C-mouse-5>" "<C-mouse-4>"
+               "C-z" "C-x C-z" "C-x m" "C--" "C-x DEL"
+               "<f11>" "<insert>" "<insertchar>"
+               ))
   (global-unset-key (kbd key))) ;; unbind digit arguments
-(global-unset-key (kbd "M-k"))
-(global-unset-key (kbd "<C-mouse-1>"))
-(global-unset-key (kbd "<C-mouse-3>"))
-(global-unset-key (kbd "<C-mouse-5>"))
-(global-unset-key (kbd "<C-mouse-4>"))
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-x C-z"))
-(global-unset-key (kbd "C-x m"))
-(global-unset-key (kbd "C--"))
-(global-unset-key (kbd "C-x DEL111111111"))
+
 
 ;; custom region
 (defconst custom-region-alist
@@ -116,13 +108,13 @@
  ("C-x m"     . pop-to-mark-command)
  ("C-x C-m"   . pop-to-mark-command)
  ("M-o"       . other-window)
- ("C-h"       . backward-delete-char-untabify))
+ ("C-h"       . backward-delete-char-untabify)
+ ("C-a"       . beginning-or-prev-line)
+ ("C-e"       . end-or-next-line)
+ ("M-g"       . my-goto-line))
 
 ;; custom keys
 (bind-keys
- ("C-a"       . beginning-or-prev-line)
- ("C-e"       . end-or-next-line)
- ("M-g"       . my-goto-line)
  ("C-c h"     . help)
  ;; editing
  ("C-c 5"     . query-replace-regexp)
@@ -162,6 +154,7 @@
  ("M-2"       . split-window-below)
  ("M-3"       . split-window-right)
  ("M-4"       . make-frame-command)
+ ("M-0"       . delete-window)
  ("C-x 4"     . make-frame-command)
  ("C-0"       . balance-windows)
  ("C--"       . shrink-window)
@@ -187,21 +180,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
-(when (or (daemonp) (display-graphic-p))
+(when (my_daemonp)
   ;; custom functions
-
- (defun yank-primary ()
-   "Yank primary selection."
-   (interactive)
-   (insert (gui-get-primary-selection)))
-(defun kill-ring-save-primary ()
-  (interactive)
-  (deactivate-mark)
-  (gui-set-selection
-   'PRIMARY
-   (replace-regexp-in-string "[\s\n]" "" (buffer-substring
-                                          (region-beginning) (region-end)))))
-(bind-keys
+  (defun yank-primary ()
+    "Yank primary selection."
+    (interactive)
+    (insert (gui-get-primary-selection)))
+  (defun kill-ring-save-primary ()
+    (interactive)
+    (deactivate-mark)
+    (gui-set-selection
+     'PRIMARY
+     (replace-regexp-in-string "[\s\n]" "" (buffer-substring
+                                            (region-beginning) (region-end)))))
+  (bind-keys
    ("C-M-y"           . yank-primary)
    ("C-M-w"           . kill-ring-save-primary)
    ("<insert>"        . yank-primary)
@@ -211,8 +203,7 @@
    ("s-b"   . buffer-menu)
    ("s--"   . text-scale-decrease)
    ("s-="   . text-scale-increase)
-   ("s-0"   . text-scale-reset)
-  ))
+   ("s-0"   . text-scale-reset)))
 
 ;; == mode maps
 

@@ -3,26 +3,20 @@
 (use-package elscreen
   :if (daemonp)
   :ensure t
-  :defer  t
-  :init (elscreen-start)
+  :defer  nil
   :config
-  (setq elscreen-prefix-key "\M-s")
-  (if (= (length (getenv "SSH_CONNECTION")) 0)
-      (custom-set-variables
-       '(elscreen-display-screen-number nil)
-       '(elscreen-tab-display-kill-screen nil))
-    (custom-set-variables
-     '(elscreen-display-tab nil)
-     '(elscreen-display-screen-number t)))
-  (defun elscreen-kill-confirm ()
+  (setq-default elscreen-prefix-key "\M-s")
+  (defun elscreen-kill-window-then-screen ()
     (interactive)
-    (when (y-or-n-p "Kill current screen? ")
-      (elscreen-kill)))
+    (if (one-window-p)
+        (elscreen-kill)
+      (delete-window)))
   (defun elscreen-kill-buffer-and-screen ()
     (interactive)
     (when (y-or-n-p "Kill current buffer and close screen? ")
       (kill-current-buffer)
       (elscreen-kill)))
+  (elscreen-start)
   :bind*
   (("M-<left>"     . elscreen-previous)
    ("M-<right>"    . elscreen-next)
@@ -39,7 +33,7 @@
         ("r"       . elscreen-screen-nickname)
         ("s"       . elscreen-swap)
         ("k"       . elscreen-kill)
-        ("x"       . elscreen-kill)
+        ("x"       . elscreen-kill-window-then-screen)
         ("M-k"     . elscreen-kill-buffer-and-screen)
         ("g"       . elscreen-goto)
         ("t"       . elscreen-toggle-display-tab)
@@ -70,14 +64,6 @@
   :defer t
   :init
   (defalias 'bkr 'browse-kill-ring))
-
-;; == haskell-mode
-(use-package haskell-mode
-  :ensure t
-  :defer t
-  :init
-  (add-hook 'haskell-mode-hook
-            (lambda () (cedit/indent-conf 2 nil nil 80))))
 
 (use-package magit
   :if (my_daemonp)
@@ -159,3 +145,4 @@
 (use-package wgrep                :ensure t :defer t)
 (use-package so-long              :ensure t :defer t)
 (use-package rainbow-delimiters   :ensure t :defer t)
+(use-package haskell-mode         :ensure t :defer t)

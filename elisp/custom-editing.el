@@ -5,6 +5,12 @@
 (put 'kmacro-end-call-mouse  'disabled t)
 (put 'overwrite-mode         'disabled t)
 
+(put 'org-archive-set-tag                           'disabled t)
+(put 'org-archive-subtree                           'disabled t)
+(put 'org-archive-subtree-default                   'disabled t)
+(put 'org-archive-subtree-default-with-confirmation 'disabled t)
+(put 'org-archive-to-archive-sibling                'disabled t)
+
 ;; enable modes
 (put 'upcase-region             'disabled nil)
 (put 'scroll-left               'disabled nil)
@@ -27,7 +33,6 @@
 
 ;; region
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 
 (defun cedit/indent-code (offset tabs fc &optional nofill stdi)
   (setq c-basic-offset offset
@@ -66,7 +71,7 @@
 (add-hook 'sql-mode-hook            (lambda () (cedit/indent-code 4 nil 120 t)))
 (add-hook 'html-mode-hook           (lambda () (cedit/indent-code 4 nil 120 t)))
 (add-hook 'python-mode-hook         (lambda () (cedit/indent-code 4 nil  80)
-                                      (setq python-indent 4)))
+                                               (setq python-indent 4)))
 (add-hook 'conf-space-mode-hook     (lambda () (cedit/indent-code 4 nil  80)))
 (add-hook 'conf-mode-hook           (lambda () (cedit/indent-code 4 nil  80)))
 (add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent-code 4 nil  80)))
@@ -77,9 +82,14 @@
 (add-hook 'makefile-mode-hook       (lambda () (cedit/indent-code 4 t 80)))
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80)))
 (add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 70 nil 2)
-                                      (setq ispell-dictionary "de_AT")
-                                      (mail-text)))
-(add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil 80 nil 2)))
+                                               (setq ispell-dictionary "de_AT")
+                                               (mail-text)))
+(add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil  80 nil 2)))
+(add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 120 t   2)))
+;; external modes
+(add-hook 'haskell-mode-hook        (lambda () (cedit/indent-code 2 nil 80 t)))
+
+
 (defun guess-tab-settings ()
   (save-excursion
     (goto-char (point-min))

@@ -17,7 +17,8 @@
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal
                             :foundry "PfEd" :family ,family)))))
-   (setq default-frame-alist `((font . ,myfont)))
+   (setq default-frame-alist `((font . ,myfont))
+         initial-frame-alist default-frame-alist)
    (set-frame-font myfont nil t)
    ))
 
@@ -29,7 +30,8 @@
                  ((or t (string= arg "6x13"))
                   "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))))
     (set-face-attribute 'default t :font myfont)
-    (setq default-frame-alist `((font . ,myfont)))
+    (setq default-frame-alist `((font . ,myfont))
+          initial-frame-alist default-frame-alist)
     (set-frame-font myfont nil t)))
 
 (defun default-font ()
@@ -53,4 +55,5 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-(default-font)
+(unless (file-directory-p "~/.Xresources")
+  (default-font))
