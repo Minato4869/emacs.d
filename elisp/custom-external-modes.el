@@ -108,9 +108,6 @@
     :if (file-directory-p mupath)
     :ensure nil
     :defer nil
-    :init
-    (add-to-list 'load-path mupath)
-    (load-library "mu4e")
     :config
     (setq mail-user-agent 'mu4e-user-agent
           mu4e-sent-folder   "/Sent"
@@ -129,8 +126,10 @@
      )
     )
   (defalias 'mail 'mu4e)
-  (defalias 'mu   'mu4e))
-
+  (defalias 'mu   'mu4e)
+  (when (daemonp)
+    (add-to-list 'load-path mupath)
+    (load-library "mu4e")))
 ;; ==ripgrep
 (use-package rg
   :ensure t
