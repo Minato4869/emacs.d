@@ -106,7 +106,7 @@
        (org-agenda-clocking                 "#4A708B")
        (org-block-delim                     (if gl/colours "#CC0000" FG))
        (org-latex-and-related               "#DEB887")
-       (org-table                           "#87CEFA")
+       (org-table                           (if gl/light "#000000" "#87CEFA"))
 
        (completions-common-part             (cond
                                              (gl/light   "#121212")
@@ -128,7 +128,7 @@
        (elscreen-tab-current-screen-face-fg  (if gl/light mode-line-bg "#E5E5E5"))
 
        (dired-header                         (if gl/colours "#4E9A06" "#98fb98"))
-       (dired-directory                      (if gl/colours "#4286F4" "#87CEFA"))
+       (dired-directory                      (cond (gl/light "#114488") (gl/colours "#4286F4") (t "#87CEFA")))
        (dired-symlink                        (if gl/colours "#75507B" "#1E90FF"))
        (Man-overstrike                       (if gl/colours "#FF0000" FG))
        (Man-underline                        (if gl/colours "#00FF00" "#4286F4"))

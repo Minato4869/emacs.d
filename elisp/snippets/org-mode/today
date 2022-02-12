@@ -4,5 +4,5 @@
 # --
 ** `(format-time-string "<%Y-%m-%d %a>")` $0
 *** personal
-calories
+calories$0
 *** work

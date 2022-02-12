@@ -30,7 +30,6 @@
  '(use-dialog-box nil)
  '(default-input-method "rfc1345")
  '(require-final-newline t)
- '(auto-fill-function 'do-auto-fill)
  '(auto-fill-mode -1)
  '(fill-column 80)
  '(show-trailing-whitespace nil)

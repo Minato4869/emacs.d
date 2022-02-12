@@ -11,6 +11,10 @@
     (if (one-window-p)
         (elscreen-kill)
       (delete-window)))
+  (custom-set-variables
+   '(elscreen-tab-display-kill-screen nil)
+  '(elscreen-display-tab t)
+  '(elscreen-display-screen-number nil))
   (defun elscreen-kill-buffer-and-screen ()
     (interactive)
     (when (y-or-n-p "Kill current buffer and close screen? ")
