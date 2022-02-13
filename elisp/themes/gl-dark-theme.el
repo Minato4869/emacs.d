@@ -185,14 +185,14 @@
    `(ido-subdir                          ((t (:foreground ,ido-subdir))))
    `(ido-only-match                      ((t (:foreground ,ido-only-match))))
    `(ido-fist-match                      ((((type tty)) ( :foreground ,FG-term :bold t :underline t))
-                                         (t (:foreground ,ido-first-match :bold t :underline t))))
+                                          (t (:foreground ,ido-first-match :bold t :underline t))))
    `(ido-incomplete-regexp               ((t (:inherit default))))
    `(ido-indicator                       ((t (:inherit default))))
    `(sh-quoted-exec                      ((t (:inherit default :foreground ,sh-quoted-exec))))
    `(sh-heredoc                          ((t (:inherit default :foreground ,sh-heredoc
                                                        :bold ,sh-heredoc-bold))))
 
-   `(italic                              ((t (:inherit italic :underline nil))))
+   `(italic                              ((t (:slant italic :underline nil))))
 
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
