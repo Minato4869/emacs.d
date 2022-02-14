@@ -31,11 +31,15 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
-;;(when (and (display-graphic-p) (not (daemonp)))
-;;  (setq gl/colors nil
-;;        gl/light  t))
 
 (load-theme 'gl-dark t)
+
+(when (and (display-graphic-p) (not (daemonp)))
+  (set-background-color "#000000")
+  (set-curso-rbcolor "#DB0600")
+  ;;(setq gl/colors nil
+  ;;        gl/light  t)
+  )
 
 ;;(unless gl/colours (global-font-lock-mode 0))
 
