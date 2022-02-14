@@ -36,7 +36,7 @@
 
 (when (and (display-graphic-p) (not (daemonp)))
   (set-background-color "#000000")
-  (set-curso-rbcolor "#DB0600")
+  (set-cursor-color "#DB0600")
   ;;(setq gl/colors nil
   ;;        gl/light  t)
   )
