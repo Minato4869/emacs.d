@@ -31,12 +31,12 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
-(if (or (my_daemonp) (is_ssh))
+;;(if (or (my_daemonp) (is_ssh))
     (load-theme 'gl-dark t)
-  (progn
-    (custom-set-faces
-     `(region                       ((t (:background "blue" :extend t)))))
-  (global-font-lock-mode 0)))
+;;  (progn
+;;    (custom-set-faces
+;;     `(region                       ((t (:background "blue" :extend t)))))
+;;  (global-font-lock-mode 0)))
 
 ;;(unless gl/colours (global-font-lock-mode 0))
 
