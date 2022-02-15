@@ -85,7 +85,7 @@
                                                (setq ispell-dictionary "de_AT")
                                                (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil  80 nil 2)))
-(add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 120 t   2)))
+(add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 80 t   2)))
 ;; external modes
 (add-hook 'haskell-mode-hook        (lambda () (cedit/indent-code 2 nil 80 t)))
 

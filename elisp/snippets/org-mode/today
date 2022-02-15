@@ -2,7 +2,7 @@
 # name: today
 # key: today
 # --
-** `(format-time-string "<%Y-%m-%d %a>")` $0
+** `(format-time-string "<%Y-%m-%d %a>")`
 *** personal
 calories$0
 *** work

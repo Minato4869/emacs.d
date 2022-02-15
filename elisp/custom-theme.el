@@ -31,15 +31,12 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
-
-(load-theme 'gl-dark t)
-
-(when (and (display-graphic-p) (not (daemonp)))
-  (set-background-color "#000000")
-  (set-cursor-color "#DB0600")
-  ;;(setq gl/colors nil
-  ;;        gl/light  t)
-  )
+(if (or (my_daemonp) (is_ssh))
+    (load-theme 'gl-dark t)
+  (progn
+    (custom-set-faces
+     `(region                       ((t (:background "blue" :extend t)))))
+  (global-font-lock-mode 0)))
 
 ;;(unless gl/colours (global-font-lock-mode 0))
 

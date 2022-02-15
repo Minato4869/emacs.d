@@ -5,15 +5,16 @@
 (let* ((BG-term                             (cond
                                              ((is_ssh)    "color-233")
                                              (gl/colours  "color-16")
-                                             (t           "unspecified-bg")));; was 234; then 236
+                                             ((daemonp)   "color-236")
+                                             (t           "unspecified-bg")))
        (FG-term                             (cond
                                              ((is_ssh)   "color-249")
-                                             (gl/colours  "color-250") ; was t
-                                             (t           "unspecified-fg")));; was 234; then 254
-       (BG                                  (cond (gl/light      "#D9D5BA")
-                                                  ((or gl/colours
-                                                       (daemonp) "#000000"))
-                                                  (t             "#333333")))
+                                             (gl/colours  "color-250")
+                                             ((daemonp)   "color-254")
+                                             (t           "unspecified-fg")))
+       (BG                                  (cond (gl/light                 "#D9D5BA")
+                                                  ((or gl/colours (not (daemonp))) "#000000")
+                                                  (t                        "#333333")))
        (FG                                  (cond (gl/light   "#444444")
                                                   (gl/colours "#BEBEBE")
                                                   (t          "#E5E5E5")))

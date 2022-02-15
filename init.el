@@ -133,7 +133,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-terminal-mode")
 (load-library-wrap-error "custom-frame")
 (load-library-wrap-error "custom-theme")
-(load-library-wrap-error "custom-colours")
+;;(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-aliases")
 
 (when (daemonp)
