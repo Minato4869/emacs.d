@@ -12,7 +12,7 @@
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
 (add-hook 'eshell-mode-hook  'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
-
+(when (my_daemonp)
 (defun cycle-theme ()
   (interactive)
   (setq gl/light nil)
@@ -30,16 +30,12 @@
       (setq gl/light nil)
     (setq gl/light t))
   (load-theme 'gl-dark t))
-
-;;(if (or (my_daemonp) (is_ssh))
-    (load-theme 'gl-dark t)
-;;  (progn
-;;    (custom-set-faces
-;;     `(region                       ((t (:background "blue" :extend t)))))
-;;  (global-font-lock-mode 0)))
-
-;;(unless gl/colours (global-font-lock-mode 0))
-
 (bind-keys
  ("<f2>"   . cycle-theme)
- ("M-<f2>" . cycle-light-theme))
+ ("M-<f2>" . cycle-light-theme)))
+
+
+(load-theme 'gl-dark t)
+(unless (or (my_daemonp) (is_ssh))
+  (global-font-lock-mode 0))
+;;(unless gl/colours (global-font-lock-mode 0))

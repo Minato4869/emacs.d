@@ -10,12 +10,11 @@
 	(with-selected-frame frame
 		(when (daemonp)
 			(elscreen-start)
-	    (elscreen-create)
 			(Journal)
 			(elscreen-create)
 			)))
 (remove-hook 'after-make-frame-functions 'my/after-make-frame t)
-;;(add-hook    'after-make-frame-functions 'my/after-make-frame)
+(add-hook    'after-make-frame-functions 'my/after-make-frame)
 
 (when (my_daemonp)
 	(defun my/after-delete-frame (frame)

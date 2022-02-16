@@ -56,7 +56,7 @@
  '(show-paren-delay 0) ;; immediately show parens
  '(mouse-autoselect-window t)
  '(electric-indent-mode t)
- '(xterm-mouse-mode 0)
+ '(xterm-mouse-mode nil)
  '(mouse-yank-at-point t)
  '(savehist-mode 1)
  '(transient-mark-mode t)
