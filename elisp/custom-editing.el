@@ -81,7 +81,7 @@
 
 (add-hook 'makefile-mode-hook       (lambda () (cedit/indent-code 4 t 80)))
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80)))
-(add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 70 nil 2)
+(add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 72 nil 2)
                                                (setq ispell-dictionary "de_AT")
                                                (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil  80 nil 2)))
