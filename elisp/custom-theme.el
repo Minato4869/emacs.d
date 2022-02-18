@@ -30,12 +30,17 @@
       (setq gl/light nil)
     (setq gl/light t))
   (load-theme 'gl-dark t))
+
 (bind-keys
  ("<f2>"   . cycle-theme)
  ("M-<f2>" . cycle-light-theme)))
 
 
+(unless (daemonp)
+  (if (display-graphic-p)
+      (setq gl/light t)
+    (global-font-lock-mode 0)))
+
 (load-theme 'gl-dark t)
-(unless (or (my_daemonp) (is_ssh))
-  (global-font-lock-mode 0))
+
 ;;(unless gl/colours (global-font-lock-mode 0))

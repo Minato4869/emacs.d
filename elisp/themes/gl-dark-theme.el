@@ -12,22 +12,23 @@
                                              (gl/colours  "color-250")
                                              ((daemonp)   "color-254")
                                              (t           "unspecified-fg")))
-       (BG                                  (cond (gl/light   "#D9D5BA")
+       (BG                                  (cond (gl/light   "#FFFFFF")
                                                   (gl/colours "#000000")
                                                   ((daemonp)  "#333333")
                                                   (t          "#1c1c1c")))
-       (FG                                  (cond (gl/light   "#444444")
+       (FG                                  (cond (gl/light   "#000000" )
                                                   (gl/colours "#BEBEBE")
                                                   (t          "#E5E5E5")))
-       (cursor-bg                           (cond (gl/light   "#4286F4")
-                                                  (gl/colours "#DB0600") ;; was ff0000
+       (cursor-bg                           (cond ;; (gl/light   "#4286F4")
+                                                  ((or gl/light gl/colours) "#ff0000") ;; was DB0600
                                                   (t          "#00FF00")))
        (cursor-fg                           (if gl/light BG  "#000000"))
        (border                              "#0000FF")
-       (fringe                              (if gl/light "#d9d5c6" "#1A1A1A")) ;; was 121212 for colours and 1a... for grey
+       (fringe                              (if gl/light "#f2f2f2" "#1A1A1A")) ;; was 121212 for colours and 1a... for grey
 
-       (mode-line-bg                         (if gl/light "#D3B58D" "#292929"))
-       (mode-line-fg                         (if gl/light "#072626" FG))
+       (mode-line-bg                         (if gl/light "#bfbfbf" "#292929"))
+       (mode-line-fg                         (if gl/light "#000000" FG))
+       (mode-line-box                        (if gl/light '(:line-width -1 :style released-button) nil))
        (mode-line-inactive-fg                (if gl/light "#4D4D4D" "#CCCCCC"))
        (mode-line-inactive-bg                (if gl/light "#CCCCCC" "#4D4D4D"))
        (mode-line-inactive-box               "#666666")
@@ -156,7 +157,9 @@
 
    `(mode-line                           ((((type tty)) (:background ,mode-line-bg-term :foreground ,mode-line-fg-term
                                                                      :bold ,mode-line-bold-term))
-                                          (t            (:background ,mode-line-bg :foreground ,mode-line-fg))))
+                                          (t            (:background ,mode-line-bg :foreground ,mode-line-fg
+                                                                     :box ,mode-line-box
+                                                                     ))))
    `(mode-line-inactive                  ((((type tty)) (:background ,mode-line-inactive-bg-term
                                                                      :foreground ,mode-line-inactive-fg-term))
                                           (t (:background ,mode-line-inactive-bg :foreground ,mode-line-inactive-fg
