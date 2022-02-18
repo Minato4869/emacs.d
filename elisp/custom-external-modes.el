@@ -95,7 +95,7 @@
                   "/usr/local/share/emacs/site-lisp/mu4e"
                 "/usr/eshare/emacs/site-lisp/mu4e")))
   (use-package mu4e
-    :if (file-directory-p mupath)
+    :if (and (file-directory-p mupath) (daemonp))
     :ensure nil
     :defer nil
     :config
