@@ -5,12 +5,12 @@
   (let* ((ttfh (cond ((= dpi 109) 76)
                      ((= dpi 125) 69)
                      ((= dpi 131) 75)
-                     ((= dpi 157) 73) ;; was 74
+                     ((= dpi 157) 63) ;; was 74
                      (t           70)))
          (xfth (cond  ((= dpi 109) 7.6)
                       ((= dpi 125) 6.9)
                       ((= dpi 131) 7.5)
-                      ((= dpi 157) 7.4)
+                      ((= dpi 157) 6.4)
                      (t            7.0)))
          (family     "Meslo LG S")
          (myfont     (concat family "-" (number-to-string xfth))))
