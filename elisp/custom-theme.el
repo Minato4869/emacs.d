@@ -1,9 +1,13 @@
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes/old")
+
 (defvar gl/colours nil
   "Variable used to toggle gl-dark theme between standard and mono grey")
 
 (defvar gl/light nil
   "Variable used to toggle between dark (grey or black) and light theme")
-
+(setq gl/colours nil
+      gl/light   nil)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'magit-mode-hook   'turn-on-font-lock)
@@ -18,10 +22,8 @@
   (setq gl/light nil)
   (load-theme 'gl-dark t)
   (if gl/colours
-      (progn
-        (setq gl/colours nil))
-    (progn
-      (setq gl/colours t))))
+      (setq gl/colours nil)
+      (setq gl/colours t)))
 
 (defun cycle-light-theme ()
   (interactive)
@@ -31,9 +33,23 @@
     (setq gl/light t))
   (load-theme 'gl-dark t))
 
+(defadvice load-theme (before theme-dont-propagate activate)
+  "Disable theme before loading new one."
+  (mapc #'disable-theme custom-enabled-themes))
+
+(setq custom-theme-index 0)
+(defun cycle-themes ()
+  (interactive)
+  (let ((custom-themes '(gl-dark naysayer-grey naysayer nord srcery warm-night xcode-dark)))
+    (setq custom-theme-index (% (1+ custom-theme-index) (length custom-themes)))
+    (load-theme (nth custom-theme-index custom-themes) :no-confirm)))
+
+
+
 (bind-keys
  ("<f2>"   . cycle-theme)
- ("M-<f2>" . cycle-light-theme)))
+ ("M-<f2>" . cycle-light-theme)
+ ("C-<f2>" . cycle-themes)))
 
 
 (unless (daemonp)

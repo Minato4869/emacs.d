@@ -34,13 +34,13 @@
 ;; region
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(defun cedit/indent-code (offset tabs fc &optional nofill stdi)
+(defun cedit/indent-code (offset tabs fc &optional fill stdi)
   (setq c-basic-offset offset
         tab-width offset
         standard-indent offset
         indent-tabs-mode tabs
         fill-column fc)
-  (unless nofill  (turn-on-auto-fill))
+  (when fill      (turn-on-auto-fill))
   (when stdi      (setq standard-indent stdi)))
 
 (defun cedit/indent-text ()
@@ -66,26 +66,26 @@
 (add-hook 'latex-mode-hook          (lambda () (cedit/indent-latex)))
 (add-hook 'plain-TeX-mode-hook      (lambda () (cedit/indent-latex)))
 
-(add-hook 'java-mode-hook           (lambda () (cedit/indent-code 4 t   100)))
-(add-hook 'make-mode-hook           (lambda () (cedit/indent-code 4 t    80)))
-(add-hook 'sql-mode-hook            (lambda () (cedit/indent-code 4 nil 120 t)))
-(add-hook 'html-mode-hook           (lambda () (cedit/indent-code 4 nil 120 t)))
-(add-hook 'python-mode-hook         (lambda () (cedit/indent-code 4 nil  80)
+(add-hook 'java-mode-hook           (lambda () (cedit/indent-code 4 t   100 t)))
+(add-hook 'make-mode-hook           (lambda () (cedit/indent-code 4 t    80 t)))
+(add-hook 'sql-mode-hook            (lambda () (cedit/indent-code 4 nil 120)))
+(add-hook 'html-mode-hook           (lambda () (cedit/indent-code 4 nil 120)))
+(add-hook 'python-mode-hook         (lambda () (cedit/indent-code 4 nil  80 t)
                                                (setq python-indent 4)))
 (add-hook 'conf-space-mode-hook     (lambda () (cedit/indent-code 4 nil  80)))
 (add-hook 'conf-mode-hook           (lambda () (cedit/indent-code 4 nil  80)))
 (add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent-code 4 nil  80)))
 
-(add-hook 'sh-mode-hook             (lambda () (cedit/sh-indent)))
-(add-hook 'shell-script-mode-hook   (lambda () (cedit/sh-indent)))
+(add-hook 'sh-mode-hook             (lambda () (cedit/sh-indent t)))
+(add-hook 'shell-script-mode-hook   (lambda () (cedit/sh-indent t)))
 
-(add-hook 'makefile-mode-hook       (lambda () (cedit/indent-code 4 t 80)))
-(add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80)))
+(add-hook 'makefile-mode-hook       (lambda () (cedit/indent-code 4 t 80 t)))
+(add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80 t)))
 (add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 72 nil 2)
                                                (setq ispell-dictionary "de_AT")
                                                (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil  80 nil 2)))
-(add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 80 t   2)))
+(add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 80  nil 2)))
 ;; external modes
 (add-hook 'haskell-mode-hook        (lambda () (cedit/indent-code 2 nil 80 t)))
 

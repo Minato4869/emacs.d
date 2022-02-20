@@ -39,7 +39,7 @@
 (bind-keys*
  ("C-c <return>"   . run-term)
  ("C-c RET"        . run-term)
- ("C-c C-<return>" . run-beamer-term)
+ ("C-c <C-return>" . run-beamer-term)
  ("C-x C-<return>" . run-local-term))
 
 (defalias 'bterm     'beamer-term)

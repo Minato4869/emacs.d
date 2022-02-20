@@ -14,10 +14,9 @@
                                              (t           "unspecified-fg")))
        (BG                                  (cond (gl/light   "#FFFFFF")
                                                   (gl/colours "#000000")
-                                                  ((daemonp)  "#333333")
-                                                  (t          "#1c1c1c")))
+                                                  (t           "#333333")))
        (FG                                  (cond (gl/light   "#000000" )
-                                                  ;;(gl/colours "#BEBEBE")
+                                                  (gl/colours "#BEBEBE")
                                                   (t          "#E5E5E5")))
        (cursor-bg                           (cond ;; (gl/light   "#4286F4")
                                                   ((or gl/light gl/colours) "#ff0000") ;; was DB0600
