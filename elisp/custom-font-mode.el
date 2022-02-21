@@ -13,6 +13,7 @@
                       ((= dpi 157) 6.4)
                      (t            7.0)))
          (family     "Meslo LG S")
+         ;;(family     "Deja Vu Sans Mono")
          (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal

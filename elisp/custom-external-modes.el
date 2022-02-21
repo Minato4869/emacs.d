@@ -1,7 +1,6 @@
 ;;; external packages
 ;; == elscreen
 (use-package elscreen
-  :if (daemonp)
   :ensure t
   :defer  nil
   :config
@@ -20,7 +19,8 @@
     (when (y-or-n-p "Kill current buffer and close screen? ")
       (kill-current-buffer)
       (elscreen-kill)))
-  (elscreen-start)
+  (when (daemonp)
+    (elscreen-start))
   :bind*
   (("M-<left>"     . elscreen-previous)
    ("M-<right>"    . elscreen-next)
