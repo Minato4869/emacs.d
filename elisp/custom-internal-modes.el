@@ -151,7 +151,8 @@
           org-src-preserve-indentation t
           org-adapt-indentation nil
           org-src-content-indentation 0
-          org-startup-folded t)
+          org-startup-folded t
+          org-log-done 'time)
     (setq org-todo-keywords
           '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
             (sequence "VIABLE" "|" "INVIABLE")
