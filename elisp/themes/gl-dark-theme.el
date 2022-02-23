@@ -3,7 +3,7 @@
 
 (let* ((default-term                        (cond ((is_ssh)   '(:background "color-233"      :foreground "color-249"))
                                                  (gl/light   '(:background "color-16"       :foreground "color-250"))
-                                                 (gl/colours '(:background "color-236"      :foreground "color-254"))
+                                                 ((daemonp)  '(:background "color-236"      :foreground "color-254"))
                                                  (t          '(:background "unspecified-bg" :foreground "unspecified-fg"))))
        (default                             (cond (gl/light   '(:background "#FFFFFF" :foreground "#000000"))
                                                   (gl/colours '(:background "#000000" :foreground "#BEBEBE"))
@@ -13,10 +13,9 @@
                                                   (t          '(:background "#00ff00" :foreground "#000000"))))
        (fringe                              (if gl/light "#f2f2f2" "#1A1A1A"))
        (mode-line                           (if gl/light '(:background "#bfbfbf" :foreground  "#292929" :box (:line-width -1 :style released-button))
-                                                         '(:background "292929" :inherit default)))
-       (mode-line-inactive-box               '(:line-width -1 :color "#666666" :style nil))
-       (mode-line-inactive                   (if gl/light '(:background "#4D4D4D" :foreground "#CCCCCC" :box ,mode-line-inactive-box)
-                                               '(:background "#CCCCCC" :foreground "#4d4d4d" :box ,mode-line-inactive-box)))
+                                              '(:background "#292929" :inherit default)))
+       (mode-line-inactive                   (if gl/light '(:background "#CCCCCC" :foreground "#4D4D4D" :box (:line-width -1 :color "#666666" :style nil))
+                                                          '(:background "#4D4D4D" :foreground "#CCCCCC" :box (:line-width -1 :color "#666666" :style nil))))
 
        (mode-line-term                     (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
                                                         '(:background "color-235" :foreground "color-250")))

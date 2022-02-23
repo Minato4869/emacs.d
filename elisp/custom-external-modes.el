@@ -95,7 +95,7 @@
                   "/usr/local/share/emacs/site-lisp/mu4e"
                 "/usr/eshare/emacs/site-lisp/mu4e")))
   (use-package mu4e
-    :if (and (file-directory-p mupath) (daemonp))
+    ;;    :if (and (file-directory-p mupath) (daemonp))
     :ensure nil
     :defer nil
     :config
@@ -117,7 +117,7 @@
     )
   (defalias 'mail 'mu4e)
   (defalias 'mu   'mu4e)
-  (when (daemonp)
+  (when (my_daemonp)
     (add-to-list 'load-path mupath)
     (load-library "mu4e")))
 ;; ==ripgrep

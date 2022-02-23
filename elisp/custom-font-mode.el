@@ -56,5 +56,4 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-(unless (file-directory-p "~/.Xresources")
-  (default-font))
+(default-font)
