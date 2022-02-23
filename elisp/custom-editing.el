@@ -52,7 +52,7 @@
 
 (defun cedit/lisp-indent ()
   (setq lisp-body-indent 2)
-  (cedit/indent-code 2 nil 80 t))
+  (cedit/indent-code 2 nil 80))
 
 (defun cedit/latex ()
        (cedit/indent-code 4 nil 80 t)
