@@ -32,7 +32,7 @@
 
 (display-time-mode t)
 ;;(display-battery-mode t)
-
+(when (or (not (display-graphic-p)) (daemonp))
 (defadvice terminal-init-screen
 		;; The advice is named `tmux', and is run before `terminal-init-screen' runs.
 		(before tmux activate)
@@ -41,3 +41,4 @@
 	"Apply xterm keymap, allowing use of keys passed through tmux."
 	;; This is the elisp code that is run before `terminal-init-screen'.
 	(set-tmux-keys))
+)
