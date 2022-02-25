@@ -40,11 +40,9 @@
 (setq custom-theme-index 0)
 (defun cycle-themes ()
   (interactive)
-  (let ((custom-themes '(gl-dark naysayer-grey naysayer nord srcery warm-night xcode-dark)))
+   (let ((custom-themes '(gl-dark naysayer-grey naysayer nord srcery warm-night xcode-dark)))
     (setq custom-theme-index (% (1+ custom-theme-index) (length custom-themes)))
     (load-theme (nth custom-theme-index custom-themes) :no-confirm)))
-
-
 
 (bind-keys
  ("<f2>"   . cycle-theme)
