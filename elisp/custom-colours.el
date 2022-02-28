@@ -1,11 +1,11 @@
 ;; fixme mode
 (defgroup fixme nil    "Hilight TODO/STUDY/IMPROTANT/NOTE in special colours") ;; were underlined
 (defface ccol/fixme-face
-  '((t (:foreground "#FFC0CB" :bold t))) ;; was red
+  '((t (:inherit org-todo))) ;; was red
   "Font lock face for TODO comments"
   :group 'fixme)
 (defface ccol/done-face
-  '((t (:foreground "#98fb98" :bold t)))
+  '((t (:inherit org-todo)))
   "Font lock face for DONE comments"
   :group 'fixme)
 (defface ccol/study-face
@@ -46,6 +46,7 @@
       ("\\<\\(WONT\ FIX\\)" . 'ccol/wontfix-face)
       ("\\<\\(NOTE\\)"      .  'ccol/note-face))))
  '(org-mode orgalist-mode))
+
 (defun gui-theme()
   (or (display-graphic-p) (daemonp)))
 (let ((eshell-ls-executable (if (gui-theme) "#cc0000" "red"))

@@ -16,6 +16,10 @@
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
 (add-hook 'eshell-mode-hook  'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
+(defun  is_ttf ()
+  (if (string-match "PfEd" (prin1-to-string (face-attribute 'default :font)))
+      t
+    nil))
 (when (my_daemonp)
 (defun cycle-theme ()
   (interactive)

@@ -79,7 +79,6 @@
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 
-
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
@@ -126,7 +125,7 @@ Errors will be logged to the buffer *Init Errors*"
 (load-library-wrap-error "custom-internal-modes")
 (when (my_daemonp)
   (setq confirm-kill-emacs 'yes-or-no-p)
-  ;;  (load-library-wrap-error "custom-font-mode")
+  (load-library-wrap-error "custom-font-mode")
   )
 (load-library-wrap-error "custom-external-modes")
 
