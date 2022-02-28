@@ -196,3 +196,37 @@
 (add-to-list 'display-buffer-alist
              '("\\*compilaition\\*"
                . (nil (reusable-frames . visible))))
+
+
+;; == show matching quotes
+(defun show-paren--match-quotes ()
+  (let ((ppss (syntax-ppss)))
+    ;; In order to distinguish which quote is opening and which is starting,
+    ;; check that that point is not within a string (or comment, for that
+    ;; matter).  Also ignore escaped quotes.
+    (unless (or (nth 8 ppss) (nth 5 ppss))
+      (or
+       (and (not (bobp))
+            (eq 7 (car-safe (syntax-after (1- (point)))))
+            (save-excursion
+              (let ((end (point))
+                    (ppss (syntax-ppss (1- (point)))))
+                (when (nth 3 ppss)
+                  (let ((beg (nth 8 ppss)))
+                    (list beg
+                          (1+ beg)
+                          (1- end)
+                          end))))))
+       (and (not (eobp))
+            (eq 7 (car-safe (syntax-after (point))))
+            (save-excursion
+              (let ((beg (point)))
+                (condition-case nil
+                    (progn
+                      (forward-sexp 1)
+                      (list beg
+                            (1+ beg)
+                            (1- (point))
+                            (point)))))))))))
+
+(advice-add 'show-paren--default :after-until #'show-paren--match-quotes)
