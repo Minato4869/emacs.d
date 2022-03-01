@@ -1,4 +1,4 @@
-(set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
+ (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
 (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
 (defun ttf ()
   (interactive)
@@ -12,9 +12,9 @@
                       ((= dpi 131) 7.5)
                       ((= dpi 157) 6.4)
                      (t            7.0)))
-         ;;(family     "Meslo LG S")
+         (family     "Meslo LG S")
          ;;(family     "Deja Vu Sans Mono")
-         (family     "Monospace")
+         ;;(family     "Monospace")
          (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal
