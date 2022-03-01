@@ -12,7 +12,7 @@
                                                   ((and gl/colours is_ttf)
                                                               '(:background "#000000" :foreground "#FFFFFF"))
                                                   (is_ttf     '(:background "#333333" :foreground "#FFFFFF"))
-                                                  (gl/colours '(:background "#000000" :foreground "#FFFFFF"))
+                                                  (gl/colours '(:background "#000000" :foreground "#BEBEBE"))
                                                   (t          '(:background "#333333" :foreground "#E5E5E5"))))
        (cursor                              (cond (gl/light   '(:background "#4286F4" :foreground "#FFFFFF"))
                                                   (gl/colours '(:background "#ff0000" :foreground "#000000"))
