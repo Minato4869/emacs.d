@@ -12,12 +12,12 @@
                                                  (gl/light   '(:background "color-16"       :foreground "color-250"))
                                                  ((daemonp)  '(:background "color-236"      :foreground "color-254"))
                                                  (t          '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       (default                             (cond (gl/light   '(:background "#D9D5BA" :foreground FG))
+       (BG                                  (cond (gl/light   "#D9D5BA")
                                                   ((and gl/colours is_ttf)
-                                                              '(:background "#000000" :foreground FG))
-                                                  (is_ttf     '(:background "#333333" :foreground FG))
-                                                  (gl/colours '(:background "#000000" :foreground FG))
-                                                  (t          '(:background "#333333" :foreground FG))))
+                                                              "#000000")
+                                                  (is_ttf     "#333333")
+                                                  (gl/colours "#000000")
+                                                  (t          "#333333")))
        (cursor                              (cond (gl/light   '(:background "#4286F4" :foreground "#FFFFFF"))
                                                   (gl/colours '(:background "#ff0000" :foreground "#000000"))
                                                   (t          '(:background "#00ff00" :foreground "#000000"))))
@@ -32,8 +32,7 @@
                                                         '(:background "color-239" :foreground "color-252")))
        (mode-line-buffer-id                (if (is_ssh) "#B680B1" nil))
 
-       (region                             (if gl/light '(:inherit default :reverse-video t :background "#114488" :extend t)
-                                                        '(:inherit default :background "#114488" :extend t)))
+       (region-fg                           (if gl/light BG FG))
        (ido-subdir                          (if gl/light "#4E9A06" "#A1C659"))
        (ido-only-match                      (if gl/light "#8b8b00" "#FFCC33"))
 
@@ -79,10 +78,6 @@
        (org-table                           (if gl/light "#000000" "#87CEFA"))
        (completions-common-part             (cond (gl/light   "#121212") (gl/colours "#1e90ff") (t "#ADD8E6")))
 
-       ;; v-- auctex
-       ;; (font-latex-sedate-face              (if gl/colors "#D3D3D3" "#E5E5E5")) ;; == lightgray; alt tui colour: 6C6C6C
-       ;; (font-latex-verbatim-face            "#DEB887") ;; == burlywood
-       ;; (font-latex-math-face                "#DEB887")
        (tex-verbatim                           (if gl/light "#a0522d" "#DEB887"))
        (tex-math                               (if gl/light "#a0522d" "#DEB887"))
 
@@ -96,12 +91,18 @@
        (Man-overstrike                       (if gl/colours "#FF0000" "#E5E5E5"))
        (Man-underline                        (if gl/colours "#00FF00" "#4286F4"))
        (Man-underline-bold                   (if gl/colours t nil))
+
+       ;; mu4e
+       (mu4e-header-face                     (cond (gl/light "#333333") (gl/colours "#585858") (t "#888888")))
+
+       ;; eshell
+       (eshell-ls-executable                 (if (or gl/colours gl/light) "#ff0000" "#FF00FF"))
      )
 (custom-theme-set-faces
  'gl-dark
 
  `(default                             ((((type tty)) ,default-term)
-                                        (t            ,default)))
+                                        (t            (:background ,BG :foreground ,FG))))
  `(cursor                              ((t ,cursor)))
  `(border                              ((t (:foreground "#0000ff"))))
  `(fringe                              ((t (:background ,fringe))))
@@ -112,12 +113,12 @@
    `(mode-line-buffer-id                 ((t           (:foreground ,mode-line-buffer-id :bold t))))
 
    `(region                              ((((type tty)) (:inherit default :background "blue" :extend t))
-                                          (t ,region)))
+                                          (t           (:inherit default :background "#114488" :foreground ,region-fg :extend t))))
 
    `(hl-line                             ((t (:inherit fringe :extend t))))
 
    `(font-lock-builtin-face              ((t (:inherit default :foreground ,font-lock-builtin-face))))
-   `(font-lock-comment-delimiter-face    ((t (:inherit ,font-lock-comment-face))))
+   `(font-lock-comment-delimiter-face    ((t (:inherit font-lock-comment-face))))
    `(font-lock-comment-face              ((t (:inherit default :foreground ,font-lock-comment-face))))
    `(font-lock-constant-face             ((t (:inherit default :foreground ,font-lock-constant-face))))
    `(font-lock-doc-face                  ((t (:inherit default :foreground ,font-lock-doc-face))))
@@ -165,8 +166,7 @@
    `(org-do                              ((t (:foreground ,org-done :bold t))))
    `(org-special-keyword                 ((t (:foreground "#729FCF"))))
    `(org-priority                        ((t (:foreground "#729FCF"))))
-   `(org-headline-done                   ((((type tty)) (:foreground "#FFA07A"))
-                                          (t (:foreground ,org-headline-done))))
+   `(org-headline-done                   ((t (:foreground ,org-headline-done))))
    `(org-meta-line                       ((t (:foreground ,org-meta-line :bold ,org-meta-line-bold))))
    `(org-time-grid                       ((t (:foreground "#EEDD82"))))
    `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
@@ -180,11 +180,6 @@
    `(org-latex-and-related               ((t (:foreground "#DEB887"))))
    `(org-table                           ((t (:foreground ,org-table))))
 
-
-   ;; == AUCTEX
-   ;; `(font-latex-sedate-face              ((t (:foreground ,font-latex-sedate-face))))
-   ;; `(font-latex-verbatim-face            ((t (:foreground ,font-latex-verbatim-face))))
-   ;; `(font-latex-math-face                ((t (:foreground ,font-latex-math-face))))
 
    `(tex-verbatim                        ((t (:foreground ,tex-verbatim))))
    `(tex-math                            ((t (:foreground ,tex-math))))
@@ -215,5 +210,21 @@
    `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
    '(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
+
+   `(magit-diff-header                   ((t (:inherit diff-header))))
+   `(magit-diff-context-highlight        ((t (:inherit diff-context))))
+   `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
+   `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
+   `(magit-diff-added-highlight          ((t (:inherit diff-added))))
+
+   `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
+   `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
+   `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
+   `(mu4e-header-face                 ((t (:foreground ,mu4e-header-face :bold nil))))
+   `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
+
+   `(eshell-ls-directory              ((t (:inherit dired-directory))))
+   `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
+   `(eshell-ls-executable             ((t (:foreground ,eshell-ls-executable))))
    ))
 (provide-theme 'gl-dark)

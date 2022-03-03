@@ -26,11 +26,12 @@
 
 (defun pcf (&optional arg)
   (interactive)
-  (let ((myfont (cond
-                 ((or (string= arg "9x16"))
-                  "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
-                 ((or t (string= arg "6x13"))
-                  "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))))
+  (let ((myfont
+         (cond
+          ((or (string= arg "9x16"))
+           "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
+          ((or t (string= arg "6x13"))
+           "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))))
     (set-face-attribute 'default t :font myfont)
     (setq default-frame-alist `((font . ,myfont))
           initial-frame-alist default-frame-alist)

@@ -69,18 +69,6 @@
   :init
   (defalias 'bkr 'browse-kill-ring))
 
-(use-package magit
-  :if (my_daemonp)
-  :ensure t
-  :defer t
-  :config
-  (custom-set-faces
-   '(magit-diff-header                   ((t (:inherit diff-header))))
-   '(magit-diff-context-highlight        ((t (:inherit diff-context))))
-   '(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
-   '(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
-   '(magit-diff-added-highlight          ((t (:inherit diff-added))))))
-
 ;; == diminish
 (use-package diminish   ;; hide/"diminish" always enabled modes
   :ensure t
@@ -106,15 +94,7 @@
           message-send-mail-function   nil
           smtpmail-default-smtp-server nil
           smtpmail-smtp-server         nil
-          smtpmail-local-domain        nil)
-    (custom-set-faces
-     '(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
-     '(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
-     '(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
-     '(mu4e-header-face                 ((t (:foreground "#585858" :bold nil))))
-     '(mu4e-header-key-face             ((t (:foreground "#585858" :bold nil))))
-     )
-    )
+          smtpmail-local-domain        nil))
   (defalias 'mail 'mu4e)
   (defalias 'mu   'mu4e)
   (when (my_daemonp)
@@ -150,3 +130,4 @@
 (use-package so-long              :ensure t :defer t)
 (use-package rainbow-delimiters   :ensure t :defer t)
 (use-package haskell-mode         :ensure t :defer t)
+(use-package magit :if (my_daemonp) :ensure t :defer t)
