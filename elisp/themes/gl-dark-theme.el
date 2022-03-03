@@ -3,20 +3,24 @@
 
 (let* ((is_ttf                               (if (string-match "PfEd" (prin1-to-string (face-attribute 'default :font)))
                                                 t
-                                              nil))
-       (default-term                        (cond ((is_ssh)   '(:background "color-233"      :foreground "color-249"))
-                                                 (gl/light    '(:background "color-16"       :foreground "color-250"))
-                                                 ((daemonp)   '(:background "color-236"      :foreground "color-254"))
-                                                 (t           '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       (default                             (cond (gl/light   '(:background "#D9D5BA" :foreground "#444444"))
+                                               nil))
+       (FG                                   (cond (gl/light   "#000000")
+                                                   (is_ttf     "#FFFFFF")
+                                                   (gl/colours "#BEBEBE")
+                                                   (t          "#E5E5E5")))
+       (default-term                        (cond ((is_ssh)  '(:background "color-233"      :foreground "color-254"))
+                                                 (gl/light   '(:background "color-16"       :foreground "color-250"))
+                                                 ((daemonp)  '(:background "color-236"      :foreground "color-254"))
+                                                 (t          '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+       (default                             (cond (gl/light   '(:background "#D9D5BA" :foreground FG))
                                                   ((and gl/colours is_ttf)
-                                                              '(:background "#000000" :foreground "#FFFFFF"))
-                                                  (is_ttf     '(:background "#333333" :foreground "#FFFFFF"))
-                                                  (gl/colours '(:background "#000000" :foreground "#BEBEBE"))
-                                                  (t          '(:background "#333333" :foreground "#E5E5E5"))))
-       (cursor                              (cond (gl/light   '(:background "#4286F4" :foreground "#FFFFFF"))
-                                                  (gl/colours '(:background "#ff0000" :foreground "#000000"))
-                                                  (t          '(:background "#00ff00" :foreground "#000000"))))
+                                                              '(:background "#000000" :foreground FG))
+                                                  (is_ttf     '(:background "#333333" :foreground FG))
+                                                  (gl/colours '(:background "#000000" :foreground FG))
+                                                  (t          '(:background "#333333" :foreground FG))))
+       (cursor                              (cond (gl/light   '(:background "#4286F4" :foreground FG))
+                                                  (gl/colours '(:background "#ff0000" :foreground FG))
+                                                  (t          '(:background "#00ff00" :foreground FG))))
        (fringe                              (if gl/light "#C9C6B0" "#1A1A1A"))
        (mode-line                           (if gl/light '(:background "#3E3E3D" :foreground "#d9d5ba")
                                                          '(:background "#292929" :inherit default)))
@@ -28,35 +32,26 @@
                                                         '(:background "color-239" :foreground "color-252")))
        (mode-line-buffer-id                (if (is_ssh) "#B680B1" nil))
 
-       (hl-line-bg                          fringe)
-       (region                              (if gl/light '(:foreground "#d9d5ba" :background "#114488" :extend t)
-                                                         '(:inherit default :background "#114488" :extend t)))
-
+       (region                             (if gl/light '(:inherit default :reverse-video t :background "#114488" :extend t)
+                                                        '(:inherit default :background "#114488" :extend t)))
        (ido-subdir                          (if gl/light "#4E9A06" "#A1C659"))
        (ido-only-match                      (if gl/light "#8b8b00" "#FFCC33"))
 
        (font-lock-builtin-face              (if gl/colours "#75507B" nil)) ;; "#71a46c"))
        (font-lock-comment-face              (if gl/colours "#CC0000" nil)) ;; "#888888")) ;; was "#5d5a58" for grey
-       (font-lock-comment-delimiter-face    font-lock-comment-face)
        (font-lock-constant-face             (if gl/colours "#4E9A06" nil)) ;; "#bd845f"))
        (font-lock-doc-face                  (if gl/colours "#4E9A06" nil)) ;; font-lock-comment-face))
        (font-lock-function-name-face        (if gl/colours "#75507B" nil)) ;; "#b680b1"))
        (font-lock-keyword-face              (if gl/colours "#729FCF" nil)) ;; "#96905f"))
        (font-lock-negation-char-face        (if gl/colours nil       nil)) ;; font-lock-constant-face))
        (font-lock-preprocessor-face         (if gl/colours "#75507B" nil)) ;; nil))
-       (font-lock-regexp-grouping-backslash nil)
-       (font-lock-regexp-grouping-construct nil)
        (font-lock-string-face               (if gl/colours "#4E9A06" nil)) ;; "#71a19f"))
        (font-lock-type-face                 (if gl/colours "#4E9A06" nil)) ;; "#8b8fc6"))
        (font-lock-variable-name-face        (if gl/colours "#C4A000" nil)) ;; "#c27d7b"))
-       (font-lock-warning-face              "#FF0000")
 
        (sh-quoted-exec                      (if gl/colours "#FA8072" nil))
        (sh-heredoc                          (if gl/colours "#FFFF00" nil))
        (sh-heredoc-bold                     (if gl/colours t         nil))
-
-       (isearch-fail                        '(:background "#8B0000" :foreground "#E5E5E5"))   ;; v-- old conf
-       (isearch                             '(:background "#333333" :foreground "#1E90FF" :bold t))
 
        (org-level-1                         (cond (gl/light "#000000") (gl/colours "#75507B") (t "#A1A1A1"))) ;; was FG
        (org-level-2                         (cond (gl/light "#333333") (gl/colours "#C4A000") (t "#929292")))
@@ -74,20 +69,15 @@
 
 
 
-       (org-todo-term                       (if gl/colours "brightmagenta" "#d70000")) ;; had (is_ssh) constraint
-       (org-done-term                       (if gl/colours "PaleGreen"     "ForestGreen"))     ;; had (is_ssh) constraint
+       (org-todo-term                       (if gl/colours "brightmagenta" "#d70000"))
        (org-todo                            (if gl/colours "#FFC0CB" "#d70000"))
-       ;; ^-- had gl/light constraint, colours switched; was "#DB0600" for darkred
-       (org-done                            (if gl/colours "#98FB98" "#228b22")) ;; had gl/light constraint, colours switched
+       (org-done                            (if gl/colours "#98FB98" "#228b22"))
        (org-headline-done                   (if gl/light "#d2691e" "#FFA07A"))
        (org-meta-line                       (if gl/colours "#CC0000" "#E5E5E5"))
        (org-meta-line-bold                  (if gl/colours nil       t))
        (org-block-delim                     (if gl/colours "#CC0000" "#E5E5E5"))
        (org-table                           (if gl/light "#000000" "#87CEFA"))
-       (completions-common-part             (cond
-                                             (gl/light   "#121212")
-                                             (gl/colours "#1e90ff")
-                                             (t          "#ADD8E6")))
+       (completions-common-part             (cond (gl/light   "#121212") (gl/colours "#1e90ff") (t "#ADD8E6")))
 
        ;; v-- auctex
        ;; (font-latex-sedate-face              (if gl/colors "#D3D3D3" "#E5E5E5")) ;; == lightgray; alt tui colour: 6C6C6C
@@ -124,10 +114,10 @@
    `(region                              ((((type tty)) (:inherit default :background "blue" :extend t))
                                           (t ,region)))
 
-   `(hl-line                             ((t (:inherit foreground :background ,hl-line-bg :extend t))))
+   `(hl-line                             ((t (:inherit fringe :extend t))))
 
    `(font-lock-builtin-face              ((t (:inherit default :foreground ,font-lock-builtin-face))))
-   `(font-lock-comment-delimiter-face    ((t (:inherit default :foreground ,font-lock-comment-delimiter-face))))
+   `(font-lock-comment-delimiter-face    ((t (:inherit ,font-lock-comment-face))))
    `(font-lock-comment-face              ((t (:inherit default :foreground ,font-lock-comment-face))))
    `(font-lock-constant-face             ((t (:inherit default :foreground ,font-lock-constant-face))))
    `(font-lock-doc-face                  ((t (:inherit default :foreground ,font-lock-doc-face))))
@@ -135,12 +125,12 @@
    `(font-lock-keyword-face              ((t (:inherit default :foreground ,font-lock-keyword-face))))
    `(font-lock-negation-char-face        ((t (:inherit default :foreground ,font-lock-negation-char-face))))
    `(font-lock-preprocessor-face         ((t (:inherit default :foreground ,font-lock-preprocessor-face))))
-   `(font-lock-regexp-grouping-backslash ((t (:inherit default :foreground ,font-lock-regexp-grouping-backslash :bold t))))
-   `(font-lock-regexp-grouping-construct ((t (:inherit default :foreground ,font-lock-regexp-grouping-construct :bold t))))
+   `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
+   `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
    `(font-lock-string-face               ((t (:inherit default :foreground ,font-lock-string-face))))
    `(font-lock-type-face                 ((t (:inherit default :foreground ,font-lock-type-face))))
    `(font-lock-variable-name-face        ((t (:inherit default :foreground ,font-lock-variable-name-face))))
-   `(font-lock-warning-face              ((t (:inherit default :foreground ,font-lock-warning-face :bold t))))
+   `(font-lock-warning-face              ((t (:inherit default :foreground "#FF0000" :bold t))))
 
    `(ido-subdir                          ((t (:foreground ,ido-subdir))))
    `(ido-only-match                      ((t (:foreground ,ido-only-match))))
@@ -156,8 +146,8 @@
 
    `(completions-common-part             ((t (:foreground ,completions-common-part :bold t))))
 
-   `(isearch-fail                        ((t ,isearch-fail)))
-   `(isearch                             ((t ,isearch)))
+   `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
+   `(isearch                             ((t (:background "#333333" :foreground "#1E90FF" :bold t))))
 
    `(shadow                              ((t (:foreground "#aaaaaa"))))
 
@@ -172,8 +162,7 @@
    `(org-date                            ((t (:foreground "#2C78BF"))))
    `(org-todo                            ((((type tty)) (:foreground ,org-todo-term :bold t))
                                           (t            (:foreground ,org-todo :bold t))))
-   `(org-done                            ((((type tty)) (:foreground ,org-done-term :bold t))
-                                          (t (:foreground ,org-done :bold t))))
+   `(org-do                              ((t (:foreground ,org-done :bold t))))
    `(org-special-keyword                 ((t (:foreground "#729FCF"))))
    `(org-priority                        ((t (:foreground "#729FCF"))))
    `(org-headline-done                   ((((type tty)) (:foreground "#FFA07A"))
