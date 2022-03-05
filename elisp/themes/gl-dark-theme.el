@@ -82,8 +82,6 @@
        (tex-math                               (if gl/light "#a0522d" "#DEB887"))
 
        (header-line                          '(:inherit mode-line :box  (:line-width -1 :style released-button)))
-       (elscreen-tab-current-screen-face-bg  (if gl/light "#d4d4d4" "#666666"))
-       (elscreen-tab-current-screen-face-fg  (if gl/light "#000000" "#E5E5E5"))
 
        (dired-header                         (if gl/colours "#4E9A06" "#98fb98"))
        (dired-directory                      (cond (gl/light "#114488") (gl/colours "#4286F4") (t "#87CEFA")))
@@ -187,12 +185,6 @@
 
    `(header-line                         ((((type tty)) (:inherit mode-line))
                                           (t ,header-line)))
-   `(elscreen-tab-background-face     ((t (:inherit header-line))))
-   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
-                                       (t (:background ,elscreen-tab-current-screen-face-bg
-                                                       :foreground ,elscreen-tab-current-screen-face-fg))))
 
    `(dired-header                     ((t (:foreground ,dired-header))))
    `(dired-directory                  ((t (:foreground ,dired-directory ))))

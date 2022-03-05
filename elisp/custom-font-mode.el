@@ -22,6 +22,8 @@
    (setq default-frame-alist `((font . ,myfont))
          initial-frame-alist default-frame-alist)
    (set-frame-font myfont nil t)
+   (unless gl/light
+     (set-foreground-color "#ffffff"))
    ))
 
 (defun pcf (&optional arg)
