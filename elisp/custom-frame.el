@@ -42,3 +42,12 @@
 	;; This is the elisp code that is run before `terminal-init-screen'.
 	(set-tmux-keys))
 )
+
+(defun reset-frame ()
+  (interactive)
+  (load-file "~/.emacs.d/elisp/custom-frame.el")
+  (message "resetting frame"))
+
+(when (display-graphic-p)
+	(set-frame-height (selected-frame) 57)
+	(set-frame-width  (selected-frame) 80))

@@ -11,10 +11,10 @@
                       ((= dpi 125) 5.9)
                       ((= dpi 131) 7.5)
                       ((= dpi 157) 6.4)
-                     (t            7.0)))
-         (family     "Meslo LG S")
+                      (t           7.0)))
+         ;;(family     "Meslo LG S")
          ;;(family     "Deja Vu Sans Mono")
-         ;;(family     "Monospace")
+         (family     "Monospace")
          (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal
@@ -22,8 +22,6 @@
    (setq default-frame-alist `((font . ,myfont))
          initial-frame-alist default-frame-alist)
    (set-frame-font myfont nil t)
-   (unless gl/light
-     (set-foreground-color "#ffffff"))
    ))
 
 (defun pcf (&optional arg)
@@ -60,4 +58,5 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-;;(default-font)
+(default-font)
+;;(ttf)

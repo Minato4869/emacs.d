@@ -79,31 +79,29 @@
 ;;  (diminish 'auto-fill-function)
   (diminish 'eldoc-mode))
 ;; == mu4e
-(let ((mupath (if (string= system-type "berkeley-unix")
-                  "/usr/local/share/emacs/site-lisp/mu4e"
-                "/usr/eshare/emacs/site-lisp/mu4e")))
-  (use-package mu4e
-    ;;    :if (and (file-directory-p mupath) (daemonp))
-    :ensure nil
-    :defer nil
-    :config
-    (setq mail-user-agent 'mu4e-user-agent
-          mu4e-sent-folder   "/Sent"
-          mu4e-drafts-folder "/Drafts"
-          mu4e-trash-folder  "/Archive/trash"
-          message-send-mail-function   nil
-          smtpmail-default-smtp-server nil
-          smtpmail-smtp-server         nil
-          smtpmail-local-domain        nil))
-  (defalias 'mail 'mu4e)
-  (defalias 'mu   'mu4e)
-  (when (my_daemonp)
-    (add-to-list 'load-path mupath)
-    (load-library "mu4e")))
+;;(use-package mu4e
+;;  :if (and (my_daemonp)
+;;           (or (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
+;;               (file-directory-p "/usr/local/share/emacs/site-lisp/mu4e")))
+;;  :ensure nil
+;;  :defer nil
+;;  :config
+;;  (setq mail-user-agent 'mu4e-user-agent
+;;        mu4e-sent-folder   "/Sent"
+;;        mu4e-drafts-folder "/Drafts"
+;;        mu4e-trash-folder  "/Archive/trash"
+;;        message-send-mail-function   nil
+;;        smtpmail-default-smtp-server nil
+;;        smtpmail-smtp-server         nil
+;;          smtpmail-local-domain        nil))
+;;(defalias 'mail 'mu4e)
+;;(defalias 'mu   'mu4e)
+;;(when (my_daemonp)
+;;    (load-library "mu4e"))
 ;; ==ripgrep
 (use-package rg
-  :ensure t
-  :defer t)
+:ensure t
+:defer t)
 (defalias 'ag 'rg)
 
 (use-package yaml-mode
