@@ -80,8 +80,6 @@
        (tex-verbatim                           (if gl/light "#a0522d" "#DEB887"))
        (tex-math                               (if gl/light "#a0522d" "#DEB887"))
 
-       (header-line                          '(:inherit mode-line :box  (:line-width -1 :style released-button)))
-
        (dired-header                         (if gl/colours "#4E9A06" "#98fb98"))
        (dired-directory                      (cond (gl/light "#114488") (gl/colours "#4286F4") (t "#87CEFA")))
        (dired-symlink                        (if gl/colours "#75507B" "#1E90FF"))
@@ -183,7 +181,10 @@
 
 
    `(header-line                         ((((type tty)) (:inherit mode-line))
-                                          (t ,header-line)))
+                                          (t            (:inherit mode-line
+                                                                  :box
+                                                                  (:line-width -1 :style released-button)))))
+
 
    `(dired-header                     ((t (:foreground ,dired-header))))
    `(dired-directory                  ((t (:foreground ,dired-directory ))))

@@ -56,7 +56,8 @@
 ;;(let ((elscreen-tab-current-screen-face-bg  (if gl/light "#d4d4d4" "#666666"))
 ;;      (elscreen-tab-current-screen-face-fg  (if gl/light "#000000" "#E5E5E5"))
 (custom-set-faces
- `(elscreen-tab-background-face     ((t (:inherit header-line))))
+ `(elscreen-tab-background-face     ((t (:inherit mode-line :box
+                                                  (:line-width -1 :style released-button)))))
  `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
  `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
  `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
