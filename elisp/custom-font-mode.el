@@ -2,12 +2,12 @@
 (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
 (defun ttf ()
   (interactive)
-  (let* ((ttfh (cond ((= dpi 109) 76)
+  (let* ((ttfh (cond ((= dpi 109) 79)
                      ((= dpi 125) 59) ;; was 6.9
                      ((= dpi 131) 75)
                      ((= dpi 157) 64) ;; was 74
                      (t           70)))
-         (xfth (cond  ((= dpi 109) 7.6)
+         (xfth (cond  ((= dpi 109) 7.9)
                       ((= dpi 125) 5.9)
                       ((= dpi 131) 7.5)
                       ((= dpi 157) 6.4)
@@ -21,8 +21,8 @@
                             :foundry "PfEd" :family ,family)))))
    (setq default-frame-alist `((font . ,myfont))
          initial-frame-alist default-frame-alist)
-   (set-frame-font myfont nil t)
-   ))
+   (set-frame-font myfont nil t))
+   )
 
 (defun pcf (&optional arg)
   (interactive)
@@ -58,5 +58,5 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-(default-font)
-;;(ttf)
+;;(default-font)
+(ttf)

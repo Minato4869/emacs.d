@@ -7,7 +7,8 @@
 (defvar gl/light nil
   "Variable used to toggle between dark (grey or black) and light theme")
 (setq gl/colours nil
-      gl/light   nil)
+      gl/light   nil
+      custom-safe-themes t)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'magit-mode-hook   'turn-on-font-lock)

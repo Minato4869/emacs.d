@@ -123,10 +123,6 @@ Errors will be logged to the buffer *Init Errors*"
 
 (load-library-wrap-error "custom-functions")
 (load-library-wrap-error "custom-internal-modes")
-(when (my_daemonp)
-  (setq confirm-kill-emacs 'yes-or-no-p)
-  (load-library-wrap-error "custom-font-mode")
-  )
 (load-library-wrap-error "custom-external-modes")
 
 (load-library-wrap-error "custom-terminal-mode")
@@ -135,9 +131,13 @@ Errors will be logged to the buffer *Init Errors*"
 ;;(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-aliases")
 
-(when (daemonp)
-;;  (load-library-wrap-error "custom-desktop-save")
-  (load-library-wrap-error "custom-emacsclient"))
+
+(when (my_daemonp)
+  (when (daemonp)
+    (load-library-wrap-error "custom-desktop-save")
+    (load-library-wrap-error "custom-emacsclient"))
+  (setq confirm-kill-emacs 'yes-or-no-p)
+  (load-library-wrap-error "custom-font-mode"))
 
 (let ((ln "~/.emacs.local.el")
       (pl "~/.emacs.personal.el"))
