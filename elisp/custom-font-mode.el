@@ -3,12 +3,12 @@
 (defun ttf ()
   (interactive)
   (let* ((ttfh (cond ((= dpi 109) 79)
-                     ((= dpi 125) 59) ;; was 6.9
+                     ((= dpi 125) 65) ;; was 6.9
                      ((= dpi 131) 75)
                      ((= dpi 157) 64) ;; was 74
                      (t           70)))
          (xfth (cond  ((= dpi 109) 7.9)
-                      ((= dpi 125) 5.9)
+                      ((= dpi 125) 6.5) ;; was 5.9
                       ((= dpi 131) 7.5)
                       ((= dpi 157) 6.4)
                       (t           7.0)))
