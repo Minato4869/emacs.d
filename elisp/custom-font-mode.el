@@ -14,15 +14,14 @@
                       (t           7.0)))
          ;;(family     "Meslo LG S")
          ;;(family     "Deja Vu Sans Mono")
-         (family     "Monospace")
+         (family       "Hack")
          (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
     `(default ((t (:inherit default :height ,ttfh :width normal
                             :foundry "PfEd" :family ,family)))))
    (setq default-frame-alist `((font . ,myfont))
          initial-frame-alist default-frame-alist)
-   (set-frame-font myfont nil t))
-   )
+   (set-frame-font myfont nil t)))
 
 (defun pcf (&optional arg)
   (interactive)

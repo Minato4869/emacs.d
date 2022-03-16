@@ -143,6 +143,7 @@
  ("<f10>"     . menu-bar-mode)
  ("<f11>"     . whitespace-mode)
  ("<f12>"     . display-fill-column-indicator-mode)
+ ("C-<f12>"   . display-line-numbers-mode)
  ;; buffer
  ("<M-prior>" . previous-buffer)
  ("<M-next>"  . next-buffer)

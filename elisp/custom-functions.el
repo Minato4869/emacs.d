@@ -38,7 +38,7 @@
 (defalias 'datet 'tdate)
 (defun _calendar-week ()
   (shell-command-to-string "~/bin/week"))
-(defun calendar-week ()
+(defun week ()
   (interactive)
   (if (use-region-p)
       (let* ((beg (region-beginning))
@@ -54,8 +54,8 @@
        (concat "* "
                (shell-command-to-string (format "week %s" wn)))))))
 
-(defalias 'kw 'calendar-week)
-(defalias 'cw 'calendar-week)
+(defalias 'kw 'week)
+(defalias 'cw 'week)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; compile
 ;; Don’t ask to save files before compilation, just save them.
