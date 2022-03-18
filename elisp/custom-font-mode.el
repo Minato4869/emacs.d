@@ -5,13 +5,9 @@
   (let* ((ttfh (cond ((= dpi 109) 79)
                      ((= dpi 125) 65) ;; was 6.9
                      ((= dpi 131) 75)
-                     ((= dpi 157) 64) ;; was 74
+                     ((= dpi 157) 64)
                      (t           70)))
-         (xfth (cond  ((= dpi 109) 7.9)
-                      ((= dpi 125) 6.5) ;; was 5.9
-                      ((= dpi 131) 7.5)
-                      ((= dpi 157) 6.4)
-                      (t           7.0)))
+         (xfth       (/ ttfh 10.0))
          (family     "Deja Vu Sans Mono")
          (myfont     (concat family "-" (number-to-string xfth))))
    (custom-set-faces
