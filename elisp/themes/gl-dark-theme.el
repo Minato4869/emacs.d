@@ -1,9 +1,5 @@
-(setq frame-background-mode 0)
-(set-terminal-parameter  (selected-frame) 'background-mode frame-background-mode)
-(set-frame-parameter     (selected-frame) 'background-mode frame-background-mode)
-(frame-set-background-mode (selected-frame))
-
 (custom-set-faces
+ 'gl-dark
  '(default ((((class color) (background dark))  (:background "#000000" :foreground "#bebebe"))
             (((class color) (background light))    (:background "#ffffff" :foreground "#000000"))
             (t                                     (:background "#333333" :foreground "#e5e5e5"))))
@@ -91,9 +87,9 @@
  '(org-special-keyword                 ((t (:foreground "#729FCF"))))
  '(org-priority                        ((t (:foreground "#729FCF"))))
  '(org-headline-done                   ((((class color) (background light)) (:foreground "#d2691e"))
-                                         (t                                 (:foreground "#FFA07A"))))
+                                        (t                                 (:foreground "#FFA07A"))))
  '(org-meta-line                       ((((class color) (background dark))  (:foreground "#CC0000"))
-                                         (t                                 (:inherit default :bold t))))
+                                        (t                                 (:inherit default :bold t))))
  '(org-time-grid                       ((t (:foreground "#EEDD82"))))
  '(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
  '(org-agenda-structure                ((t (:foreground "#87CEFA"))))
@@ -101,7 +97,7 @@
  '(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
  '(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
  '(org-block-begin-line                ((((class color) (background dark)) (:foreground "#CC0000"))
-                                         (t                                (:inherit default)))) ;; was inherit org-meta-line
+                                        (t                                (:inherit default)))) ;; was inherit org-meta-line
  '(org-block-end-line                  ((t (:inherit org-block-begin-line))))
  '(org-block                           ((t (:inherit default :extend t))))
  '(org-latex-and-related               ((t (:foreground "#DEB887"))))
@@ -153,6 +149,12 @@
 
  '(eshell-ls-directory              ((t (:inherit dired-directory))))
  '(eshell-ls-symlink                ((t (:inherit dired-symlink))))
-;; '(eshell-ls-executable             ((t (:foreground ,eshell-ls-executable))))
+ ;; '(eshell-ls-executable             ((t (:foreground ,eshell-ls-executable))))
 
+ '(elscreen-tab-background-face     ((t (:inherit mode-line :box
+                                                  (:line-width -1 :style released-button)))))
+ '(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+ '(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+ '(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                     (t (:foreground "#e5e5e5" :background "#666666"))))
  )
