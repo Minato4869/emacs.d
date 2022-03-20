@@ -100,8 +100,7 @@
 ;; paths
 (let ((basedir "~/.emacs.d/elisp/"))
   (add-to-list 'load-path basedir)
-  (add-to-list 'load-path (concat basedir "external"))
-  (add-to-list 'load-path (concat basedir "themes")))
+  (add-to-list 'load-path (concat basedir "external")))
 
 ;; custom files
 (defun load-library-wrap-error (lib)
@@ -128,7 +127,7 @@ Errors will be logged to the buffer *Init Errors*"
 
 (load-library-wrap-error "custom-terminal-mode")
 (load-library-wrap-error "custom-frame")
-(load-library-wrap-error "gl-dark-theme")
+(load-library-wrap-error "custom-theme")
 ;;(load-library-wrap-error "custom-colours")
 (load-library-wrap-error "custom-aliases")
 
