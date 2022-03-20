@@ -30,17 +30,16 @@
           initial-frame-alist default-frame-alist)
     (set-frame-font myfont nil t)))
 
+(defun 6x13 () (interactive) (pcf "6x13"))
+(defun 9x16 () (interactive) (pcf "9x16"))
 (defun default-font ()
   (interactive)
   (cond
    ((or (file-regular-p "~/.hf")
         (>= dpi 157))
-        (pcf "9x16"))
+        (9x16))
    ((file-regular-p "~/.ttf") (ttf))
-   (t                         (pcf "6x13"))))
-
-(defun 6x13 () (interactive) (pcf "6x13"))
-(defun 9x16 () (interactive) (pcf "9x16"))
+   (t                         (6x13))))
 
 (defun reset-fonts ()
   (interactive)
@@ -51,5 +50,5 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-;;(default-font)
-(ttf)
+(default-font)
+;;(ttf)
