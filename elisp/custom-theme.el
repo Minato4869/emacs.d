@@ -1,13 +1,14 @@
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes/old")
+
 (setq frame-background-mode t
       custom-safe-themes    t)
 (defun setColours ()
   (set-terminal-parameter  (selected-frame) 'background-mode frame-background-mode)
   (set-frame-parameter     (selected-frame) 'background-mode frame-background-mode)
   (frame-set-background-mode (selected-frame))
-  (load-library "custom-colours"))
+  (load-theme 'gl-dark t))
 (setColours)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes/old")
 
 
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
@@ -20,9 +21,16 @@
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
 (defun cycle-theme ()
   (interactive)
-  (if (eq frame-background-mode nil)
+  (if (eq frame-background-mode t)
       (setq frame-background-mode 'dark)
-    (setq frame-background-mode 0))
+    (setq frame-background-mode t))
+  (setColours))
+
+(defun cycle-light-theme ()
+  (interactive)
+  (if (eq frame-background-mode t)
+      (setq frame-background-mode 'light)
+    (setq frame-background-mode t))
   (setColours))
 
 
