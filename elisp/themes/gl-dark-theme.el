@@ -160,6 +160,9 @@
  '(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
  '(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
                                      (t (:foreground "#e5e5e5" :background "#666666"))))
+
+ '(highlight                        ((((class color) (background light)) (:inherit default :background "#b4eeb4"))
+                                     (t                                  (:inherit default :background "#556b2f"))))
  )
 (provide-theme 'gl-dark)
 ;;;; fixme mode

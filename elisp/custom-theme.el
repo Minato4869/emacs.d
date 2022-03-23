@@ -63,3 +63,7 @@
  ("<f2>"   . cycle-theme)
  ("M-<f2>" . cycle-light-theme)
  ("C-<f2>" . cycle-themes))
+
+(defun reset-themes ()
+  (interactive)
+  (load-library "custom-theme"))
