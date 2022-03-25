@@ -7,8 +7,7 @@
   (set-terminal-parameter  (selected-frame) 'background-mode frame-background-mode)
   (set-frame-parameter     (selected-frame) 'background-mode frame-background-mode)
   (frame-set-background-mode (selected-frame))
-  (load-theme 'gl-dark t)
-  )
+  (load-theme 'gl-dark t))
 (setColours)
 
 
