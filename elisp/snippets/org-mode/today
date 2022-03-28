@@ -3,6 +3,4 @@
 # key: today
 # --
 ** `(format-time-string "<%Y-%m-%d %a>")`
-*** personal
-*** work
 $0

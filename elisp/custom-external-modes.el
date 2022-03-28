@@ -129,3 +129,4 @@
 (use-package rainbow-delimiters   :ensure t :defer t)
 (use-package haskell-mode         :ensure t :defer t)
 (use-package magit :if (my_daemonp) :ensure t :defer t)
+(use-package howm                 :ensure t :defer t)

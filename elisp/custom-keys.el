@@ -163,7 +163,10 @@
  ("C-="       . enlarge-window)
  ("C-x C--"   . negative-argument)
  ("C-c o"     . transpose-windows)
- ("C-x t"     . transpose-lines))
+ ("C-x t"     . transpose-lines)
+ ;;
+ ("C-c 4"     . ispell-change-dictionary)
+ )
 
 ;; mode specific
 (defun my-eval-region-or-buffer ()

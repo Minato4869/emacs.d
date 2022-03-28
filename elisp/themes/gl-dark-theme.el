@@ -8,8 +8,7 @@
                                                    '(:background "color-235" :foreground "color-250")))
        (mode-line-inactive-term       (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
                                                    '(:background "color-239" :foreground "color-252")))
-       (mode-line-buffer-id           (if (is_ssh) '(:foreground "#B680B1" :bold t)
-                                        nil))
+       (mode-line-buffer-id           (if (is_ssh) "#B680B1" nil))
        (default-fg (if (string-match "PfEd" (prin1-to-string (face-attribute 'default :font)))
                        "#FFFFFF"
                      "#E5E5E5"))
@@ -32,7 +31,7 @@
                                           (t                                  (:background "#292929" :inherit default))))
    `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
                                          (t             (:background "#4D4D4D" :foreground "#CCCCCC" :box (:line-width -1 :color "#666666" :style nil)))))
-   `(mode-line-inactive                 ((((type  tty)) ,mode-line-buffer-id)))
+   `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
    `(region                             ((t (:inherit default :background "#114488" :extend t))))
    `(hl-line                            ((t (:inherit fringe :extend t))))
 
