@@ -35,10 +35,10 @@
 (defun default-font ()
   (interactive)
   (cond
+   ((file-regular-p "~/.ttf") (ttf))
    ((or (file-regular-p "~/.hf")
         (>= dpi 157))
         (9x16))
-   ((file-regular-p "~/.ttf") (ttf))
    (t                         (6x13))))
 
 (defun reset-fonts ()
@@ -51,4 +51,3 @@
 (defalias 'meslo  'ttf)
 
 (default-font)
-;;(ttf)
