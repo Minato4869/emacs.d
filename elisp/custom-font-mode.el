@@ -50,4 +50,4 @@
 (defalias 'menlo  'ttf)
 (defalias 'meslo  'ttf)
 
-(default-font)
+;;(default-font)
