@@ -99,9 +99,8 @@
 (setq use-package-verbose t
       use-package-always-ensure t)
 ;; paths
-(let ((basedir "~/.emacs.d/elisp/"))
-  (add-to-list 'load-path basedir)
-  (add-to-list 'load-path (concat basedir "external")))
+(let ((basedir "~/.emacs.d/"))
+  (add-to-list 'load-path (concat basedir "elisp")))
 
 ;; custom files
 
@@ -135,9 +134,7 @@
 
 (defvar uniquify-buffer-name-style) ;; unique buffer names
 (defvaralias 'c-basic-offset 'tab-width)
-
 (fset 'yes-or-no-p 'y-or-n-p)
-
 ;; region
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -1047,7 +1044,7 @@
   :ensure t
   :defer  nil
   :init
-  (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets"))
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   (yas-global-mode 1)
   :config
   (setq yas-prompt-functions '(yas-ido-prompt
@@ -1224,16 +1221,13 @@
 
 (defun reset-frame ()
   (interactive)
-  (load-file "~/.emacs.d/elisp/custom-frame.el")
-  (message "resetting frame"))
-
-(when (display-graphic-p)
-	(set-frame-height (selected-frame) 57)
-	(set-frame-width  (selected-frame) 80))
-
+  (when (display-graphic-p)
+	  (set-frame-height (selected-frame) 57)
+	  (set-frame-width  (selected-frame) 80)))
+(reset-frame)
 ;; === theme ===================================================================
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elisp/themes/old")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/old")
 
 (setq frame-background-mode t
       custom-safe-themes    t)
