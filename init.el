@@ -336,8 +336,6 @@
 (advice-add 'show-paren--default :after-until #'show-paren--match-quotes)
 
 ;; === keys ====================================================================
-;; custom keybinds
-
 ;; disabled keybinds
 (dolist (key '("C-9" "C-8" "C-7" "C-6" "C-5" "C-4" "C-3" "C-2" "C-1" "C-0"
                "C-M-9" "C-M-8" "C-M-7" "C-M-6" "C-M-5" "C-M-4" "C-M-3" "C-M-2"
@@ -396,13 +394,6 @@
         (end-of-line))
     (end-of-line)))
 
-(defun custom-suspend-frame ()
-  "Suspend frame inside of a terminal instance of Emacs."
-  (interactive)
-  (if (display-graphic-p)
-      (message "Suspend frame is disabled for X11 frames of emacs")
-    (suspend-frame)))
-
 (defun transpose-windows (arg)
   "Transpose the buffers shown in two windows."
   (interactive "p")
@@ -460,7 +451,11 @@
  ;; custom function binds
  ("C-5"       . match-paren)
  ("C-u"       . backward-kill-line)
- ("C-x z"     . custom-suspend-frame)
+ ("C-x z"     . (lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
+                  (interactive)
+                  (if (display-graphic-p)
+                      (message "Suspend frame is disabled for X11 frames of emacs")
+                    (suspend-frame))))
  ;; movement
  ("M-p"       . backward-paragraph)
  ("M-n"       . forward-paragraph)
@@ -999,20 +994,11 @@
   :defer  nil
   :config
   (setq-default elscreen-prefix-key "\M-s")
-  (defun elscreen-kill-window-then-screen ()
-    (interactive)
-    (if (one-window-p)
-        (elscreen-kill)
-      (delete-window)))
+
   (custom-set-variables
    '(elscreen-tab-display-kill-screen nil)
    '(elscreen-display-tab t)
    '(elscreen-display-screen-number t))
-  (defun elscreen-kill-buffer-and-screen ()
-    (interactive)
-    (when (y-or-n-p "Kill current buffer and close screen? ")
-      (kill-current-buffer)
-      (elscreen-kill)))
   (when (daemonp)
     (elscreen-start))
   :bind*
@@ -1031,8 +1017,14 @@
         ("r"       . elscreen-screen-nickname)
         ("s"       . elscreen-swap)
         ("k"       . elscreen-kill)
-        ("x"       . elscreen-kill-window-then-screen)
-        ("M-k"     . elscreen-kill-buffer-and-screen)
+        ("x"       . (lambda ()
+                       (interactive)
+                       (if (one-window-p) (elscreen-kill) (delete-window))))
+        ("M-k"     . (lambda ()
+                       (interactive)
+                       (when (y-or-n-p "Kill current buffer and close screen? ")
+                         (kill-current-buffer)
+                         (elscreen-kill))))
         ("g"       . elscreen-goto)
         ("t"       . elscreen-toggle-display-tab)
         ("h"       . split-window-horizontally)
