@@ -1,3 +1,4 @@
+;; (occur "^;; ===")
 (setq gc-cons-threshold 64000000)
 (add-hook
  'after-init-hook
@@ -103,30 +104,14 @@
   (add-to-list 'load-path (concat basedir "external")))
 
 ;; custom files
-(defun load-library-wrap-error (lib)
-  "Load library lib and catch any errors that it might throw.
-Errors will be logged to the buffer *Init Errors*"
-  (condition-case err (load-library lib)
-    (error
-     (progn
-       (switch-to-buffer "*Init Errors*")
-       (let (buf (get-buffer-create "*Init Errors*"))
-         (with-temp-buffer
-           (erase-buffer) (insert "Error in '" lib
-                                  ":\n  " (error-message-string err) "\n")
-           (print "**")
-           (print (car err))
-           (append-to-buffer "*Init Errors*" (point-min) (point-max))))))))
-
 
 ;; === editing =================================================================
 ;; disable modes
-(put 'compose-mail           'disabled t)
-(put 'mouse-wheel-text-scale 'disabled t)
-(put 'mouse-appearance-menu  'disabled t)
-(put 'kmacro-end-call-mouse  'disabled t)
-(put 'overwrite-mode         'disabled t)
-
+(put 'compose-mail                                  'disabled t)
+(put 'mouse-wheel-text-scale                        'disabled t)
+(put 'mouse-appearance-menu                         'disabled t)
+(put 'kmacro-end-call-mouse                         'disabled t)
+(put 'overwrite-mode                                'disabled t)
 (put 'org-archive-set-tag                           'disabled t)
 (put 'org-archive-subtree                           'disabled t)
 (put 'org-archive-subtree-default                   'disabled t)
@@ -354,16 +339,13 @@ Errors will be logged to the buffer *Init Errors*"
 (advice-add 'show-paren--default :after-until #'show-paren--match-quotes)
 
 ;; === keys ====================================================================
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; custom keybinds
 
 ;; disabled keybinds
-;;(global-unset-key (kbd "<f1>"))
-;;(global-unset-key (kbd "<f2>"))
 (dolist (key '("C-9" "C-8" "C-7" "C-6" "C-5" "C-4" "C-3" "C-2" "C-1" "C-0"
                "C-M-9" "C-M-8" "C-M-7" "C-M-6" "C-M-5" "C-M-4" "C-M-3" "C-M-2"
-               "C-M-1" "C-M-0"
-               "M-9" "M-8" "M-7" "M-6" "M-5" "M-4" "M-3" "M-2" "M-1" "M-0" ;; digit arguments
+               "C-M-1" "C-M-0" "M-9" "M-8" "M-7" "M-6" "M-5" "M-4" "M-3" "M-2"
+               "M-1" "M-0" ;; ^--digit arguments
                "M-k" "<C-mouse-1>" "<C-mouse-3>" "<C-mouse-5>" "<C-mouse-4>"
                "C-z" "C-x C-z" "C-x m" "C--" "C-x DEL"
                "<f11>" "<insert>" "<insertchar>"
@@ -371,7 +353,7 @@ Errors will be logged to the buffer *Init Errors*"
   (global-unset-key (kbd key))) ;; unbind digit arguments
 
 
-;; custom region
+;; custom region keybinds
 (defconst custom-region-alist
   `((mark-active
      ,@(let ((m (make-sparse-keymap)))
@@ -389,11 +371,6 @@ Errors will be logged to the buffer *Init Errors*"
         ((looking-back "\\s)" 1) (backward-sexp arg))
         ((looking-at "\\s)") (forward-char) (backward-sexp arg))
         ((looking-back "\\s(" 1) (backward-char) (forward-sexp arg))))
-
-(defun delete-and-balance-window ()
-  (interactive)
-  (delete-window)
-  (balance-windows))
 
 (defun backward-kill-line (arg)
   "Kill ARG lines backward."
@@ -520,24 +497,24 @@ Errors will be logged to the buffer *Init Errors*"
  ("C-x C--"   . negative-argument)
  ("C-c o"     . transpose-windows)
  ("C-x t"     . transpose-lines)
- ;;
+ ;; misc
  ("C-c 4"     . ispell-change-dictionary)
  )
 
 ;; mode specific
-(defun my-eval-region-or-buffer ()
-  (interactive)
-  (if (region-active-p)
-      (progn
-        (eval-region (region-beginning) (region-end))
-        (message "Evaluated current region"))
-    (progn
-      (eval-buffer)
-      (message "Evaluated current buffer"))))
-
 (dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
   (bind-keys :map mode
-             ("C-c C-c" . my-eval-region-or-buffer)))
+             ("C-c C-c" .
+              (lambda ()
+                (interactive)
+                (if (region-active-p)
+                    (progn
+                      (eval-region (region-beginning) (region-end))
+                      (message "Evaluated current region"))
+                  (progn
+                    (eval-buffer)
+                    (message "Evaluated current buffer")))))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; x11
@@ -751,7 +728,8 @@ Errors will be logged to the buffer *Init Errors*"
         (tab-bar-close-tab))
     (progn
       (kill-current-buffer)
-      (delete-and-balance-window))))
+      (delete-window)
+      (balance-windows))))
 
 ;; 2022-01-23 Sun @leahneukirchen
 (defun toggle-comment-on-line ()
@@ -1289,8 +1267,6 @@ Errors will be logged to the buffer *Init Errors*"
     (setq frame-background-mode t))
   (setColours))
 
-
-
 ;;
 ;;(unless (daemonp)
 ;;  (if (display-graphic-p)
@@ -1418,7 +1394,6 @@ Errors will be logged to the buffer *Init Errors*"
 
     ;; === emacsclient =============================================================
     (keychain-refresh-environment)
-    ;;(load-library-wrap-error "custom-desktop-save")
 
     (defun ask-before-closing ()
       (interactive)
@@ -1492,14 +1467,10 @@ Errors will be logged to the buffer *Init Errors*"
         (9x16))
        (t                         (6x13))))
 
-    (defun reset-fonts ()
-      (interactive)
-      (load-file "~/.emacs.d/elisp/custom-font-mode.el")
-      (message "resetting fonts"))
-
-    (defalias 'df     'default-font)
-    (defalias 'menlo  'ttf)
-    (defalias 'meslo  'ttf)
+    (defalias 'df          'default-font)
+    (defalias 'reset-fonts 'default-font)
+    (defalias 'menlo       'ttf)
+    (defalias 'meslo       'ttf)
 
     ;;(default-font)
     ))

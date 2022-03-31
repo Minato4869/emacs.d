@@ -1,22 +1,22 @@
 (deftheme gl-dark
   "gl-dark-theme")
 
-(let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+(let* ((is_ttf  (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
+       (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       (mode-line-term                (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
-                                                   '(:background "color-235" :foreground "color-250")))
-       (mode-line-inactive-term       (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
-                                                   '(:background "color-239" :foreground "color-252")))
-       (mode-line-buffer-id           (if (is_ssh) "#B680B1" nil))
-       (default-fg (if (string-match "PfEd" (prin1-to-string (face-attribute 'default :font)))
-                       "#FFFFFF"
-                     "#E5E5E5"))
+       (mode-line-term          (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
+                                             '(:background "color-235" :foreground "color-250")))
+       (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
+                                             '(:background "color-239" :foreground "color-252")))
+       (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
+       (default-fg              (if is_ttf       "#FFFFFF" "#E5E5E5"))
+       (default-dark-fg         (if is_ttf       "#e5e5e5" "#bebebe"))
        )
   (custom-theme-set-faces
    'gl-dark
    `(default ((((type tty))                       ,default-term)
-               (((class color) (background dark))  (:background "#000000" :foreground "#bebebe"))
+               (((class color) (background dark))  (:background "#000000" :foreground ,default-dark-fg))
                (((class color) (background light)) (:background "#ffffff" :foreground "#000000"))
                (t                                  (:background "#333333" :foreground ,default-fg))))
    `(cursor  ((((class color) (background dark))  (:background "#ff0000" :foreground "#000000"))
@@ -122,6 +122,9 @@
    `(org-latex-and-related               ((t (:foreground "#DEB887"))))
    `(org-table                           ((((class color) (background light) (:foreground "#000000"))
                                            (t                                (:foreground "#87CEFA")))))
+
+   `(org-drawers                         ((((class color) (background light) (:foreground "#0000ff"))
+                                           (t                                (:foreground "#87cefa")))))
 
 
    `(tex-verbatim                        ((((class color) (background dark) (:foreground "#a0522d"))
