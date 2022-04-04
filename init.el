@@ -338,7 +338,7 @@
           (set-window-buffer (funcall selector) this-win)
           (select-window (funcall selector)))
         (setq arg (if (cl-plusp arg) (1- arg) (1+ arg)))
-        (other-window -1)
+        ;;(other-window -1)
         (message "Transposing windows")))))
 (defalias 'tw            'transpose-windows)
 
@@ -996,26 +996,28 @@
   (diminish 'yas-minor-mode)
   ;;  (diminish 'auto-fill-function)
   (diminish 'eldoc-mode))
+
 ;; == mu4e
-;;(use-package mu4e
-;;  :if (and (my_daemonp)
-;;           (or (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
-;;               (file-directory-p "/usr/local/share/emacs/site-lisp/mu4e")))
-;;  :ensure nil
-;;  :defer nil
-;;  :config
-;;  (setq mail-user-agent 'mu4e-user-agent
-;;        mu4e-sent-folder   "/Sent"
-;;        mu4e-drafts-folder "/Drafts"
-;;        mu4e-trash-folder  "/Archive/trash"
-;;        message-send-mail-function   nil
-;;        smtpmail-default-smtp-server nil
-;;        smtpmail-smtp-server         nil
-;;          smtpmail-local-domain        nil))
-;;(defalias 'mail 'mu4e)
-;;(defalias 'mu   'mu4e)
-;;(when (my_daemonp)
-;;    (load-library "mu4e"))
+(let ((mupath "/usr/share/emacs/site-lisp/mu4e"))
+  (use-package mu4e
+    :if (and (my_daemonp)
+             (file-directory-p mupath))
+    :ensure nil
+    :defer nil
+    :config
+    (setq mail-user-agent 'mu4e-user-agent
+          mu4e-sent-folder   "/Sent"
+          mu4e-drafts-folder "/Drafts"
+          mu4e-trash-folder  "/Archive/trash"
+          message-send-mail-function   nil
+          smtpmail-default-smtp-server nil
+          smtpmail-smtp-server         nil
+          smtpmail-local-domain        nil))
+  (defalias 'mail 'mu4e)
+  (defalias 'mu   'mu4e)
+  (add-to-list 'load-path mupath)
+  (load-library "mu4e"))
+
 ;; ==ripgrep
 (use-package rg
   :ensure t
@@ -1331,7 +1333,7 @@
   (setq backup-directory-alist `(("." . ,backupdir))
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
-
+;; === theme/colours ===========================================================
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
@@ -1348,31 +1350,18 @@
                                           (t            (:background "#333333" :foreground ,default-fg))))
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
-   `(fringe                              ((t            (:background "#1A1A1A"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((((type  tty))                      ,mode-line-term)
-
-                                          (t                                  (:background "#292929" :inherit default))))
+   `(mode-line                           ((((type  tty)) ,mode-line-term)
+                                          (t             (:background "#292929" :inherit default))))
    `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
-                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC" :box (:line-width -1 :color "#666666" :style nil)))))
+                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC"
+                                                                     :box (:line-width -1 :color "#666666" :style nil)))))
    `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
    `(region                             ((t (:inherit default :background "#114488" :extend t))))
    `(hl-line                            ((t (:inherit fringe :extend t))))
 
-   `(font-lock-builtin-face              ((t (:inherit default))))
-   `(font-lock-comment-face              ((t (:inherit default))))
-   `(font-lock-comment-delimiter-face    ((t (:inherit font-lock-comment-face))))
-   `(font-lock-constant-face             ((t (:inherit default))))
-   `(font-lock-doc-face                  ((t (:inherit default))))
-   `(font-lock-function-name-face        ((t (:inherit default))))
-   `(font-lock-keyword-face              ((t (:inherit default))))
-   `(font-lock-negation-char-face        ((t (:inherit default))))
-   `(font-lock-preprocessor-face         ((t (:inherit default))))
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
-   `(font-lock-string-face               ((t (:inherit default))))
-   `(font-lock-type-face                 ((t (:inherit default))))
-   `(font-lock-variable-name-face        ((t (:inherit default))))
    `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
 
    `(ido-subdir                          ((t (:foreground "#A1C659"))))
@@ -1381,15 +1370,12 @@
    `(ido-incomplete-regexp               ((t (:inherit default))))
    `(ido-indicator                       ((t (:inherit default))))
 
-   `(sh-quoted-exec                      ((t (:inherit default))))
-   `(sh-heredoc                          ((t (:inherit default))))
-
    `(italic                              ((t (:slant italic :underline nil))))
 
    `(completions-common-part             ((t (:foreground "#add8e6"))))
 
    `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
-   `(isearch                             ((t (:background "#333333" :foreground "#1E90FF" :bold t))))
+   `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
    `(shadow                              ((t (:foreground "#aaaaaa"))))
 
@@ -1422,12 +1408,8 @@
    `(org-table                           ((t (:foreground "#87CEFA"))))
    `(org-drawers                         ((t (:foreground "#87cefa"))))
 
-
    `(tex-verbatim                        ((t (:foreground "#DEB887"))))
    `(tex-math                            ((t (:inherit tex-verbatim))))
-
-   `(header-line                         ((t (:inherit mode-line
-                                                       :box (:line-width -1 :style released-button)))))
 
    `(dired-header                     ((t (:foreground  "#98fb98"))))
    `(dired-directory                  ((t (:foreground  "#87CEFA"))))
@@ -1441,7 +1423,7 @@
 
    `(error                            ((t (:foreground "#ff0000" :bold t))))
 
-   `(show-paren-match                 ((t (:inherit default :background "#4f94cd"))))
+   `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
    `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
    `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
@@ -1460,10 +1442,9 @@
 
    `(eshell-ls-directory              ((t (:inherit dired-directory))))
    `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
-   ;; `(eshell-ls-executable             ((t (:foreground ,eshell-ls-executable))))
 
-   `(elscreen-tab-background-face     ((t (:inherit mode-line :box
-                                                    (:line-width -1 :style released-button)))))
+   `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
+   `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
@@ -1472,6 +1453,16 @@
    `(highlight                        ((t (:inherit default :background "#556b2f"))))
    ))
 
+(add-hook 'diff-mode-hook    'turn-on-font-lock)
+(add-hook 'dired-mode-hook   'turn-on-font-lock)
+(add-hook 'magit-mode-hook   'turn-on-font-lock)
+(add-hook 'Man-mode-hook   'turn-on-font-lock)
+(add-hook 'org-mode-hook     'turn-on-font-lock)
+(add-hook 'mail-mode-hook    'turn-on-font-lock)
+(add-hook 'Man-mode-hook     'turn-on-font-lock)
+(add-hook 'eshell-mode-hook  'turn-on-font-lock)
+(add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
+(global-font-lock-mode 0)
 
 (custom-set-variables
  '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
