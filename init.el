@@ -43,8 +43,7 @@
  '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
  '(backward-delete-char-untabify-method 'hungry)
  '(ispell-dictionary "en_GB")
- '(frame-title-format (if (daemonp)
-                          '("" "emacsclient@" system-name " - %b")
+ '(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
                         '("" "emacs@" system-name " - %b")))
  '(visible-bell nil)
  '(ring-bell-function 'ignore) ;; disable audible bell on windows
@@ -79,7 +78,8 @@
 
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
-
+(defun is_ttf ()
+  (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
@@ -1229,8 +1229,7 @@
   (frame-set-background-mode (selected-frame))
   (load-theme 'gl-dark t))
 (if (and (display-graphic-p) (not (daemonp)))
-    (setq frame-background-mode '
-          light))
+    (setq frame-background-mode 'light))
   (setColours)
 
 (add-hook 'diff-mode-hook    'turn-on-font-lock)

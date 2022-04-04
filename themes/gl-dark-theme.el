@@ -1,8 +1,5 @@
-(deftheme gl-dark
-  "gl-dark-theme")
-
-(let* ((is_ttf  (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
-       (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+(deftheme gl-dark "gl-dark-theme")
+(let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
        (mode-line-term          (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
@@ -10,8 +7,8 @@
        (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
                                              '(:background "color-239" :foreground "color-252")))
        (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
-       (default-fg              (if is_ttf       "#FFFFFF" "#E5E5E5"))
-       (default-dark-fg         (if is_ttf       "#e5e5e5" "#bebebe"))
+       (default-fg              (if (is_ttf)       "#FFFFFF" "#E5E5E5"))
+       (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe"))
        )
   (custom-theme-set-faces
    'gl-dark
