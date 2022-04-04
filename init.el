@@ -1230,7 +1230,6 @@
   (load-theme 'gl-dark t))
 (setColours)
 
-
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'magit-mode-hook   'turn-on-font-lock)
@@ -1253,18 +1252,6 @@
     (setq frame-background-mode t))
   (setColours))
 
-;;
-;;(unless (daemonp)
-;;  (if (display-graphic-p)
-;;      (setq gl/light t)
-;;    (global-font-lock-mode 0)))
-;;
-;;(load-library 'gl-dark)
-;;
-;;;;(unless gl/colours (global-font-lock-mode 0))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
   (mapc #'disable-theme custom-enabled-themes))
@@ -1283,7 +1270,7 @@
 
 (defun reset-themes ()
   (interactive)
-  (load-library "custom-theme"))
+  (setColours))
 
 ;; === aliases =================================================================
 ;;; global aliases of default functions
@@ -1296,11 +1283,9 @@
 (defalias 'fontify       'font-lock-fontify-buffer)
 (defalias 'hs            'haskell-mode)
 (defalias 'gws           'global-whitespace-mode)
-(defalias 'wsg           'global-whitespace-mode)
 (defalias 'ws            'whitespace-mode)
 (defalias 'mb            'menu-bar-mode)
 (defalias 'sh            'shell-script-mode)
-(defalias 'zsh           'shell-script-mode)
 (defalias 'li            'lisp-interaction-mode)
 (defalias 'el            'emacs-lisp-mode)
 (defalias 'org           'org-mode)
@@ -1309,30 +1294,22 @@
 (defalias 'fm            'fundamental-mode)
 (defalias 'oc            'occur)
 (defalias 'win           'shell)
-(defalias 'term          'ansi-term)
 (defalias 'tex           'plain-tex-mode)
 (defalias 'latex         'latex-mode)
-;;
 (defalias 'xt            'xterm-mouse-mode)
 (defalias 'ap            'apropos)
 (defalias 'qc            'quick-calc)
 (defalias 'dir           'dired-jump)
 (defalias 'linum         'display-line-numbers-mode)
 (defalias 'tr            'toggle-truncate-lines)
-(defalias 'sf            'set-fill-column)
 (defalias 'fci           'display-fill-column-indicator-mode)
-;;
 (defalias 'win-undo      'winner-undo)
 (defalias 'win-redo      'winner-redo)
 (defalias 'wundo         'winner-undo)
 (defalias 'wredo         'winner-redo)
-(defalias 'qr            'query-replace)
-(defalias 'qrr           'query-replace-regexp)
 (defalias 'b             'balance-windows)
-;;
 (defalias 'conf          'conf-mode)
 (defalias 'ro            'read-only-mode)
-(defalias 'er            'read-only-mode)
 (defalias 'rw            'read-only-mode)
 (defalias 'vi            'visual-line-mode)
 
@@ -1341,7 +1318,6 @@
   (setq confirm-kill-emacs 'yes-or-no-p)
   (when (daemonp)
     ;; === desktop save ============================================================
-
     (setq desktop-path '("~/.local/")
           desktop-dirname "~/.local/"
           desktop-base-file-name "emacs-desktop")
@@ -1380,7 +1356,6 @@
 
     ;; === emacsclient =============================================================
     (keychain-refresh-environment)
-
     (defun ask-before-closing ()
       (interactive)
       (if (display-graphic-p)
@@ -1392,11 +1367,10 @@
         (delete-frame)))
     (global-set-key (kbd "C-x C-c") 'ask-before-closing)
 
-    ;;  "fix background/foreground colors for emacsclient within terminals
-    ;;  emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
-
     (defun my-update-env (fn)
-      "https://emacs.stackexchange.com/a/6107"
+      "https://emacs.stackexchange.com/a/6107
+      fix background/foreground colors for emacsclient within terminals
+      emacs.stackexchange.com/questions/41/start-two-separate-emacs-daemons-for-console-and-gui"
       (let ((str
              (with-temp-buffer
                (insert-file-contents fn)
