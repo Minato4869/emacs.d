@@ -17,7 +17,7 @@
    'gl-dark
    `(default ((((type tty))                       ,default-term)
                (((class color) (background dark))  (:background "#000000" :foreground ,default-dark-fg))
-               (((class color) (background light)) (:background "#ffffff" :foreground "#000000"))
+               (((class color) (background light)) (:background "#D9D5BA" :foreground "#000000"))
                (t                                  (:background "#333333" :foreground ,default-fg))))
    `(cursor  ((((class color) (background dark))  (:background "#ff0000" :foreground "#000000"))
               (((class color) (background light)) (:background "#4286F4" :foreground "#FFFFFF"))

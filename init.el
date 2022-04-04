@@ -1228,7 +1228,10 @@
   (set-frame-parameter     (selected-frame) 'background-mode frame-background-mode)
   (frame-set-background-mode (selected-frame))
   (load-theme 'gl-dark t))
-(setColours)
+(if (and (display-graphic-p) (not (daemonp)))
+    (setq frame-background-mode '
+          light))
+  (setColours)
 
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
