@@ -4,74 +4,6 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-(custom-set-variables
- '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
-;; Actually, it's the BBC controlling us from London.
-
-")
- '(battery-mode-line-format " [%b%p%%]")
- '(display-time-default-load-average nil)
- '(display-time-format "%H:%M")
- '(display-time-mail-string "")
- '(display-time-24hr-format t)
- '(display-time-day-and-date t)
- '(size-indication-mode t)
- '(column-number-mode t)
- '(diff-switches "-urN") ;; no separators; use +/- instead of >/<, unify
- '(dired-auto-revert-buffer t)
- '(whitespace-style
-   '(face trailing tabs spaces lines newline empty indentation space-after-tab
-          space-before-tab space-mark tab-mark))
- '(blink-cursor-mode nil)
- '(inhibit-startup-screen t)
- '(scroll-error-top-bottom t)
- '(show-paren-mode t)
- '(menu-bar-mode nil)
- '(tooltip-mode nil)
- '(use-dialog-box nil)
- '(default-input-method "rfc1345")
- '(require-final-newline t)
- '(auto-fill-mode -1)
- '(fill-column 80)
- '(show-trailing-whitespace nil)
- '(line-move-visual nil)
- '(epg-gpg-home-directory "~/.gnupg")
- '(indent-tabs-mode t)
- '(c-basic-offset 8)
- '(sh-basic-offset 8)
- '(tab-width 8)
- '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
- '(backward-delete-char-untabify-method 'hungry)
- '(ispell-dictionary "en_GB")
- '(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
-                        '("" "emacs@" system-name " - %b")))
- '(visible-bell nil)
- '(ring-bell-function 'ignore) ;; disable audible bell on windows
- '(vc-follow-symlinks nil)
- '(visible-cursor nil)
- '(frame-inhibit-implied-resize t)
- '(tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
- '(blink-matching-paren nil) ;; disable paren/$ jumping
- '(show-paren-mode t)
- '(show-paren-delay 0) ;; immediately show parens
- '(mouse-autoselect-window t)
- '(electric-indent-mode t)
- '(xterm-mouse-mode nil)
- '(mouse-yank-at-point t)
- '(savehist-mode 1)
- '(transient-mark-mode t)
- '(delete-selection-mode t)
- '(global-subword-mode 1)               ; iterate through CamelCase words
- '(winner-mode 1)
- '(winner-dont-bind-my-keys t) ;; dont rebind keys
- '(ps-paper-type 'a4)
- '(ps-print-color-p 'black-white)
- '(shift-select-mode nil)
- '(custom-file "~/.emacs.d/.custom.el")
- '(line-move-visual t)
- '(default-frame-alist '((width . 80) (height . 57)))
- '(initial-frame-alist default-frame-alist)
- )
 
 (defun my_daemonp()
   (if (or (daemonp) (display-graphic-p)) t nil))
@@ -1217,62 +1149,6 @@
 	  (set-frame-height (selected-frame) 57)
 	  (set-frame-width  (selected-frame) 80)))
 (reset-frame)
-;; === theme ===================================================================
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/old")
-
-(setq frame-background-mode t
-      custom-safe-themes    t)
-(defun setColours ()
-  (set-terminal-parameter  (selected-frame) 'background-mode frame-background-mode)
-  (set-frame-parameter     (selected-frame) 'background-mode frame-background-mode)
-  (frame-set-background-mode (selected-frame))
-  (load-theme 'gl-dark t))
-(if (and (display-graphic-p) (not (daemonp)))
-    (setq frame-background-mode 'light))
-  (setColours)
-
-(add-hook 'diff-mode-hook    'turn-on-font-lock)
-(add-hook 'dired-mode-hook   'turn-on-font-lock)
-(add-hook 'magit-mode-hook   'turn-on-font-lock)
-(add-hook 'org-mode-hook     'turn-on-font-lock)
-(add-hook 'mail-mode-hook    'turn-on-font-lock)
-(add-hook 'Man-mode-hook     'turn-on-font-lock)
-(add-hook 'eshell-mode-hook  'turn-on-font-lock)
-(add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
-(defun cycle-theme ()
-  (interactive)
-  (if (eq frame-background-mode t)
-      (setq frame-background-mode 'dark)
-    (setq frame-background-mode t))
-  (setColours))
-
-(defun cycle-light-theme ()
-  (interactive)
-  (if (eq frame-background-mode t)
-      (setq frame-background-mode 'light)
-    (setq frame-background-mode t))
-  (setColours))
-
-(defadvice load-theme (before theme-dont-propagate activate)
-  "Disable theme before loading new one."
-  (mapc #'disable-theme custom-enabled-themes))
-
-(setq custom-theme-index 0)
-(defun cycle-themes ()
-  (interactive)
-  (let ((custom-themes '(gl-dark naysayer-grey naysayer nord srcery warm-night xcode-dark)))
-    (setq custom-theme-index (% (1+ custom-theme-index) (length custom-themes)))
-    (load-theme (nth custom-theme-index custom-themes) :no-confirm)))
-
-(bind-keys
- ("<f2>"   . cycle-theme)
- ("M-<f2>" . cycle-light-theme)
- ("C-<f2>" . cycle-themes))
-
-(defun reset-themes ()
-  (interactive)
-  (setColours))
 
 ;; === aliases =================================================================
 ;;; global aliases of default functions
@@ -1454,3 +1330,214 @@
   (mkdir autosavedir t)
   (setq backup-directory-alist `(("." . ,backupdir))
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
+
+
+(let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+                           ((daemonp) '(:background "color-236"      :foreground "color-254"))
+                           (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+       (mode-line-term          (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
+                                             '(:background "color-235" :foreground "color-250")))
+       (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
+                                             '(:background "color-239" :foreground "color-252")))
+       (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
+       (default-fg              (if (is_ttf)       "#FFFFFF" "#E5E5E5"))
+       (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe"))
+       )
+  (custom-set-faces
+   `(default                             ((((type tty))  ,default-term)
+                                          (t            (:background "#333333" :foreground ,default-fg))))
+   `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
+   `(border                              ((t            (:foreground "#0000ff"))))
+   `(fringe                              ((t            (:background "#1A1A1A"))))
+   `(minibuffer-prompt                   ((t (:inherit default :bold t))))
+   `(mode-line                           ((((type  tty))                      ,mode-line-term)
+
+                                          (t                                  (:background "#292929" :inherit default))))
+   `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
+                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC" :box (:line-width -1 :color "#666666" :style nil)))))
+   `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
+   `(region                             ((t (:inherit default :background "#114488" :extend t))))
+   `(hl-line                            ((t (:inherit fringe :extend t))))
+
+   `(font-lock-builtin-face              ((t (:inherit default))))
+   `(font-lock-comment-face              ((t (:inherit default))))
+   `(font-lock-comment-delimiter-face    ((t (:inherit font-lock-comment-face))))
+   `(font-lock-constant-face             ((t (:inherit default))))
+   `(font-lock-doc-face                  ((t (:inherit default))))
+   `(font-lock-function-name-face        ((t (:inherit default))))
+   `(font-lock-keyword-face              ((t (:inherit default))))
+   `(font-lock-negation-char-face        ((t (:inherit default))))
+   `(font-lock-preprocessor-face         ((t (:inherit default))))
+   `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
+   `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
+   `(font-lock-string-face               ((t (:inherit default))))
+   `(font-lock-type-face                 ((t (:inherit default))))
+   `(font-lock-variable-name-face        ((t (:inherit default))))
+   `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
+
+   `(ido-subdir                          ((t (:foreground "#A1C659"))))
+   `(ido-only-match                      ((t (:foreground "#FFCC33"))))
+   `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
+   `(ido-incomplete-regexp               ((t (:inherit default))))
+   `(ido-indicator                       ((t (:inherit default))))
+
+   `(sh-quoted-exec                      ((t (:inherit default))))
+   `(sh-heredoc                          ((t (:inherit default))))
+
+   `(italic                              ((t (:slant italic :underline nil))))
+
+   `(completions-common-part             ((t (:foreground "#add8e6"))))
+
+   `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
+   `(isearch                             ((t (:background "#333333" :foreground "#1E90FF" :bold t))))
+
+   `(shadow                              ((t (:foreground "#aaaaaa"))))
+
+   `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
+   `(org-level-2                         ((t (:foreground "#929292"))))
+   `(org-level-3                         ((t (:foreground "#838383" :bold t))))
+   `(org-level-4                         ((t (:foreground "#757575" t))))
+   `(org-level-5                         ((t (:foreground "#8b8fc6"))))
+   `(org-level-6                         ((t (:foreground "#bd845f"))))
+   `(org-level-7                         ((t (:foreground "#71a46c"))))
+   `(org-level-8                         ((t (:foreground "#71a19f"))))
+
+   `(org-date                            ((t (:foreground "#2C78BF"))))
+   `(org-todo                            ((t (:foreground "#D70000" :bold t))))
+   `(org-done                            ((t (:foreground "#228b22" :bold t))))
+   `(org-special-keyword                 ((t (:foreground "#729FCF"))))
+   `(org-priority                        ((t (:foreground "#729FCF"))))
+   `(org-headline-done                   ((t (:foreground "#FFA07A"))))
+   `(org-meta-line                       ((t (:inherit default :bold t))))
+   `(org-time-grid                       ((t (:foreground "#EEDD82"))))
+   `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
+   `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
+   `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
+   `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
+   `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
+   `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
+   `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
+   `(org-block                           ((t (:inherit default :extend t))))
+   `(org-latex-and-related               ((t (:foreground "#DEB887"))))
+   `(org-table                           ((t (:foreground "#87CEFA"))))
+   `(org-drawers                         ((t (:foreground "#87cefa"))))
+
+
+   `(tex-verbatim                        ((t (:foreground "#DEB887"))))
+   `(tex-math                            ((t (:inherit tex-verbatim))))
+
+   `(header-line                         ((t (:inherit mode-line
+                                                       :box (:line-width -1 :style released-button)))))
+
+   `(dired-header                     ((t (:foreground  "#98fb98"))))
+   `(dired-directory                  ((t (:foreground  "#87CEFA"))))
+   `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
+
+   `(buffer-menu-buffer               ((t (:inherit default))))
+
+   `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
+   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
+                                                       :bold t))))
+
+   `(error                            ((t (:foreground "#ff0000" :bold t))))
+
+   `(show-paren-match                 ((t (:inherit default :background "#4f94cd"))))
+   `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
+
+   `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
+
+   `(magit-diff-header                   ((t (:inherit diff-header))))
+   `(magit-diff-context-highlight        ((t (:inherit diff-context))))
+   `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
+   `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
+   `(magit-diff-added-highlight          ((t (:inherit diff-added))))
+
+   `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
+   `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
+   `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
+   `(mu4e-header-face                 ((t (:foreground "#888888"))))
+   `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
+
+   `(eshell-ls-directory              ((t (:inherit dired-directory))))
+   `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
+   ;; `(eshell-ls-executable             ((t (:foreground ,eshell-ls-executable))))
+
+   `(elscreen-tab-background-face     ((t (:inherit mode-line :box
+                                                    (:line-width -1 :style released-button)))))
+   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                       (t (:foreground "#e5e5e5" :background "#666666"))))
+
+   `(highlight                        ((t (:inherit default :background "#556b2f"))))
+   ))
+
+
+(custom-set-variables
+ '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
+;; Actually, it's the BBC controlling us from London.
+
+")
+ '(battery-mode-line-format " [%b%p%%]")
+ '(display-time-default-load-average nil)
+ '(display-time-format "%H:%M")
+ '(display-time-mail-string "")
+ '(display-time-24hr-format t)
+ '(display-time-day-and-date t)
+ '(size-indication-mode t)
+ '(column-number-mode t)
+ '(diff-switches "-urN") ;; no separators; use +/- instead of >/<, unify
+ '(dired-auto-revert-buffer t)
+ '(whitespace-style
+   '(face trailing tabs spaces lines newline empty indentation space-after-tab
+          space-before-tab space-mark tab-mark))
+ '(blink-cursor-mode nil)
+ '(inhibit-startup-screen t)
+ '(scroll-error-top-bottom t)
+ '(show-paren-mode t)
+ '(menu-bar-mode nil)
+ '(tooltip-mode nil)
+ '(use-dialog-box nil)
+ '(default-input-method "rfc1345")
+ '(require-final-newline t)
+ '(auto-fill-mode -1)
+ '(fill-column 80)
+ '(show-trailing-whitespace nil)
+ '(line-move-visual nil)
+ '(epg-gpg-home-directory "~/.gnupg")
+ '(indent-tabs-mode t)
+ '(c-basic-offset 8)
+ '(sh-basic-offset 8)
+ '(tab-width 8)
+ '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
+ '(backward-delete-char-untabify-method 'hungry)
+ '(ispell-dictionary "en_GB")
+ '(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
+                        '("" "emacs@" system-name " - %b")))
+ '(visible-bell nil)
+ '(ring-bell-function 'ignore) ;; disable audible bell on windows
+ '(vc-follow-symlinks nil)
+ '(visible-cursor nil)
+ '(frame-inhibit-implied-resize t)
+ '(tramp-shell-prompt-pattern "^[^$>\n]*[#$%>] *\\(\[[0-9;]*[a-zA-Z] *\\)*")
+ '(blink-matching-paren nil) ;; disable paren/$ jumping
+ '(show-paren-mode t)
+ '(show-paren-delay 0) ;; immediately show parens
+ '(mouse-autoselect-window t)
+ '(electric-indent-mode t)
+ '(xterm-mouse-mode nil)
+ '(mouse-yank-at-point t)
+ '(savehist-mode 1)
+ '(transient-mark-mode t)
+ '(delete-selection-mode t)
+ '(global-subword-mode 1)               ; iterate through CamelCase words
+ '(winner-mode 1)
+ '(winner-dont-bind-my-keys t) ;; dont rebind keys
+ '(ps-paper-type 'a4)
+ '(ps-print-color-p 'black-white)
+ '(shift-select-mode nil)
+ '(custom-file "~/.emacs.d/.custom.el")
+ '(line-move-visual t)
+ '(default-frame-alist '((width . 80) (height . 57)))
+ '(initial-frame-alist default-frame-alist)
+ )
