@@ -1,4 +1,4 @@
-;; (occur "^;; ===")
+;;; (occur "^;; ===")
 (setq gc-cons-threshold 64000000)
 (add-hook
  'after-init-hook
@@ -221,8 +221,8 @@
 (defun custom-bury-buffer ()
   (if (or (string-match "*scratch*"        (buffer-name))
           (string-match "reminder.org.gpg" (buffer-name)))
-      (progn  (message "Not allowed to kill %s, burying instead" (buffer-name))
-              (bury-buffer))
+      (progn (message "Not allowed to kill %s, burying instead" (buffer-name))
+             (bury-buffer))
     t))
 
 (add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
@@ -275,7 +275,7 @@
                "M-1" "M-0" ;; ^--digit arguments
                "M-k" "<C-mouse-1>" "<C-mouse-3>" "<C-mouse-5>" "<C-mouse-4>"
                "C-z" "C-x C-z" "C-x m" "C--" "C-x DEL"
-               "<f11>" "<insert>" "<insertchar>"
+               "<f11>" "<insert>" "<insertchar>" "<f2>"
                ))
   (global-unset-key (kbd key))) ;; unbind digit arguments
 
@@ -1281,7 +1281,8 @@
                                  :foundry "PfEd" :family ,family)))))
         (setq default-frame-alist `((font . ,myfont))
               initial-frame-alist default-frame-alist)
-        (set-frame-font myfont nil t)))
+        (set-frame-font myfont nil t)
+        (set-foreground-color "#FFFFFF")))
 
     (defun pcf (&optional arg)
       (interactive)
@@ -1294,7 +1295,8 @@
         (set-face-attribute 'default t :font myfont)
         (setq default-frame-alist `((font . ,myfont))
               initial-frame-alist default-frame-alist)
-        (set-frame-font myfont nil t)))
+        (set-frame-font myfont nil t))
+      (set-foreground-color "#E5E5E5"))
 
     (defun 6x13 () (interactive) (pcf "6x13"))
     (defun 9x16 () (interactive) (pcf "9x16"))
