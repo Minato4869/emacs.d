@@ -225,13 +225,8 @@
              (bury-buffer))
     t))
 
+(remove-hook 'kill-buffer-query-functions 'custom-bury-buffer)
 (add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
-;; (remove-hook 'kill-buffer-query-functions 'custom-bury-buffer)
-
-;; reuse compilation window even if it is in anoter frame
-(add-to-list 'display-buffer-alist
-             '("\\*compilaition\\*"
-               . (nil (reusable-frames . visible))))
 
 
 ;; == show matching quotes
@@ -1303,7 +1298,7 @@
     (defun default-font ()
       (interactive)
       (cond
-       ((file-regular-p "~/.ttf") (ttf))
+       ((or (= dpi 109) (file-regular-p "~/.ttf") (ttf)))
        ((or (file-regular-p "~/.hf")
             (>= dpi 157))
         (9x16))
@@ -1454,7 +1449,8 @@
 
    `(highlight                        ((t (:inherit default :background "#556b2f"))))
    ))
-
+(global-font-lock-mode 0)
+(global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'magit-mode-hook   'turn-on-font-lock)
@@ -1464,7 +1460,6 @@
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
 (add-hook 'eshell-mode-hook  'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
-(global-font-lock-mode 0)
 
 (custom-set-variables
  '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
