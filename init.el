@@ -1341,30 +1341,44 @@
 
     (defvar theme/light nil
       "Variable theme used to toggle theme")
+    (defun theme/set-colours (&optional mode)
+      (cond
+       ((string= mode "dark")
+          (custom-set-faces
+           `(default ((t (:background "#000000" :foreground "#e5e5e5"))))
+           `(fringe  ((t (:background "#1a1a1a" :inherit default))))))
+       ((string= mode "light")
+        (custom-set-faces
+         `(default ((t (:background "#ffffff" :foreground "#000000"))))
+         `(fringe  ((t (:background "#f2f2f2" :inherit default))))))
+       (t
+        (custom-set-faces
+         `(default ((t (:background "#333333" :foreground "#e5e5e5"))))
+         `(fringe  ((t (:background "#1a1a1a" :inherit default))))))))
+
     (defun fl (&optional)
       (interactive)
       (if font-lock-mode
-          (progn
-            (font-lock-mode t)
-            (unless theme/light
-              (set-background-color "black")))
-        (progn (font-lock-mode 0)
-               (set-background-color "#333333"))))
+          (progn (font-lock-mode 0)
+                 (unless theme/light
+                   (theme/set-colours)))
+        (progn (font-lock-mode t)
+               (unless theme/light
+                 (theme/set-colours "dark")))))
 
   (defun toggle-light-theme ()
     (interactive)
     (if theme/light
         (progn
-          (setq frame-background-mode t)
-          (setq theme/light nil)
-          (set-background-color "#333333")
-          (set-foreground-color "#E5E5E5"))
+          (setq frame-background-mode 'dark
+                theme/light nil)
+          (if font-lock-mode
+              (theme/set-colours "dark")
+            (theme/set-colours)))
       (progn (setq theme/light t)
              (setq frame-background-mode 'light)
-             (set-background-color "white")
-             (set-foreground-color "black")
+             (theme/set-colours "light"))))
              ;;(invert-face 'default))))
-             )))
   (bind-keys
    ("<f2>" . toggle-light-theme))
   (custom-set-faces
@@ -1380,7 +1394,7 @@
                                                                      :box (:line-width -1 :color "#666666" :style nil)))))
    `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
    `(region                             ((t (:inherit default :background "#114488" :extend t))))
-   `(fringe                             ((t (:foreground "#1a1a1a"))))
+   `(fringe                             ((t (:background "#1a1a1a" :inherit default))))
    `(hl-line                            ((t (:inherit fringe :extend t))))
 
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
