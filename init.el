@@ -1145,7 +1145,6 @@
   (when (display-graphic-p)
 	  (set-frame-height (selected-frame) 57)
 	  (set-frame-width  (selected-frame) 80)))
-(reset-frame)
 
 ;; === aliases =================================================================
 ;;; global aliases of default functions
@@ -1153,8 +1152,6 @@
 
 (defalias 'af            'auto-fill-mode)
 (defalias 'cf            'conf-mode)
-(defalias 'fl            'font-lock-mode)
-(defalias 'gfl           'global-font-lock-mode)
 (defalias 'fontify       'font-lock-fontify-buffer)
 (defalias 'hs            'haskell-mode)
 (defalias 'gws           'global-whitespace-mode)
@@ -1272,8 +1269,7 @@
              (family     "Deja Vu Sans Mono")
              (myfont     (concat family "-" (number-to-string xfth))))
         (custom-set-faces
-         `(default ((t (:inherit default :height ,ttfh :width normal
-                                 :foundry "PfEd" :family ,family)))))
+         `(default ((t (:inherit default :height ,ttfh :width normal :foundry "PfEd" :family ,family)))))
         (setq default-frame-alist `((font . ,myfont))
               initial-frame-alist default-frame-alist)
         (set-frame-font myfont nil t)
@@ -1309,7 +1305,7 @@
     (defalias 'menlo       'ttf)
     (defalias 'meslo       'ttf)
 
-    ;;(default-font)
+    (default-font)
     ))
 
 (let ((ln "~/.emacs.local.el")
@@ -1323,14 +1319,15 @@
       kept-new-versions 12
       kept-old-versions 6)
 
-(let ((backupdir "~/.emacs.d/backup/")
-      (autosavedir "~/.emacs.d/autosave/"))
+(let ((backupdir "~/.local/emacs/backup/")
+      (autosavedir "~/.local/emacs/autosave/"))
   (mkdir backupdir t)
   (mkdir autosavedir t)
   (setq backup-directory-alist `(("." . ,backupdir))
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
+
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
@@ -1340,8 +1337,36 @@
                                              '(:background "color-239" :foreground "color-252")))
        (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
        (default-fg              (if (is_ttf)       "#FFFFFF" "#E5E5E5"))
-       (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe"))
-       )
+       (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
+
+    (defvar theme/light nil
+      "Variable theme used to toggle theme")
+    (defun fl (&optional)
+      (interactive)
+      (if font-lock-mode
+          (progn
+            (font-lock-mode t)
+            (unless theme/light
+              (set-background-color "black")))
+        (progn (font-lock-mode 0)
+               (set-background-color "#333333"))))
+
+  (defun toggle-light-theme ()
+    (interactive)
+    (if theme/light
+        (progn
+          (setq frame-background-mode t)
+          (setq theme/light nil)
+          (set-background-color "#333333")
+          (set-foreground-color "#E5E5E5"))
+      (progn (setq theme/light t)
+             (setq frame-background-mode 'light)
+             (set-background-color "white")
+             (set-foreground-color "black")
+             ;;(invert-face 'default))))
+             )))
+  (bind-keys
+   ("<f2>" . toggle-light-theme))
   (custom-set-faces
    `(default                             ((((type tty))  ,default-term)
                                           (t            (:background "#333333" :foreground ,default-fg))))
@@ -1349,12 +1374,13 @@
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
    `(mode-line                           ((((type  tty)) ,mode-line-term)
-                                          (t             (:background "#292929" :inherit default))))
+                                          (t             (:foreground ,default-fg :background "#292929" ))))
    `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
                                          (t             (:background "#4D4D4D" :foreground "#CCCCCC"
                                                                      :box (:line-width -1 :color "#666666" :style nil)))))
    `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
    `(region                             ((t (:inherit default :background "#114488" :extend t))))
+   `(fringe                             ((t (:foreground "#1a1a1a"))))
    `(hl-line                            ((t (:inherit fringe :extend t))))
 
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
