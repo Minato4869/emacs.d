@@ -1328,167 +1328,172 @@
 
 ;; === theme/colours ===========================================================
 
+(defvar theme/light nil
+  "Variable theme used to toggle theme")
+(defun theme/set-colours (&optional mode)
+  (let* ((light (string= mode "light"))
+         (dark (string= mode "dark"))
+         (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+                             ((daemonp) '(:background "color-236"      :foreground "color-254"))
+                             (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+         (white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
+         (default-bg     (cond (dark     "#000000")
+                               (light    "#ffffff")
+                               (t        "#333333")))
+         (default-fg     (cond (light    "#000000")
+                               (t        white)))
+         (mode-line-term (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
+                           '(:background "color-235" :foreground "color-250")))
+         (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
+
+         )
+
+      (custom-set-faces
+       `(default ((((type tty))  ,default-term)
+                  (t             (:background ,default-bg :foreground ,default-fg))))
+       `(mode-line ((((type  tty)) ,mode-line-term)
+                    (t             (:foreground ,white :background "#292929" ))))
+       `(fringe  ((t (:background ,fringe :inherit default))))
+       `(region   ((t (:foreground ,white :background "#114488" :extend t)))))
+      ))
+(theme/set-colours)
+
+(defun theme/font-lock (&optional)
+  (interactive)
+  (if font-lock-mode
+      (progn (font-lock-mode 0)
+             (unless theme/light
+               (theme/set-colours)))
+    (progn (font-lock-mode t)
+           (unless theme/light
+             (theme/set-colours "dark")))))
+(defalias 'fl 'theme/font-lock)
+(defun toggle-light-theme ()
+  (interactive)
+  (if theme/light
+      (progn
+        (setq frame-background-mode 'dark
+              theme/light nil)
+        (if font-lock-mode
+            (theme/set-colours "dark")
+          (theme/set-colours)))
+    (progn (setq theme/light t)
+           (setq frame-background-mode 'light)
+           (theme/set-colours "light"))))
+;;(invert-face 'default)
+(bind-keys
+ ("<f2>" . toggle-light-theme)
+ ("<f2>" . toggle-light-theme))
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       (mode-line-term          (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
-                                             '(:background "color-235" :foreground "color-250")))
        (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
-                                             '(:background "color-239" :foreground "color-252")))
+                                  '(:background "color-239" :foreground "color-252")))
        (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
-       (default-fg              (if (is_ttf)       "#FFFFFF" "#E5E5E5"))
        (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
 
-    (defvar theme/light nil
-      "Variable theme used to toggle theme")
-    (defun theme/set-colours (&optional mode)
-      (cond
-       ((string= mode "dark")
-          (custom-set-faces
-           `(default ((t (:background "#000000" :foreground "#e5e5e5"))))
-           `(fringe  ((t (:background "#1a1a1a" :inherit default))))))
-       ((string= mode "light")
-        (custom-set-faces
-         `(default ((t (:background "#ffffff" :foreground "#000000"))))
-         `(fringe  ((t (:background "#f2f2f2" :inherit default))))))
-       (t
-        (custom-set-faces
-         `(default ((t (:background "#333333" :foreground "#e5e5e5"))))
-         `(fringe  ((t (:background "#1a1a1a" :inherit default))))))))
+(custom-set-faces
+ `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
+ `(border                              ((t            (:foreground "#0000ff"))))
+ `(minibuffer-prompt                   ((t (:inherit default :bold t))))
+ `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
+                                       (t             (:background "#4D4D4D" :foreground "#CCCCCC"
+                                                                   :box (:line-width -1 :color "#666666" :style nil)))))
+ `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
+ `(hl-line                            ((t (:inherit fringe :extend t))))
 
-    (defun fl (&optional)
-      (interactive)
-      (if font-lock-mode
-          (progn (font-lock-mode 0)
-                 (unless theme/light
-                   (theme/set-colours)))
-        (progn (font-lock-mode t)
-               (unless theme/light
-                 (theme/set-colours "dark")))))
+ `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
+ `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
+ `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
 
-  (defun toggle-light-theme ()
-    (interactive)
-    (if theme/light
-        (progn
-          (setq frame-background-mode 'dark
-                theme/light nil)
-          (if font-lock-mode
-              (theme/set-colours "dark")
-            (theme/set-colours)))
-      (progn (setq theme/light t)
-             (setq frame-background-mode 'light)
-             (theme/set-colours "light"))))
-             ;;(invert-face 'default))))
-  (bind-keys
-   ("<f2>" . toggle-light-theme))
-  (custom-set-faces
-   `(default                             ((((type tty))  ,default-term)
-                                          (t            (:background "#333333" :foreground ,default-fg))))
-   `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
-   `(border                              ((t            (:foreground "#0000ff"))))
-   `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((((type  tty)) ,mode-line-term)
-                                          (t             (:foreground ,default-fg :background "#292929" ))))
-   `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
-                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC"
-                                                                     :box (:line-width -1 :color "#666666" :style nil)))))
-   `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
-   `(region                             ((t (:inherit default :background "#114488" :extend t))))
-   `(fringe                             ((t (:background "#1a1a1a" :inherit default))))
-   `(hl-line                            ((t (:inherit fringe :extend t))))
+ `(ido-subdir                          ((t (:foreground "#A1C659"))))
+ `(ido-only-match                      ((t (:foreground "#FFCC33"))))
+ `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
+ `(ido-incomplete-regexp               ((t (:inherit default))))
+ `(ido-indicator                       ((t (:inherit default))))
 
-   `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
-   `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
-   `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
+ `(italic                              ((t (:slant italic :underline nil))))
 
-   `(ido-subdir                          ((t (:foreground "#A1C659"))))
-   `(ido-only-match                      ((t (:foreground "#FFCC33"))))
-   `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
-   `(ido-incomplete-regexp               ((t (:inherit default))))
-   `(ido-indicator                       ((t (:inherit default))))
+ `(completions-common-part             ((t (:foreground "#add8e6"))))
 
-   `(italic                              ((t (:slant italic :underline nil))))
+ `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
+ `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
-   `(completions-common-part             ((t (:foreground "#add8e6"))))
+ `(shadow                              ((t (:foreground "#aaaaaa"))))
 
-   `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
-   `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
+ `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
+ `(org-level-2                         ((t (:foreground "#929292"))))
+ `(org-level-3                         ((t (:foreground "#838383" :bold t))))
+ `(org-level-4                         ((t (:foreground "#757575" t))))
+ `(org-level-5                         ((t (:foreground "#8b8fc6"))))
+ `(org-level-6                         ((t (:foreground "#bd845f"))))
+ `(org-level-7                         ((t (:foreground "#71a46c"))))
+ `(org-level-8                         ((t (:foreground "#71a19f"))))
 
-   `(shadow                              ((t (:foreground "#aaaaaa"))))
+ `(org-date                            ((t (:foreground "#2C78BF"))))
+ `(org-todo                            ((t (:foreground "#D70000" :bold t))))
+ `(org-done                            ((t (:foreground "#228b22" :bold t))))
+ `(org-special-keyword                 ((t (:foreground "#729FCF"))))
+ `(org-priority                        ((t (:foreground "#729FCF"))))
+ `(org-headline-done                   ((t (:foreground "#FFA07A"))))
+ `(org-meta-line                       ((t (:inherit default :bold t))))
+ `(org-time-grid                       ((t (:foreground "#EEDD82"))))
+ `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
+ `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
+ `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
+ `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
+ `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
+ `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
+ `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
+ `(org-block                           ((t (:inherit default :extend t))))
+ `(org-latex-and-related               ((t (:foreground "#DEB887"))))
+ `(org-table                           ((t (:foreground "#87CEFA"))))
+ `(org-drawers                         ((t (:foreground "#87cefa"))))
 
-   `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
-   `(org-level-2                         ((t (:foreground "#929292"))))
-   `(org-level-3                         ((t (:foreground "#838383" :bold t))))
-   `(org-level-4                         ((t (:foreground "#757575" t))))
-   `(org-level-5                         ((t (:foreground "#8b8fc6"))))
-   `(org-level-6                         ((t (:foreground "#bd845f"))))
-   `(org-level-7                         ((t (:foreground "#71a46c"))))
-   `(org-level-8                         ((t (:foreground "#71a19f"))))
+ `(tex-verbatim                        ((t (:foreground "#DEB887"))))
+ `(tex-math                            ((t (:inherit tex-verbatim))))
 
-   `(org-date                            ((t (:foreground "#2C78BF"))))
-   `(org-todo                            ((t (:foreground "#D70000" :bold t))))
-   `(org-done                            ((t (:foreground "#228b22" :bold t))))
-   `(org-special-keyword                 ((t (:foreground "#729FCF"))))
-   `(org-priority                        ((t (:foreground "#729FCF"))))
-   `(org-headline-done                   ((t (:foreground "#FFA07A"))))
-   `(org-meta-line                       ((t (:inherit default :bold t))))
-   `(org-time-grid                       ((t (:foreground "#EEDD82"))))
-   `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
-   `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
-   `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
-   `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
-   `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
-   `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
-   `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
-   `(org-block                           ((t (:inherit default :extend t))))
-   `(org-latex-and-related               ((t (:foreground "#DEB887"))))
-   `(org-table                           ((t (:foreground "#87CEFA"))))
-   `(org-drawers                         ((t (:foreground "#87cefa"))))
+ `(dired-header                     ((t (:foreground  "#98fb98"))))
+ `(dired-directory                  ((t (:foreground  "#87CEFA"))))
+ `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
 
-   `(tex-verbatim                        ((t (:foreground "#DEB887"))))
-   `(tex-math                            ((t (:inherit tex-verbatim))))
+ `(buffer-menu-buffer               ((t (:inherit default))))
 
-   `(dired-header                     ((t (:foreground  "#98fb98"))))
-   `(dired-directory                  ((t (:foreground  "#87CEFA"))))
-   `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
+ `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
+ `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
+                                                     :bold t))))
 
-   `(buffer-menu-buffer               ((t (:inherit default))))
+ `(error                            ((t (:foreground "#ff0000" :bold t))))
 
-   `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
-   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
-                                                       :bold t))))
+ `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
+ `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
-   `(error                            ((t (:foreground "#ff0000" :bold t))))
+ `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
-   `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
-   `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
+ `(magit-diff-header                   ((t (:inherit diff-header))))
+ `(magit-diff-context-highlight        ((t (:inherit diff-context))))
+ `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
+ `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
+ `(magit-diff-added-highlight          ((t (:inherit diff-added))))
 
-   `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
+ `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
+ `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
+ `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
+ `(mu4e-header-face                 ((t (:foreground "#888888"))))
+ `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
 
-   `(magit-diff-header                   ((t (:inherit diff-header))))
-   `(magit-diff-context-highlight        ((t (:inherit diff-context))))
-   `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
-   `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
-   `(magit-diff-added-highlight          ((t (:inherit diff-added))))
+ `(eshell-ls-directory              ((t (:inherit dired-directory))))
+ `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
 
-   `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
-   `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
-   `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
-   `(mu4e-header-face                 ((t (:foreground "#888888"))))
-   `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
+ `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
+ `(elscreen-tab-background-face     ((t (:inherit header-line))))
+ `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+ `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+ `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                     (t (:foreground "#e5e5e5" :background "#666666"))))
 
-   `(eshell-ls-directory              ((t (:inherit dired-directory))))
-   `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
-
-   `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
-   `(elscreen-tab-background-face     ((t (:inherit header-line))))
-   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
-                                       (t (:foreground "#e5e5e5" :background "#666666"))))
-
-   `(highlight                        ((t (:inherit default :background "#556b2f"))))
-   ))
+ `(highlight                        ((t (:inherit default :background "#556b2f"))))
+ ))
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
