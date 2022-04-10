@@ -1326,7 +1326,6 @@
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
-(when (my_daemonp)
 (defvar theme/light nil
   "Variable theme used to toggle theme")
 (defun theme/set-colours (&optional mode)
@@ -1342,6 +1341,7 @@
          (default-fg     (cond (light    "#000000")
                                (t        white)))
          ;; (mode-line-term '(:background "color-235" :foreground "color-250")))
+         (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
          (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
 
          )
@@ -1349,11 +1349,13 @@
       `(default ((((type tty))  ,default-term)
                  (t             (:background ,default-bg :foreground ,default-fg))))
       `(mode-line ((t (:foreground ,white :background "#292929" ))))
+      `(mode-line-buffer-id ((t (:bold t))))
       `(fringe  ((t (:background ,fringe :inherit default))))
       `(region   ((t (:foreground ,white :background "#114488" :extend t)))))
      (when (is_ssh)
-            (custom-set-faces
-            `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
+       (custom-set-faces
+        `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
+        `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
      ))
 (theme/set-colours)
 
@@ -1388,7 +1390,6 @@
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
        (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
                                   '(:background "color-239" :foreground "color-252")))
-       (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
        (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
 
 (custom-set-faces
@@ -1398,7 +1399,7 @@
  `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
                                        (t             (:background "#4D4D4D" :foreground "#CCCCCC"
                                                                    :box (:line-width -1 :color "#666666" :style nil)))))
- `(mode-line-buffer-id                ((t             (:foreground ,mode-line-buffer-id :bold t))))
+
  `(hl-line                            ((t (:inherit fringe :extend t))))
 
  `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
@@ -1492,7 +1493,7 @@
                                      (t (:foreground "#e5e5e5" :background "#666666"))))
 
  `(highlight                        ((t (:inherit default :background "#556b2f"))))
- )))
+ ))
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
