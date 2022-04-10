@@ -993,25 +993,24 @@
   (diminish 'eldoc-mode))
 
 ;; == mu4e
-(let ((mupath "/usr/share/emacs/site-lisp/mu4e"))
-  (use-package mu4e
-    :if (and (my_daemonp)
-             (file-directory-p mupath))
-    :ensure nil
-    :defer nil
-    :config
-    (setq mail-user-agent 'mu4e-user-agent
-          mu4e-sent-folder   "/Sent"
-          mu4e-drafts-folder "/Drafts"
-          mu4e-trash-folder  "/Archive/trash"
-          message-send-mail-function   nil
-          smtpmail-default-smtp-server nil
-          smtpmail-smtp-server         nil
-          smtpmail-local-domain        nil))
+(use-package mu4e
+  :ensure nil
+  :defer nil
+  :config
+  (setq mail-user-agent 'mu4e-user-agent
+        mu4e-sent-folder   "/Sent"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-trash-folder  "/Archive/trash"
+        message-send-mail-function   nil
+        smtpmail-default-smtp-server nil
+        smtpmail-smtp-server         nil
+        smtpmail-local-domain        nil)
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
   (defalias 'mail 'mu4e)
   (defalias 'mu   'mu4e)
-  (add-to-list 'load-path mupath)
-  (load-library "mu4e"))
+  (when (and (my_daemonp)
+             (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
+    (load-library "mu4e")))
 
 ;; ==ripgrep
 (use-package rg
@@ -1261,7 +1260,7 @@
     (defun ttf ()
       (interactive)
       (let* ((ttfh (cond ((= dpi 109) 79)
-                         ((= dpi 125) 65) ;; was 6.9
+                         ((= dpi 125) 69) ;; was 6.9
                          ((= dpi 131) 75)
                          ((= dpi 157) 64)
                          (t           70)))
@@ -1327,7 +1326,7 @@
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
-
+(when (my_daemonp)
 (defvar theme/light nil
   "Variable theme used to toggle theme")
 (defun theme/set-colours (&optional mode)
@@ -1342,20 +1341,20 @@
                                (t        "#333333")))
          (default-fg     (cond (light    "#000000")
                                (t        white)))
-         (mode-line-term (if (is_ssh) '(:background "#373333"  :foreground "#838383" :bold t)
-                           '(:background "color-235" :foreground "color-250")))
+         ;; (mode-line-term '(:background "color-235" :foreground "color-250")))
          (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
 
          )
-
-      (custom-set-faces
-       `(default ((((type tty))  ,default-term)
-                  (t             (:background ,default-bg :foreground ,default-fg))))
-       `(mode-line ((((type  tty)) ,mode-line-term)
-                    (t             (:foreground ,white :background "#292929" ))))
-       `(fringe  ((t (:background ,fringe :inherit default))))
-       `(region   ((t (:foreground ,white :background "#114488" :extend t)))))
-      ))
+     (custom-set-faces
+      `(default ((((type tty))  ,default-term)
+                 (t             (:background ,default-bg :foreground ,default-fg))))
+      `(mode-line ((t (:foreground ,white :background "#292929" ))))
+      `(fringe  ((t (:background ,fringe :inherit default))))
+      `(region   ((t (:foreground ,white :background "#114488" :extend t)))))
+     (when (is_ssh)
+            (custom-set-faces
+            `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
+     ))
 (theme/set-colours)
 
 (defun theme/font-lock (&optional)
@@ -1383,7 +1382,7 @@
 ;;(invert-face 'default)
 (bind-keys
  ("<f2>" . toggle-light-theme)
- ("<f2>" . toggle-light-theme))
+ ("C-<f2>" . theme/font-lock))
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
@@ -1493,7 +1492,7 @@
                                      (t (:foreground "#e5e5e5" :background "#666666"))))
 
  `(highlight                        ((t (:inherit default :background "#556b2f"))))
- ))
+ )))
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
