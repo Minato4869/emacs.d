@@ -2,5 +2,5 @@
 # name: today
 # key: today
 # --
-** `(format-time-string "<%Y-%m-%d %a>")`
+** `(format-time-string "<%Y-%m-%d %a>")` $1
 $0
