@@ -913,6 +913,38 @@
   (:map ibuffer-mode-map
         ("r"   . ibuffer-redisplay)))
 
+;; == yaml
+(use-package yaml-mode
+  :ensure nil
+  :defer nil)
+(defalias 'yml 'yaml-mode)
+(require 'yaml-mode)
+
+;; == narrow inderect
+(use-package narrow-indirect
+  :ensure nil
+  :defer nil
+  :config
+  (require 'narrow-indirect)
+  (defun ni-narrow-to-region ()
+    (interactive)
+    (ni-narrow-to-region-indirect-other-window)
+    (delete-window -1))
+  (defun ni-narrow-to-page ()
+    (interactive)
+    (ni-narrow-to-page-indirect-other-window)
+    (delete-window -1))
+  (defun ni-narrow-to-defun ()
+    (interactive)
+    (ni-narrow-to-defun-indirect-other-window)
+    (delete-window -1))
+  (bind-keys
+   ("C-x n n" . ni-narrow-to-region)
+   ("C-x n p" . ni-narrow-to-page)
+   ("C-x n d" . ni-narrow-to-defun)))
+
+
+
 ;; === external modes ==========================================================
 ;;; external packages
 ;; == elscreen
@@ -1017,13 +1049,6 @@
   :ensure t
   :defer t)
 (defalias 'ag 'rg)
-
-(use-package yaml-mode
-  :ensure nil
-  :defer nil)
-(defalias 'yml 'yaml-mode)
-
-(require 'yaml-mode)
 
 ;; == interesting packages:
 ;; narrowed-page-navigation
