@@ -1285,9 +1285,9 @@
     (defun ttf ()
       (interactive)
       (let* ((ttfh (cond ((= dpi 109) 79)
-                         ((= dpi 125) 69) ;; was 6.9
+                         ((= dpi 125) 69)
                          ((= dpi 131) 75)
-                         ((= dpi 157) 64)
+                         ((= dpi 157) 64) ;; was 74
                          (t           70)))
              (xfth       (/ ttfh 10.0))
              (family     "Deja Vu Sans Mono")
@@ -1351,6 +1351,7 @@
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (defvar theme/light nil
   "Variable theme used to toggle theme")
 (defun theme/set-colours (&optional mode)
@@ -1382,17 +1383,17 @@
         `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
         `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
      ))
-(if (and (display-graphic-p) (not (daemonp)))
-    (theme/set-colours "light")
-(theme/set-colours))
+;;(if (and (display-graphic-p) (not (daemonp)))
+;;    (theme/set-colours "light")
+;;(theme/set-colours))
 
 (defun theme/font-lock (&optional)
   (interactive)
   (if font-lock-mode
-      (progn (font-lock-mode 0)
+      (progn (global-font-lock-mode 0)
              (unless theme/light
                (theme/set-colours)))
-    (progn (font-lock-mode t)
+    (progn (global-font-lock-mode t)
            (unless theme/light
              (theme/set-colours "dark")))))
 (defalias 'fl 'theme/font-lock)
