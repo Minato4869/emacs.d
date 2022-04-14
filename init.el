@@ -1601,4 +1601,5 @@
  '(line-move-visual t)
  '(default-frame-alist '((width . 80) (height . 57)))
  '(initial-frame-alist default-frame-alist)
+ '(browse-url-generic-program "chrome.incognito")
  )
