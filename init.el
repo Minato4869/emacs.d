@@ -12,6 +12,9 @@
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 (defun is_ttf ()
   (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
+(defun is_major_mode (mode)
+  (string-match mode (prin1-to-string major-mode)))
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 (setq package-archives nil)
@@ -514,19 +517,16 @@
   (shell-command-to-string "~/bin/week"))
 (defun week ()
   (interactive)
-  (if (use-region-p)
-      (let* ((beg (region-beginning))
-             (end (region-end))
-             (wn  (buffer-substring-no-properties beg end)))
-        (kill-region beg end)
-        (insert
-         (concat "* "
-                 (shell-command-to-string
-                  (format "week %s" (shell-quote-argument wn))))))
-    (let ((wn (shell-quote-argument (read-string "Enter week number or date: "))))
-      (insert
-       (concat "* "
-               (shell-command-to-string (format "week %s" wn)))))))
+
+  (let* ((wn (if (use-region-p)
+                (progn
+                  (buffer-substring-no-properties beg end)
+                  (kill-region region-beginning region-end))
+               (shell-quote-argument (read-string "Enter week number or date: "))))
+         (prepend (when (is_major_mode "org-mode") "* ")))
+    (insert
+     (concat prepend (shell-command-to-string
+                      (format "week %s" (shell-quote-argument wn)))))))
 
 (defalias 'kw 'week)
 (defalias 'cw 'week)
@@ -848,17 +848,13 @@
             ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
             ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
   (defalias 'ca     'org-capture)
-  (defalias 'oagenda 'org-agenda)
-  (defun agenda()
-    (interactive)
-    (org-agenda "n"))
+  (defalias 'agenda 'org-agenda)
   :bind
   (:map org-mode-map
         ("C-c e" . org-latex-export-to-pdf)
         ("C-c <right>" . org-metaright)
         ("C-c <left>"  . org-metaleft)
         ("C-c C-."     . org-time-stamp)))
-
 ;; == man
 (use-package man
   :ensure nil
@@ -1383,9 +1379,8 @@
         `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
         `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
      ))
-;;(if (and (display-graphic-p) (not (daemonp)))
-;;    (theme/set-colours "light")
-;;(theme/set-colours))
+(when (daemonp)
+  (theme/set-colours))
 
 (defun theme/font-lock (&optional)
   (interactive)
