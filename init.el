@@ -1314,7 +1314,8 @@
     (defun default-font ()
       (interactive)
       (cond
-       ((or (= dpi 109) (file-regular-p "~/.ttf") (ttf)))
+       ((or (= dpi 109)
+            (file-regular-p "~/.ttf") (ttf)))
        ((or (file-regular-p "~/.hf")
             (>= dpi 157))
         (9x16))
@@ -1517,7 +1518,19 @@
                                      (t (:foreground "#e5e5e5" :background "#666666"))))
 
  `(highlight                        ((t (:inherit default :background "#556b2f"))))
+
+ `(smerge-upper                     ((t (:background "#553333" :extend t))))
+ `(smerge-lower                     ((t (:background "#335533" :extend t))))
+ `(smerge-markers                   ((t (:background "#4d4d4d" :extend t))))
+
+ `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
+ `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
+ `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
+ `(smerge-refined-added            ((t (:background "#aaffaa" :foreground "#000000" :extend t))))
+ `(smerge-refined-removed          ((t (:background "#ffbbbb" :foreground "#000000" :extend t))))
+ `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
  ))
+
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
