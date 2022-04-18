@@ -1383,9 +1383,9 @@
         `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
         `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
      ))
-;;(if (and (display-graphic-p) (not (daemonp)))
-;;    (theme/set-colours "light")
-;;(theme/set-colours))
+(if (and (display-graphic-p) (not (daemonp)))
+    (theme/set-colours "light")
+(theme/set-colours))
 
 (defun theme/font-lock (&optional)
   (interactive)
