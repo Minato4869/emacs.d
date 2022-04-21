@@ -367,15 +367,15 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (text-scale-set 0))
 
-(global-set-key (kbd "C-z")       'universal-argument)
-(global-set-key (kbd "C-c SPC")   'cua-rectangle-mark-mode)
-(global-set-key (kbd "C-x m")     'pop-to-mark-command)
-(global-set-key (kbd "C-x C-m")   'pop-to-mark-command)
-(global-set-key (kbd "M-o")       'other-window)
-(global-set-key (kbd "C-h")       'backward-delete-char-untabify)
-(global-set-key (kbd "C-a")       'beginning-or-prev-line)
-(global-set-key (kbd "C-e")       'end-or-next-line)
-(global-set-key (kbd "M-g")       'my-goto-line)
+(my-define-key "C-z"     'universal-argument)
+(my-define-key "C-c SPC" 'cua-rectangle-mark-mode)
+(my-define-key "C-x m"   'pop-to-mark-command)
+(my-define-key "C-x C-m" 'pop-to-mark-command)
+(my-define-key "M-o"     'other-window)
+(my-define-key "C-h"     'backward-delete-char-untabify)
+(my-define-key "C-a"     'beginning-or-prev-line)
+(my-define-key "C-e"     'end-or-next-line)
+(my-define-key "M-g"     'my-goto-line)
 
 ;; custom keys
 (my-define-key "C-c h"     'help)
@@ -717,8 +717,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; ;; == dired
 (when (my_daemonp)
-  (require-soft
-   'dired-x
+  (require-soft 'dired-x
    (setq-default dired-omit-files "^\\...+$"
                  dired-isearch-filenames t)
    (if (or (string-equal system-type "gnu/linux")
@@ -739,8 +738,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    (define-key dired-mode-map "\C-h" 'dired-omit-mode)
   (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
 
-  (require-soft
-   'dired
+  (require-soft 'dired
    (defun dired-jump-previous-dir ()
      (interactive)
      (setq old-buffer (buffer-name))
@@ -876,18 +874,15 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   '(elscreen-display-screen-number t))
  (when (daemonp)
    (elscreen-start))
- (global-set-key (kbd "M-<left>")   'elscreen-previous)
- (global-set-key (kbd "M-<right>")  'elscreen-next)
- (global-set-key (kbd "ESC <left>") 'elscreen-previous)
- (global-set-key (kbd "ESC <right>") 'elscreen-next)
+ (my-define-key "M-<left>"   'elscreen-previous)
+ (my-define-key "M-<right>"  'elscreen-next)
+ (my-define-key "ESC <left>" 'elscreen-previous)
+ (my-define-key "ESC <right>" 'elscreen-next)
  (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
  (define-key elscreen-map (kbd "<right>") 'elscreen-next)
  (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
- (define-key elscreen-map (kbd "s")      'elscreen-toggle)
- (define-key elscreen-map (kbd "S")      'elscreen-toggle)
  (define-key elscreen-map (kbd "C-s")    'elscreen-split)
  (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
- (define-key elscreen-map (kbd "r")      'elscreen-screen-nickname)
  (define-key elscreen-map (kbd "s")      'elscreen-swap)
  (define-key elscreen-map (kbd "k")      'elscreen-kill)
  (define-key elscreen-map (kbd "x")      (lambda ()
@@ -1504,4 +1499,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(default-frame-alist '((width . 80) (height . 57)))
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
+ '(package-selected-packages
+   '(elscreen yasnippet diminish rg go-mode puppet-mode so-long haskell-mode keychain-environment magit))
  )
