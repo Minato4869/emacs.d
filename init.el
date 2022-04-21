@@ -44,7 +44,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 \\{my-keys-mode-map}"
   :init-value t
   :keymap (make-sparse-keymap))
-(defun my-define-key (key def)
+(defun bind-key (key def)
   (define-key my-keys-mode-map (kbd key) def))
 
 ;;(require-soft 'package
@@ -367,72 +367,72 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (text-scale-set 0))
 
-(my-define-key "C-z"     'universal-argument)
-(my-define-key "C-c SPC" 'cua-rectangle-mark-mode)
-(my-define-key "C-x m"   'pop-to-mark-command)
-(my-define-key "C-x C-m" 'pop-to-mark-command)
-(my-define-key "M-o"     'other-window)
-(my-define-key "C-h"     'backward-delete-char-untabify)
-(my-define-key "C-a"     'beginning-or-prev-line)
-(my-define-key "C-e"     'end-or-next-line)
-(my-define-key "M-g"     'my-goto-line)
+(bind-key "C-z"     'universal-argument)
+(bind-key "C-c SPC" 'cua-rectangle-mark-mode)
+(bind-key "C-x m"   'pop-to-mark-command)
+(bind-key "C-x C-m" 'pop-to-mark-command)
+(bind-key "M-o"     'other-window)
+(bind-key "C-h"     'backward-delete-char-untabify)
+(bind-key "C-a"     'beginning-or-prev-line)
+(bind-key "C-e"     'end-or-next-line)
+(bind-key "M-g"     'my-goto-line)
 
 ;; custom keys
-(my-define-key "C-c h"     'help)
+(bind-key "C-c h"     'help)
 ;; editing
-(my-define-key "M-%"       'query-replace-regexp)
-(my-define-key "C-c 5"     'query-replace)
-(my-define-key "C-M-5"     'query-replace)
-(my-define-key "M-k"       'kill-whole-line) ;; was M-K
-(my-define-key "C-w"       'backward-kill-word)
-(my-define-key "M-W"       'backward-kill-sexp)
-(my-define-key "M-u"       'upcase-dwim)
-(my-define-key "M-l"       'downcase-dwim)
-(my-define-key "M-SPC"     'cycle-spacing)
-(my-define-key "C-c C-SPC" 'delete-horizontal-space)
+(bind-key "M-%"       'query-replace-regexp)
+(bind-key "C-c 5"     'query-replace)
+(bind-key "C-M-5"     'query-replace)
+(bind-key "M-k"       'kill-whole-line) ;; was M-K
+(bind-key "C-w"       'backward-kill-word)
+(bind-key "M-W"       'backward-kill-sexp)
+(bind-key "M-u"       'upcase-dwim)
+(bind-key "M-l"       'downcase-dwim)
+(bind-key "M-SPC"     'cycle-spacing)
+(bind-key "C-c C-SPC" 'delete-horizontal-space)
  ;; custom function binds
-(my-define-key "C-5"       'match-paren)
-(my-define-key "C-u"       'backward-kill-line)
-(my-define-key "C-x z"     '(lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
+(bind-key "C-5"       'match-paren)
+(bind-key "C-u"       'backward-kill-line)
+(bind-key "C-x z"     '(lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
                   (interactive)
                   (if (display-graphic-p)
                       (message "Suspend frame is disabled for X11 frames of emacs")
                     (suspend-frame))))
  ;; movement
-(my-define-key "M-p"       'backward-paragraph)
-(my-define-key "M-n"       'forward-paragraph)
-(my-define-key "<M-up>"    'backward-paragraph)
-(my-define-key "<M-down>"  'forward-paragraph)
+(bind-key "M-p"       'backward-paragraph)
+(bind-key "M-n"       'forward-paragraph)
+(bind-key "<M-up>"    'backward-paragraph)
+(bind-key "<M-down>"  'forward-paragraph)
  ;; mark
-(my-define-key "C-x C-h"   'mark-whole-buffer)
+(bind-key "C-x C-h"   'mark-whole-buffer)
  ;; misc
-(my-define-key "<f9>"      'font-lock-mode)
-(my-define-key "<f10>"     'menu-bar-mode)
-(my-define-key "<f11>"     'whitespace-mode)
-(my-define-key "<f12>"     'display-fill-column-indicator-mode)
-(my-define-key "C-<f12>"   'display-line-numbers-mode)
+(bind-key "<f9>"      'font-lock-mode)
+(bind-key "<f10>"     'menu-bar-mode)
+(bind-key "<f11>"     'whitespace-mode)
+(bind-key "<f12>"     'display-fill-column-indicator-mode)
+(bind-key "C-<f12>"   'display-line-numbers-mode)
  ;; buffer
-(my-define-key "<M-prior>" 'previous-buffer)
-(my-define-key "<M-next>"  'next-buffer)
-(my-define-key "C-x k"     'kill-current-buffer)
-(my-define-key "C-x C-k"   'kill-buffer)
-(my-define-key "C-c r"     'revert-buffer)
-(my-define-key "C-x C-b"   'buffer-menu)
+(bind-key "<M-prior>" 'previous-buffer)
+(bind-key "<M-next>"  'next-buffer)
+(bind-key "C-x k"     'kill-current-buffer)
+(bind-key "C-x C-k"   'kill-buffer)
+(bind-key "C-c r"     'revert-buffer)
+(bind-key "C-x C-b"   'buffer-menu)
  ;; windows
-(my-define-key "M-1"       'delete-other-windows)
-(my-define-key "M-2"       'split-window-below)
-(my-define-key "M-3"       'split-window-right)
-(my-define-key "M-4"       'make-frame-command)
-(my-define-key "M-0"       'delete-window)
-(my-define-key "C-x 4"     'make-frame-command)
-(my-define-key "C-0"       'balance-windows)
-(my-define-key "C--"       'shrink-window)
-(my-define-key "C-="       'enlarge-window)
-(my-define-key "C-x C--"   'negative-argument)
-(my-define-key "C-c o"     'transpose-windows)
-(my-define-key "C-x t"     'transpose-lines)
+(bind-key "M-1"       'delete-other-windows)
+(bind-key "M-2"       'split-window-below)
+(bind-key "M-3"       'split-window-right)
+(bind-key "M-4"       'make-frame-command)
+(bind-key "M-0"       'delete-window)
+(bind-key "C-x 4"     'make-frame-command)
+(bind-key "C-0"       'balance-windows)
+(bind-key "C--"       'shrink-window)
+(bind-key "C-="       'enlarge-window)
+(bind-key "C-x C--"   'negative-argument)
+(bind-key "C-c o"     'transpose-windows)
+(bind-key "C-x t"     'transpose-lines)
  ;; misc
-(my-define-key "C-c 4"     'ispell-change-dictionary)
+(bind-key "C-c 4"     'ispell-change-dictionary)
 
 
 ;; mode specific
@@ -463,16 +463,16 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
      'PRIMARY
      (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                             (region-beginning) (region-end)))))
-   (my-define-key "C-M-y"           'yank-primary)
-   (my-define-key "C-M-w"           'kill-ring-save-primary)
-   (my-define-key "<insert>"        'yank-primary)
+   (bind-key "C-M-y"           'yank-primary)
+   (bind-key "C-M-w"           'kill-ring-save-primary)
+   (bind-key "<insert>"        'yank-primary)
    ;; window transposing
-   (my-define-key "s-o"             'transpose-windows)
+   (bind-key "s-o"             'transpose-windows)
    ;; buffers
-   (my-define-key "s-b"   'buffer-menu)
-   (my-define-key "s--"   'text-scale-decrease)
-   (my-define-key "s-="   'text-scale-increase)
-   (my-define-key "s-0"   'text-scale-reset))
+   (bind-key "s-b"   'buffer-menu)
+   (bind-key "s--"   'text-scale-decrease)
+   (bind-key "s-="   'text-scale-increase)
+   (bind-key "s-0"   'text-scale-reset))
 
 ;; == mode maps
 
@@ -570,9 +570,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    (require 'ansi-color)
    (ccompile/colorize)))
 
-(my-define-key "<f5>"     'compile-parent)
-(my-define-key "<f6>"     'ccompile/recompile)
-(my-define-key "C-<f5>"   'compile)
+(bind-key "<f5>"     'compile-parent)
+(bind-key "<f6>"     'ccompile/recompile)
+(bind-key "C-<f5>"   'compile)
 (defalias 'Make 'compile-parent)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc
@@ -663,11 +663,11 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-(my-define-key "C-c ."   'date)
-(my-define-key "C-c C-." 'tdate)
-(my-define-key "C-c >"   'ldate)
-(my-define-key "C-;"     'toggle-comment-on-line)
-(my-define-key "M-#"     'toggle-case)
+(bind-key "C-c ."   'date)
+(bind-key "C-c C-." 'tdate)
+(bind-key "C-c >"   'ldate)
+(bind-key "C-;"     'toggle-comment-on-line)
+(bind-key "M-#"     'toggle-case)
 
 ;; === internal modes ==========================================================
 ;; == ido
@@ -704,10 +704,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (interactive)
     (cido/lazy-ido-enable)
     (call-interactively 'ido-dired))
-  (my-define-key "C-x C-f" 'cido/lazy-ido-find-file)
-  (my-define-key "C-x d"   'cido/lazy-ido-dired)
-  (my-define-key "C-x b"   'cido/lazy-ido-switch-buffer)
-  (my-define-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
+  (bind-key "C-x C-f" 'cido/lazy-ido-find-file)
+  (bind-key "C-x d"   'cido/lazy-ido-dired)
+  (bind-key "C-x b"   'cido/lazy-ido-switch-buffer)
+  (bind-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
 
 ;; ;; == dired
 (when (my_daemonp)
@@ -727,8 +727,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
      (font-lock-mode t)
      (dired-hide-details-mode 1))
    (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-   (my-define-key "C-x C-d" 'dired-jump)
-   (my-define-key "s-d"     'dired-jump)
+   (bind-key "C-x C-d" 'dired-jump)
+   (bind-key "s-d"     'dired-jump)
    (define-key dired-mode-map "\C-h" 'dired-omit-mode)
   (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
 
@@ -851,9 +851,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; == narrow inderect
 (require-soft 'narrow-indirect
  (setq ni-narrowed-buf-name-max 15)
-  (my-define-key (kbd "C-x n n") 'ni-narrow-to-region-indirect-other-window)
-  (my-define-key (kbd "C-x n p") 'ni-narrow-to-page-indirect-other-window)
-  (my-define-key (kbd "C-x n d") 'ni-narrow-to-defun-indirect-other-window))
+  (bind-key (kbd "C-x n n") 'ni-narrow-to-region-indirect-other-window)
+  (bind-key (kbd "C-x n p") 'ni-narrow-to-page-indirect-other-window)
+  (bind-key (kbd "C-x n d") 'ni-narrow-to-defun-indirect-other-window))
 
 
 
@@ -868,10 +868,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   '(elscreen-display-screen-number t))
  (when (daemonp)
    (elscreen-start))
- (my-define-key "M-<left>"   'elscreen-previous)
- (my-define-key "M-<right>"  'elscreen-next)
- (my-define-key "ESC <left>" 'elscreen-previous)
- (my-define-key "ESC <right>" 'elscreen-next)
+ (bind-key "M-<left>"   'elscreen-previous)
+ (bind-key "M-<right>"  'elscreen-next)
+ (bind-key "ESC <left>" 'elscreen-previous)
+ (bind-key "ESC <right>" 'elscreen-next)
  (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
  (define-key elscreen-map (kbd "<right>") 'elscreen-next)
  (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
@@ -987,10 +987,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun run-beamer-term ()
   (interactive)  (cterm/run-term "~/bin/beamer"))
 
-(my-define-key "C-c <return>"   'run-term)
-(my-define-key "C-c RET"        'run-term)
-(my-define-key "C-c <C-return>" 'run-beamer-term)
-(my-define-key "C-x C-<return>" 'run-local-term)
+(bind-key "C-c <return>"   'run-term)
+(bind-key "C-c RET"        'run-term)
+(bind-key "C-c <C-return>" 'run-beamer-term)
+(bind-key "C-x C-<return>" 'run-local-term)
 
 (defalias 'bterm     'beamer-term)
 (defalias 'open-term 'run-term)
@@ -1288,8 +1288,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
            (setq frame-background-mode 'light)
            (theme/set-colours "light"))))
 ;;(invert-face 'default)
-(my-define-key "<f2>"   'toggle-light-theme)
-(my-define-key "C-<f2>" 'theme/font-lock)
+(bind-key "<f2>"   'toggle-light-theme)
+(bind-key "C-<f2>" 'theme/font-lock)
 
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
