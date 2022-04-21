@@ -436,18 +436,16 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 
 ;; mode specific
-(dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
-  (bind-keys :map mode
-             ("C-c C-c" .
-              (lambda ()
-                (interactive)
-                (if (region-active-p)
-                    (progn
-                      (eval-region (region-beginning) (region-end))
-                      (message "Evaluated current region"))
-                  (progn
-                    (eval-buffer)
-                    (message "Evaluated current buffer")))))))
+;;(dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
+;;  (define-key mode "\C-c \C-c" (lambda ()
+;;                                     (interactive)
+;;                                     (if (region-active-p)
+;;                                         (progn
+;;                                           (eval-region (region-beginning) (region-end))
+;;                                           (message "Evaluated current region"))
+;;                                       (progn
+;;                                         (eval-buffer)
+;;                                         (message "Evaluated current buffer"))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -465,26 +463,24 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
      'PRIMARY
      (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                             (region-beginning) (region-end)))))
-  (bind-keys
-   ("C-M-y"           . yank-primary)
-   ("C-M-w"           . kill-ring-save-primary)
-   ("<insert>"        . yank-primary)
+   (my-define-key "C-M-y"           'yank-primary)
+   (my-define-key "C-M-w"           'kill-ring-save-primary)
+   (my-define-key "<insert>"        'yank-primary)
    ;; window transposing
-   ("s-o"             . transpose-windows)
+   (my-define-key "s-o"             'transpose-windows)
    ;; buffers
-   ("s-b"   . buffer-menu)
-   ("s--"   . text-scale-decrease)
-   ("s-="   . text-scale-increase)
-   ("s-0"   . text-scale-reset)))
+   (my-define-key "s-b"   'buffer-menu)
+   (my-define-key "s--"   'text-scale-decrease)
+   (my-define-key "s-="   'text-scale-increase)
+   (my-define-key "s-0"   'text-scale-reset))
 
 ;; == mode maps
 
-(bind-keys
- :map isearch-mode-map
- ("C-o" . (lambda ()
-            (interactive)
-            (let ((case-fold-search isearch-case-fold-search))
-              (occur (if isearch-regexp isearch-string (regexp-quote isearch-string)))))))
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda ()
+    (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
 
 ;; === functions ===============================================================
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -574,10 +570,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    (require 'ansi-color)
    (ccompile/colorize)))
 
-(bind-keys
- ("<f5>"     . compile-parent)
- ("<f6>"     . ccompile/recompile)
- ("C-<f5>"   . compile))
+(my-define-key "<f5>"     'compile-parent)
+(my-define-key "<f6>"     'ccompile/recompile)
+(my-define-key "C-<f5>"   'compile)
 (defalias 'Make 'compile-parent)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc
@@ -668,12 +663,11 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-(bind-keys
- ("C-c ."   . date)
- ("C-c C-." . tdate)
- ("C-c >"   . ldate)
- ("C-;"     . toggle-comment-on-line)
- ("M-#"     . toggle-case))
+(my-define-key "C-c ."   'date)
+(my-define-key "C-c C-." 'tdate)
+(my-define-key "C-c >"   'ldate)
+(my-define-key "C-;"     'toggle-comment-on-line)
+(my-define-key "M-#"     'toggle-case)
 
 ;; === internal modes ==========================================================
 ;; == ido
@@ -993,11 +987,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun run-beamer-term ()
   (interactive)  (cterm/run-term "~/bin/beamer"))
 
-(bind-keys*
- ("C-c <return>"   . run-term)
- ("C-c RET"        . run-term)
- ("C-c <C-return>" . run-beamer-term)
- ("C-x C-<return>" . run-local-term))
+(my-define-key "C-c <return>"   'run-term)
+(my-define-key "C-c RET"        'run-term)
+(my-define-key "C-c <C-return>" 'run-beamer-term)
+(my-define-key "C-x C-<return>" 'run-local-term)
 
 (defalias 'bterm     'beamer-term)
 (defalias 'open-term 'run-term)
@@ -1295,9 +1288,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
            (setq frame-background-mode 'light)
            (theme/set-colours "light"))))
 ;;(invert-face 'default)
-(bind-keys
- ("<f2>" . toggle-light-theme)
- ("C-<f2>" . theme/font-lock))
+(my-define-key "<f2>"   'toggle-light-theme)
+(my-define-key "C-<f2>" 'theme/font-lock)
+
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
