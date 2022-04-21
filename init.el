@@ -25,18 +25,31 @@
 (push gnu-archive   package-archives)
 (push melpa-archive package-archives)
 (setq package-archives (nreverse package-archives))
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 
-(require 'use-package)
-(require 'bind-key)
-(setq use-package-verbose t
-      use-package-always-ensure t)
-;; paths
+
 (let ((basedir "~/.emacs.d/"))
   (add-to-list 'load-path (concat basedir "elisp")))
 
+;;; v-- @leahneukirchen
+(defmacro require-soft (name &rest body)
+  `(if (require ,name nil t)
+       (progn ,@body)
+     (message "Could not load \"%s\", skipping..." ,name)))
+(define-minor-mode my-keys-mode
+  "Global minor mode for my custom key bindings
+
+This ensures no major mode overrides the keybindings, while still
+making them easy to toggle.  Also, all defined keybindings can be listed here:
+
+\\{my-keys-mode-map}"
+  :init-value t
+  :keymap (make-sparse-keymap))
+(defun my-define-key (key def)
+  (define-key my-keys-mode-map (kbd key) def))
+
+;;(require-soft 'package
+;;  (package-initialize))
+;; paths
 ;; custom files
 
 ;; === editing =================================================================
@@ -354,75 +367,73 @@
   (interactive)
   (text-scale-set 0))
 
-(bind-keys*
- ("C-z"       . universal-argument)
- ("C-c SPC"   . cua-rectangle-mark-mode)
- ("C-x m"     . pop-to-mark-command)
- ("C-x C-m"   . pop-to-mark-command)
- ("M-o"       . other-window)
- ("C-h"       . backward-delete-char-untabify)
- ("C-a"       . beginning-or-prev-line)
- ("C-e"       . end-or-next-line)
- ("M-g"       . my-goto-line))
+(global-set-key (kbd "C-z")       'universal-argument)
+(global-set-key (kbd "C-c SPC")   'cua-rectangle-mark-mode)
+(global-set-key (kbd "C-x m")     'pop-to-mark-command)
+(global-set-key (kbd "C-x C-m")   'pop-to-mark-command)
+(global-set-key (kbd "M-o")       'other-window)
+(global-set-key (kbd "C-h")       'backward-delete-char-untabify)
+(global-set-key (kbd "C-a")       'beginning-or-prev-line)
+(global-set-key (kbd "C-e")       'end-or-next-line)
+(global-set-key (kbd "M-g")       'my-goto-line)
 
 ;; custom keys
-(bind-keys
- ("C-c h"     . help)
- ;; editing
- ("M-%"       . query-replace-regexp)
- ("C-c 5"     . query-replace)
- ("C-M-5"     . query-replace)
- ("M-k"       . kill-whole-line) ;; was M-K
- ("C-w"       . backward-kill-word)
- ("M-W"       . backward-kill-sexp)
- ("M-u"       . upcase-dwim)
- ("M-l"       . downcase-dwim)
- ("M-SPC"     . cycle-spacing)
- ("C-c C-SPC" . delete-horizontal-space)
+(my-define-key "C-c h"     'help)
+;; editing
+(my-define-key "M-%"       'query-replace-regexp)
+(my-define-key "C-c 5"     'query-replace)
+(my-define-key "C-M-5"     'query-replace)
+(my-define-key "M-k"       'kill-whole-line) ;; was M-K
+(my-define-key "C-w"       'backward-kill-word)
+(my-define-key "M-W"       'backward-kill-sexp)
+(my-define-key "M-u"       'upcase-dwim)
+(my-define-key "M-l"       'downcase-dwim)
+(my-define-key "M-SPC"     'cycle-spacing)
+(my-define-key "C-c C-SPC" 'delete-horizontal-space)
  ;; custom function binds
- ("C-5"       . match-paren)
- ("C-u"       . backward-kill-line)
- ("C-x z"     . (lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
+(my-define-key "C-5"       'match-paren)
+(my-define-key "C-u"       'backward-kill-line)
+(my-define-key "C-x z"     '(lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
                   (interactive)
                   (if (display-graphic-p)
                       (message "Suspend frame is disabled for X11 frames of emacs")
                     (suspend-frame))))
  ;; movement
- ("M-p"       . backward-paragraph)
- ("M-n"       . forward-paragraph)
- ("<M-up>"    . backward-paragraph)
- ("<M-down>"  . forward-paragraph)
+(my-define-key "M-p"       'backward-paragraph)
+(my-define-key "M-n"       'forward-paragraph)
+(my-define-key "<M-up>"    'backward-paragraph)
+(my-define-key "<M-down>"  'forward-paragraph)
  ;; mark
- ("C-x C-h"   . mark-whole-buffer)
+(my-define-key "C-x C-h"   'mark-whole-buffer)
  ;; misc
- ("<f9>"      . font-lock-mode)
- ("<f10>"     . menu-bar-mode)
- ("<f11>"     . whitespace-mode)
- ("<f12>"     . display-fill-column-indicator-mode)
- ("C-<f12>"   . display-line-numbers-mode)
+(my-define-key "<f9>"      'font-lock-mode)
+(my-define-key "<f10>"     'menu-bar-mode)
+(my-define-key "<f11>"     'whitespace-mode)
+(my-define-key "<f12>"     'display-fill-column-indicator-mode)
+(my-define-key "C-<f12>"   'display-line-numbers-mode)
  ;; buffer
- ("<M-prior>" . previous-buffer)
- ("<M-next>"  . next-buffer)
- ("C-x k"     . kill-current-buffer)
- ("C-x C-k"   . kill-buffer)
- ("C-c r"     . revert-buffer)
- ("C-x C-b"   . buffer-menu)
+(my-define-key "<M-prior>" 'previous-buffer)
+(my-define-key "<M-next>"  'next-buffer)
+(my-define-key "C-x k"     'kill-current-buffer)
+(my-define-key "C-x C-k"   'kill-buffer)
+(my-define-key "C-c r"     'revert-buffer)
+(my-define-key "C-x C-b"   'buffer-menu)
  ;; windows
- ("M-1"       . delete-other-windows)
- ("M-2"       . split-window-below)
- ("M-3"       . split-window-right)
- ("M-4"       . make-frame-command)
- ("M-0"       . delete-window)
- ("C-x 4"     . make-frame-command)
- ("C-0"       . balance-windows)
- ("C--"       . shrink-window)
- ("C-="       . enlarge-window)
- ("C-x C--"   . negative-argument)
- ("C-c o"     . transpose-windows)
- ("C-x t"     . transpose-lines)
+(my-define-key "M-1"       'delete-other-windows)
+(my-define-key "M-2"       'split-window-below)
+(my-define-key "M-3"       'split-window-right)
+(my-define-key "M-4"       'make-frame-command)
+(my-define-key "M-0"       'delete-window)
+(my-define-key "C-x 4"     'make-frame-command)
+(my-define-key "C-0"       'balance-windows)
+(my-define-key "C--"       'shrink-window)
+(my-define-key "C-="       'enlarge-window)
+(my-define-key "C-x C--"   'negative-argument)
+(my-define-key "C-c o"     'transpose-windows)
+(my-define-key "C-x t"     'transpose-lines)
  ;; misc
- ("C-c 4"     . ispell-change-dictionary)
- )
+(my-define-key "C-c 4"     'ispell-change-dictionary)
+
 
 ;; mode specific
 (dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
@@ -666,15 +677,13 @@
 
 ;; === internal modes ==========================================================
 ;; == ido
-(use-package ido
-  :ensure nil
-  :defer t
-  :config
-  (defun cido/lazy-ido-enable ()
-    "since ido is loaded with Emacs, use-package cannot defer"
-    (ido-mode t)
-    (setq
-     ido-enable-flex-matching t
+
+(require-soft 'ido
+ (defun cido/lazy-ido-enable ()
+   "since ido is loaded with Emacs, use-package cannot defer"
+   (ido-mode t)
+   (setq
+    ido-enable-flex-matching t
      ido-auto-merge-work-directories-length -1
      ido-default-buffer-method 'selected-window
      ido-default-file-method 'selected-window
@@ -701,57 +710,48 @@
     (interactive)
     (cido/lazy-ido-enable)
     (call-interactively 'ido-dired))
-  :bind*
-  (("C-x C-f" . cido/lazy-ido-find-file)
-   ("C-x d"   . cido/lazy-ido-dired)
-   ("C-x b"   . cido/lazy-ido-switch-buffer)
-   ("C-c b"   . cido/lazy-ido-switch-buffer-other-window)))
+  (my-define-key "C-x C-f" 'cido/lazy-ido-find-file)
+  (my-define-key "C-x d"   'cido/lazy-ido-dired)
+  (my-define-key "C-x b"   'cido/lazy-ido-switch-buffer)
+  (my-define-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
 
-;; == dired
-(use-package dired-x
-  :if (my_daemonp)
-  :ensure nil
-  :defer nil
-  :config
-  (setq-default dired-omit-files "^\\...+$"
-                dired-isearch-filenames t)
-  (if (or (string-equal system-type "gnu/linux")
-          (file-regular-p "/usr/local/share/gls"))
-      (setq dired-listing-switches
-            "-laFH --group-directories-first")
-    (setq dired-listing-switches "-laFH"))
-  (setq dired-omit-verbose nil
-        dired-omit-mode t
-        dired-auto-revert-buffer t)
+;; ;; == dired
+(when (my_daemonp)
+  (require-soft
+   'dired-x
+   (setq-default dired-omit-files "^\\...+$"
+                 dired-isearch-filenames t)
+   (if (or (string-equal system-type "gnu/linux")
+           (file-regular-p "/usr/local/share/gls"))
+       (setq dired-listing-switches
+             "-laFH --group-directories-first")
+     (setq dired-listing-switches "-laFH"))
+   (setq dired-omit-verbose nil
+         dired-omit-mode t
+         dired-auto-revert-buffer t)
 
-  (defun cdired/x-mode-setup ()
-    (font-lock-mode t)
-    (dired-hide-details-mode 1))
-  (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-  :bind
-  (("C-x C-d" . dired-jump)
-   ("s-d" . dired-jump))
-  (:map dired-mode-map
-        ("C-h"        . dired-omit-mode)
-        ("C-d"        . dired-hide-details-mode)))
+   (defun cdired/x-mode-setup ()
+     (font-lock-mode t)
+     (dired-hide-details-mode 1))
+   (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+   (my-define-key "C-x C-d" 'dired-jump)
+   (my-define-key "s-d"     'dired-jump)
+   (define-key dired-mode-map "\C-h" 'dired-omit-mode)
+  (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
 
-(use-package dired
-  :ensure nil
-  :defer nil
-  :init
-  :config
-  (defun dired-jump-previous-dir ()
-    (interactive)
-    (setq old-buffer (buffer-name))
-    (dired-jump)
-    (kill-buffer old-buffer))
-  (defun dired-view-file-other-window ()
-    (if (one-window-p)
-        (split-window-horizontally)
-      (split-window-vertically))
-    (other-window 1)
-    (dired-view-file))
-
+  (require-soft
+   'dired
+   (defun dired-jump-previous-dir ()
+     (interactive)
+     (setq old-buffer (buffer-name))
+     (dired-jump)
+     (kill-buffer old-buffer))
+   (defun dired-view-file-other-window ()
+     (if (one-window-p)
+         (split-window-horizontally)
+       (split-window-vertically))
+     (other-window 1)
+     (dired-view-file)))
   (defun dired-find-or-view ()
     "A `dired-find-file' which only works on directories."
     (interactive)
@@ -767,30 +767,25 @@
       (progn
         (quit-window)
         (delete-window))))
-  :bind
-  (:map dired-mode-map
-        ("v"          . dired-find-file-other-window)
-        ("q"          . dired-quit-and-kill-window)
-        ("C-h"        . dired-omit-mode)
-        ("<right>"    . dired-find-or-view)
-        ("<left>"     . dired-jump-previous-dir)
-        ("C-d"        . dired-hide-details-mode)
-        ("r"          . revert-buffer)
-        ("/"          . occur)))
-
+  (define-key dired-mode-map (kbd "v")        'dired-find-file-other-window)
+  (define-key dired-mode-map (kbd "q")        'dired-quit-and-kill-window)
+  (define-key dired-mode-map (kbd "C-h")     'dired-omit-mode)
+  (define-key dired-mode-map (kbd "<right>")  'dired-find-or-view)
+  (define-key dired-mode-map (kbd "<left>")   'dired-jump-previous-dir)
+  (define-key dired-mode-map (kbd "C-d")     'dired-hide-details-mode)
+  (define-key dired-mode-map (kbd "r")        'revert-buffer)
+  (define-key dired-mode-map (kbd "/")        'occur)
+)
 ;; == tex
-(use-package tex
-  :ensure nil
-  :defer t
-  :config
-  (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
-        tex-dvi-view-command "pdf.viewer"
-        font-latex-fontify-sectioning 'color
-        font-latex-fontify-script nil
-        LaTeX-item-indent -2
-        LaTeX-indent-level 4 ;; indents special environments
-        TeX-engine 'default) ;; xetex to switch to xelatex
-  )
+(require-soft 'tex
+ (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
+       tex-dvi-view-command "pdf.viewer"
+       font-latex-fontify-sectioning 'color
+       font-latex-fontify-script nil
+       LaTeX-item-indent -2
+       LaTeX-indent-level 4 ;; indents special environments
+       TeX-engine 'default) ;; xetex to switch to xelatex
+ )
 ;;  (setq TeX-view-program-selection
 ;;        (quote
 ;;    (((output-dvi has-no-display-manager) "dvi2tty")
@@ -800,34 +795,30 @@
 ;;     (output-html "xdg-open")))))
 
 ;; == org
-(use-package org
-  :ensure nil
-  :defer t
-  :init
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (electric-indent-local-mode -1)
-              (font-lock-mode t)))
-  :config
-  (progn
-    (setq org-highlight-latex-and-related '(latex script entities)
-          indent-rigidly t
-          org-src-fontify-natively t
-          org-src-tab-acts-natively t
-          org-confirm-babel-evaluate nil
-          org-src-preserve-indentation t
-          org-adapt-indentation nil
-          org-src-content-indentation 0
-          org-startup-folded t
-          org-log-done 'time)
-    (setq org-todo-keywords
-          '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
-            (sequence "VIABLE" "|" "INVIABLE")
-            (sequence "VALID"  "|" "INVALID")
-            (sequence "BUG"    "|" "FIXED" "WONT FIX")
-            (sequence "DELETED" "UNKNOWN"))
-          org-todo-keyword-faces
-          '(("INVIABLE"   . "pink")
+(require-soft 'org
+ (add-hook 'org-mode-hook
+           (lambda ()
+             (electric-indent-local-mode -1)
+             (font-lock-mode t)))
+ (progn
+   (setq org-highlight-latex-and-related '(latex script entities)
+         indent-rigidly t
+         org-src-fontify-natively t
+         org-src-tab-acts-natively t
+         org-confirm-babel-evaluate nil
+         org-src-preserve-indentation t
+         org-adapt-indentation nil
+         org-src-content-indentation 0
+         org-startup-folded t
+         org-log-done 'time
+         org-todo-keywords
+         '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
+           (sequence "VIABLE" "|" "INVIABLE")
+           (sequence "VALID"  "|" "INVALID")
+           (sequence "BUG"    "|" "FIXED" "WONT FIX")
+           (sequence "DELETED" "UNKNOWN"))
+         org-todo-keyword-faces
+         '(("INVIABLE"   . "pink")
             ("VIABLE"     . "palegreen")
             ("INVALID"    . "pink")
             ("CANCELLED"  . "#565252") ;;"grey50")
@@ -838,195 +829,106 @@
             ("WONT FIX"   . "red")
             ("DELETED"    . "red")
             ("UNKNOWN"    . "goldenrod1")
-            ("FIXED"      . "palegreen")))
-    (setq org-capture-templates
-          '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
-            ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
-            ("p" "Plan"         entry (file corg/reminder)    "* TODO %t %?\n")
-            ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
-            ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
-            ("m" "Misc notes"   entry (file corg/notes)       "* %T\n%?\n")
-            ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
-            ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
-  (defalias 'ca     'org-capture)
-  (defalias 'agenda 'org-agenda)
-  :bind
-  (:map org-mode-map
-        ("C-c e" . org-latex-export-to-pdf)
-        ("C-c <right>" . org-metaright)
-        ("C-c <left>"  . org-metaleft)
-        ("C-c C-."     . org-time-stamp)))
+            ("FIXED"      . "palegreen"))
+         org-capture-templates
+         '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
+           ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
+           ("p" "Plan"         entry (file corg/reminder)    "* TODO %t %?\n")
+           ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
+           ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
+           ("m" "Misc notes"   entry (file corg/notes)       "* %T\n%?\n")
+           ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
+           ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
+ (defalias 'ca     'org-capture)
+ (defalias 'agenda 'org-agenda)
+
+(define-key org-mode-map (kbd "C-c e")       'org-latex-export-to-pdf)
+(define-key org-mode-map (kbd "C-c <right>") 'org-metaright)
+(define-key org-mode-map (kbd "C-c <left>")  'org-metaleft)
+(define-key org-mode-map (kbd "C-c C-.")     'org-time-stamp))
+
 ;; == man
-(use-package man
-  :ensure nil
-  :defer t
-  :config
-  (setq Man-width 70)
-  :bind
-  (:map Man-mode-map
-        ("C-q"    . kill-buffer-and-window)))
-
-;; == view
-(use-package view
-  :ensure nil
-  :defer t
-  :config
-  (defun View-quit-and-kill ()
-    (interactive)
-    (View-quit)
-    (delete-window))
-  :bind
-  (:map view-mode-map
-        ("C-q"    . View-quit)
-        ("C-f"    . View-scroll-line-forward)
-        ("C-b"    . View-scroll-line-backward)
-        ("s"      . View-scroll-line-forward)
-        ("w"      . View-scroll-line-backward)
-        ("g"      . beginning-of-buffer)
-        ("G"      . end-of-buffer)))
-
-;;(use-package eww
-;;  :ensure nil
-;;  :defer t
-;;  :config
-;;  (setq
-;;   shr-use-fonts nil ;; No special fonts
-;;   shr-use-colors t   ;; enable colours
-;;   shr-color-visible-luminance-min 70
-;;   shr-indentation 2  ;; Left-side margin
-;;   shr-width 80)     ;; Fold text to 80 columns
-;;  :bind
-;;  (:map eww-mode-map
-;;        ("C-j"    . View-scroll-line-forward)
-;;        ("C-k"    . View-scroll-line-backward)
-;;        ))
-
-
-;;; == buffer-menu
-(use-package buffer-menu
-  :ensure nil
-  :defer nil
-  :bind
-  (:map ibuffer-mode-map
-        ("r"   . ibuffer-redisplay)))
+(require-soft 'man
+ (setq Man-width 70)
+ (define-key Man-mode-map (kbd "C-q") 'kill-buffer-and-window))
 
 ;; == yaml
-(use-package yaml-mode
-  :ensure nil
-  :defer nil)
+(require-soft 'yaml-mode)
 (defalias 'yml 'yaml-mode)
-(require 'yaml-mode)
 
 ;; == narrow inderect
-(use-package narrow-indirect
-  :ensure nil
-  :defer nil
-  :config
-  (require 'narrow-indirect)
-  (defun ni-narrow-to-region ()
-    (interactive)
-    (ni-narrow-to-region-indirect-other-window)
-    (delete-window -1))
-  (defun ni-narrow-to-page ()
-    (interactive)
-    (ni-narrow-to-page-indirect-other-window)
-    (delete-window -1))
-  (defun ni-narrow-to-defun ()
-    (interactive)
-    (ni-narrow-to-defun-indirect-other-window)
-    (delete-window -1))
-  (bind-keys
-   ("C-x n n" . ni-narrow-to-region)
-   ("C-x n p" . ni-narrow-to-page)
-   ("C-x n d" . ni-narrow-to-defun)))
+(require-soft 'narrow-indirect
+ (setq ni-narrowed-buf-name-max 15)
+  (my-define-key (kbd "C-x n n") 'ni-narrow-to-region-indirect-other-window)
+  (my-define-key (kbd "C-x n p") 'ni-narrow-to-page-indirect-other-window)
+  (my-define-key (kbd "C-x n d") 'ni-narrow-to-defun-indirect-other-window))
 
 
 
 ;; === external modes ==========================================================
 ;;; external packages
 ;; == elscreen
-(use-package elscreen
-  :ensure t
-  :defer  nil
-  :config
-  (setq-default elscreen-prefix-key "\M-s")
-
-  (custom-set-variables
-   '(elscreen-tab-display-kill-screen nil)
-   '(elscreen-display-tab t)
-   '(elscreen-display-screen-number t))
-  (when (daemonp)
-    (elscreen-start))
-  :bind*
-  (("M-<left>"     . elscreen-previous)
-   ("M-<right>"    . elscreen-next)
-   ("ESC <left>"   . elscreen-previous)
-   ("ESC <right>"  . elscreen-next))
-  (:map elscreen-map
-        ("<left>"  . elscreen-previous)
-        ("<right>" . elscreen-next)
-        ("M-s"     . elscreen-toggle)
-        ("s"       . elscreen-toggle)
-        ("S"       . elscreen-toggle)
-        ("C-s"     . elscreen-split)
-        ("4"       . elscreen-screen-nickname)
-        ("r"       . elscreen-screen-nickname)
-        ("s"       . elscreen-swap)
-        ("k"       . elscreen-kill)
-        ("x"       . (lambda ()
-                       (interactive)
-                       (if (one-window-p) (elscreen-kill) (delete-window))))
-        ("M-k"     . (lambda ()
-                       (interactive)
-                       (when (y-or-n-p "Kill current buffer and close screen? ")
-                         (kill-current-buffer)
-                         (elscreen-kill))))
-        ("g"       . elscreen-goto)
-        ("t"       . elscreen-toggle-display-tab)
-        ("h"       . split-window-horizontally)
-        ("v"       . split-window-veritcally)
-        ))
+(require-soft 'elscreen
+ (setq-default elscreen-prefix-key "\M-s")
+ (custom-set-variables
+  '(elscreen-tab-display-kill-screen nil)
+  '(elscreen-display-tab t)
+  '(elscreen-display-screen-number t))
+ (when (daemonp)
+   (elscreen-start))
+ (global-set-key (kbd "M-<left>")   'elscreen-previous)
+ (global-set-key (kbd "M-<right>")  'elscreen-next)
+ (global-set-key (kbd "ESC <left>") 'elscreen-previous)
+ (global-set-key (kbd "ESC <right>") 'elscreen-next)
+ (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
+ (define-key elscreen-map (kbd "<right>") 'elscreen-next)
+ (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
+ (define-key elscreen-map (kbd "s")      'elscreen-toggle)
+ (define-key elscreen-map (kbd "S")      'elscreen-toggle)
+ (define-key elscreen-map (kbd "C-s")    'elscreen-split)
+ (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
+ (define-key elscreen-map (kbd "r")      'elscreen-screen-nickname)
+ (define-key elscreen-map (kbd "s")      'elscreen-swap)
+ (define-key elscreen-map (kbd "k")      'elscreen-kill)
+ (define-key elscreen-map (kbd "x")      (lambda ()
+                                           (interactive)
+                                           (if (one-window-p) (elscreen-kill) (delete-window))))
+ (define-key elscreen-map (kbd "M-k")    (lambda ()
+                                           (interactive)
+                                           (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
+                                                           (kill-current-buffer)
+                                                           (elscreen-kill)))))
+ (define-key elscreen-map (kbd "g")      'elscreen-goto)
+ (define-key elscreen-map (kbd "t")      'elscreen-toggle-display-tab)
+ (define-key elscreen-map (kbd "h")      'split-window-horizontally)
+ (define-key elscreen-map (kbd "v")      'split-window-veritcally)
+ )
 
 ;; == yas
-(use-package yasnippet
-  :ensure t
-  :defer  nil
-  :init
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-  (yas-global-mode 1)
-  :config
-  (setq yas-prompt-functions '(yas-ido-prompt
+(require-soft 'yasnippet
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets")
+        yas-prompt-functions '(yas-ido-prompt
                                yas-completing-prompt
                                yas-no-prompt))
   (defun yas-force-update ()
     (interactive)
     (yas-recompile-all)
     (yas-reload-all))
+  (yas-global-mode 1)
   (defalias 'yas 'yas-force-update))
 
-;; == browse-kill-ring
-(use-package browse-kill-ring
-  :ensure t
-  :defer t
-  :init
-  (defalias 'bkr 'browse-kill-ring))
-
 ;; == diminish
-(use-package diminish   ;; hide/"diminish" always enabled modes
-  :ensure t
-  :defer nil
-  :config
-  (diminish 'subword-mode) ;; iterate over camelCase
-  (diminish 'yas-minor-mode)
-  ;;  (diminish 'auto-fill-function)
-  (diminish 'eldoc-mode))
+(require-soft 'diminish   ;; hide/"diminish" always enabled modes
+ (diminish 'subword-mode) ;; iterate over camelCase
+ (diminish 'yas-minor-mode)
+ ;;  (diminish 'auto-fill-function)
+ (diminish 'eldoc-mode))
 
 ;; == mu4e
-(use-package mu4e
-  :ensure nil
-  :defer nil
-  :config
-  (setq mail-user-agent 'mu4e-user-agent
+(when (daemonp)
+  (require-soft
+   'mu4e
+   (setq mail-user-agent 'mu4e-user-agent
         mu4e-sent-folder   "/Sent"
         mu4e-drafts-folder "/Drafts"
         mu4e-trash-folder  "/Archive/trash"
@@ -1034,38 +936,28 @@
         smtpmail-default-smtp-server nil
         smtpmail-smtp-server         nil
         smtpmail-local-domain        nil)
-  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-  (defalias 'mail 'mu4e)
-  (defalias 'mu   'mu4e)
-  (when (and (my_daemonp)
-             (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
-    (load-library "mu4e")))
+   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+   (defalias 'mail 'mu4e)
+   (defalias 'mu   'mu4e)
+   (when (and (my_daemonp)
+              (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
+     (load-library "mu4e"))))
 
 ;; ==ripgrep
-(use-package rg
-  :ensure t
-  :defer t)
-(defalias 'ag 'rg)
-
-;; == interesting packages:
-;; narrowed-page-navigation
+(require-soft 'rg
+ (defalias 'ag 'rg))
 
 ;; == packages without config
 ;;(use-package auctex               :ensure t :defer t :pin gnu)
-(use-package dumb-jump            :ensure t :defer t)
-(use-package keychain-environment :ensure t :defer t)
-(use-package goto-chg             :ensure t :defer t)
-(use-package go-mode              :ensure t :defer t)
-(use-package lua-mode             :ensure t :defer t)
-(use-package projectile           :ensure t :defer t)
-(use-package iflipb               :ensure t :defer t)
-(use-package puppet-mode          :ensure t :defer t)
-(use-package wgrep                :ensure t :defer t)
-(use-package so-long              :ensure t :defer t)
-(use-package rainbow-delimiters   :ensure t :defer t)
-(use-package haskell-mode         :ensure t :defer t)
-(use-package magit :if (my_daemonp) :ensure t :defer t)
-(use-package howm                 :ensure t :defer t)
+(require-soft 'go-mode)
+(require-soft 'puppet-mode)
+(require-soft 'so-long)
+(require-soft 'haskell-mode)
+(when (daemonp)
+  (require-soft 'keychain-environment)
+  (require-soft 'magit (my_daemonp)))
+;; ;; == interesting packages:
+;; ;; narrowed-page-navigation
 
 ;; === terminal ================================================================
 
