@@ -47,10 +47,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun bind-key (key def)
   (define-key my-keys-mode-map (kbd key) def))
 
-;;(require-soft 'package
-;;  (package-initialize))
-;; paths
-;; custom files
+;; (require-soft 'package
+;;   (package-initialize))
 
 ;; === editing =================================================================
 ;; disable modes
