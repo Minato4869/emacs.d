@@ -434,16 +434,18 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 
 ;; mode specific
-;;(dolist (mode '(lisp-mode-map emacs-lisp-mode-map lisp-interaction-mode-map))
-;;  (define-key mode "\C-c \C-c" (lambda ()
-;;                                     (interactive)
-;;                                     (if (region-active-p)
-;;                                         (progn
-;;                                           (eval-region (region-beginning) (region-end))
-;;                                           (message "Evaluated current region"))
-;;                                       (progn
-;;                                         (eval-buffer)
-;;                                         (message "Evaluated current buffer"))))))
+(defun my-eval-buffer ()
+  (interactive)
+  (if (region-active-p)
+      (progn
+        (eval-region (region-beginning) (region-end))
+        (message "Evaluated current region"))
+    (progn
+      (eval-buffer)
+      (message "Evaluated current buffer"))))
+
+(define-key emacs-lisp-mode-map (kbd "C-c C-c") 'my-eval-buffer)
+(define-key lisp-interaction-mode-map (kbd "C-c C-c") 'my-eval-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -849,9 +851,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; == narrow inderect
 (require-soft 'narrow-indirect
  (setq ni-narrowed-buf-name-max 15)
-  (bind-key (kbd "C-x n n") 'ni-narrow-to-region-indirect-other-window)
-  (bind-key (kbd "C-x n p") 'ni-narrow-to-page-indirect-other-window)
-  (bind-key (kbd "C-x n d") 'ni-narrow-to-defun-indirect-other-window))
+  (bind-key (kbd "C-x n i") 'ni-narrow-to-region-indirect-other-window))
 
 
 
@@ -1162,7 +1162,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
       (let* ((ttfh (cond ((= dpi 109) 79)
                          ((= dpi 125) 69)
                          ((= dpi 131) 75)
-                         ((= dpi 157) 64) ;; was 74
+                         ((= dpi 157) 64) ;; was 73
                          (t           70)))
              (xfth       (/ ttfh 10.0))
              (family     "Deja Vu Sans Mono")
@@ -1285,9 +1285,17 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (progn (setq theme/light t)
            (setq frame-background-mode 'light)
            (theme/set-colours "light"))))
+(defun theme/gl-dark ()
+  (interactive)
+  (load-theme 'gl-dark t)
+  (enable-theme 'gl-dark)
+  (global-font-lock-mode 1))
 ;;(invert-face 'default)
 (bind-key "<f2>"   'toggle-light-theme)
 (bind-key "C-<f2>" 'theme/font-lock)
+(bind-key "M-<f2>" 'theme/gl-dark)
+
+
 
 (let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
