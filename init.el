@@ -52,26 +52,27 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; === editing =================================================================
 ;; disable modes
-(put 'compose-mail                                  'disabled t)
-(put 'mouse-wheel-text-scale                        'disabled t)
-(put 'mouse-appearance-menu                         'disabled t)
-(put 'kmacro-end-call-mouse                         'disabled t)
-(put 'overwrite-mode                                'disabled t)
-(put 'org-archive-set-tag                           'disabled t)
-(put 'org-archive-subtree                           'disabled t)
-(put 'org-archive-subtree-default                   'disabled t)
-(put 'org-archive-subtree-default-with-confirmation 'disabled t)
-(put 'org-archive-to-archive-sibling                'disabled t)
-
+(dolist (function '(compose-mail
+                    mouse-wheel-text-scale
+                    mouse-appearance-menu
+                    kmacro-end-call-mouse
+                    overwrite-mode
+                    org-archive-set-tag
+                    org-archive-subtree
+                    org-archive-subtree-default
+                    org-archive-subtree-default-with-confirmation
+                    org-archive-to-archive-sibling))
+(put function 'disabled t))
 ;; enable modes
-(put 'upcase-region             'disabled nil)
-(put 'scroll-left               'disabled nil)
-(put 'downcase-region           'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'narrow-to-page            'disabled nil)
-(put 'narrow-to-region          'disabled nil)
-(put 'eval-expression           'disabled nil)
-(put 'set-goal-column           'disabled nil)
+(dolist (function '(upcase-region
+                    scroll-left
+                    downcase-region
+                    dired-find-alternate-file
+                    narrow-to-page
+                    narrow-to-region
+                    eval-expression
+                    set-goal-column))
+  (put function 'disabled nil))
 
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -469,10 +470,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    ;; window transposing
    (bind-key "s-o"             'transpose-windows)
    ;; buffers
-   (bind-key "s-b"   'buffer-menu)
-   (bind-key "s--"   'text-scale-decrease)
-   (bind-key "s-="   'text-scale-increase)
-   (bind-key "s-0"   'text-scale-reset))
+   (bind-key "s-b"   'buffer-menu))
 
 ;; == mode maps
 
