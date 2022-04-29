@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: org-subsubsec
+# key: ***
+# condition: (looking-back "^***" nil)
+# --
+\subsubsection*{$0}

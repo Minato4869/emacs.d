@@ -62,7 +62,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                     org-archive-subtree-default
                     org-archive-subtree-default-with-confirmation
                     org-archive-to-archive-sibling))
-(put function 'disabled t))
+  (put function 'disabled t))
 ;; enable modes
 (dolist (function '(upcase-region
                     scroll-left
@@ -113,9 +113,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'minibuffer-setup-hook    (lambda () (setq truncate-lines nil)))
 (add-hook 'emacs-lisp-mode-hook     'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook           'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook          (lambda () (cedit/indent-latex)))
-(add-hook 'latex-mode-hook          (lambda () (cedit/indent-latex)))
-(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/indent-latex)))
+(add-hook 'LaTeX-mode-hook          (lambda () (cedit/latex)))
+(add-hook 'latex-mode-hook          (lambda () (cedit/latex)))
+(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/latex)))
 
 (add-hook 'java-mode-hook           (lambda () (cedit/indent-code 4 t   100 t)))
 (add-hook 'make-mode-hook           (lambda () (cedit/indent-code 4 t    80 t)))
@@ -389,35 +389,35 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "M-l"       'downcase-dwim)
 (bind-key "M-SPC"     'cycle-spacing)
 (bind-key "C-c C-SPC" 'delete-horizontal-space)
- ;; custom function binds
+;; custom function binds
 (bind-key "C-5"       'match-paren)
 (bind-key "C-u"       'backward-kill-line)
 (bind-key "C-x z"     '(lambda () ;; "Suspend frame inside of a terminal instance of Emacs."
-                  (interactive)
-                  (if (display-graphic-p)
-                      (message "Suspend frame is disabled for X11 frames of emacs")
-                    (suspend-frame))))
- ;; movement
+                         (interactive)
+                         (if (display-graphic-p)
+                             (message "Suspend frame is disabled for X11 frames of emacs")
+                           (suspend-frame))))
+;; movement
 (bind-key "M-p"       'backward-paragraph)
 (bind-key "M-n"       'forward-paragraph)
 (bind-key "<M-up>"    'backward-paragraph)
 (bind-key "<M-down>"  'forward-paragraph)
- ;; mark
+;; mark
 (bind-key "C-x C-h"   'mark-whole-buffer)
- ;; misc
+;; misc
 (bind-key "<f9>"      'font-lock-mode)
 (bind-key "<f10>"     'menu-bar-mode)
 (bind-key "<f11>"     'whitespace-mode)
 (bind-key "<f12>"     'display-fill-column-indicator-mode)
 (bind-key "C-<f12>"   'display-line-numbers-mode)
- ;; buffer
+;; buffer
 (bind-key "<M-prior>" 'previous-buffer)
 (bind-key "<M-next>"  'next-buffer)
 (bind-key "C-x k"     'kill-current-buffer)
 (bind-key "C-x C-k"   'kill-buffer)
 (bind-key "C-c r"     'revert-buffer)
 (bind-key "C-x C-b"   'buffer-menu)
- ;; windows
+;; windows
 (bind-key "M-1"       'delete-other-windows)
 (bind-key "M-2"       'split-window-below)
 (bind-key "M-3"       'split-window-right)
@@ -430,7 +430,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-x C--"   'negative-argument)
 (bind-key "C-c o"     'transpose-windows)
 (bind-key "C-x t"     'transpose-lines)
- ;; misc
+;; misc
 (bind-key "C-c 4"     'ispell-change-dictionary)
 
 
@@ -464,13 +464,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
      'PRIMARY
      (replace-regexp-in-string "[\s\n]" "" (buffer-substring
                                             (region-beginning) (region-end)))))
-   (bind-key "C-M-y"           'yank-primary)
-   (bind-key "C-M-w"           'kill-ring-save-primary)
-   (bind-key "<insert>"        'yank-primary)
-   ;; window transposing
-   (bind-key "s-o"             'transpose-windows)
-   ;; buffers
-   (bind-key "s-b"   'buffer-menu))
+  (bind-key "C-M-y"           'yank-primary)
+  (bind-key "C-M-w"           'kill-ring-save-primary)
+  (bind-key "<insert>"        'yank-primary)
+  ;; window transposing
+  (bind-key "s-o"             'transpose-windows)
+  ;; buffers
+  (bind-key "s-b"   'buffer-menu))
 
 ;; == mode maps
 
@@ -525,9 +525,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
 
   (let* ((wn (if (use-region-p)
-                (progn
-                  (buffer-substring-no-properties beg end)
-                  (kill-region region-beginning region-end))
+                 (progn
+                   (buffer-substring-no-properties beg end)
+                   (kill-region region-beginning region-end))
                (shell-quote-argument (read-string "Enter week number or date: "))))
          (prepend (when (is_major_mode "org-mode") "* ")))
     (insert
@@ -671,77 +671,77 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; == ido
 
 (require-soft 'ido
- (defun cido/lazy-ido-enable ()
-   "since ido is loaded with Emacs, use-package cannot defer"
-   (ido-mode t)
-   (setq
-    ido-enable-flex-matching t
-     ido-auto-merge-work-directories-length -1
-     ido-default-buffer-method 'selected-window
-     ido-default-file-method 'selected-window
-     ido-everywhere t)
-    (if (require 'ido-sort-mtime nil t)
-        (ido-sort-mtime-mode t)))
-  (defun cido/lazy-ido-switch-buffer ()
-    "ibuffer wrapper"
-    (interactive)
-    (cido/lazy-ido-enable)
-    (call-interactively 'ido-switch-buffer))
-  (defun cido/lazy-ido-switch-buffer-other-window ()
-    "ibuffer wrapper"
-    (interactive)
-    (cido/lazy-ido-enable)
-    (call-interactively 'ido-switch-buffer-other-window))
-  (defun cido/lazy-ido-find-file ()
-    "find-file wrapper"
-    (interactive)
-    (cido/lazy-ido-enable)
-    (call-interactively 'ido-find-file))
-  (defun cido/lazy-ido-dired ()
-    "find-file wrapper"
-    (interactive)
-    (cido/lazy-ido-enable)
-    (call-interactively 'ido-dired))
-  (bind-key "C-x C-f" 'cido/lazy-ido-find-file)
-  (bind-key "C-x d"   'cido/lazy-ido-dired)
-  (bind-key "C-x b"   'cido/lazy-ido-switch-buffer)
-  (bind-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
+              (defun cido/lazy-ido-enable ()
+                "since ido is loaded with Emacs, use-package cannot defer"
+                (ido-mode t)
+                (setq
+                 ido-enable-flex-matching t
+                 ido-auto-merge-work-directories-length -1
+                 ido-default-buffer-method 'selected-window
+                 ido-default-file-method 'selected-window
+                 ido-everywhere t)
+                (if (require 'ido-sort-mtime nil t)
+                    (ido-sort-mtime-mode t)))
+              (defun cido/lazy-ido-switch-buffer ()
+                "ibuffer wrapper"
+                (interactive)
+                (cido/lazy-ido-enable)
+                (call-interactively 'ido-switch-buffer))
+              (defun cido/lazy-ido-switch-buffer-other-window ()
+                "ibuffer wrapper"
+                (interactive)
+                (cido/lazy-ido-enable)
+                (call-interactively 'ido-switch-buffer-other-window))
+              (defun cido/lazy-ido-find-file ()
+                "find-file wrapper"
+                (interactive)
+                (cido/lazy-ido-enable)
+                (call-interactively 'ido-find-file))
+              (defun cido/lazy-ido-dired ()
+                "find-file wrapper"
+                (interactive)
+                (cido/lazy-ido-enable)
+                (call-interactively 'ido-dired))
+              (bind-key "C-x C-f" 'cido/lazy-ido-find-file)
+              (bind-key "C-x d"   'cido/lazy-ido-dired)
+              (bind-key "C-x b"   'cido/lazy-ido-switch-buffer)
+              (bind-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
 
 ;; ;; == dired
 (when (my_daemonp)
   (require-soft 'dired-x
-   (setq-default dired-omit-files "^\\...+$"
-                 dired-isearch-filenames t)
-   (if (or (string-equal system-type "gnu/linux")
-           (file-regular-p "/usr/local/share/gls"))
-       (setq dired-listing-switches
-             "-laFH --group-directories-first")
-     (setq dired-listing-switches "-laFH"))
-   (setq dired-omit-verbose nil
-         dired-omit-mode t
-         dired-auto-revert-buffer t)
+                (setq-default dired-omit-files "^\\...+$"
+                              dired-isearch-filenames t)
+                (if (or (string-equal system-type "gnu/linux")
+                        (file-regular-p "/usr/local/share/gls"))
+                    (setq dired-listing-switches
+                          "-laFH --group-directories-first")
+                  (setq dired-listing-switches "-laFH"))
+                (setq dired-omit-verbose nil
+                      dired-omit-mode t
+                      dired-auto-revert-buffer t)
 
-   (defun cdired/x-mode-setup ()
-     (font-lock-mode t)
-     (dired-hide-details-mode 1))
-   (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-   (bind-key "C-x C-d" 'dired-jump)
-   (bind-key "s-d"     'dired-jump)
-   (define-key dired-mode-map "\C-h" 'dired-omit-mode)
-  (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
+                (defun cdired/x-mode-setup ()
+                  (font-lock-mode t)
+                  (dired-hide-details-mode 1))
+                (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+                (bind-key "C-x C-d" 'dired-jump)
+                (bind-key "s-d"     'dired-jump)
+                (define-key dired-mode-map "\C-h" 'dired-omit-mode)
+                (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
 
   (require-soft 'dired
-   (defun dired-jump-previous-dir ()
-     (interactive)
-     (setq old-buffer (buffer-name))
-     (dired-jump)
-     (kill-buffer old-buffer))
-   (defun dired-view-file-other-window ()
-     (if (one-window-p)
-         (split-window-horizontally)
-       (split-window-vertically))
-     (other-window 1)
-     (dired-view-file)))
+                (defun dired-jump-previous-dir ()
+                  (interactive)
+                  (setq old-buffer (buffer-name))
+                  (dired-jump)
+                  (kill-buffer old-buffer))
+                (defun dired-view-file-other-window ()
+                  (if (one-window-p)
+                      (split-window-horizontally)
+                    (split-window-vertically))
+                  (other-window 1)
+                  (dired-view-file)))
   (defun dired-find-or-view ()
     "A `dired-find-file' which only works on directories."
     (interactive)
@@ -765,17 +765,17 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (define-key dired-mode-map (kbd "C-d")     'dired-hide-details-mode)
   (define-key dired-mode-map (kbd "r")        'revert-buffer)
   (define-key dired-mode-map (kbd "/")        'occur)
-)
+  )
 ;; == tex
 (require-soft 'tex
- (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
-       tex-dvi-view-command "pdf.viewer"
-       font-latex-fontify-sectioning 'color
-       font-latex-fontify-script nil
-       LaTeX-item-indent -2
-       LaTeX-indent-level 4 ;; indents special environments
-       TeX-engine 'default) ;; xetex to switch to xelatex
- )
+              (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
+                    tex-dvi-view-command "pdf.viewer"
+                    font-latex-fontify-sectioning 'color
+                    font-latex-fontify-script nil
+                    LaTeX-item-indent -2
+                    LaTeX-indent-level 4 ;; indents special environments
+                    TeX-engine 'default) ;; xetex to switch to xelatex
+              )
 ;;  (setq TeX-view-program-selection
 ;;        (quote
 ;;    (((output-dvi has-no-display-manager) "dvi2tty")
@@ -786,61 +786,61 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; == org
 (require-soft 'org
- (add-hook 'org-mode-hook
-           (lambda ()
-             (electric-indent-local-mode -1)
-             (font-lock-mode t)))
- (progn
-   (setq org-highlight-latex-and-related '(latex script entities)
-         indent-rigidly t
-         org-src-fontify-natively t
-         org-src-tab-acts-natively t
-         org-confirm-babel-evaluate nil
-         org-src-preserve-indentation t
-         org-adapt-indentation nil
-         org-src-content-indentation 0
-         org-startup-folded t
-         org-log-done 'time
-         org-todo-keywords
-         '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
-           (sequence "VIABLE" "|" "INVIABLE")
-           (sequence "VALID"  "|" "INVALID")
-           (sequence "BUG"    "|" "FIXED" "WONT FIX")
-           (sequence "DELETED" "UNKNOWN"))
-         org-todo-keyword-faces
-         '(("INVIABLE"   . "pink")
-            ("VIABLE"     . "palegreen")
-            ("INVALID"    . "pink")
-            ("CANCELLED"  . "#565252") ;;"grey50")
-            ("INPROGRESS" . "#FFAF00") ;; was "goldenrod1")
-            ("NEXT"       . "#FFAF00")
-            ("VALID"      . "palegreen")
-            ("BUG"        . "pink")
-            ("WONT FIX"   . "red")
-            ("DELETED"    . "red")
-            ("UNKNOWN"    . "goldenrod1")
-            ("FIXED"      . "palegreen"))
-         org-capture-templates
-         '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
-           ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
-           ("p" "Plan"         entry (file corg/reminder)    "* TODO %t %?\n")
-           ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
-           ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
-           ("m" "Misc notes"   entry (file corg/notes)       "* %T\n%?\n")
-           ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
-           ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
- (defalias 'ca     'org-capture)
- (defalias 'agenda 'org-agenda)
+              (add-hook 'org-mode-hook
+                        (lambda ()
+                          (electric-indent-local-mode -1)
+                          (font-lock-mode t)))
+              (progn
+                (setq org-highlight-latex-and-related '(latex script entities)
+                      indent-rigidly t
+                      org-src-fontify-natively t
+                      org-src-tab-acts-natively t
+                      org-confirm-babel-evaluate nil
+                      org-src-preserve-indentation t
+                      org-adapt-indentation nil
+                      org-src-content-indentation 0
+                      org-startup-folded t
+                      org-log-done 'time
+                      org-todo-keywords
+                      '((sequence "TODO" "INPROGRESS" "|" "DONE"  "CANCELLED")
+                        (sequence "VIABLE" "|" "INVIABLE")
+                        (sequence "VALID"  "|" "INVALID")
+                        (sequence "BUG"    "|" "FIXED" "WONT FIX")
+                        (sequence "DELETED" "UNKNOWN"))
+                      org-todo-keyword-faces
+                      '(("INVIABLE"   . "pink")
+                        ("VIABLE"     . "palegreen")
+                        ("INVALID"    . "pink")
+                        ("CANCELLED"  . "#565252") ;;"grey50")
+                        ("INPROGRESS" . "#FFAF00") ;; was "goldenrod1")
+                        ("NEXT"       . "#FFAF00")
+                        ("VALID"      . "palegreen")
+                        ("BUG"        . "pink")
+                        ("WONT FIX"   . "red")
+                        ("DELETED"    . "red")
+                        ("UNKNOWN"    . "goldenrod1")
+                        ("FIXED"      . "palegreen"))
+                      org-capture-templates
+                      '(("t" "Todo"         entry (file corg/reminder)    "* TODO %t %?\n")
+                        ("r" "Reminder"     entry (file corg/reminder)    "* TODO %t %?\n")
+                        ("p" "Plan"         entry (file corg/reminder)    "* TODO %t %?\n")
+                        ("n" "Notes"        entry (file corg/notes)       "* %T\n%?\n")
+                        ("l" "Local notes"  entry (file corg/notes-local) "* %T\n%?\n")
+                        ("m" "Misc notes"   entry (file corg/notes)       "* %T\n%?\n")
+                        ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
+                        ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
+              (defalias 'ca     'org-capture)
+              (defalias 'agenda 'org-agenda)
 
-(define-key org-mode-map (kbd "C-c e")       'org-latex-export-to-pdf)
-(define-key org-mode-map (kbd "C-c <right>") 'org-metaright)
-(define-key org-mode-map (kbd "C-c <left>")  'org-metaleft)
-(define-key org-mode-map (kbd "C-c C-.")     'org-time-stamp))
+              (define-key org-mode-map (kbd "C-c e")       'org-latex-export-to-pdf)
+              (define-key org-mode-map (kbd "C-c <right>") 'org-metaright)
+              (define-key org-mode-map (kbd "C-c <left>")  'org-metaleft)
+              (define-key org-mode-map (kbd "C-c C-.")     'org-time-stamp))
 
 ;; == man
 (require-soft 'man
- (setq Man-width 70)
- (define-key Man-mode-map (kbd "C-q") 'kill-buffer-and-window))
+              (setq Man-width 70)
+              (define-key Man-mode-map (kbd "C-q") 'kill-buffer-and-window))
 
 ;; == yaml
 (require-soft 'yaml-mode)
@@ -848,8 +848,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; == narrow inderect
 (require-soft 'narrow-indirect
- (setq ni-narrowed-buf-name-max 15)
-  (bind-key (kbd "C-x n i") 'ni-narrow-to-region-indirect-other-window))
+              (setq ni-narrowed-buf-name-max 15)
+              (bind-key (kbd "C-x n i") 'ni-narrow-to-region-indirect-other-window))
 
 
 
@@ -857,70 +857,70 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;;; external packages
 ;; == elscreen
 (require-soft 'elscreen
- (setq-default elscreen-prefix-key "\M-s")
- (custom-set-variables
-  '(elscreen-tab-display-kill-screen nil)
-  '(elscreen-display-tab t)
-  '(elscreen-display-screen-number t))
- (when (daemonp)
-   (elscreen-start))
- (bind-key "M-<left>"   'elscreen-previous)
- (bind-key "M-<right>"  'elscreen-next)
- (bind-key "ESC <left>" 'elscreen-previous)
- (bind-key "ESC <right>" 'elscreen-next)
- (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
- (define-key elscreen-map (kbd "<right>") 'elscreen-next)
- (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
- (define-key elscreen-map (kbd "C-s")    'elscreen-split)
- (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
- (define-key elscreen-map (kbd "s")      'elscreen-swap)
- (define-key elscreen-map (kbd "k")      'elscreen-kill)
- (define-key elscreen-map (kbd "x")      (lambda ()
-                                           (interactive)
-                                           (if (one-window-p) (elscreen-kill) (delete-window))))
- (define-key elscreen-map (kbd "M-k")    (lambda ()
-                                           (interactive)
-                                           (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
-                                                           (kill-current-buffer)
-                                                           (elscreen-kill)))))
- (define-key elscreen-map (kbd "g")      'elscreen-goto)
- (define-key elscreen-map (kbd "t")      'elscreen-toggle-display-tab)
- (define-key elscreen-map (kbd "h")      'split-window-horizontally)
- (define-key elscreen-map (kbd "v")      'split-window-veritcally)
- )
+              (setq-default elscreen-prefix-key "\M-s")
+              (custom-set-variables
+               '(elscreen-tab-display-kill-screen nil)
+               '(elscreen-display-tab t)
+               '(elscreen-display-screen-number t))
+              (when (daemonp)
+                (elscreen-start))
+              (bind-key "M-<left>"   'elscreen-previous)
+              (bind-key "M-<right>"  'elscreen-next)
+              (bind-key "ESC <left>" 'elscreen-previous)
+              (bind-key "ESC <right>" 'elscreen-next)
+              (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
+              (define-key elscreen-map (kbd "<right>") 'elscreen-next)
+              (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
+              (define-key elscreen-map (kbd "C-s")    'elscreen-split)
+              (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
+              (define-key elscreen-map (kbd "s")      'elscreen-swap)
+              (define-key elscreen-map (kbd "k")      'elscreen-kill)
+              (define-key elscreen-map (kbd "x")      (lambda ()
+                                                        (interactive)
+                                                        (if (one-window-p) (elscreen-kill) (delete-window))))
+              (define-key elscreen-map (kbd "M-k")    (lambda ()
+                                                        (interactive)
+                                                        (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
+                                                                        (kill-current-buffer)
+                                                                        (elscreen-kill)))))
+              (define-key elscreen-map (kbd "g")      'elscreen-goto)
+              (define-key elscreen-map (kbd "t")      'elscreen-toggle-display-tab)
+              (define-key elscreen-map (kbd "h")      'split-window-horizontally)
+              (define-key elscreen-map (kbd "v")      'split-window-veritcally)
+              )
 
 ;; == yas
 (require-soft 'yasnippet
-  (setq yas-snippet-dirs '("~/.emacs.d/snippets")
-        yas-prompt-functions '(yas-ido-prompt
-                               yas-completing-prompt
-                               yas-no-prompt))
-  (defun yas-force-update ()
-    (interactive)
-    (yas-recompile-all)
-    (yas-reload-all))
-  (yas-global-mode 1)
-  (defalias 'yas 'yas-force-update))
+              (setq yas-snippet-dirs '("~/.emacs.d/snippets")
+                    yas-prompt-functions '(yas-ido-prompt
+                                           yas-completing-prompt
+                                           yas-no-prompt))
+              (defun yas-force-update ()
+                (interactive)
+                (yas-recompile-all)
+                (yas-reload-all))
+              (yas-global-mode 1)
+              (defalias 'yas 'yas-force-update))
 
 ;; == diminish
 (require-soft 'diminish   ;; hide/"diminish" always enabled modes
- (diminish 'subword-mode) ;; iterate over camelCase
- (diminish 'yas-minor-mode)
- ;;  (diminish 'auto-fill-function)
- (diminish 'eldoc-mode))
+              (diminish 'subword-mode) ;; iterate over camelCase
+              (diminish 'yas-minor-mode)
+              ;;  (diminish 'auto-fill-function)
+              (diminish 'eldoc-mode))
 
 ;; == mu4e
 (when (daemonp)
   (require-soft
    'mu4e
    (setq mail-user-agent 'mu4e-user-agent
-        mu4e-sent-folder   "/Sent"
-        mu4e-drafts-folder "/Drafts"
-        mu4e-trash-folder  "/Archive/trash"
-        message-send-mail-function   nil
-        smtpmail-default-smtp-server nil
-        smtpmail-smtp-server         nil
-        smtpmail-local-domain        nil)
+         mu4e-sent-folder   "/Sent"
+         mu4e-drafts-folder "/Drafts"
+         mu4e-trash-folder  "/Archive/trash"
+         message-send-mail-function   nil
+         smtpmail-default-smtp-server nil
+         smtpmail-smtp-server         nil
+         smtpmail-local-domain        nil)
    (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
    (defalias 'mail 'mu4e)
    (defalias 'mu   'mu4e)
@@ -930,7 +930,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; ==ripgrep
 (require-soft 'rg
- (defalias 'ag 'rg))
+              (defalias 'ag 'rg))
 
 ;; == packages without config
 ;;(use-package auctex               :ensure t :defer t :pin gnu)
@@ -1245,18 +1245,17 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
          (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
 
          )
-     (custom-set-faces
-      `(default ((((type tty))  ,default-term)
-                 (t             (:background ,default-bg :foreground ,default-fg))))
-      `(mode-line ((t (:foreground ,white :background "#292929" ))))
-      `(mode-line-buffer-id ((t (:bold t))))
-      `(fringe  ((t (:background ,fringe :inherit default))))
-      `(region   ((t (:foreground ,white :background "#114488" :extend t)))))
-     (when (is_ssh)
-       (custom-set-faces
-        `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
-        `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
-     ))
+    (custom-set-faces
+     `(default ((((type tty))  ,default-term)
+                (t             (:background ,default-bg :foreground ,default-fg))))
+     `(mode-line ((t (:foreground ,white :background "#292929" ))))
+     `(mode-line-buffer-id ((t (:bold t))))
+     `(fringe  ((t (:background ,fringe :inherit default)))))
+    (when (is_ssh)
+      (custom-set-faces
+       `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
+       `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
+    ))
 
 (when (daemonp)
   (theme/set-colours))
@@ -1295,126 +1294,128 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 
 
-(let* ((default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+(let* ((white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
+       (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
        (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
                                   '(:background "color-239" :foreground "color-252")))
        (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
 
-(custom-set-faces
- `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
- `(border                              ((t            (:foreground "#0000ff"))))
- `(minibuffer-prompt                   ((t (:inherit default :bold t))))
- `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
-                                       (t             (:background "#4D4D4D" :foreground "#CCCCCC"
-                                                                   :box (:line-width -1 :color "#666666" :style nil)))))
+  (custom-set-faces
+   `(region   ((t (:foreground ,white :background "#114488" :extend t))))
+   `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
+   `(border                              ((t            (:foreground "#0000ff"))))
+   `(minibuffer-prompt                   ((t (:inherit default :bold t))))
+   `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
+                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC"
+                                                                     :box (:line-width -1 :color "#666666" :style nil)))))
 
- `(hl-line                            ((t (:inherit fringe :extend t))))
+   `(hl-line                            ((t (:inherit fringe :extend t))))
 
- `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
- `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
- `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
+   `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
+   `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
+   `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
 
- `(ido-subdir                          ((t (:foreground "#A1C659"))))
- `(ido-only-match                      ((t (:foreground "#FFCC33"))))
- `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
- `(ido-incomplete-regexp               ((t (:inherit default))))
- `(ido-indicator                       ((t (:inherit default))))
+   `(ido-subdir                          ((t (:foreground "#A1C659"))))
+   `(ido-only-match                      ((t (:foreground "#FFCC33"))))
+   `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
+   `(ido-incomplete-regexp               ((t (:inherit default))))
+   `(ido-indicator                       ((t (:inherit default))))
 
- `(italic                              ((t (:slant italic :underline nil))))
+   `(italic                              ((t (:slant italic :underline nil))))
 
- `(completions-common-part             ((t (:foreground "#add8e6"))))
+   `(completions-common-part             ((t (:foreground "#add8e6"))))
 
- `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
- `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
+   `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
+   `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
- `(shadow                              ((t (:foreground "#aaaaaa"))))
+   `(shadow                              ((t (:foreground "#aaaaaa"))))
 
- `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
- `(org-level-2                         ((t (:foreground "#929292"))))
- `(org-level-3                         ((t (:foreground "#838383" :bold t))))
- `(org-level-4                         ((t (:foreground "#757575" t))))
- `(org-level-5                         ((t (:foreground "#8b8fc6"))))
- `(org-level-6                         ((t (:foreground "#bd845f"))))
- `(org-level-7                         ((t (:foreground "#71a46c"))))
- `(org-level-8                         ((t (:foreground "#71a19f"))))
+   `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
+   `(org-level-2                         ((t (:foreground "#929292"))))
+   `(org-level-3                         ((t (:foreground "#838383" :bold t))))
+   `(org-level-4                         ((t (:foreground "#757575" t))))
+   `(org-level-5                         ((t (:foreground "#8b8fc6"))))
+   `(org-level-6                         ((t (:foreground "#bd845f"))))
+   `(org-level-7                         ((t (:foreground "#71a46c"))))
+   `(org-level-8                         ((t (:foreground "#71a19f"))))
 
- `(org-date                            ((t (:foreground "#2C78BF"))))
- `(org-todo                            ((t (:foreground "#D70000" :bold t))))
- `(org-done                            ((t (:foreground "#228b22" :bold t))))
- `(org-special-keyword                 ((t (:foreground "#729FCF"))))
- `(org-priority                        ((t (:foreground "#729FCF"))))
- `(org-headline-done                   ((t (:foreground "#FFA07A"))))
- `(org-meta-line                       ((t (:inherit default :bold t))))
- `(org-time-grid                       ((t (:foreground "#EEDD82"))))
- `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
- `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
- `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
- `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
- `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
- `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
- `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
- `(org-block                           ((t (:inherit default :extend t))))
- `(org-latex-and-related               ((t (:foreground "#DEB887"))))
- `(org-table                           ((t (:foreground "#87CEFA"))))
- `(org-drawers                         ((t (:foreground "#87cefa"))))
+   `(org-date                            ((t (:foreground "#2C78BF"))))
+   `(org-todo                            ((t (:foreground "#D70000" :bold t))))
+   `(org-done                            ((t (:foreground "#228b22" :bold t))))
+   `(org-special-keyword                 ((t (:foreground "#729FCF"))))
+   `(org-priority                        ((t (:foreground "#729FCF"))))
+   `(org-headline-done                   ((t (:foreground "#FFA07A"))))
+   `(org-meta-line                       ((t (:inherit default :bold t))))
+   `(org-time-grid                       ((t (:foreground "#EEDD82"))))
+   `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
+   `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
+   `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
+   `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
+   `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
+   `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
+   `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
+   `(org-block                           ((t (:inherit default :extend t))))
+   `(org-latex-and-related               ((t (:foreground "#DEB887"))))
+   `(org-table                           ((t (:foreground "#87CEFA"))))
+   `(org-drawers                         ((t (:foreground "#87cefa"))))
 
- `(tex-verbatim                        ((t (:foreground "#DEB887"))))
- `(tex-math                            ((t (:inherit tex-verbatim))))
+   `(tex-verbatim                        ((t (:foreground "#DEB887"))))
+   `(tex-math                            ((t (:inherit tex-verbatim))))
 
- `(dired-header                     ((t (:foreground  "#98fb98"))))
- `(dired-directory                  ((t (:foreground  "#87CEFA"))))
- `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
+   `(dired-header                     ((t (:foreground  "#98fb98"))))
+   `(dired-directory                  ((t (:foreground  "#87CEFA"))))
+   `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
 
- `(buffer-menu-buffer               ((t (:inherit default))))
+   `(buffer-menu-buffer               ((t (:inherit default))))
 
- `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
- `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
-                                                     :bold t))))
+   `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
+   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
+                                                       :bold t))))
 
- `(error                            ((t (:foreground "#ff0000" :bold t))))
+   `(error                            ((t (:foreground "#ff0000" :bold t))))
 
- `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
- `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
+   `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
+   `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
- `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
+   `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
- `(magit-diff-header                   ((t (:inherit diff-header))))
- `(magit-diff-context-highlight        ((t (:inherit diff-context))))
- `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
- `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
- `(magit-diff-added-highlight          ((t (:inherit diff-added))))
+   `(magit-diff-header                   ((t (:inherit diff-header))))
+   `(magit-diff-context-highlight        ((t (:inherit diff-context))))
+   `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
+   `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
+   `(magit-diff-added-highlight          ((t (:inherit diff-added))))
 
- `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
- `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
- `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
- `(mu4e-header-face                 ((t (:foreground "#888888"))))
- `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
+   `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
+   `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
+   `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
+   `(mu4e-header-face                 ((t (:foreground "#888888"))))
+   `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
 
- `(eshell-ls-directory              ((t (:inherit dired-directory))))
- `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
+   `(eshell-ls-directory              ((t (:inherit dired-directory))))
+   `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
 
- `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
- `(elscreen-tab-background-face     ((t (:inherit header-line))))
- `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
- `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
- `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
-                                     (t (:foreground "#e5e5e5" :background "#666666"))))
+   `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
+   `(elscreen-tab-background-face     ((t (:inherit header-line))))
+   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                       (t (:foreground "#e5e5e5" :background "#666666"))))
 
- `(highlight                        ((t (:inherit default :background "#556b2f"))))
+   `(highlight                        ((t (:inherit default :background "#556b2f"))))
 
- `(smerge-upper                     ((t (:background "#553333" :extend t))))
- `(smerge-lower                     ((t (:background "#335533" :extend t))))
- `(smerge-markers                   ((t (:background "#4d4d4d" :extend t))))
+   `(smerge-upper                     ((t (:background "#553333" :extend t))))
+   `(smerge-lower                     ((t (:background "#335533" :extend t))))
+   `(smerge-markers                   ((t (:background "#4d4d4d" :extend t))))
 
- `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
- `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
- `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
- `(smerge-refined-added            ((t (:background "#aaffaa" :foreground "#000000" :extend t))))
- `(smerge-refined-removed          ((t (:background "#ffbbbb" :foreground "#000000" :extend t))))
- `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
- ))
+   `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
+   `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
+   `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
+   `(smerge-refined-added            ((t (:background "#aaffaa" :foreground "#000000" :extend t))))
+   `(smerge-refined-removed          ((t (:background "#ffbbbb" :foreground "#000000" :extend t))))
+   `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
+   ))
 
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)

@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: subsec
 # key: subsec
+# condition: (looking-back "^subsec" nil)
 # --
-\subsection{$0}
+\subsection*{$0}
