@@ -1155,9 +1155,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     ;; === fonts ==================================================================
     (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
     (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
-    (defun ttf ()
+    (defun ttf (&optional huge)
       (interactive)
-      (let* ((ttfh (cond ((= dpi 109) 79)
+      (let* ((ttfh (cond (huge        73)
+                         ((= dpi 109) 79)
                          ((= dpi 125) 69)
                          ((= dpi 131) 75)
                          ((= dpi 157) 64) ;; was 73
@@ -1172,6 +1173,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         (set-frame-font myfont nil t)
         (set-foreground-color "#FFFFFF")))
 
+    (defun ttfh ()
+      (interactive)
+      (ttf t))
     (defun pcf (&optional arg)
       (interactive)
       (let ((myfont
@@ -1468,8 +1472,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
  '(backward-delete-char-untabify-method 'hungry)
  '(ispell-dictionary "en_GB")
- '(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
-                        '("" "emacs@" system-name " - %b")))
+ '(frame-title-format  '(multiple-frames "%b" ("" invocation-name "@" system-name)))
+ ;;'(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
+ ;;'("" "emacs@" system-name " - %b")))
  '(visible-bell nil)
  '(ring-bell-function 'ignore) ;; disable audible bell on windows
  '(vc-follow-symlinks nil)
