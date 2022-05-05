@@ -1081,6 +1081,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defalias 'ro            'read-only-mode)
 (defalias 'rw            'read-only-mode)
 (defalias 'vi            'visual-line-mode)
+(defalias 'flc           'font-lock-mode)
 
 ;; === daemonp
 (when (my_daemonp)
@@ -1335,6 +1336,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
    `(shadow                              ((t (:foreground "#aaaaaa"))))
+
+   `(fill-column-indicator               ((t (:inherit default))))
 
    `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
    `(org-level-2                         ((t (:foreground "#929292"))))
