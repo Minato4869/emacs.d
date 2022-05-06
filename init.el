@@ -134,6 +134,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent-code 4 t 80 t)))
 (add-hook 'mail-mode-hook           (lambda () (cedit/indent-code 4 nil 72 t 2)
                                       (setq ispell-dictionary "de_AT")
+
                                       (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent-code 2 nil  80 nil 2)))
 (add-hook 'org-mode-hook            (lambda () (cedit/indent-code 2 nil 80  nil 2)))
@@ -1262,8 +1263,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
        `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
     ))
 
-(when (daemonp)
+(cond
+ ((daemonp)
   (theme/set-colours))
+ ((not (my_daemonp))
+  (custom-set-faces
+   '(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "black" :bold t)))))))
+
 
 (defun theme/font-lock (&optional)
   (interactive)
