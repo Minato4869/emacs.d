@@ -1182,6 +1182,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
       (interactive)
       (let ((myfont
              (cond
+              ((or (string= arg "9x18"))
+               "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
               ((or (string= arg "9x16"))
                "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
               ((or t (string= arg "6x13"))
@@ -1194,6 +1196,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
     (defun 6x13 () (interactive) (pcf "6x13"))
     (defun 9x16 () (interactive) (pcf "9x16"))
+    (defun 9x18 () (interactive) (pcf "9x18"))
     (defun default-font ()
       (interactive)
       (cond
@@ -1263,12 +1266,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
        `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
     ))
 
-(cond
- ((daemonp)
+(when (daemonp)
   (theme/set-colours))
- ((not (my_daemonp))
-  (custom-set-faces
-   '(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "black" :bold t)))))))
 
 
 (defun theme/font-lock (&optional)
