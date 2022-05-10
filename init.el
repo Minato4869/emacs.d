@@ -846,12 +846,12 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (require-soft 'yaml-mode)
 (defalias 'yml 'yaml-mode)
 
-;; == narrow inderect
+;; == narrow indirect
 (require-soft 'narrow-indirect
               (setq ni-narrowed-buf-name-max 15)
               (bind-key (kbd "C-x n i") 'ni-narrow-to-region-indirect-other-window))
 
-;; == grep (replacing ripgrep
+;; == grep (replace ripgrep)
 (require-soft 'grep
  (grep-apply-setting
   'grep-find-command
@@ -1164,7 +1164,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                          ((= dpi 109) 79)
                          ((= dpi 125) 69)
                          ((= dpi 131) 75)
-                         ((= dpi 157) 64) ;; was 73
+                         ((= dpi 157) 73) ;; was 64
                          (t           70)))
              (xfth       (/ ttfh 10.0))
              (family     "Deja Vu Sans Mono")
