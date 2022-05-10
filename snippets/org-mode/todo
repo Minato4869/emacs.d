@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: todo
 # key: todo
+# condition: (looking-back "^todo" nil)
 # --
 ** TODO ymd$0

@@ -830,13 +830,12 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                         ("m" "Misc notes"   entry (file corg/notes)       "* %T\n%?\n")
                         ("t" "til notes"    entry (file corg/til)         "* %T\n%?\n")
                         ("u" "uni notes"    entry (file corg/uni)         "* %T\n%?\n"))))
-              (defalias 'ca     'org-capture)
-              (defalias 'agenda 'org-agenda)
 
               (define-key org-mode-map (kbd "C-c e")       'org-latex-export-to-pdf)
               (define-key org-mode-map (kbd "C-c <right>") 'org-metaright)
               (define-key org-mode-map (kbd "C-c <left>")  'org-metaleft)
-              (define-key org-mode-map (kbd "C-c C-.")     'org-time-stamp))
+              (define-key org-mode-map (kbd "C-c C-.")     'org-time-stamp)
+              (define-key org-mode-map (kbd "C-c 1")       'org-time-stamp-inactive))
 
 ;; == man
 (require-soft 'man
@@ -852,7 +851,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               (setq ni-narrowed-buf-name-max 15)
               (bind-key (kbd "C-x n i") 'ni-narrow-to-region-indirect-other-window))
 
-
+;; == grep (replacing ripgrep
+(require-soft 'grep
+ (grep-apply-setting
+  'grep-find-command
+  '("rg --no-heading --with-filename '' --glob='' " . 34))
+ (defalias 'rg 'grep-find)
+ (defalias 'ag 'grep-find))
 
 ;; === external modes ==========================================================
 ;;; external packages
@@ -928,10 +933,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    (when (and (my_daemonp)
               (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
      (load-library "mu4e"))))
-
-;; ==ripgrep
-(require-soft 'rg
-              (defalias 'ag 'rg))
 
 ;; == packages without config
 ;;(use-package auctex               :ensure t :defer t :pin gnu)
@@ -1249,25 +1250,23 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                                (t        "#333333")))
          (default-fg     (cond (light    "#000000")
                                (t        white)))
-         ;; (mode-line-term '(:background "color-235" :foreground "color-250")))
-         (mode-line-buffer-id     (if (is_ssh) "#B680B1" nil))
          (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
 
          )
     (custom-set-faces
      `(default ((((type tty))  ,default-term)
                 (t             (:background ,default-bg :foreground ,default-fg))))
-     `(mode-line ((t (:foreground ,white :background "#292929" ))))
-     `(mode-line-buffer-id ((t (:bold t))))
+     ;; `(mode-line ((t (:foreground ,white :background "#292929" ))))
+     ;; `(mode-line-buffer-id ((t (:bold t))))
      `(fringe  ((t (:background ,fringe :inherit default)))))
-    (when (is_ssh)
-      (custom-set-faces
-       `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "B680BB1" :bold t))))
-       `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t))))))
     ))
 
-(when (daemonp)
-  (theme/set-colours))
+(if (daemonp)
+    (theme/set-colours)
+  (when (is_ssh)
+    (custom-set-faces
+     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB1" :bold t))))
+       `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t)))))))
 
 
 (defun theme/font-lock (&optional)
@@ -1313,15 +1312,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
        (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
 
   (custom-set-faces
-   `(region   ((t (:foreground ,white :background "#114488" :extend t))))
+   `(region                              ((t (:foreground ,white :background "#114488" :extend t))))
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line-inactive                 ((((type  tty)) ,mode-line-inactive-term)
-                                         (t             (:background "#4D4D4D" :foreground "#CCCCCC"
+   `(mode-line-inactive                  ((((type  tty)) ,mode-line-inactive-term)
+                                          (t             (:background "#4D4D4D" :foreground "#CCCCCC"
                                                                      :box (:line-width -1 :color "#666666" :style nil)))))
-
-   `(hl-line                            ((t (:inherit fringe :extend t))))
 
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
@@ -1417,10 +1414,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
    `(highlight                        ((t (:inherit default :background "#556b2f"))))
 
-   `(smerge-upper                     ((t (:background "#553333" :extend t))))
-   `(smerge-lower                     ((t (:background "#335533" :extend t))))
-   `(smerge-markers                   ((t (:background "#4d4d4d" :extend t))))
-
    `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
    `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
    `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
@@ -1494,7 +1487,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(show-paren-delay 0) ;; immediately show parens
  '(mouse-autoselect-window t)
  '(electric-indent-mode t)
- '(xterm-mouse-mode nil)
+ '(xterm-mouse-mode (if (daemeonp) t nil))
  '(mouse-yank-at-point t)
  '(savehist-mode 1)
  '(transient-mark-mode t)
@@ -1511,5 +1504,5 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
  '(package-selected-packages
-   '(elscreen yasnippet diminish rg go-mode puppet-mode so-long haskell-mode keychain-environment magit))
+   '(elscreen yasnippet diminish go-mode puppet-mode so-long haskell-mode keychain-environment magit))
  )

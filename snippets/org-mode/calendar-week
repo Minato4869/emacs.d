@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: calendar week
 # key: kw
+# condition: (looking-back "^kw" nil)
 # --
-`(_calendar-week)` $0
+* `(_calendar-week)` $0
