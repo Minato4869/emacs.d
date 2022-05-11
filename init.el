@@ -139,8 +139,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'text-mode-hook           (lambda () (cedit/indent 2 nil  80 nil 2)))
 (add-hook 'org-mode-hook            (lambda () (cedit/indent 2 nil 80  nil 2)))
 ;; external modes
-(add-hook 'haskell-mode-hook        (lambda () (cedit/indent 2 nil 80 t)))
 
+(add-hook 'haskell-mode-hook        (lambda () (cedit/indent 2 nil 80 t)))
 
 (defun guess-tab-settings ()
   (save-excursion
@@ -943,8 +943,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (when (daemonp)
   (require-soft 'keychain-environment)
   (require-soft 'magit (my_daemonp)))
-;; ;; == interesting packages:
-;; ;; narrowed-page-navigation
 
 ;; === terminal ================================================================
 
@@ -1078,7 +1076,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defalias 'win-redo      'winner-redo)
 (defalias 'wundo         'winner-undo)
 (defalias 'wredo         'winner-redo)
-(defalias 'b             'balance-windows)
+(defalias 'bw            'balance-windows)
 (defalias 'conf          'conf-mode)
 (defalias 'ro            'read-only-mode)
 (defalias 'rw            'read-only-mode)
@@ -1272,10 +1270,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun theme/font-lock (&optional)
   (interactive)
   (if font-lock-mode
-      (progn (global-font-lock-mode 0)
+      (progn (font-lock-mode 0)
              (unless theme/light
                (theme/set-colours)))
-    (progn (global-font-lock-mode t)
+    (progn (font-lock-mode t)
            (unless theme/light
              (theme/set-colours "dark")))))
 (defalias 'fl 'theme/font-lock)
@@ -1297,8 +1295,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (enable-theme 'gl-dark)
   (global-font-lock-mode 1))
 ;;(invert-face 'default)
-(bind-key "<f2>"   'toggle-light-theme)
-(bind-key "C-<f2>" 'theme/font-lock)
+(bind-key "<f2>"   'theme/font-lock)
+(bind-key "C-<f2>" 'toggle-light-theme)
 (bind-key "M-<f2>" 'theme/gl-dark)
 
 
