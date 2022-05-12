@@ -134,7 +134,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent 4 t 80 t)))
 (add-hook 'mail-mode-hook           (lambda () (cedit/indent 4 nil 72 t 2)
                                       (setq ispell-dictionary "de_AT")
-
+                                      (xterm-mouse-mode)
                                       (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent 2 nil  80 nil 2)))
 (add-hook 'org-mode-hook            (lambda () (cedit/indent 2 nil 80  nil 2)))
@@ -938,11 +938,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;;(use-package auctex               :ensure t :defer t :pin gnu)
 (require-soft 'go-mode)
 (require-soft 'puppet-mode)
-(require-soft 'so-long)
 (require-soft 'haskell-mode)
-(when (daemonp)
-  (require-soft 'keychain-environment)
-  (require-soft 'magit (my_daemonp)))
 
 ;; === terminal ================================================================
 
@@ -1388,22 +1384,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
    `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
-   `(magit-diff-header                   ((t (:inherit diff-header))))
-   `(magit-diff-context-highlight        ((t (:inherit diff-context))))
-   `(magit-diff-removed-highlight        ((t (:inherit diff-removed))))
-   `(magit-diff-refine-removed-highlight ((t (:inherit diff-refine-removed))))
-   `(magit-diff-added-highlight          ((t (:inherit diff-added))))
-
    `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
    `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
    `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
    `(mu4e-header-face                 ((t (:foreground "#888888"))))
    `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
 
-   `(eshell-ls-directory              ((t (:inherit dired-directory))))
-   `(eshell-ls-symlink                ((t (:inherit dired-symlink))))
-
-   `(header-line                         ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
+   `(header-line                      ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
@@ -1424,7 +1411,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
-(add-hook 'magit-mode-hook   'turn-on-font-lock)
 (add-hook 'Man-mode-hook   'turn-on-font-lock)
 (add-hook 'org-mode-hook     'turn-on-font-lock)
 (add-hook 'mail-mode-hook    'turn-on-font-lock)
@@ -1502,5 +1488,4 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
  '(package-selected-packages
-   '(elscreen yasnippet diminish go-mode puppet-mode so-long haskell-mode keychain-environment magit))
- )
+   '(elscreen yasnippet diminish go-mode puppet-mode haskell-mode)))

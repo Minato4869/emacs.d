@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: scheduled
+# key: sc
+# --
+SCHEDULED: $0
