@@ -915,25 +915,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               ;;  (diminish 'auto-fill-function)
               (diminish 'eldoc-mode))
 
-;; == mu4e
-(when (daemonp)
-  (require-soft
-   'mu4e
-   (setq mail-user-agent 'mu4e-user-agent
-         mu4e-sent-folder   "/Sent"
-         mu4e-drafts-folder "/Drafts"
-         mu4e-trash-folder  "/Archive/trash"
-         message-send-mail-function   nil
-         smtpmail-default-smtp-server nil
-         smtpmail-smtp-server         nil
-         smtpmail-local-domain        nil)
-   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-   (defalias 'mail 'mu4e)
-   (defalias 'mu   'mu4e)
-   (when (and (my_daemonp)
-              (file-directory-p "/usr/share/emacs/site-lisp/mu4e"))
-     (load-library "mu4e"))))
-
 ;; == packages without config
 ;;(use-package auctex               :ensure t :defer t :pin gnu)
 (require-soft 'go-mode)
@@ -1376,12 +1357,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
    `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
-
-   `(mu4e-header-highlight-face       ((t (:background "#AF8700" :foreground "#000000" :bold nil))))
-   `(mu4e-unread-face                 ((t (:foreground "#0087FF" :bold nil))))
-   `(mu4e-replied-face                ((t (:foreground "#4286F4" :bold t))))
-   `(mu4e-header-face                 ((t (:foreground "#888888"))))
-   `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
 
    `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
