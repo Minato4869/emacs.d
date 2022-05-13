@@ -1121,7 +1121,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (defalias 'restore-session 'session-restore)
 
     ;; === emacsclient =============================================================
-    (keychain-refresh-environment)
     (defun ask-before-closing ()
       (interactive)
       (if (display-graphic-p)
@@ -1301,8 +1300,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
        (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                            ((daemonp) '(:background "color-236"      :foreground "color-254"))
                            (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
-                                  '(:background "color-239" :foreground "color-252")))
+       ;; (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
        (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
 
   (custom-set-faces
@@ -1310,9 +1308,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line-inactive                  ((((type  tty)) ,mode-line-inactive-term)
-                                          (t             (:background "#4D4D4D" :foreground "#CCCCCC"
-                                                                     :box (:line-width -1 :color "#666666" :style nil)))))
+   `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
+                                                          :box (:line-width -1 :color "#666666" :style nil)))))
 
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
@@ -1332,8 +1329,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
    `(shadow                              ((t (:foreground "#aaaaaa"))))
-
-   `(fill-column-indicator               ((t (:inherit default))))
 
    `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
    `(org-level-2                         ((t (:foreground "#929292"))))
@@ -1371,8 +1366,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(dired-directory                  ((t (:foreground  "#87CEFA"))))
    `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
 
-   `(buffer-menu-buffer               ((t (:inherit default))))
-
    `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
    `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
                                                        :bold t))))
@@ -1390,7 +1383,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(mu4e-header-face                 ((t (:foreground "#888888"))))
    `(mu4e-header-key-face             ((t (:inherit mu4e-header-face))))
 
-   `(header-line                      ((t (:inherit mode-line :box (:line-width -1 :style released-button)))))
+   `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
    `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
