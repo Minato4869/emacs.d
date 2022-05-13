@@ -12,20 +12,6 @@
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 (defun is_ttf ()
   (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
-(defun is_major_mode (mode)
-  (string-match mode (prin1-to-string major-mode)))
-
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-(package-initialize)
-(setq package-archives nil)
-(defvar gnu-archive   '("gnu"   . "https://elpa.gnu.org/packages/"))
-(defvar elpa-archive  '("elpa"  . "https://elpa.gnu.org/packages/"))
-(defvar melpa-archive '("melpa" . "https://melpa.org/packages/"))
-(push elpa-archive  package-archives)
-(push gnu-archive   package-archives)
-(push melpa-archive package-archives)
-(setq package-archives (nreverse package-archives))
-
 
 (let ((basedir "~/.emacs.d/"))
   (add-to-list 'load-path (concat basedir "elisp")))
@@ -47,8 +33,12 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun bind-key (key def)
   (define-key my-keys-mode-map (kbd key) def))
 
-;; (require-soft 'package
-;;   (package-initialize))
+(global-set-key (kbd "<f1>") 'my-keys-mode)
+
+(when (my_daemonp)
+   (package-initialize)
+   (add-to-list 'package-archives
+                '("melpa" . "https://melpa.org/packages/") t))
 
 ;; === editing =================================================================
 ;; disable modes
@@ -82,7 +72,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defvar uniquify-buffer-name-style) ;; unique buffer names
 (defvaralias 'c-basic-offset 'tab-width)
 (fset 'yes-or-no-p 'y-or-n-p)
-;; region
+
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defun cedit/indent (offset tabs fc &optional fill stdi)
@@ -91,8 +81,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         standard-indent offset
         indent-tabs-mode tabs
         fill-column fc)
-  (when fill      (turn-on-auto-fill))
-  (when stdi      (setq standard-indent stdi)))
+  (when fill (turn-on-auto-fill))
+  (when stdi (setq standard-indent stdi)))
 
 (defun cedit/indent-text ()
   (cedit/indent 4 nil 120 t))
@@ -113,22 +103,18 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'minibuffer-setup-hook    (lambda () (setq truncate-lines nil)))
 (add-hook 'emacs-lisp-mode-hook     'cedit/lisp-indent)
 (add-hook 'lisp-mode-hook           'cedit/lisp-indent)
-(add-hook 'LaTeX-mode-hook          (lambda () (cedit/latex)))
 (add-hook 'latex-mode-hook          (lambda () (cedit/latex)))
-(add-hook 'plain-TeX-mode-hook      (lambda () (cedit/latex)))
+(add-hook 'tex-mode-hook            (lambda () (cedit/latex)))
 
 (add-hook 'java-mode-hook           (lambda () (cedit/indent 4 t   100 t)))
-(add-hook 'make-mode-hook           (lambda () (cedit/indent 4 t    80 t)))
 (add-hook 'sql-mode-hook            (lambda () (cedit/indent 4 nil 120)))
 (add-hook 'html-mode-hook           (lambda () (cedit/indent 4 nil 120)))
 (add-hook 'python-mode-hook         (lambda () (cedit/indent 4 nil  80 t)
                                       (setq python-indent 4)))
 (add-hook 'conf-space-mode-hook     (lambda () (cedit/indent 4 nil  80)))
-(add-hook 'conf-mode-hook           (lambda () (cedit/indent 4 nil  80)))
 (add-hook 'conf-xdefaults-mode-hook (lambda () (cedit/indent 4 nil  80)))
 
 (add-hook 'sh-mode-hook             (lambda () (cedit/sh-indent t)))
-(add-hook 'shell-script-mode-hook   (lambda () (cedit/sh-indent t)))
 
 (add-hook 'makefile-mode-hook       (lambda () (cedit/indent 4 t 80 t)))
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent 4 t 80 t)))
@@ -139,7 +125,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'text-mode-hook           (lambda () (cedit/indent 2 nil  80 nil 2)))
 (add-hook 'org-mode-hook            (lambda () (cedit/indent 2 nil 80  nil 2)))
 ;; external modes
-
 (add-hook 'haskell-mode-hook        (lambda () (cedit/indent 2 nil 80 t)))
 
 (defun guess-tab-settings ()
@@ -217,7 +202,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               '(("neomutt"       . mail-mode)
                 ("mutt"          . mail-mode)
                 ("muttrc."       . conf-mode)
-                ("\\.epub\\'"    . nov-mode)
                 (".shrc"         . shell-script-mode)
                 (".shenv"        . shell-script-mode)
                 ("\\.xpm\\'"     . text-mode)
@@ -225,7 +209,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                 (".Xresources'"  . conf-xdefaults-mode)
                 ("\\gnus\\'"     . emacs-lisp-mode)
                 ("\\emacs\\'"    . emacs-lisp-mode)
-                ("\\conkyrc\\'"  . lua-mode)
                 ("Makefile"      . makefile-gmake-mode))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -235,16 +218,14 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                                      (and (get-buffer buffer)
                                           (kill-buffer buffer)))))
 (defun custom-bury-buffer ()
-  (if (or (string-match "*scratch*"        (buffer-name))
-          (string-match "reminder.org.gpg" (buffer-name))
-          (string-match "Journal.org.gpg" (buffer-name)))
-      (progn (message "Not allowed to kill %s, burying instead" (buffer-name))
-             (bury-buffer))
+  (if (string-match "*scratch*\\|reminder.org.gpg\\|Journal.org.gpg" (buffer-name))
+      (progn
+        (message "Not allowed to kill %s, burying instead" (buffer-name))
+        (bury-buffer))
     t))
 
 (remove-hook 'kill-buffer-query-functions 'custom-bury-buffer)
 (add-hook 'kill-buffer-query-functions 'custom-bury-buffer)
-
 
 ;; == show matching quotes
 (defun show-paren--match-quotes ()
@@ -261,10 +242,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                     (ppss (syntax-ppss (1- (point)))))
                 (when (nth 3 ppss)
                   (let ((beg (nth 8 ppss)))
-                    (list beg
-                          (1+ beg)
-                          (1- end)
-                          end))))))
+                    (list beg (1+ beg) (1- end) end))))))
        (and (not (eobp))
             (eq 7 (car-safe (syntax-after (point))))
             (save-excursion
@@ -272,10 +250,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                 (condition-case nil
                     (progn
                       (forward-sexp 1)
-                      (list beg
-                            (1+ beg)
-                            (1- (point))
-                            (point)))))))))))
+                      (list beg (1+ beg) (1- (point)) (point)))))))))))
 
 (advice-add 'show-paren--default :after-until #'show-paren--match-quotes)
 
@@ -434,7 +409,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; misc
 (bind-key "C-c 4"     'ispell-change-dictionary)
 
-
 ;; mode specific
 (defun my-eval-buffer ()
   (interactive)
@@ -474,7 +448,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (bind-key "s-b"   'buffer-menu))
 
 ;; == mode maps
-
 (define-key isearch-mode-map (kbd "C-o")
   (lambda ()
     (interactive)
@@ -505,10 +478,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (setq format (concat "-- " format)))
    ((or (equal major-mode 'emacs-lisp-mode)
         (equal major-mode 'lisp-interaction-mode))
-    (setq format (concat ";; " format)))
-   ((string-match (buffer-name) "Ledger")
-    (setq format (concat ";" format)))
-   )
+    (setq format (concat ";; " format))))
   (setq format (format-time-string format))
   (when (eq downcase t)
     (setq format (downcase format)))
@@ -530,49 +500,11 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                    (buffer-substring-no-properties beg end)
                    (kill-region region-beginning region-end))
                (shell-quote-argument (read-string "Enter week number or date: "))))
-         (prepend (when (is_major_mode "org-mode") "* ")))
-    (insert
-     (concat prepend (shell-command-to-string
-                      (format "week %s" (shell-quote-argument wn)))))))
+    (insert (shell-command-to-string (format "week %s" (shell-quote-argument wn)))))))
 
 (defalias 'kw 'week)
 (defalias 'cw 'week)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; compile
-;; Don’t ask to save files before compilation, just save them.
-(setq compilation-ask-about-save nil
-      compilation-always-kill t
-      compilation-scroll-output 'first-error)
-;; Don’t ask to kill currently running compilation, just kill it.
-(defun ccompile/colorize ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
 
-(defun ccompile/recompile ()
-  "Interrupt current compilation and recompile"
-  (interactive)
-  (ignore-errors (kill-compilation))
-  (recompile))
-
-(defun compile-parent (command)
-  (interactive
-   (let* ((make-directory
-           (locate-dominating-file default-directory "Makefile"))
-          (command (concat "make -k -C "
-                           (shell-quote-argument make-directory) " ")))
-     (list (compilation-read-command command))))
-  (compile command))
-(add-hook
- 'compilation-filter-hook
- (lambda ()
-   (require 'ansi-color)
-   (ccompile/colorize)))
-
-(bind-key "<f5>"     'compile-parent)
-(bind-key "<f6>"     'ccompile/recompile)
-(bind-key "C-<f5>"   'compile)
-(defalias 'Make 'compile-parent)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; misc
 (defun arrayify (start end quote)
@@ -596,7 +528,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (advice-remove 'package-install 'my-package-install-refresh-contents))
 (advice-add 'package-install :before 'my-package-install-refresh-contents)
 
-
 (defun reset_emacs ()
   (interactive)
   (setq default-frame-alist
@@ -610,9 +541,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (let ((n 0)
         bufname)
     (while (progn
-             (setq bufname (concat "*scratch"
-                                   (if (= n 0) "" (int-to-string n))
-                                   "*"))
+             (setq bufname
+                   (concat "*scratch" (if (= n 0) "" (int-to-string n)) "*"))
              (setq n (1+ n))
              (get-buffer bufname)))
     (switch-to-buffer (get-buffer-create bufname))
@@ -1001,8 +931,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 		(scroll-bar-mode -1)
 		(tool-bar-mode -1)))
 
-(display-time-mode t)
-;;(display-battery-mode t)
 (when (or (not (display-graphic-p)) (daemonp))
   (defadvice terminal-init-screen
 		  ;; The advice is named `tmux', and is run before `terminal-init-screen' runs.
@@ -1247,11 +1175,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (if font-lock-mode
       (progn (font-lock-mode 0)
-             (unless theme/light
-               (theme/set-colours)))
+             (when (display-graphic-p)
+               (unless theme/light
+                 (theme/set-colours))))
     (progn (font-lock-mode t)
-           (unless theme/light
-             (theme/set-colours "dark")))))
+           (when (display-graphic-p)
+             (unless theme/light
+               (theme/set-colours "dark"))))))
 (defalias 'fl 'theme/font-lock)
 (defun toggle-light-theme ()
   (interactive)
@@ -1358,6 +1288,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
    `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
+
    `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
@@ -1379,11 +1310,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
-(add-hook 'Man-mode-hook   'turn-on-font-lock)
-(add-hook 'org-mode-hook     'turn-on-font-lock)
+ (add-hook 'org-mode-hook     'turn-on-font-lock)
 (add-hook 'mail-mode-hook    'turn-on-font-lock)
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
-(add-hook 'eshell-mode-hook  'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
 
 (custom-set-variables

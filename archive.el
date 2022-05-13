@@ -365,3 +365,41 @@
 (defun reset-themes ()
   (interactive)
   (setColours))
+
+;; 2022-05-13 Fri
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; compile
+;; Don’t ask to save files before compilation, just save them.
+(setq compilation-ask-about-save nil
+      compilation-always-kill t
+      compilation-scroll-output 'first-error)
+;; Don’t ask to kill currently running compilation, just kill it.
+(defun ccompile/colorize ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+
+(defun ccompile/recompile ()
+  "Interrupt current compilation and recompile"
+  (interactive)
+  (ignore-errors (kill-compilation))
+  (recompile))
+
+(defun compile-parent (command)
+  (interactive
+   (let* ((make-directory
+           (locate-dominating-file default-directory "Makefile"))
+          (command (concat "make -k -C "
+                           (shell-quote-argument make-directory) " ")))
+     (list (compilation-read-command command))))
+  (compile command))
+(add-hook
+ 'compilation-filter-hook
+ (lambda ()
+   (require 'ansi-color)
+   (ccompile/colorize)))
+
+(bind-key "<f5>"     'compile-parent)
+(bind-key "<f6>"     'ccompile/recompile)
+(bind-key "C-<f5>"   'compile)
+(defalias 'Make 'compile-parent)
