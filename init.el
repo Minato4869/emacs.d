@@ -70,14 +70,12 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (set-keyboard-coding-system 'utf-8)
 
 (defvar uniquify-buffer-name-style) ;; unique buffer names
-(defvaralias 'c-basic-offset 'tab-width)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defun cedit/indent (offset tabs fc &optional fill stdi)
-  (setq c-basic-offset offset
-        tab-width offset
+  (setq tab-width offset
         standard-indent offset
         indent-tabs-mode tabs
         fill-column fc)
@@ -145,13 +143,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (let* ((anchor (c-langelem-pos c-syntactic-element))
          (column (c-langelem-2nd-pos c-syntactic-element))
          (offset (- (1+ column) anchor))
-         (steps (floor offset c-basic-offset)))
+         (steps (floor offset tab-width)))
     (* (max steps 1)
-       c-basic-offset)))
+       tab-width)))
 
 (add-hook 'c-mode-hook
           (lambda ()
-            (cedit/indent  8 t 80)
+            (cedit/indent 8 t 80)
             (c-set-style "linux")
             (setq c-label-minimum-indentation 0)
             '(c-offsets-alist
@@ -329,15 +327,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         (message "Transposing windows")))))
 (defalias 'tw            'transpose-windows)
 
-(defun my-goto-line ()
-  (interactive)
-  (unwind-protect
-      (progn
-        (display-line-numbers-mode 1)
-        (goto-line (read-number "Goto line: ")))
-    (display-line-numbers-mode -1)))
-(defalias 'gl            'my-goto-line)
-
 (defun text-scale-reset ()
   (interactive)
   (text-scale-set 0))
@@ -350,8 +339,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-h"     'backward-delete-char-untabify)
 (bind-key "C-a"     'beginning-or-prev-line)
 (bind-key "C-e"     'end-or-next-line)
-(bind-key "M-g"     'my-goto-line)
-
+(bind-key "M-g"     '(lambda ()
+                       (interactive)
+                       (unwind-protect
+                           (progn
+                             (display-line-numbers-mode 1)
+                             (goto-line (read-number "Goto line: ")))
+                         (display-line-numbers-mode -1))))
 ;; custom keys
 (bind-key "C-c h"     'help)
 ;; editing
@@ -380,12 +374,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "<M-down>"  'forward-paragraph)
 ;; mark
 (bind-key "C-x C-h"   'mark-whole-buffer)
-;; misc
-(bind-key "<f9>"      'font-lock-mode)
-(bind-key "<f10>"     'menu-bar-mode)
-(bind-key "<f11>"     'whitespace-mode)
-(bind-key "<f12>"     'display-fill-column-indicator-mode)
-(bind-key "C-<f12>"   'display-line-numbers-mode)
 ;; buffer
 (bind-key "<M-prior>" 'previous-buffer)
 (bind-key "<M-next>"  'next-buffer)
@@ -401,8 +389,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "M-0"       'delete-window)
 (bind-key "C-x 4"     'make-frame-command)
 (bind-key "C-0"       'balance-windows)
-(bind-key "C--"       'shrink-window)
-(bind-key "C-="       'enlarge-window)
 (bind-key "C-x C--"   'negative-argument)
 (bind-key "C-c o"     'transpose-windows)
 (bind-key "C-x t"     'transpose-lines)
@@ -1164,14 +1150,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
      `(fringe  ((t (:background ,fringe :inherit default)))))
     ))
 
-(if (daemonp)
-    (theme/set-colours)
-  (when (is_ssh)
-    (custom-set-faces
-     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB1" :bold t))))
-       `(mode-line ((((type  tty)) (:background "#373333"  :foreground "#838383" :bold t)))))))
-
-
 (defun theme/font-lock (&optional)
   (interactive)
   (if font-lock-mode
@@ -1206,15 +1184,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-<f2>" 'toggle-light-theme)
 (bind-key "M-<f2>" 'theme/gl-dark)
 
-
-
-(let* ((white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
-       (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
-                           ((daemonp) '(:background "color-236"      :foreground "color-254"))
-                           (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-       ;; (mode-line-inactive-term (if (is_ssh) '(:background "#292424"  :foreground "#847f54" :bold t)
-       (default-dark-fg         (if (is_ttf)       "#e5e5e5" "#bebebe")))
-
+(let* ((white          (if (is_ttf)    "#ffffff" "#e5e5e5")))
   (custom-set-faces
    `(region                              ((t (:foreground ,white :background "#114488" :extend t))))
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
@@ -1222,7 +1192,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
    `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
                                                           :box (:line-width -1 :color "#666666" :style nil)))))
-
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
    `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
@@ -1289,7 +1258,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
    `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
-
    `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
    `(elscreen-tab-background-face     ((t (:inherit header-line))))
    `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
@@ -1307,11 +1275,19 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
    ))
 
+(if (daemonp)
+    (theme/set-colours)
+  (when (is_ssh)
+    (custom-set-faces
+     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB1" :bold t))))
+     `(mode-line-inactive  ((t (:foreground "#847f54" :background "#292424" :weight normal))))
+     `(mode-line           ((t (:background "#373333"  :foreground "#838383" :bold t)))))))
+
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
- (add-hook 'org-mode-hook     'turn-on-font-lock)
+(add-hook 'org-mode-hook     'turn-on-font-lock)
 (add-hook 'mail-mode-hook    'turn-on-font-lock)
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
@@ -1327,6 +1303,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(display-time-mail-string "")
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
+ '(display-time-mode nil)
  '(size-indication-mode t)
  '(column-number-mode t)
  '(diff-switches "-urN") ;; no separators; use +/- instead of >/<, unify
@@ -1345,19 +1322,15 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(require-final-newline t)
  '(auto-fill-mode -1)
  '(fill-column 80)
- '(show-trailing-whitespace nil)
- '(line-move-visual nil)
+ '(line-move-visual t)
  '(epg-gpg-home-directory "~/.gnupg")
  '(indent-tabs-mode t)
- '(c-basic-offset 8)
  '(sh-basic-offset 8)
  '(tab-width 8)
  '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
  '(backward-delete-char-untabify-method 'hungry)
  '(ispell-dictionary "en_GB")
  '(frame-title-format  '(multiple-frames "%b" ("" invocation-name "@" system-name)))
- ;;'(frame-title-format (if (daemonp) '("" "emacsclient@" system-name " - %b")
- ;;'("" "emacs@" system-name " - %b")))
  '(visible-bell nil)
  '(ring-bell-function 'ignore) ;; disable audible bell on windows
  '(vc-follow-symlinks nil)
@@ -1374,7 +1347,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(savehist-mode 1)
  '(transient-mark-mode t)
  '(delete-selection-mode t)
- '(global-subword-mode 1)               ; iterate through CamelCase words
+ '(global-subword-mode 1) ; iterate through CamelCase words
  '(winner-mode 1)
  '(winner-dont-bind-my-keys t) ;; dont rebind keys
  '(ps-paper-type 'a4)
