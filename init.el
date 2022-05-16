@@ -1067,6 +1067,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                          ((= dpi 125) 69)
                          ((= dpi 131) 75)
                          ((= dpi 157) 73) ;; was 64
+                         ((= dpi 190) 59)
                          (t           70)))
              (xfth       (/ ttfh 10.0))
              (family     "Deja Vu Sans Mono")
@@ -1368,7 +1369,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(show-paren-delay 0) ;; immediately show parens
  '(mouse-autoselect-window t)
  '(electric-indent-mode t)
- '(xterm-mouse-mode (if (daemeonp) t nil))
+ '(xterm-mouse-mode (if (daemonp) t nil))
  '(mouse-yank-at-point t)
  '(savehist-mode 1)
  '(transient-mark-mode t)
