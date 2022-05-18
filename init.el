@@ -1162,7 +1162,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
              (unless theme/light
                (theme/set-colours "dark"))))))
 (defalias 'fl 'theme/font-lock)
-(defun toggle-light-theme ()
+(defun theme/light ()
   (interactive)
   (if theme/light
       (progn
@@ -1181,7 +1181,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (global-font-lock-mode 1))
 ;;(invert-face 'default)
 (bind-key "<f2>"   'theme/font-lock)
-(bind-key "C-<f2>" 'toggle-light-theme)
+(bind-key "C-<f2>" 'theme/light)
 (bind-key "M-<f2>" 'theme/gl-dark)
 
 (let* ((white          (if (is_ttf)    "#ffffff" "#e5e5e5")))
@@ -1277,7 +1277,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (if (daemonp)
     (theme/set-colours)
-  (when (is_ssh)
+  (if (is_ssh)
     (custom-set-faces
      `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB1" :bold t))))
      `(mode-line-inactive  ((t (:foreground "#847f54" :background "#292424" :weight normal))))
