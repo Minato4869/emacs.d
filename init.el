@@ -684,7 +684,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (define-key dired-mode-map (kbd "/")        'occur)
   )
 ;; == tex
-(require-soft 'tex
+(require-soft 'tex-mode
               (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
                     tex-dvi-view-command "pdf.viewer"
                     font-latex-fontify-sectioning 'color
@@ -1127,6 +1127,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (defvar theme/light nil
   "Variable theme used to toggle theme")
+(setq frame-background-mode 'dark)
 (defun theme/set-colours (&optional mode)
   (let* ((light (string= mode "light"))
          (dark (string= mode "dark"))
@@ -1162,6 +1163,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
              (unless theme/light
                (theme/set-colours "dark"))))))
 (defalias 'fl 'theme/font-lock)
+(defalias 'gfl 'global-font-lock-mode)
 (defun theme/light ()
   (interactive)
   (if theme/light
