@@ -1361,4 +1361,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
  '(package-selected-packages
-   '(elscreen yasnippet diminish go-mode puppet-mode haskell-mode)))
+   '(elscreen yasnippet diminish go-mode puppet-mode haskell-mode))
+ ;; 2022-05-23 Mon emacs 28.1
+ '(mouse-wheel-scroll-amount '(5 ((shift) . 1)))
+ '(use-short-answers t )
+ '(revert-buffer-quick-short-answers use-short-answers)
+ '(dired-kill-when-opening-new-dired-buffer t)
+ )
