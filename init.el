@@ -1227,7 +1227,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(org-done                            ((t (:foreground "#228b22" :bold t))))
    `(org-special-keyword                 ((t (:foreground "#729FCF"))))
    `(org-priority                        ((t (:foreground "#729FCF"))))
-   `(org-headline-done                   ((t (:foreground "#FFA07A"))))
+   `(org-headline-done                   ((t (:foreground "#FFA07A" :bold nil))))
    `(org-meta-line                       ((t (:inherit default :bold t))))
    `(org-time-grid                       ((t (:foreground "#EEDD82"))))
    `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
@@ -1287,6 +1287,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
+(add-hook 'puppet-mode-hook  'turn-on-font-lock)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'org-mode-hook     'turn-on-font-lock)
