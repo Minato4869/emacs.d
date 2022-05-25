@@ -1124,64 +1124,52 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(defvar theme/light nil
-  "Variable theme used to toggle theme")
-(setq frame-background-mode 'dark)
-(defun theme/set-colours (&optional mode)
-  (let* ((light (string= mode "light"))
-         (dark (string= mode "dark"))
-         (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
-                             ((daemonp) '(:background "color-236"      :foreground "color-254"))
-                             (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+(defun theme/set-colours ()
+  (frame-set-background-mode (selected-frame))
+
+  (let* ((default-term
+           (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+                 ((daemonp) '(:background "color-236"      :foreground "color-254"))
+                 (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
          (white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
-         (default-bg     (cond (dark     "#000000")
-                               (light    "#ffffff")
-                               (t        "#333333")))
-         (default-fg     (cond (light    "#000000")
-                               (t        white)))
-         (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
-
          )
-    (custom-set-faces
-     `(default ((((type tty))  ,default-term)
-                (t             (:background ,default-bg :foreground ,default-fg))))
-     ;; `(mode-line ((t (:foreground ,white :background "#292929" ))))
-     ;; `(mode-line-buffer-id ((t (:bold t))))
-     `(fringe  ((t (:background ,fringe :inherit default)))))
-    ))
+  (custom-set-faces
+   `(default ((((type tty))                        ,default-term)
+              (((class color) (background light))  (:background "white"   :foreground "black"))
+              (t                                   (:background "#333333" :foreground ,white))))
+   `(fringe  ((((class color) (background light))  (:background "#f2f2f2" :inherit default))
+              (t                                   (:background "#1A1A1A" :inherit default))))
+   )
+  ))
 
-(defun theme/font-lock (&optional)
+(theme/set-colours)
+
+(defun theme/turn-off-font-lock ()
+	(font-lock-mode 0)
+  (buffer-face-set :default))
+
+(defun theme/turn-on-font-lock ()
+  (font-lock-mode 1)
+  (buffer-face-set :background "black"))
+
+(defun theme/font-lock ()
   (interactive)
   (if font-lock-mode
-      (progn (font-lock-mode 0)
-             (when (display-graphic-p)
-               (unless theme/light
-                 (theme/set-colours))))
-    (progn (font-lock-mode t)
-           (when (display-graphic-p)
-             (unless theme/light
-               (theme/set-colours "dark"))))))
-(defalias 'fl 'theme/font-lock)
-(defalias 'gfl 'global-font-lock-mode)
+      (theme/turn-off-font-lock)
+    (theme/turn-on-font-lock)))
+
 (defun theme/light ()
   (interactive)
-  (if theme/light
+  (if (eq frame-background-mode t)
       (progn
-        (setq frame-background-mode 'dark
-              theme/light nil)
-        (if font-lock-mode
-            (theme/set-colours "dark")
-          (theme/set-colours)))
-    (progn (setq theme/light t)
-           (setq frame-background-mode 'light)
-           (theme/set-colours "light"))))
-(defun theme/gl-dark ()
-  (interactive)
-  (load-theme 'gl-dark t)
-  (enable-theme 'gl-dark)
-  (global-font-lock-mode 1))
-;;(invert-face 'default)
+        (setq frame-background-mode 'light)
+        (theme/set-colours))
+    (progn
+      (setq frame-background-mode t)
+      (theme/set-colours))))
+
+(defalias 'fl 'theme/font-lock)
+
 (bind-key "<f2>"   'theme/font-lock)
 (bind-key "C-<f2>" 'theme/light)
 (bind-key "M-<f2>" 'theme/gl-dark)
@@ -1287,7 +1275,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
-(add-hook 'puppet-mode-hook  'turn-on-font-lock)
+(add-hook 'puppet-mode-hook  'theme/turn-on-font-lock)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'org-mode-hook     'turn-on-font-lock)
