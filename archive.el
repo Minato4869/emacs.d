@@ -403,3 +403,68 @@
 (bind-key "<f6>"     'ccompile/recompile)
 (bind-key "C-<f5>"   'compile)
 (defalias 'Make 'compile-parent)
+
+;; 2022-05-25 Wed
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(defvar theme/light nil
+  "Variable theme used to toggle theme")
+(setq frame-background-mode 'dark)
+(defun theme/set-colours (&optional mode)
+  (let* ((light (string= mode "light"))
+         (dark (string= mode "dark"))
+         (default-term (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
+                             ((daemonp) '(:background "color-236"      :foreground "color-254"))
+                             (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+         (white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
+         (default-bg     (cond (light    "#ffffff")
+                               (t        "#333333")))
+         (default-fg     (cond (light    "#000000")
+                               (t        white)))
+         (fringe         (if (string= mode "light") "#f2f2f2" "#1a1a1a"))
+
+         )
+    (custom-set-faces
+     `(default ((((type tty))  ,default-term)
+                (t             (:background ,default-bg :foreground ,default-fg))))
+     ;; `(mode-line ((t (:foreground ,white :background "#292929" ))))
+     ;; `(mode-line-buffer-id ((t (:bold t))))
+     `(fringe  ((t (:background ,fringe :inherit default)))))
+    ))
+
+
+
+(defun theme/font-lock (&optional)
+  (interactive)
+  (if font-lock-mode
+      (progn (font-lock-mode 0)
+             (when (display-graphic-p)
+               (unless theme/light
+                 (theme/set-colours))))
+    (progn (font-lock-mode t)
+           (when (display-graphic-p)
+             (unless theme/light
+               (theme/set-colours "dark"))))))
+(defalias 'fl 'theme/font-lock)
+(defalias 'gfl 'global-font-lock-mode)
+
+(defun theme/light ()
+  (interactive)
+  (if theme/light
+      (progn
+        (setq frame-background-mode 'dark
+              theme/light nil)
+        (if font-lock-mode
+            (theme/set-colours "dark")
+          (theme/set-colours)))
+    (progn (setq theme/light t)
+           (setq frame-background-mode 'light)
+           (theme/set-colours "light"))))
+(defun theme/gl-dark ()
+  (interactive)
+  (load-theme 'gl-dark t)
+  (enable-theme 'gl-dark)
+  (global-font-lock-mode 1))
+;;(invert-face 'default)
+(bind-key "<f2>"   'theme/font-lock)
+(bind-key "C-<f2>" 'theme/light)
+(bind-key "M-<f2>" 'theme/gl-dark)
