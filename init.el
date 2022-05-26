@@ -380,7 +380,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-x k"     'kill-current-buffer)
 (bind-key "C-x C-k"   'kill-buffer)
 (bind-key "C-c r"     'revert-buffer)
-(bind-key "C-x C-b"   'buffer-menu)
+(bind-key "C-x C-b"   'ibuffer) ;; was buffer-menu
 ;; windows
 (bind-key "M-1"       'delete-other-windows)
 (bind-key "M-2"       'split-window-below)
@@ -431,7 +431,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   ;; window transposing
   (bind-key "s-o"             'transpose-windows)
   ;; buffers
-  (bind-key "s-b"   'buffer-menu))
+  (bind-key "s-b"   'ibuffer)) ;; was buffer-menu
 
 ;; == mode maps
 (define-key isearch-mode-map (kbd "C-o")
@@ -775,6 +775,20 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  (defalias 'rg 'grep-find)
  (defalias 'ag 'grep-find))
 
+;; 2022-05-25 Wed
+;;; == ibuffer
+(require-soft
+ 'ibuffer
+ (setq ibuffer-formats
+       '((mark modified read-only ;; " "(name 25 25 :left :elide)
+               " " (name 30 30 :left :elide)
+               " " (size 10 -1 :right)
+               " " (mode 15 20 :left :elide)
+               " " filename-and-process)
+         (mark " " (name 16 -1) " " filename)))
+  (defalias 'ib 'ibuffer)
+  (define-key  ibuffer-mode-map (kbd "r") 'ibuffer-redisplay))
+
 ;; === external modes ==========================================================
 ;;; external packages
 ;; == elscreen
@@ -786,6 +800,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                '(elscreen-display-screen-number t))
               (when (daemonp)
                 (elscreen-start))
+              (bind-key "M-["   'elscreen-previous)
+              (bind-key "M-]"  'elscreen-next)
               (bind-key "M-<left>"   'elscreen-previous)
               (bind-key "M-<right>"  'elscreen-next)
               (bind-key "ESC <left>" 'elscreen-previous)
@@ -1277,6 +1293,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (global-eldoc-mode 0)
 (add-hook 'puppet-mode-hook  'theme/turn-on-font-lock)
 (add-hook 'diff-mode-hook    'turn-on-font-lock)
+(add-hook 'ibuffer-hook      'turn-on-font-lock)
 (add-hook 'dired-mode-hook   'turn-on-font-lock)
 (add-hook 'org-mode-hook     'turn-on-font-lock)
 (add-hook 'mail-mode-hook    'turn-on-font-lock)
