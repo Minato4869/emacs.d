@@ -581,9 +581,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-(bind-key "C-c ."   'date)
-(bind-key "C-c C-." 'tdate)
-(bind-key "C-c >"   'ldate)
+(global-set-key (kbd "C-c .")   'date)
+(global-set-key (kbd "C-c C-.") 'tdate)
+(global-set-key (kbd "C-c >")   'ldate)
 (bind-key "C-;"     'toggle-comment-on-line)
 (bind-key "M-#"     'toggle-case)
 
