@@ -394,6 +394,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-x t"     'transpose-lines)
 ;; misc
 (bind-key "C-c 4"     'ispell-change-dictionary)
+(bind-key "C-0"       'text-scale-reset)
+(bind-key "C-="       'text-scale-increase)
+(bind-key "C--"       'text-scale-decrease)
 
 ;; mode specific
 (defun my-eval-buffer ()
@@ -1170,9 +1173,13 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (defun theme/font-lock ()
   (interactive)
-  (if font-lock-mode
-      (theme/turn-off-font-lock)
-    (theme/turn-on-font-lock)))
+  (if (my_daemonp)
+      (if font-lock-mode
+          (theme/turn-off-font-lock)
+        (theme/turn-on-font-lock))
+    (if font-lock-mode
+        (font-lock-mode 0)
+          (turn-on-font-lock))))
 
 (defun theme/light ()
   (interactive)
