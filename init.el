@@ -803,8 +803,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                '(elscreen-display-screen-number t))
               (when (daemonp)
                 (elscreen-start))
-              (bind-key "M-["   'elscreen-previous)
-              (bind-key "M-]"  'elscreen-next)
               (bind-key "M-<left>"   'elscreen-previous)
               (bind-key "M-<right>"  'elscreen-next)
               (bind-key "ESC <left>" 'elscreen-previous)
@@ -912,15 +910,15 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 		(set-keymap-parent map (keymap-parent input-decode-map))
 		(set-keymap-parent input-decode-map  xterm-function-map)))
 
-(defun my/after-make-frame (frame)
-	(with-selected-frame frame
-		(when (daemonp)
-			(elscreen-start)
-			(Journal)
-			(elscreen-create)
-			)))
-(remove-hook 'after-make-frame-functions 'my/after-make-frame t)
-(add-hook    'after-make-frame-functions 'my/after-make-frame)
+;;(defun my/after-make-frame (frame)
+;;  (with-selected-frame frame
+;;  	(when (daemonp)
+;;  		(elscreen-start)
+;;  		(Journal)
+;;  		(elscreen-create)
+;;  		)))
+;;(remove-hook 'after-make-frame-functions 'my/after-make-frame t)
+;;(add-hook    'after-make-frame-functions 'my/after-make-frame)
 
 (when (my_daemonp)
 	(defun my/after-delete-frame (frame)
@@ -1203,7 +1201,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((((type tty)) (:background: "unspecified-fg" :foreground "unspecified-bg"))))
+   `(mode-line                           ((((type tty)) (:background "unspecified-fg" :foreground "unspecified-bg"))))
    `(mode-line-buffer-id                 ((((type tty)) (:bold nil))))
    `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
                                                           :box (:line-width -1 :color "#666666" :style nil)))))
