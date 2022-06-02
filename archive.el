@@ -468,3 +468,8 @@
 (bind-key "<f2>"   'theme/font-lock)
 (bind-key "C-<f2>" 'theme/light)
 (bind-key "M-<f2>" 'theme/gl-dark)
+
+;; 2022-06-02 Thu 09:20
+`(dired-header                     ((t (:foreground  "#98fb98"))))
+`(dired-directory                  ((t (:foreground  "#87CEFA"))))
+`(dired-symlin                     ((t (:foreground  "#1e90ff"))))

@@ -14,7 +14,8 @@
   (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
 
 (let ((basedir "~/.emacs.d/"))
-  (add-to-list 'load-path (concat basedir "elisp")))
+  (add-to-list 'load-path (concat basedir "elisp"))
+  (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
 ;;; v-- @leahneukirchen
 (defmacro require-soft (name &rest body)
@@ -118,7 +119,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'makefile-gmake-mode-hook (lambda () (cedit/indent 4 t 80 t)))
 (add-hook 'mail-mode-hook           (lambda () (cedit/indent 4 nil 72 t 2)
                                       (setq ispell-dictionary "de_AT")
-                                      (xterm-mouse-mode)
                                       (mail-text)))
 (add-hook 'text-mode-hook           (lambda () (cedit/indent 2 nil  80 nil 2)))
 (add-hook 'org-mode-hook            (lambda () (cedit/indent 2 nil 80  nil 2)))
@@ -1203,6 +1203,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
+   `(mode-line                           ((((type tty)) (:background: "unspecified-fg" :foreground "unspecified-bg"))))
+   `(mode-line-buffer-id                 ((((type tty)) (:bold nil))))
    `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
                                                           :box (:line-width -1 :color "#666666" :style nil)))))
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
@@ -1256,13 +1258,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(tex-verbatim                        ((t (:foreground "#DEB887"))))
    `(tex-math                            ((t (:inherit tex-verbatim))))
 
-   `(dired-header                     ((t (:foreground  "#98fb98"))))
-   `(dired-directory                  ((t (:foreground  "#87CEFA"))))
-   `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
-
-   `(Man-overstrike                   ((t (:inherit default :bold t)))) ;; was ff0000 for dark
-   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil ;; was 00ff00 for dark
-                                                       :bold t))))
+   `(Man-overstrike                   ((t (:inherit default :bold t))))
+   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil :bold t))))
 
    `(error                            ((t (:foreground "#ff0000" :bold t))))
 
@@ -1292,7 +1289,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (theme/set-colours)
   (if (is_ssh)
     (custom-set-faces
-     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB1" :bold t))))
+     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB" :bold t))))
      `(mode-line-inactive  ((t (:foreground "#847f54" :background "#292424" :weight normal))))
      `(mode-line           ((t (:background "#373333"  :foreground "#838383" :bold t)))))))
 
@@ -1357,7 +1354,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(show-paren-delay 0) ;; immediately show parens
  '(mouse-autoselect-window t)
  '(electric-indent-mode t)
- '(xterm-mouse-mode (if (daemonp) t nil))
  '(mouse-yank-at-point t)
  '(savehist-mode 1)
  '(transient-mark-mode t)
