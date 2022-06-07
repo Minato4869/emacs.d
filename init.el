@@ -1164,7 +1164,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (defun theme/turn-off-font-lock ()
 	(font-lock-mode 0)
-  (buffer-face-set :default))
+  (buffer-face-mode 0))
 
 (defun theme/turn-on-font-lock ()
   (font-lock-mode 1)
