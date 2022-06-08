@@ -4,10 +4,9 @@
  'after-init-hook
  #'(lambda ()
      (setq gc-cons-threshold 800000))) ;; restore after startup
-
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (defun my_daemonp()
   (if (or (daemonp) (display-graphic-p)) t nil))
-
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
 (defun is_ttf ()
@@ -202,6 +201,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                 ("muttrc."       . conf-mode)
                 (".shrc"         . shell-script-mode)
                 (".shenv"        . shell-script-mode)
+                (".pp"           .  puppet-mode)
                 ("\\.xpm\\'"     . text-mode)
                 (".Xdefaults'"   . conf-xdefaults-mode)
                 (".Xresources'"  . conf-xdefaults-mode)
@@ -628,7 +628,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               (bind-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
 
 ;; ;; == dired
-(when (my_daemonp)
   (require-soft 'dired-x
                 (setq-default dired-omit-files "^\\...+$"
                               dired-isearch-filenames t)
@@ -685,7 +684,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (define-key dired-mode-map (kbd "C-d")     'dired-hide-details-mode)
   (define-key dired-mode-map (kbd "r")        'revert-buffer)
   (define-key dired-mode-map (kbd "/")        'occur)
-  )
+
 ;; == tex
 (require-soft 'tex-mode
               (setq tex-fontify-script nil ;; disables custom fonts in LaTeX buffer display
@@ -910,25 +909,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 		(set-keymap-parent map (keymap-parent input-decode-map))
 		(set-keymap-parent input-decode-map  xterm-function-map)))
 
-;;(defun my/after-make-frame (frame)
-;;  (with-selected-frame frame
-;;  	(when (daemonp)
-;;  		(elscreen-start)
-;;  		(Journal)
-;;  		(elscreen-create)
-;;  		)))
-;;(remove-hook 'after-make-frame-functions 'my/after-make-frame t)
-;;(add-hook    'after-make-frame-functions 'my/after-make-frame)
-
-(when (my_daemonp)
-	(defun my/after-delete-frame (frame)
-		(with-selected-frame frame
-			(when (is_ssh)
-				(setenv "SSH_CONNECTION" ""))))
-
-	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
-	(add-hook    'after-delete-frame-functions 'my/after-delete-frame))
-
 (when (or (display-graphic-p) (daemonp))
 	(unless (file-regular-p "~/git/dotfiles/x11/Xresources")
 		(scroll-bar-mode -1)
@@ -1144,7 +1124,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; === theme/colours ===========================================================
 (defun theme/set-colours ()
   (frame-set-background-mode (selected-frame))
-
   (let* ((default-term
            (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                  ((daemonp) '(:background "color-236"      :foreground "color-254"))
@@ -1159,7 +1138,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               (t                                   (:background "#1A1A1A" :inherit default))))
    )
   ))
-
+(setq frame-background-mode 'dark)
 (theme/set-colours)
 
 (defun theme/turn-off-font-lock ()
@@ -1168,7 +1147,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (defun theme/turn-on-font-lock ()
   (font-lock-mode 1)
-  (buffer-face-set :background "black"))
+  (if (display-graphic-p)
+      (buffer-face-set :background "black")
+    (buffer-face-set :background "color-16")))
 
 (defun theme/font-lock ()
   (interactive)
@@ -1190,7 +1171,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
       (setq frame-background-mode t)
       (theme/set-colours))))
 
-(defalias 'fl 'theme/font-lock)
+(if (my_daemonp)
+    (defalias 'fl 'theme/font-lock)
+  (defalias 'fl 'font-lock-mode))
 
 (bind-key "<f2>"   'theme/font-lock)
 (bind-key "C-<f2>" 'theme/light)
@@ -1369,7 +1352,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
  '(package-selected-packages
-   '(elscreen yasnippet diminish go-mode puppet-mode haskell-mode))
+   '(elscreen yasnippet diminish go-mode haskell-mode))
  ;; 2022-05-23 Mon emacs 28.1
  '(mouse-wheel-scroll-amount '(5 ((shift) . 1)))
  '(use-short-answers t )

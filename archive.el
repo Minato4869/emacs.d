@@ -473,3 +473,23 @@
 `(dired-header                     ((t (:foreground  "#98fb98"))))
 `(dired-directory                  ((t (:foreground  "#87CEFA"))))
 `(dired-symlin                     ((t (:foreground  "#1e90ff"))))
+
+;; 2022-06-08 Wed
+;;(defun my/after-make-frame (frame)
+;;  (with-selected-frame frame
+;;  	(when (daemonp)
+;;  		(elscreen-start)
+;;  		(Journal)
+;;  		(elscreen-create)
+;;  		)))
+;;(remove-hook 'after-make-frame-functions 'my/after-make-frame t)
+;;(add-hook    'after-make-frame-functions 'my/after-make-frame)
+
+(when (my_daemonp)
+	(defun my/after-delete-frame (frame)
+		(with-selected-frame frame
+			(when (is_ssh)
+				(setenv "SSH_CONNECTION" ""))))
+
+	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
+	(add-hook    'after-delete-frame-functions 'my/after-delete-frame))
