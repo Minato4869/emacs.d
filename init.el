@@ -1100,7 +1100,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
     (defalias 'menlo       'ttf)
     (defalias 'meslo       'ttf)
 
-    (default-font)
+    ;;(default-font)
     ))
 
 (let ((ln "~/.emacs.local.el")
@@ -1148,7 +1148,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun theme/turn-on-font-lock ()
   (font-lock-mode 1)
   (if (display-graphic-p)
-      (buffer-face-set :background "black")
+      (buffer-face-set :background "black" :foreground "grey")
     (buffer-face-set :background "color-16")))
 
 (defun theme/font-lock ()
