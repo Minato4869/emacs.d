@@ -201,7 +201,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                 ("muttrc."       . conf-mode)
                 (".shrc"         . shell-script-mode)
                 (".shenv"        . shell-script-mode)
-                (".pp"           .  puppet-mode)
+                ("\\.pp\\"       .  puppet-mode)
                 ("\\.xpm\\'"     . text-mode)
                 (".Xdefaults'"   . conf-xdefaults-mode)
                 (".Xresources'"  . conf-xdefaults-mode)
