@@ -493,3 +493,8 @@
 
 	(remove-hook 'after-delete-frame-functions 'my/after-delete-frame t)
 	(add-hook    'after-delete-frame-functions 'my/after-delete-frame))
+;; 2022-06-09 Thu
+(custom-set-faces
+   `(mode-line                           ((((type tty)) (:background "unspecified-fg" :foreground "unspecified-bg"))))
+   `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
+                                                          :box (:line-width -1 :color "#666666" :style nil))))))

@@ -60,7 +60,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                     dired-find-alternate-file
                     narrow-to-page
                     narrow-to-region
-                    eval-expression
+                     eval-expression
                     set-goal-column))
   (put function 'disabled nil))
 
@@ -943,6 +943,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defalias 'ws            'whitespace-mode)
 (defalias 'mb            'menu-bar-mode)
 (defalias 'sh            'shell-script-mode)
+(defalias 'gfl           'global-font-lock-mode)
 (defalias 'li            'lisp-interaction-mode)
 (defalias 'el            'emacs-lisp-mode)
 (defalias 'org           'org-mode)
@@ -958,6 +959,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defalias 'qc            'quick-calc)
 (defalias 'dir           'dired-jump)
 (defalias 'linum         'display-line-numbers-mode)
+(defalias 'lin           'display-line-numbers-mode)
+(defalias 'ln            'display-line-numbers-mode)
 (defalias 'tr            'toggle-truncate-lines)
 (defalias 'fci           'display-fill-column-indicator-mode)
 (defalias 'win-undo      'winner-undo)
@@ -1185,10 +1188,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
    `(border                              ((t            (:foreground "#0000ff"))))
    `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((((type tty)) (:background "unspecified-fg" :foreground "unspecified-bg"))))
+   `(mode-line                           ((t (:inherit default :background "#292929"))))
    `(mode-line-buffer-id                 ((((type tty)) (:bold nil))))
-   `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
-                                                          :box (:line-width -1 :color "#666666" :style nil)))))
    `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
    `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
    `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
