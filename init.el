@@ -1053,7 +1053,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                          ((= dpi 125) 69)
                          ((= dpi 131) 75)
                          ((= dpi 138) 83) ;; was 88
-                         ((= dpi 157) 73) ;; was 64
+                         ((= dpi 157) 63) ;; was 73
                          ((= dpi 190) 59)
                          (t           70)))
              (xfth       (/ ttfh 10.0))
