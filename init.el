@@ -1129,8 +1129,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (frame-set-background-mode (selected-frame))
   (let* ((default-term
            (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
-                 ((daemonp) '(:background "color-236"      :foreground "color-254"))
-                 (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
+                 (t          '(:background "color-236"      :foreground "color-254"))))
+         ;; (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
          (white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
          )
   (custom-set-faces
