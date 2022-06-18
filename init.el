@@ -791,6 +791,18 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (defalias 'ib 'ibuffer)
   (define-key  ibuffer-mode-map (kbd "r") 'ibuffer-redisplay))
 
+(require-soft
+ 'eww
+ (setq
+   shr-use-fonts nil ;; No special fonts
+   shr-use-colors nil   ;; enable colours
+   shr-color-visible-luminance-min 70
+   shr-indentation 2  ;; Left-side margin
+   shr-width 80)     ;; Fold text to 80 columns
+ (define-key eww-mode-map (kbd "C-j") 'View-scroll-line-forward)
+ (define-key eww-mode-map (kbd "C-k") 'View-scroll-line-backward))
+
+
 ;; === external modes ==========================================================
 ;;; external packages
 ;; == elscreen
