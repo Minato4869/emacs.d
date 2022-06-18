@@ -1143,7 +1143,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
            (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
                  (t          '(:background "color-236"      :foreground "color-254"))))
          ;; (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-         (white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
+         ;;(white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
+         (white          "#e5e5e5")
          )
   (custom-set-faces
    `(default ((((type tty))                        ,default-term)
@@ -1194,7 +1195,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-<f2>" 'theme/light)
 (bind-key "M-<f2>" 'theme/gl-dark)
 
-(let* ((white          (if (is_ttf)    "#ffffff" "#e5e5e5")))
+(let* ((white          "#e5e5e5")) ;;(if (is_ttf)    "#ffffff" "#e5e5e5")))
   (custom-set-faces
    `(region                              ((t (:foreground ,white :background "#114488" :extend t))))
    `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
@@ -1298,6 +1299,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'mail-mode-hook    'turn-on-font-lock)
 (add-hook 'Man-mode-hook     'turn-on-font-lock)
 (add-hook 'ibuffer-mode-hook 'turn-on-font-lock)
+(add-hook 'css-mode-hook     'turn-on-font-lock)
 
 (custom-set-variables
  '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
