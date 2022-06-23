@@ -1339,7 +1339,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(c-default-style '((awk-mode  . "awk")  (other     . "linux")))
  '(backward-delete-char-untabify-method 'hungry)
  '(ispell-dictionary "en_GB")
- '(frame-title-format  '(multiple-frames "%b" ("" invocation-name "@" system-name)))
+ '(frame-title-format  (if (daemonp)
+                           '(multiple-frames "emacsclient - %b" ("emacsclient" "@" system-name " - " "%b"))
+                         '(multiple-frames "%b" ("emacs" "@" system-name " - " "%b"))))
  '(visible-bell nil)
  '(ring-bell-function 'ignore) ;; disable audible bell on windows
  '(vc-follow-symlinks nil)
