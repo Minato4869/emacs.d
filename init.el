@@ -9,6 +9,7 @@
   (if (or (daemonp) (display-graphic-p)) t nil))
 (defun is_ssh ()
   (if (= (length (getenv "SSH_CONNECTION")) 0) nil t))
+
 (defun is_ttf ()
   (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
 
@@ -36,9 +37,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (global-set-key (kbd "<f1>") 'my-keys-mode)
 
 (when (my_daemonp)
-   (package-initialize)
-   (add-to-list 'package-archives
-                '("melpa" . "https://melpa.org/packages/") t))
+  (package-initialize)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t))
 
 ;; === editing =================================================================
 ;; disable modes
@@ -60,7 +61,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                     dired-find-alternate-file
                     narrow-to-page
                     narrow-to-region
-                     eval-expression
+                    eval-expression
                     set-goal-column))
   (put function 'disabled nil))
 
@@ -489,7 +490,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                    (buffer-substring-no-properties beg end)
                    (kill-region region-beginning region-end))
                (shell-quote-argument (read-string "Enter week number or date: "))))
-    (insert (shell-command-to-string (format "week %s" (shell-quote-argument wn)))))))
+         (insert (shell-command-to-string (format "week %s" (shell-quote-argument wn)))))))
 
 (defalias 'kw 'week)
 (defalias 'cw 'week)
@@ -628,62 +629,62 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
               (bind-key "C-c b"   'cido/lazy-ido-switch-buffer-other-window))
 
 ;; ;; == dired
-  (require-soft 'dired-x
-                (setq-default dired-omit-files "^\\...+$"
-                              dired-isearch-filenames t)
-                (if (or (string-equal system-type "gnu/linux")
-                        (file-regular-p "/usr/local/share/gls"))
-                    (setq dired-listing-switches
-                          "-laFH --group-directories-first")
-                  (setq dired-listing-switches "-laFH"))
-                (setq dired-omit-verbose nil
-                      dired-omit-mode t
-                      dired-auto-revert-buffer t)
+(require-soft 'dired-x
+              (setq-default dired-omit-files "^\\...+$"
+                            dired-isearch-filenames t)
+              (if (or (string-equal system-type "gnu/linux")
+                      (file-regular-p "/usr/local/share/gls"))
+                  (setq dired-listing-switches
+                        "-laFH --group-directories-first")
+                (setq dired-listing-switches "-laFH"))
+              (setq dired-omit-verbose nil
+                    dired-omit-mode t
+                    dired-auto-revert-buffer t)
 
-                (defun cdired/x-mode-setup ()
-                  (font-lock-mode t)
-                  (dired-hide-details-mode 1))
-                (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
-                (bind-key "C-x C-d" 'dired-jump)
-                (bind-key "s-d"     'dired-jump)
-                (define-key dired-mode-map "\C-h" 'dired-omit-mode)
-                (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
+              (defun cdired/x-mode-setup ()
+                (font-lock-mode t)
+                (dired-hide-details-mode 1))
+              (add-hook 'dired-mode-hook 'cdired/x-mode-setup)
+              (bind-key "C-x C-d" 'dired-jump)
+              (bind-key "s-d"     'dired-jump)
+              (define-key dired-mode-map "\C-h" 'dired-omit-mode)
+              (define-key dired-mode-map "\C-d" 'dired-hide-details-mode))
 
-  (require-soft 'dired
-                (defun dired-jump-previous-dir ()
-                  (interactive)
-                  (setq old-buffer (buffer-name))
-                  (dired-jump)
-                  (kill-buffer old-buffer))
-                (defun dired-view-file-other-window ()
-                  (if (one-window-p)
-                      (split-window-horizontally)
-                    (split-window-vertically))
-                  (other-window 1)
-                  (dired-view-file)))
-  (defun dired-find-or-view ()
-    "A `dired-find-file' which only works on directories."
-    (interactive)
-    (let ((find-file-run-dired t)
-          (file (dired-get-file-for-visit)))
-      (if (file-directory-p file)
-          (find-file file)
-        (dired-view-file-other-window))))
+(require-soft 'dired
+              (defun dired-jump-previous-dir ()
+                (interactive)
+                (setq old-buffer (buffer-name))
+                (dired-jump)
+                (kill-buffer old-buffer))
+              (defun dired-view-file-other-window ()
+                (if (one-window-p)
+                    (split-window-horizontally)
+                  (split-window-vertically))
+                (other-window 1)
+                (dired-view-file)))
+(defun dired-find-or-view ()
+  "A `dired-find-file' which only works on directories."
+  (interactive)
+  (let ((find-file-run-dired t)
+        (file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (find-file file)
+      (dired-view-file-other-window))))
 
-  (defun dired-quit-and-kill-window ()
-    (if (one-window-p)
-        (quit-window)
-      (progn
-        (quit-window)
-        (delete-window))))
-  (define-key dired-mode-map (kbd "v")        'dired-find-file-other-window)
-  (define-key dired-mode-map (kbd "q")        'dired-quit-and-kill-window)
-  (define-key dired-mode-map (kbd "C-h")     'dired-omit-mode)
-  (define-key dired-mode-map (kbd "<right>")  'dired-find-or-view)
-  (define-key dired-mode-map (kbd "<left>")   'dired-jump-previous-dir)
-  (define-key dired-mode-map (kbd "C-d")     'dired-hide-details-mode)
-  (define-key dired-mode-map (kbd "r")        'revert-buffer)
-  (define-key dired-mode-map (kbd "/")        'occur)
+(defun dired-quit-and-kill-window ()
+  (if (one-window-p)
+      (quit-window)
+    (progn
+      (quit-window)
+      (delete-window))))
+(define-key dired-mode-map (kbd "v")        'dired-find-file-other-window)
+(define-key dired-mode-map (kbd "q")        'dired-quit-and-kill-window)
+(define-key dired-mode-map (kbd "C-h")     'dired-omit-mode)
+(define-key dired-mode-map (kbd "<right>")  'dired-find-or-view)
+(define-key dired-mode-map (kbd "<left>")   'dired-jump-previous-dir)
+(define-key dired-mode-map (kbd "C-d")     'dired-hide-details-mode)
+(define-key dired-mode-map (kbd "r")        'revert-buffer)
+(define-key dired-mode-map (kbd "/")        'occur)
 
 ;; == tex
 (require-soft 'tex-mode
@@ -771,11 +772,11 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; == grep (replace ripgrep)
 (require-soft 'grep
- (grep-apply-setting
-  'grep-find-command
-  '("rg --no-heading --with-filename '' --glob='' " . 34))
- (defalias 'rg 'grep-find)
- (defalias 'ag 'grep-find))
+              (grep-apply-setting
+               'grep-find-command
+               '("rg --no-heading --with-filename '' --glob='' " . 34))
+              (defalias 'rg 'grep-find)
+              (defalias 'ag 'grep-find))
 
 ;; 2022-05-25 Wed
 ;;; == ibuffer
@@ -788,17 +789,17 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
                " " (mode 15 20 :left :elide)
                " " filename-and-process)
          (mark " " (name 16 -1) " " filename)))
-  (defalias 'ib 'ibuffer)
-  (define-key  ibuffer-mode-map (kbd "r") 'ibuffer-redisplay))
+ (defalias 'ib 'ibuffer)
+ (define-key  ibuffer-mode-map (kbd "r") 'ibuffer-redisplay))
 
 (require-soft
  'eww
  (setq
-   shr-use-fonts nil ;; No special fonts
-   shr-use-colors nil   ;; enable colours
-   shr-color-visible-luminance-min 70
-   shr-indentation 2  ;; Left-side margin
-   shr-width 80)     ;; Fold text to 80 columns
+  shr-use-fonts nil ;; No special fonts
+  shr-use-colors nil   ;; enable colours
+  shr-color-visible-luminance-min 70
+  shr-indentation 2  ;; Left-side margin
+  shr-width 80)     ;; Fold text to 80 columns
  (define-key eww-mode-map (kbd "C-j") 'View-scroll-line-forward)
  (define-key eww-mode-map (kbd "C-k") 'View-scroll-line-backward))
 
@@ -1055,68 +1056,66 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
             (setq value (match-string 2 cur))
             (setenv var value))
           (setq lst (cdr lst)))))
-    ;; === fonts ==================================================================
-    (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
-    (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
-    (defun ttf (&optional huge)
-      (interactive)
-      (let* ((ttfh (cond (huge        73)
-                         ((= dpi 109) 79)
-                         ((= dpi 125) 69)
-                         ((= dpi 131) 75)
-                         ((= dpi 138) 83) ;; was 88
-                         ((= dpi 157) 63) ;; was 73
-                         ((= dpi 190) 59)
-                         (t           70)))
-             (xfth       (/ ttfh 10.0))
-             (family     "Deja Vu Sans Mono")
-             (myfont     (concat family "-" (number-to-string xfth))))
-        (custom-set-faces
-         `(default ((t (:inherit default :height ,ttfh :width normal :foundry "PfEd" :family ,family)))))
-        (setq default-frame-alist `((font . ,myfont))
-              initial-frame-alist default-frame-alist)
-        (set-frame-font myfont nil t)
-        (set-foreground-color "#FFFFFF")))
-(ttf)
-    (defun ttfh ()
-      (interactive)
-      (ttf t))
-    (defun pcf (&optional arg)
-      (interactive)
-      (let ((myfont
-             (cond
-              ((or (string= arg "9x18"))
-               "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
-              ((or (string= arg "9x16"))
-               "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
-              ((or t (string= arg "6x13"))
-               "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))))
-        (set-face-attribute 'default t :font myfont)
-        (setq default-frame-alist `((font . ,myfont))
-              initial-frame-alist default-frame-alist)
-        (set-frame-font myfont nil t))
-      (set-foreground-color "#E5E5E5"))
+    )
+  ;; === fonts ==================================================================
+  (set-face-attribute 'variable-pitch nil :font "Sans-Serif-14")
+  (setq dpi (string-to-number (shell-command-to-string "~/bin/dpi")))
+  (defun ttf (&optional huge)
+    (interactive)
+    (let* ((ttfh (cond (huge        73)
+                       ((= dpi 109) 79)
+                       ((= dpi 125) 69)
+                       ((= dpi 131) 75)
+                       ((= dpi 138) 83) ;; was 88
+                       ((= dpi 157) 63) ;; was 73
+                       ((= dpi 190) 59)
+                       (t           70)))
+           (xfth       (/ ttfh 10.0))
+           (family     "Deja Vu Sans Mono")
+           (myfont     (concat family "-" (number-to-string xfth))))
+      (custom-set-faces
+       `(default ((t (:inherit default :height ,ttfh :width normal :foundry "PfEd" :family ,family)))))
+      (setq default-frame-alist `((font . ,myfont))
+            initial-frame-alist default-frame-alist)
+      (set-frame-font myfont nil t))
+    (set-foreground-color "#FFFFFF"))
 
-    (defun 6x13 () (interactive) (pcf "6x13"))
-    (defun 9x16 () (interactive) (pcf "9x16"))
-    (defun 9x18 () (interactive) (pcf "9x18"))
-    (defun default-font ()
-      (interactive)
-      (cond
-       ((or (= dpi 109)
-            (file-regular-p "~/.ttf") (ttf)))
-       ((or (file-regular-p "~/.hf")
-            (>= dpi 157))
-        (9x16))
-       (t                         (6x13))))
+  (defun pcf (&optional arg)
+    (interactive)
+    (let ((myfont
+           (cond
+            ((or (string= arg "9x18"))
+             "-uw-ttyp0-medium-r-normal--18-170-75-75-c-90-iso10646-1")
+            ((or (string= arg "9x16"))
+             "-uw-ttyp0-medium-r-normal--16-150-75-75-c-80-iso10646-1")
+            ((or t (string= arg "6x13"))
+             "-gl-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso10646-1"))))
+      (set-face-attribute 'default t :font myfont)
+      (setq default-frame-alist `((font . ,myfont))
+            initial-frame-alist default-frame-alist)
+      (set-frame-font myfont nil t)
+      (set-foreground-color "#E5E5E5")))
 
-    (defalias 'df          'default-font)
-    (defalias 'reset-fonts 'default-font)
-    (defalias 'menlo       'ttf)
-    (defalias 'meslo       'ttf)
+  (defun 6x13 () (interactive) (pcf "6x13"))
+  (defun 9x16 () (interactive) (pcf "9x16"))
+  (defun 9x18 () (interactive) (pcf "9x18"))
+  (defun default-font ()
+    (interactive)
+    (cond
+     ((or (= dpi 109)
+          (file-regular-p "~/.ttf") (ttf)))
+     ((or (file-regular-p "~/.hf")
+          (>= dpi 157))
+      (9x16))
+     (t                         (6x13))))
 
-    ;;(default-font)
-    ))
+  (defalias 'df          'default-font)
+  (defalias 'reset-fonts 'default-font)
+  (defalias 'menlo       'ttf)
+  (defalias 'meslo       'ttf)
+
+  ;;(default-font)
+  )
 
 (let ((ln "~/.emacs.local.el")
       (pl "~/.emacs.personal.el"))
@@ -1137,23 +1136,20 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         auto-save-file-name-transforms `((".*" ,autosavedir t))))
 
 ;; === theme/colours ===========================================================
+(setq theme/white (if (is_ttf) "#ffffff" "#e5e5e5"))
 (defun theme/set-colours ()
   (frame-set-background-mode (selected-frame))
   (let* ((default-term
            (cond ((is_ssh)  '(:background "color-235"      :foreground "unspecified-fg"))
-                 (t          '(:background "color-236"      :foreground "color-254"))))
-         ;; (t         '(:background "unspecified-bg" :foreground "unspecified-fg"))))
-         ;;(white          (if (is_ttf)    "#ffffff" "#e5e5e5"))
-         (white          "#e5e5e5")
-         )
-  (custom-set-faces
-   `(default ((((type tty))                        ,default-term)
-              (((class color) (background light))  (:background "white"   :foreground "black"))
-              (t                                   (:background "#333333" :foreground ,white))))
-   `(fringe  ((((class color) (background light))  (:background "#f2f2f2" :inherit default))
-              (t                                   (:background "#1A1A1A" :inherit default))))
-   )
-  ))
+                 (t          '(:background "color-236"      :foreground "color-254")))))
+    (custom-set-faces
+     `(default ((((type tty))                        ,default-term)
+                (((class color) (background light))  (:background "white"   :foreground "black"))
+                (t                                   (:background "#333333" :foreground ,theme/white))))
+     `(fringe  ((((class color) (background light))  (:background "#f2f2f2" :inherit default))
+                (t                                   (:background "#1A1A1A" :inherit default))))
+     )
+    ))
 (setq frame-background-mode 'dark)
 (theme/set-colours)
 
@@ -1164,7 +1160,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (defun theme/turn-on-font-lock ()
   (font-lock-mode 1)
   (if (display-graphic-p)
-      (buffer-face-set :background "black" :foreground "grey")
+      (if (is_ttf)
+          (buffer-face-set :background "black" :foreground "#e5e5e5")
+        (buffer-face-set :background "black" :foreground "grey"))
     (buffer-face-set :background "color-16")))
 
 (defun theme/font-lock ()
@@ -1175,7 +1173,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
         (theme/turn-on-font-lock))
     (if font-lock-mode
         (font-lock-mode 0)
-          (turn-on-font-lock))))
+      (turn-on-font-lock))))
 
 (defun theme/light ()
   (interactive)
@@ -1195,99 +1193,98 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-<f2>" 'theme/light)
 (bind-key "M-<f2>" 'theme/gl-dark)
 
-(let* ((white          "#e5e5e5")) ;;(if (is_ttf)    "#ffffff" "#e5e5e5")))
-  (custom-set-faces
-   `(region                              ((t (:foreground ,white :background "#114488" :extend t))))
-   `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
-   `(border                              ((t            (:foreground "#0000ff"))))
-   `(minibuffer-prompt                   ((t (:inherit default :bold t))))
-   `(mode-line                           ((t (:inherit default :background "#292929"))))
-   `(mode-line-buffer-id                 ((((type tty)) (:bold nil))))
-   `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
-   `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
-   `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
+(custom-set-faces
+ `(region                              ((t (:foreground ,theme/white :background "#114488" :extend t))))
+ `(cursor                              ((t            (:background "#00ff00" :foreground "#000000"))))
+ `(border                              ((t            (:foreground "#0000ff"))))
+ `(minibuffer-prompt                   ((t (:inherit default :bold t))))
+ `(mode-line                           ((t (:inherit default :background "#292929"))))
+ `(mode-line-buffer-id                 ((((type tty)) (:bold nil))))
+ `(font-lock-regexp-grouping-backslash ((t (:inherit default :bold t))))
+ `(font-lock-regexp-grouping-construct ((t (:inherit default :bold t))))
+ `(font-lock-warning-face              ((t (:foreground "#FF0000" :bold t))))
 
-   `(ido-subdir                          ((t (:foreground "#A1C659"))))
-   `(ido-only-match                      ((t (:foreground "#FFCC33"))))
-   `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
-   `(ido-incomplete-regexp               ((t (:inherit default))))
-   `(ido-indicator                       ((t (:inherit default))))
+ `(ido-subdir                          ((t (:foreground "#A1C659"))))
+ `(ido-only-match                      ((t (:foreground "#FFCC33"))))
+ `(ido-fist-match                      ((t (:inherit default :bold t :underline t))))
+ `(ido-incomplete-regexp               ((t (:inherit default))))
+ `(ido-indicator                       ((t (:inherit default))))
 
-   `(italic                              ((t (:slant italic :underline nil))))
+ `(italic                              ((t (:slant italic :underline nil))))
 
-   `(completions-common-part             ((t (:foreground "#add8e6"))))
+ `(completions-common-part             ((t (:foreground "#add8e6"))))
 
-   `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
-   `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
+ `(isearch-fail                        ((t (:background "#8B0000" :foreground "#E5E5E5"))))
+ `(isearch                             ((t (:background "#000000" :foreground "#1E90FF" :bold t))))
 
-   `(shadow                              ((t (:foreground "#aaaaaa"))))
+ `(shadow                              ((t (:foreground "#aaaaaa"))))
 
-   `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
-   `(org-level-2                         ((t (:foreground "#929292"))))
-   `(org-level-3                         ((t (:foreground "#838383" :bold t))))
-   `(org-level-4                         ((t (:foreground "#757575" t))))
-   `(org-level-5                         ((t (:foreground "#8b8fc6"))))
-   `(org-level-6                         ((t (:foreground "#bd845f"))))
-   `(org-level-7                         ((t (:foreground "#71a46c"))))
-   `(org-level-8                         ((t (:foreground "#71a19f"))))
+ `(org-level-1                         ((t (:foreground "#A1A1A1" :bold t))))
+ `(org-level-2                         ((t (:foreground "#929292"))))
+ `(org-level-3                         ((t (:foreground "#838383" :bold t))))
+ `(org-level-4                         ((t (:foreground "#757575" t))))
+ `(org-level-5                         ((t (:foreground "#8b8fc6"))))
+ `(org-level-6                         ((t (:foreground "#bd845f"))))
+ `(org-level-7                         ((t (:foreground "#71a46c"))))
+ `(org-level-8                         ((t (:foreground "#71a19f"))))
 
-   `(org-date                            ((t (:foreground "#2C78BF"))))
-   `(org-todo                            ((t (:foreground "#D70000" :bold t))))
-   `(org-done                            ((t (:foreground "#228b22" :bold t))))
-   `(org-special-keyword                 ((t (:foreground "#729FCF"))))
-   `(org-priority                        ((t (:foreground "#729FCF"))))
-   `(org-headline-done                   ((t (:foreground "#FFA07A" :bold nil))))
-   `(org-meta-line                       ((t (:inherit default :bold t))))
-   `(org-time-grid                       ((t (:foreground "#EEDD82"))))
-   `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
-   `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
-   `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
-   `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
-   `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
-   `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
-   `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
-   `(org-block                           ((t (:inherit default :extend t))))
-   `(org-latex-and-related               ((t (:foreground "#DEB887"))))
-   `(org-table                           ((t (:foreground "#87CEFA"))))
-   `(org-drawers                         ((t (:foreground "#87cefa"))))
+ `(org-date                            ((t (:foreground "#2C78BF"))))
+ `(org-todo                            ((t (:foreground "#D70000" :bold t))))
+ `(org-done                            ((t (:foreground "#228b22" :bold t))))
+ `(org-special-keyword                 ((t (:foreground "#729FCF"))))
+ `(org-priority                        ((t (:foreground "#729FCF"))))
+ `(org-headline-done                   ((t (:foreground "#FFA07A" :bold nil))))
+ `(org-meta-line                       ((t (:inherit default :bold t))))
+ `(org-time-grid                       ((t (:foreground "#EEDD82"))))
+ `(org-agenda-clocking                 ((t (:inherit default :background "#4A708B" :extend t))))
+ `(org-agenda-structure                ((t (:foreground "#87CEFA"))))
+ `(org-agenda-date                     ((t (:inherit org-agenda-structure))))
+ `(org-agenda-date-today               ((t (:inherit org-agenda-date :bold t :underline t))))
+ `(org-agenda-date-weekend             ((t (:inherit org-agenda-date :bold t))))
+ `(org-block-begin-line                ((t (:inherit default)))) ;; was inherit org-meta-line
+ `(org-block-end-line                  ((t (:inherit org-block-begin-line))))
+ `(org-block                           ((t (:inherit default :extend t))))
+ `(org-latex-and-related               ((t (:foreground "#DEB887"))))
+ `(org-table                           ((t (:foreground "#87CEFA"))))
+ `(org-drawers                         ((t (:foreground "#87cefa"))))
 
-   `(tex-verbatim                        ((t (:foreground "#DEB887"))))
-   `(tex-math                            ((t (:inherit tex-verbatim))))
+ `(tex-verbatim                        ((t (:foreground "#DEB887"))))
+ `(tex-math                            ((t (:inherit tex-verbatim))))
 
-   `(Man-overstrike                   ((t (:inherit default :bold t))))
-   `(Man-underline                    ((t (:foreground "#4286F4" :underline nil :bold t))))
+ `(Man-overstrike                   ((t (:inherit default :bold t))))
+ `(Man-underline                    ((t (:foreground "#4286F4" :underline nil :bold t))))
 
-   `(error                            ((t (:foreground "#ff0000" :bold t))))
+ `(error                            ((t (:foreground "#ff0000" :bold t))))
 
-   `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
-   `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
+ `(show-paren-match                 ((t (:foregroubd "#ffffff" :background "#4f94cd"))))
+ `(show-paren-mismatch              ((t (:foreground "#ffffff" :background "#a020f0"))))
 
-   `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
+ `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
-   `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
-   `(elscreen-tab-background-face     ((t (:inherit header-line))))
-   `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
-   `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
-                                       (t (:foreground "#e5e5e5" :background "#666666"))))
+ `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
+ `(elscreen-tab-background-face     ((t (:inherit header-line))))
+ `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
+ `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
+ `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
+                                     (t (:foreground "#e5e5e5" :background "#666666"))))
 
-   `(highlight                        ((t (:inherit default :background "#556b2f"))))
+ `(highlight                        ((t (:inherit default :background "#556b2f"))))
 
-   `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
-   `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
-   `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
-   `(smerge-refined-added            ((t (:background "#aaffaa" :foreground "#000000" :extend t))))
-   `(smerge-refined-removed          ((t (:background "#ffbbbb" :foreground "#000000" :extend t))))
-   `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
-   ))
+ `(smerge-base                     ((t (:background "#ffffaa" :foreground "#000000" :extend t))))
+ `(smerge-lower                    ((t (:background "#ddffdd" :foreground "#000000" :extend t))))
+ `(smerge-markers                  ((t (:background "#d9d9d9" :foreground "#000000" :extend t))))
+ `(smerge-refined-added            ((t (:background "#aaffaa" :foreground "#000000" :extend t))))
+ `(smerge-refined-removed          ((t (:background "#ffbbbb" :foreground "#000000" :extend t))))
+ `(smerge-upper                    ((t (:background "#ffdddd" :foreground "#000000" :extend t))))
+ )
 
 (if (daemonp)
     (theme/set-colours)
   (if (is_ssh)
-    (custom-set-faces
-     `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB" :bold t))))
-     `(mode-line-inactive  ((t (:foreground "#847f54" :background "#292424" :weight normal))))
-     `(mode-line           ((t (:background "#373333"  :foreground "#838383" :bold t)))))))
+      (custom-set-faces
+       `(mode-line-buffer-id ((t (:inherit mode-line-buffer-id :foreground "#B680BB" :bold t))))
+       `(mode-line-inactive  ((t (:foreground "#847f54" :background "#292424" :weight normal))))
+       `(mode-line           ((t (:background "#373333"  :foreground "#838383" :bold t)))))))
 
 (global-font-lock-mode 0)
 (global-eldoc-mode 0)
