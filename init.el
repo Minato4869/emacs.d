@@ -397,6 +397,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-0"       'text-scale-reset)
 (bind-key "C-="       'text-scale-increase)
 (bind-key "C--"       'text-scale-decrease)
+(bind-key "<f12>"     'global-display-fill-column-indicator-mode)
 
 ;; mode specific
 (defun my-eval-buffer ()
