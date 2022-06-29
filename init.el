@@ -1,4 +1,4 @@
-;;; (occur "^;; ===")
+ ;;; (occur "^;; ===")
 (setq gc-cons-threshold 64000000)
 (add-hook
  'after-init-hook
@@ -398,6 +398,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-0"       'text-scale-reset)
 (bind-key "C-="       'text-scale-increase)
 (bind-key "C--"       'text-scale-decrease)
+(bind-key "<f11>"     'global-display-fill-column-indicator-mode)
 (bind-key "<f12>"     'global-display-fill-column-indicator-mode)
 
 ;; mode specific
