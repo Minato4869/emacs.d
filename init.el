@@ -392,7 +392,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-0"       'balance-windows)
 (bind-key "C-x C--"   'negative-argument)
 (bind-key "C-c o"     'transpose-windows)
-(bind-key "C-x t"     'transpose-lines)
+;;(bind-key "C-x t"     'transpose-lines)
 ;; misc
 (bind-key "C-c 4"     'ispell-change-dictionary)
 (bind-key "C-0"       'text-scale-reset)
@@ -808,40 +808,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 ;; === external modes ==========================================================
 ;;; external packages
-;; == elscreen
-;;(require-soft 'elscreen
-;;              (setq-default elscreen-prefix-key "\M-s")
-;;              (custom-set-variables
-;;               '(elscreen-tab-display-kill-screen nil)
-;;               '(elscreen-display-tab t)
-;;               '(elscreen-display-screen-number t))
-;;              (when (daemonp)
-;;                (elscreen-start))
-;;              (bind-key "M-<left>"   'elscreen-previous)
-;;              (bind-key "M-<right>"  'elscreen-next)
-;;              (bind-key "ESC <left>" 'elscreen-previous)
-;;              (bind-key "ESC <right>" 'elscreen-next)
-;;              (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
-;;              (define-key elscreen-map (kbd "<right>") 'elscreen-next)
-;;              (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
-;;              (define-key elscreen-map (kbd "C-s")    'elscreen-split)
-;;              (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
-;;              (define-key elscreen-map (kbd "s")      'elscreen-swap)
-;;              (define-key elscreen-map (kbd "k")      'elscreen-kill)
-;;              (define-key elscreen-map (kbd "x")      (lambda ()
-;;                                                        (interactive)
-;;                                                        (if (one-window-p) (elscreen-kill) (delete-window))))
-;;              (define-key elscreen-map (kbd "M-k")    (lambda ()
-;;                                                        (interactive)
-;;                                                        (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
-;;                                                                        (kill-current-buffer)
-;;                                                                        (elscreen-kill)))))
-;;              (define-key elscreen-map (kbd "g")      'elscreen-goto)
-;;              (define-key elscreen-map (kbd "t")      'elscreen-toggle-display-tab)
-;;              (define-key elscreen-map (kbd "h")      'split-window-horizontally)
-;;              (define-key elscreen-map (kbd "v")      'split-window-veritcally)
-;;              )
-
 ;; == yas
 (require-soft 'yasnippet
               (setq yas-snippet-dirs '("~/.emacs.d/snippets")
@@ -1377,3 +1343,4 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  )
 
 (load-library "my-tabs")
+;;(load-library "custom-elscreen")

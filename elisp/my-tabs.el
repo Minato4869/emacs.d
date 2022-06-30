@@ -2,7 +2,7 @@
 t(setq tab-bar-tab-hints t
        tab-bar-close-button-show nil
        tab-bar-new-button-show nil
-      )
+       )
 (custom-set-faces
  '(tab-bar-tab          ((t (:foreground "#e5e5e5" :background "#666666"))))
  '(tab-bar              ((t (:inherit header-line))))
@@ -11,3 +11,27 @@ t(setq tab-bar-tab-hints t
  )
 (bind-key "M-<left>"  'tab-bar-switch-to-prev-tab)
 (bind-key "M-<right>" 'tab-bar-switch-to-next-tab)
+(define-key key-translation-map (kbd "M-s") (kbd "C-x t"))  ; translate 'C-h' to DEL
+(define-key tab-prefix-map (kbd "c") 'tab-bar-new-tab)
+(define-key tab-prefix-map "n" 'tab-duplicate)
+(define-key tab-prefix-map "N" 'tab-new-to)
+(define-key tab-prefix-map "2" 'tab-new)
+(define-key tab-prefix-map "1" 'tab-close-other)
+(define-key tab-prefix-map "0" (lambda ()
+                                 (interactive)
+                                 (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
+                                                 (tab-close)
+                                                 (kill-current-buffer)))))
+(define-key tab-prefix-map "u" 'tab-undo)
+(define-key tab-prefix-map "o" 'tab-next)
+(define-key tab-prefix-map "O" 'tab-previous)
+(define-key tab-prefix-map "m" 'tab-move)
+(define-key tab-prefix-map "M" 'tab-move-to)
+(define-key tab-prefix-map "G" 'tab-group)
+(define-key tab-prefix-map "r" 'tab-rename)
+(define-key tab-prefix-map "\r" 'tab-switch)
+(define-key tab-prefix-map "b" 'switch-to-buffer-other-tab)
+(define-key tab-prefix-map "f" 'find-file-other-tab)
+(define-key tab-prefix-map "\C-f" 'find-file-other-tab)
+(define-key tab-prefix-map "\C-r" 'find-file-read-only-other-tab)
+(define-key tab-prefix-map "t" 'other-tab-prefix)
