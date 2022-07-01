@@ -4,7 +4,7 @@
 (let* ((BG-term                             "unspecified-bg")
        (FG-term                             "unspecified-fg")
        (BG                                  "#000000")
-       (FG                                  "#E5E5E5") ;; was bebebe
+       (FG                                  "#bebebe")
        (cursor-bg                           "#DB0600") ;; was ff0000
        (cursor-fg                           "#000000")
        (border                              "#0000FF")

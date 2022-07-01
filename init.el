@@ -13,8 +13,8 @@
 (defun is_ttf ()
   (string-match "PfEd" (prin1-to-string (face-attribute 'default :font))))
 
-(let ((basedir "~/.emacs.d/"))
-  (add-to-list 'load-path (concat basedir "elisp"))
+(let ((basedir "~/.emacs.d/elisp/"))
+  (add-to-list 'load-path basedir)
   (add-to-list 'custom-theme-load-path (concat basedir "themes")))
 
 ;;; v-- @leahneukirchen
@@ -809,64 +809,63 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (require-soft
  'tab-bar
  (when (my_daemonp)
-   (tab-bar-mode t))
- (setq  tab-bar-close-button-show nil
-        tab-bar-mode t
-        tab-bar-new-button-show nil
-        tab-bar-new-tab-choice "*scratch*"
-        tab-bar-new-tab-to 'rightmost
-        tab-bar-tab-hints t
-        )
- (custom-set-faces
-  '(tab-bar-tab          ((t (:foreground "#e5e5e5" :background "#666666"))))
-  '(tab-bar              ((t (:inherit header-line))))
-  '(tab-bar-tab-inactive ((t (:inherit header-line)))))
- (bind-key "M-<left>"  'tab-bar-switch-to-prev-tab)
- (bind-key "M-<right>" 'tab-bar-switch-to-next-tab)
- (define-key key-translation-map (kbd "M-s") (kbd "C-x t"))  ; translate 'C-h' to DEL
- (define-key tab-prefix-map (kbd "c") 'tab-bar-new-tab)
- (define-key tab-prefix-map "n" 'tab-duplicate)
- (define-key tab-prefix-map "N" 'tab-new-to)
- (define-key tab-prefix-map "2" 'tab-new)
- (define-key tab-prefix-map "1" 'tab-close-other)
- (define-key tab-prefix-map (kbd "x") (lambda ()
-                                        (interactive)
-                                        (if (one-window-p)
-                                            (tab-close)
-                                          (delete-window))))
- (define-key tab-prefix-map (kbd "M-k") (lambda ()
+   (setq  tab-bar-close-button-show nil
+          tab-bar-mode t
+          tab-bar-new-button-show nil
+          tab-bar-new-tab-choice "*scratch*"
+          tab-bar-new-tab-to 'rightmost
+          tab-bar-tab-hints t
+          )
+   (custom-set-faces
+    '(tab-bar-tab          ((t (:foreground "#e5e5e5" :background "#666666"))))
+    '(tab-bar              ((t (:inherit header-line))))
+    '(tab-bar-tab-inactive ((t (:inherit header-line)))))
+   (bind-key "M-<left>"  'tab-bar-switch-to-prev-tab)
+   (bind-key "M-<right>" 'tab-bar-switch-to-next-tab)
+   (define-key key-translation-map (kbd "M-s") (kbd "C-x t"))  ; translate 'C-h' to DEL
+   (define-key tab-prefix-map (kbd "c") 'tab-bar-new-tab)
+   (define-key tab-prefix-map "n" 'tab-duplicate)
+   (define-key tab-prefix-map "N" 'tab-new-to)
+   (define-key tab-prefix-map "2" 'tab-new)
+   (define-key tab-prefix-map "1" 'tab-close-other)
+   (define-key tab-prefix-map (kbd "x") (lambda ()
                                           (interactive)
-                                          (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
+                                          (if (one-window-p)
+                                              (tab-close)
+                                            (delete-window))))
+   (define-key tab-prefix-map (kbd "M-k") (lambda ()
+                                            (interactive)
+                                            (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
                                                           (tab-close)
                                                           (kill-current-buffer)))))
- (define-key tab-prefix-map "u" 'tab-undo)
- (define-key tab-prefix-map "p" 'tab-next)
- (define-key tab-prefix-map "n" 'tab-previous)
- (define-key tab-prefix-map "s" 'tab-move)
- (define-key tab-prefix-map (kbd "M-s") 'tab-bar-switch-to-recent-tab)
- (define-key tab-prefix-map "g" 'tab-bar-select-tab)
- (define-key tab-prefix-map (kbd "M-<left>") (lambda()
-                                               (interactive)
-                                               (tab-move -1)))
- (define-key tab-prefix-map (kbd "M-<right>") (lambda()
-                                                (interactive)
-                                                (tab-move 1)))
- (define-key tab-prefix-map "G" 'tab-group)
- (define-key tab-prefix-map "4" 'tab-rename)
- (define-key tab-prefix-map "b" 'switch-to-buffer-other-tab)
- (define-key tab-prefix-map "f" 'find-file-other-tab)
- (define-key tab-prefix-map "\C-f" 'find-file-other-tab)
- (define-key tab-prefix-map "\C-r" 'find-file-read-only-other-tab)
- (define-key tab-prefix-map "t" 'tab-bar-mode)
- (define-key tab-prefix-map (kbd "h")      'split-window-horizontally)
- (define-key tab-prefix-map (kbd "v")      'split-window-veritcally)
- )
+   (define-key tab-prefix-map "u" 'tab-undo)
+   (define-key tab-prefix-map "p" 'tab-next)
+   (define-key tab-prefix-map "n" 'tab-previous)
+   (define-key tab-prefix-map "s" 'tab-move)
+   (define-key tab-prefix-map (kbd "M-s") 'tab-bar-switch-to-recent-tab)
+   (define-key tab-prefix-map "g" 'tab-bar-select-tab)
+   (define-key tab-prefix-map (kbd "M-<left>") (lambda()
+                                                 (interactive)
+                                                 (tab-move -1)))
+   (define-key tab-prefix-map (kbd "M-<right>") (lambda()
+                                                  (interactive)
+                                                  (tab-move 1)))
+   (define-key tab-prefix-map "G" 'tab-group)
+   (define-key tab-prefix-map "4" 'tab-rename)
+   (define-key tab-prefix-map "b" 'switch-to-buffer-other-tab)
+   (define-key tab-prefix-map "f" 'find-file-other-tab)
+   (define-key tab-prefix-map "\C-f" 'find-file-other-tab)
+   (define-key tab-prefix-map "\C-r" 'find-file-read-only-other-tab)
+   (define-key tab-prefix-map "t" 'tab-bar-mode)
+   (define-key tab-prefix-map (kbd "h")      'split-window-horizontally)
+   (define-key tab-prefix-map (kbd "v")      'split-window-veritcally)
+   (tab-bar-mode t)))
 
 ;; === external modes ==========================================================
 ;;; external packages
 ;; == yas
 (require-soft 'yasnippet
-              (setq yas-snippet-dirs '("~/.emacs.d/snippets")
+              (setq yas-snippet-dirs '("~/.emacs.d/elisp/snippets")
                     yas-prompt-functions '(yas-ido-prompt
                                            yas-completing-prompt
                                            yas-no-prompt))
