@@ -910,7 +910,9 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (interactive)
   (when (display-graphic-p)
 	  (set-frame-height (selected-frame) 57)
-	  (set-frame-width  (selected-frame) 80)))
+	  (set-frame-width  (selected-frame) 80)
+    (setq default-frame-alist '((width . 80) (height . 57))
+          initial-frame-alist default-frame-alist)))
 
 ;; === aliases =================================================================
 ;;; global aliases of default functions
