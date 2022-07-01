@@ -498,3 +498,40 @@
    `(mode-line                           ((((type tty)) (:background "unspecified-fg" :foreground "unspecified-bg"))))
    `(mode-line-inactive                  ((t (:background "#4D4D4D" :foreground "#CCCCCC"
                                                           :box (:line-width -1 :color "#666666" :style nil))))))
+
+
+;; 2022-07-01 Fri
+;; == elscreen
+(require-soft 'elscreen
+              (setq-default elscreen-prefix-key "\M-s")
+              (custom-set-variables
+               '(elscreen-tab-display-kill-screen nil)
+               '(elscreen-display-tab t)
+               '(elscreen-display-screen-number t))
+              (when (daemonp)
+                (elscreen-start))
+              (bind-key "M-<left>"   'elscreen-previous)
+              (bind-key "M-<right>"  'elscreen-next)
+              (bind-key "ESC <left>" 'elscreen-previous)
+              (bind-key "ESC <right>" 'elscreen-next)
+              (define-key elscreen-map (kbd "<left>") 'elscreen-previous)
+              (define-key elscreen-map (kbd "<right>") 'elscreen-next)
+              (define-key elscreen-map (kbd "M-s")    'elscreen-toggle)
+              (define-key elscreen-map (kbd "C-s")    'elscreen-split)
+              (define-key elscreen-map (kbd "4")      'elscreen-screen-nickname)
+              (define-key elscreen-map (kbd "s")      'elscreen-swap)
+              (define-key elscreen-map (kbd "k")      'elscreen-kill)
+              (define-key elscreen-map (kbd "x")      (lambda ()
+                                                        (interactive)
+                                                        (if (one-window-p) (elscreen-kill) (delete-window))))
+              (define-key elscreen-map (kbd "M-k")    (lambda ()
+                                                        (interactive)
+                                                        (when (y-or-n-p (kbd "Kill current buffer and close screen? (kbd ")
+                                                                        (kill-current-buffer)
+                                                                        (elscreen-kill)))))
+              (define-key elscreen-map (kbd "g")      'elscreen-goto)
+              (define-key elscreen-map (kbd "t")      'elscreen-toggle-display-tab)
+              (define-key elscreen-map (kbd "h")      'split-window-horizontally)
+              (define-key elscreen-map (kbd "v")      'split-window-veritcally)
+              )
+(elscreen-start)
