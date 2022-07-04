@@ -350,9 +350,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; custom keys
 (bind-key "C-c h"     'help)
 ;; editing
-(bind-key "M-%"       'query-replace-regexp)
-(bind-key "C-c 5"     'query-replace)
-(bind-key "C-M-5"     'query-replace)
+;;(bind-key "M-%"       'query-replace)
+(bind-key "C-c 5"     'query-replace-regexp)
 (bind-key "M-k"       'kill-whole-line) ;; was M-K
 (bind-key "C-w"       'backward-kill-word)
 (bind-key "M-W"       'backward-kill-sexp)
