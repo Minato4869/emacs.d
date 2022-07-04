@@ -1126,10 +1126,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
   (defun default-font ()
     (interactive)
     (cond
-     ((or (= dpi 109)
+     ((or (file-regular-p "~/.ettf")
           (file-regular-p "~/.ttf") (ttf)))
      ((or (file-regular-p "~/.hf")
-          (>= dpi 157))
+          (>= dpi 138))
       (9x16))
      (t                         (6x13))))
 
