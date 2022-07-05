@@ -1287,11 +1287,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  `(escape-glyph                     ((t (:foreground "#00ffff" :bold t))))
 
  `(header-line                      ((t (:foreground "#E5E5E5" :background "#292929" :box (:line-width -1 :style released-button)))))
- `(elscreen-tab-background-face     ((t (:inherit header-line))))
- `(elscreen-tab-control-face        ((t (:inherit elscreen-tab-background-face))))
- `(elscreen-tab-other-screen-face   ((t (:inherit elscreen-tab-background-face))))
- `(elscreen-tab-current-screen-face ((((type tty)) (:inherit mode-line-inactive))
-                                     (t (:foreground "#e5e5e5" :background "#666666"))))
 
  `(highlight                        ((t (:inherit default :background "#556b2f"))))
 
@@ -1391,7 +1386,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
  '(initial-frame-alist default-frame-alist)
  '(browse-url-generic-program "chrome.incognito")
  '(package-selected-packages
-   '(elscreen yasnippet diminish go-mode haskell-mode))
+   '(yasnippet diminish go-mode haskell-mode))
  ;; 2022-05-23 Mon emacs 28.1
  '(mouse-wheel-scroll-amount '(5 ((shift) . 1)))
  '(use-short-answers t )
