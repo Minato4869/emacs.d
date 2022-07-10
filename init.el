@@ -930,7 +930,8 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (bind-key "C-c <return>"   'run-term)
 (bind-key "C-c RET"        'run-term)
-(bind-key "C-c <C-return>" 'run-beamer-term)
+(bind-key "C-c <C-return>" 'run-term)
+(bind-key "C-c <S-return>" 'run-beamer-term)
 (bind-key "C-x C-<return>" 'run-local-term)
 
 (defalias 'bterm     'beamer-term)
@@ -1319,10 +1320,11 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (add-hook 'css-mode-hook     'turn-on-font-lock)
 
 (custom-set-variables
- '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
-;; Actually, it's the BBC controlling us from London.
-
-")
+  '(initial-scratch-message nil)
+;; '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
+;;;; Actually, it's the BBC controlling us from London.
+;;
+;;")
  '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
