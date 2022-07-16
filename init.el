@@ -915,7 +915,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
           (call-process term nil 0 term "-g" "80x24" "-e" "ssh" "-t" "-l"
                         user host (format "cd %s; exec $SHELL" path)))
       (call-process term nil 0 term "-g" "80x24"
-                    "-fg" "#d4d4d4" "-bg" "#101010"))))
+                    "-fg" "#d4d4d4" "-bg" "#222222"))))
 
 (defun cterm/run-local-term (term)
   (let ((default-directory default-directory))
@@ -933,6 +933,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-c <C-return>" 'run-term)
 (bind-key "C-c <S-return>" 'run-beamer-term)
 (bind-key "C-x C-<return>" 'run-local-term)
+(define-key tab-prefix-map (kbd ".")      'run-term)
 
 (defalias 'bterm     'beamer-term)
 (defalias 'open-term 'run-term)
