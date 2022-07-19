@@ -807,7 +807,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 ;; == tab-bar
 (require-soft
  'tab-bar
- (when (my_daemonp)
+ (when (and (my_daemonp) (< emacs-minor-version 26))
    (setq  tab-bar-close-button-show nil
           tab-bar-mode t
           tab-bar-new-button-show nil
@@ -858,6 +858,7 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
    (define-key tab-prefix-map "t" 'tab-bar-mode)
    (define-key tab-prefix-map (kbd "h")      'split-window-horizontally)
    (define-key tab-prefix-map (kbd "v")      'split-window-veritcally)
+   (define-key tab-prefix-map (kbd ".")      'run-term)
    (tab-bar-mode t)))
 
 ;; === external modes ==========================================================
@@ -932,7 +933,6 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 (bind-key "C-c <C-return>" 'run-term)
 (bind-key "C-c <S-return>" 'run-beamer-term)
 (bind-key "C-x C-<return>" 'run-local-term)
-(define-key tab-prefix-map (kbd ".")      'run-term)
 
 (defalias 'bterm     'beamer-term)
 (defalias 'open-term 'run-term)
@@ -1321,10 +1321,10 @@ making them easy to toggle.  Also, all defined keybindings can be listed here:
 
 (custom-set-variables
   '(initial-scratch-message nil)
-;; '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
-;;;; Actually, it's the BBC controlling us from London.
-;;
-;;")
+  '(initial-scratch-message ";; Unfortunately, there's a radio connected to my brain
+;; Actually, it's the BBC controlling us from London.
+
+")
  '(battery-mode-line-format " [%b%p%%]")
  '(display-time-default-load-average nil)
  '(display-time-format "%H:%M")
